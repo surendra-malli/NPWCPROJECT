@@ -1,0 +1,184 @@
+import { Grid, Typography, Select, FormControl, InputLabel } from '@mui/material';
+import * as React from 'react';
+
+import Card from '@mui/material/Card';
+
+import CardContent from '@mui/material/CardContent';
+
+
+import Logo from "./pictures/nova.svg";
+import Poultry from "./pictures/Poultry.svg";
+import Fish from "./pictures/Fish.svg";
+
+
+
+
+export default function Protein() {
+    return (
+        <div>
+            { <img src={Logo} alt="nova logo" style={{ height: "auto", width: "250px", marginLeft: "30px" }} />}
+
+
+            <Grid container spacing={2}>
+                <Grid item xs={6}>
+                    <CardContent >
+                        <Typography  variant='h3'>
+                                Proteins 
+                            </Typography>
+
+                        <Typography>
+                        45 Calories / Servings
+                        </Typography>
+                        <Typography  >
+                        13 Servings / Day
+                        </Typography>
+                            
+                    </CardContent>
+                </Grid>
+                <Grid item xs={6}>
+                    <CardContent >
+                        <Card sx={{Width: 200,height:100}} style={{backgroundColor:"#E1B725"}}>
+                            <Typography variant="h3" style={{textAlign:"center"}}>
+                                7
+                            </Typography>
+                            <Typography variant="h5" style={{textAlign:"center"}}>
+                                serving
+                            </Typography>
+                            <Typography variant="h5" style={{textAlign:"center"}}>
+                                remained
+                            </Typography>
+                        </Card>
+                    </CardContent>
+                </Grid>
+            </Grid>
+
+
+
+
+
+
+
+    <CardContent >
+        <Card >
+            <Typography variant="body1" style={{padding:"30px", color:"#9B54BF"}} >
+            Weigh AFTER cooked / 1 serving = 1 cooked oz
+            </Typography>
+        </Card>
+    </CardContent>
+
+           
+
+
+
+
+
+
+    <Card style={{backgroundColor:"#F0E7F5",margin:'1rem',boxShadow: '#c4c4c4', }}>
+        <CardContent>
+            <Grid container spacing={2} justifyContent='center' alignItems='center' >
+                {/* <Grid item xs={2} md={2}>
+                <ButtonBase sx={{ width: 128, height: 128 }}>
+                    <img src={Poultry} alt="nova logo" style={{height: "70", width: "60px", marginLeft: "30px"}}/>
+                </ButtonBase>
+                </Grid> */}
+                <Grid item xs={10} spacing={2} md={10} >
+                    <Grid item xs>
+                        <div style={{display:'flex'}}>
+                            <Typography gutterBottom variant="h5" component="div">
+                            Fish
+                            </Typography>
+                            <Card  sx={{position:'absolute',right:20,borderRadius:1,padding:'0.2rem 0.4rem',boxShadow: '#c4c4c4'}} >
+                                <span style={{cursor:'pointer'}}>-</span>&nbsp;
+                                1 &nbsp;
+                                <span style={{cursor:'pointer'}}>+</span>
+                            </Card>
+                        </div>
+                    <Typography variant="body2" gutterBottom>
+                    fresh, canned or frozen, Cod, Flounder, Haddock, Halibut.
+                    </Typography>
+                    
+                    </Grid>
+                </Grid>
+            </Grid>
+        </CardContent>
+    </Card>
+
+
+        
+
+
+    <Card style={{backgroundColor:"#F0E7F5",margin:'1rem',boxShadow: '#c4c4c4', }}>
+        <CardContent>
+            <Grid container spacing={2} justifyContent='center' alignItems='center' >
+                {/* <Grid item xs={2} md={2}>
+                <ButtonBase sx={{ width: 128, height: 128 }}>
+                    <img src={Poultry} alt="nova logo" style={{height: "70", width: "60px", marginLeft: "30px"}}/>
+                </ButtonBase>
+                </Grid> */}
+                <Grid item xs={10} spacing={2} md={10} >
+                    <Grid item xs>
+                        <div style={{display:'flex'}}>
+                            <Typography gutterBottom variant="h5" component="div">
+                            Fish
+                            </Typography>
+                            <Card  sx={{position:'absolute',right:20,borderRadius:1,padding:'0.2rem 0.4rem',boxShadow: '#c4c4c4'}} >
+                                <span style={{cursor:'pointer'}}>-</span>&nbsp;
+                                1 &nbsp;
+                                <span style={{cursor:'pointer'}}>+</span>
+                            </Card>
+                        </div>
+                    <Typography variant="body2" gutterBottom>
+                    fresh, canned or frozen, Cod, Flounder, Haddock, Halibut.
+                    </Typography>
+                    
+                    </Grid>
+                </Grid>
+            </Grid>
+        </CardContent>
+    </Card>
+
+
+
+
+
+    <Card style={{backgroundColor:"#F0E7F5",margin:'1rem',boxShadow: '#c4c4c4', }}>
+        <CardContent>
+            <Grid container spacing={2} justifyContent='center' alignItems='center' >
+                {/* <Grid item xs={2} md={2}>
+                <ButtonBase sx={{ width: 128, height: 128 }}>
+                    <img src={Poultry} alt="nova logo" style={{height: "70", width: "60px", marginLeft: "30px"}}/>
+                </ButtonBase>
+                </Grid> */}
+                <Grid item xs={10} spacing={2} md={10} >
+                    <Grid item xs>
+                        <div style={{display:'flex'}}>
+                            <Typography gutterBottom variant="h5" component="div">
+                            Fish
+                            </Typography>
+                            <Card  sx={{position:'absolute',right:20,borderRadius:1,padding:'0.2rem 0.4rem',boxShadow: '#c4c4c4'}} >
+                                <span style={{cursor:'pointer'}}>-</span>&nbsp;
+                                1 &nbsp;
+                                <span style={{cursor:'pointer'}}>+</span>
+                            </Card>
+                        </div>
+                    <Typography variant="body2" gutterBottom>
+                    fresh, canned or frozen, Cod, Flounder, Haddock, Halibut.
+                    </Typography>
+                    
+                    </Grid>
+                </Grid>
+            </Grid>
+        </CardContent>
+    </Card>
+
+
+    
+            
+
+
+        </div>
+
+
+    );
+}
+
