@@ -10,6 +10,7 @@ import Page404 from './pages/Page404';
 import ProductsPage from './pages/ProductsPage';
 import DashboardAppPage from './pages/DashboardAppPage';
 import Adminuser from './pages/Adminuser';
+import Adminuserlist from './pages/Adminuserlist';
 
 // ----------------------------------------------------------------------
 
@@ -29,6 +30,10 @@ export default function Router() {
                 {
                     path: 'adminuser',
                     element: <Adminuser/ >
+                },
+                {
+                    path: 'adminuserlist',
+                    element: <Adminuserlist/ >
                 },
 
             ],
