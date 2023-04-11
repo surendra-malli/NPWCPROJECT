@@ -14,6 +14,10 @@ import Adminuserlist from './pages/Adminuserlist';
 import Adminproteins from './pages/Adminproteins';
 import Adminitems from './pages/Adminitems';
 import Createuser from './pages/Createuser';
+import DietPlan from './pages/DietPlan';
+import Exercise from './pages/Exercise';
+
+import Aerobic from './pages/Aerobic';
 // ----------------------------------------------------------------------
 
 export default function Router() {
@@ -49,6 +53,15 @@ export default function Router() {
                     path: 'createuser',
                     element: <Createuser/ >
                 },
+                {
+                    path: 'dietplan',
+                    element: <DietPlan />,
+                  },
+                  {
+                    path: 'exercise',
+                    element: <Exercise />,
+                  },
+                  { path: 'aerobic', element: <Aerobic /> }
 
             ],
         },

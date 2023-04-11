@@ -59,7 +59,7 @@ export default function DashboardAppPage() {
       </Grid>
     </CardContent>
     
-    <Grid>
+    
     <CardContent>
       <Card style={{backgroundColor:"black"}} >
         <CardContent style={{padding:"20px 15px"}}>
@@ -93,7 +93,7 @@ export default function DashboardAppPage() {
           </CardContent>
       </Card>
     </CardContent>
-    </Grid>
+    
     
     <CardContent>
     <Card style={{backgroundColor:"black"}} >
