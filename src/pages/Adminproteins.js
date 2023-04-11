@@ -22,47 +22,7 @@ import Fish from "./pictures/Fish.svg";
 export default function Protein() {
 
    
-    const [count1, setCount1] = useState(0);
-
-    const handleIncrement1 = () => {
-      setCount1(count1 + 1);
-    };
-  
-    const handleDecrement1 = () => {
-      setCount1(count1 - 1);
-    };
-
-
-
-
-
-    const [count2, setCount2] = useState(0);
-
-    const handleIncrement2 = () => {
-        
-      setCount2(count2 + 1);
-    };
-  
-    const handleDecrement2 = () => {
-        if (count2 > 0){
-            setCount2(count2 - 1);
-        }
-      
-    };
-
     
-
-
-
-    const [count3, setCount3] = useState(0);
-
-    const handleIncrement3 = () => {
-      setCount3(count3 + 1);
-    };
-  
-    const handleDecrement3 = () => {
-      setCount3(count3 - 1);
-    };
 
 
     return (
@@ -138,19 +98,7 @@ export default function Protein() {
                             <Typography gutterBottom variant="h5" component="div">
                             Fish
                             </Typography>
-                            <Card  sx={{position:'absolute',right:20,borderRadius:1,boxShadow: '#c4c4c4'}} >
-                                  
-                                      <IconButton onClick={handleDecrement1}>
-                                      <RemoveIcon />
-                                       </IconButton>
-                                       {count1}
-                                       <IconButton onClick={handleIncrement1}>
-                                       <AddIcon />
-                                       </IconButton>
-                                      
-
-
-                            </Card>
+                            
                         </div>
                     <Typography variant="body2" gutterBottom>
                     fresh, canned or frozen, Cod, Flounder, Haddock, Halibut.
@@ -178,17 +126,7 @@ export default function Protein() {
                             <Typography gutterBottom variant="h5" component="div">
                             Fish
                             </Typography>
-                            <Card  sx={{position:'absolute',right:20,borderRadius:1,boxShadow: '#c4c4c4'}} >
-                                
-                                      <IconButton onClick={handleDecrement2}>
-                                      <RemoveIcon />
-                                       </IconButton>
-                                       {count2}
-                                       <IconButton onClick={handleIncrement2}>
-                                       <AddIcon />
-                                       </IconButton>
-                                      
-                            </Card>
+                            
                         </div>
                     <Typography variant="body2" gutterBottom>
                     fresh, canned or frozen, Cod, Flounder, Haddock, Halibut.
@@ -220,24 +158,7 @@ export default function Protein() {
                             <Typography gutterBottom variant="h5" component="div">
                             Fish
                             </Typography>
-                            <Card  sx={{position:'absolute', right:20,borderRadius:1,boxShadow: '#c4c4c4'}} >
-                                
                             
-                                      <IconButton onClick={handleDecrement3}>
-                                      <RemoveIcon />
-                                       </IconButton>
-                                       {count3}
-                                       <IconButton onClick={handleIncrement3}>
-                                       <AddIcon />
-                                       </IconButton>
-                                      
-        
-                                  
-                                  
-
-                                
-                               
-                            </Card>
                         </div>
                     <Typography variant="body2" gutterBottom>
                     fresh, canned or frozen, Cod, Flounder, Haddock, Halibut.

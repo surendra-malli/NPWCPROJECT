@@ -23,18 +23,18 @@ export default function Adminuser() {
 
             <Card sx={{ minWidth: 275 }} style={{backgroundColor:"#212121",margin:"10px"}}>
                     <CardContent>
-                    <Grid container flexDirection="row" spacing="1">
-                        
-                        <div><span style={{ fontSize:"25px" ,color:"#E1B725"}}>100</span>
-                        </div>
-                        <div>
-                        <span style={{ fontSize:"25px" ,color:"white",fontWeight:"20px",marginLeft:"10px" ,marginRight:"40px"}}>Total Users</span>
-                        </div>
-                       
-                        <div>  
-                        
+                    <Grid container flexDirection="row" spacing="1" alignItems="center" justifyContent="center">
+                        <Grid item xs={4} alignItems="center" justifyContent="center">
+                                <span style={{ fontSize:"25px" ,color:"#E1B725"}}>100</span>
+                        </Grid>
+                        <Grid item xs={4} alignItems="center" justifyContent="center">
+                            <span style={{ fontSize:"25px" ,color:"white",fontWeight:"20px"}}>Total Users</span>
+                        </Grid>
+                        <Grid item xs={4} alignItems="center" justifyContent="center" sx={{justifyContent:'center',alignItems:"center"}}>
                         <img src={Diet} className='dinning-img' alt="dinning" />
-                        </div>
+                        </Grid>
+                        
+                       
                         
                         
                         
@@ -46,21 +46,20 @@ export default function Adminuser() {
             
 
 
-
             <Card sx={{ minWidth: 275 }} style={{backgroundColor:"#212121",margin:"10px"}}>
                     <CardContent>
-                    <Grid container flexDirection="row" spacing="1">
-                        
-                        <div><span style={{ fontSize:"25px" ,color:"#E1B725"}}>60</span>
-                        </div>
-                        <div>
-                        <span style={{ fontSize:"25px" ,color:"white",fontWeight:"20px",marginLeft:"10px" ,marginRight:"20px"}}>InActive Users</span>
-                        </div>
-                       
-                        <div>  
-                        
+                    <Grid container flexDirection="row" spacing="1" alignItems="center" justifyContent="center">
+                        <Grid item xs={4} alignItems="center" justifyContent="center">
+                                <span style={{ fontSize:"25px" ,color:"#E1B725"}}>100</span>
+                        </Grid>
+                        <Grid item xs={4} alignItems="center" justifyContent="center">
+                            <span style={{ fontSize:"25px" ,color:"white",fontWeight:"20px"}}>InActive Users</span>
+                        </Grid>
+                        <Grid item xs={4} alignItems="center" justifyContent="center" sx={{justifyContent:'center',alignItems:"center"}}>
                         <img src={Diet} className='dinning-img' alt="dinning" />
-                        </div>
+                        </Grid>
+                        
+                       
                         
                         
                         
@@ -71,21 +70,23 @@ export default function Adminuser() {
             </Card>
 
 
+            
+
 
             <Card sx={{ minWidth: 275 }} style={{backgroundColor:"#212121",margin:"10px"}}>
                     <CardContent>
-                    <Grid container flexDirection="row" spacing="1">
-                        
-                        <div><span style={{ fontSize:"25px" ,color:"#E1B725"}}>160</span>
-                        </div>
-                        <div>
-                        <span style={{ fontSize:"25px" ,color:"white",fontWeight:"20px",marginLeft:"10px" ,marginRight:"30px"}}>Active Users</span>
-                        </div>
-                       
-                        <div>  
-                        
+                    <Grid container flexDirection="row" spacing="1" alignItems="center" justifyContent="center">
+                        <Grid item xs={4} alignItems="center" justifyContent="center">
+                                <span style={{ fontSize:"25px" ,color:"#E1B725"}}>160</span>
+                        </Grid>
+                        <Grid item xs={4} alignItems="center" justifyContent="center">
+                            <span style={{ fontSize:"25px" ,color:"white",fontWeight:"20px"}}>Active Users</span>
+                        </Grid>
+                        <Grid item xs={4} alignItems="center" justifyContent="center" sx={{justifyContent:'center',alignItems:"center"}}>
                         <img src={Diet} className='dinning-img' alt="dinning" />
-                        </div>
+                        </Grid>
+                        
+                       
                         
                         
                         
