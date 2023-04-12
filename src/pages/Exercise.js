@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link as RouterLink } from 'react-router-dom';
 
 
 
@@ -172,8 +172,10 @@ export default function Exercise(){
            
 
             <Card sx={{ minWidth: 275 }} style={{backgroundColor:"#F0E7F5",margin:"20px"}}>
+                <CardContent to="/dashboard/aerobic" component={RouterLink} sx={{textDecoration:'none'}}>
                 <Grid container justifyContent="space-between" alignItems="center" style={{padding:"5px"}}>
                     <Grid item>
+                        
                         <Typography variant="body1" component="span" style={proteinStyle}>
                         Aerobic<br/>Activity
                         </Typography>
@@ -184,7 +186,7 @@ export default function Exercise(){
                         </Typography>
                     </Grid>
                 </Grid>
-              
+              </CardContent>
             </Card>
             <Card sx={{ minWidth: 275 }} style={{backgroundColor:"#F0E7F5",margin:"20px"}}>
             <Grid container justifyContent="space-between" alignItems="center" style={{padding:"5px"}}>

@@ -3,7 +3,7 @@ import React from 'react';
 // import '../css/DietPlan.css';
 
 
-
+import { Link as RouterLink } from 'react-router-dom';
 import Box from '@mui/material/Box';
 
 import Card from '@mui/material/Card';
@@ -27,6 +27,7 @@ import Poultry from "./pictures/Poultry.svg";
 import Logo from "./pictures/nova.svg";
 import Diet from "./pictures/Diet.svg";
 import Peas from "./pictures/Peas.svg";
+import ProteinChicken from "./pictures/ProteinChicken.svg"
 // import companyimage from '../images/CompanyName.png';
 
 // import chicken from '../images/chicken.png';
@@ -124,7 +125,7 @@ export default function DietPlan(){
                             
                         </Grid>
                     </Card>
-                    <Card sx={{minWidth:145,minHeight:65}} style={{backgroundColor:"#8D25C1",margin:"10px"}}>
+                    <Card  style={{backgroundColor:"#8D25C1",margin:"10px"}}>
                     <Grid container flexDirection="column" justifyItems="center">
                         
                         <Grid item>
@@ -150,7 +151,7 @@ export default function DietPlan(){
                 </Card>
             </Grid>
         <Grid Item>
-             <Card sx={{ minWidth: 275 }} style={{backgroundColor:"#212121",margin:"20px"}}>
+             <Card  style={{backgroundColor:"#212121",margin:"20px"}}>
                     <CardContent>
                         <Grid container flexDirection="row" justifyContent="space-between">
                             
@@ -169,8 +170,9 @@ export default function DietPlan(){
         </Grid>
            
 
-            <Card sx={{ minWidth: 275,minHeight:200 }} style={{backgroundColor:"#F0E7F5",margin:"20px"}}>
-                    <Grid container justifyContent="space-between" alignItems="center" style={{padding:"5px"}}>
+            <Card  style={{backgroundColor:"#F0E7F5",margin:"20px"}}>
+                <CardContent to="/dashboard/protein" component={RouterLink} sx={{textDecoration:'none'}}>
+                    <Grid container justifyContent="space-between"  alignItems="center" style={{padding:"5px"}}>
                         <Grid item>
                             <Typography variant="body1" component="span" style={proteinStyle}>
                                 proteins
@@ -194,9 +196,9 @@ export default function DietPlan(){
                             </Typography>
                         </Grid>
                     </Grid>
-                    <Grid mt={2} container flexDirection="row"  >
-                    <Grid ml={2}>
-                            <Grid container flexDirection="column"  spacing={2}>
+                    <Grid mt={2} container flexDirection="row" spacing={1} >
+                    <Grid item ml={2}>
+                            <Grid container flexDirection="column"  spacing={1}>
                                 <Grid item >
                                 
                                     <Typography variant="h6" component="h2" style={{ color: "black" }}>
@@ -212,11 +214,11 @@ export default function DietPlan(){
                             </Grid>
                         </Grid>
                     
-                        <Grid ml={5}>
+                        <Grid item ml={3} >
                             <Grid container flexDirection="column" >
                                 <Grid item mb={2}>
-                                    <Grid item >
-                                        <img src={Poultry} className='chicken-img' alt="chicken" />
+                                    <Grid item spacing={2} >
+                                        <img src={ProteinChicken} className='chicken-img' alt="chicken" />
                                     </Grid>
                                 
                                 
@@ -228,25 +230,25 @@ export default function DietPlan(){
                             </Grid>
                         </Grid>
                         
-                            <Grid  item mb={2}>
-                                <Grid >
-                                    <Grid item >
+                       <Grid  item mb={2} >
+                                
+                                    
                                         <img src={Peas} className='chicken-img' alt="peas" />
-                                    </Grid>
+                                  
                                
-                                    <Typography variant="h6" component="h2" style={{ color: "black" }}>
+                                    <Typography variant="h6" component="h2" style={{ color: "black"}}>
                                     5 calories
                                     </Typography>
                                     
-                                </Grid>
+                               
                             </Grid>
                      
                     </Grid>
    
-
+               </CardContent>
             </Card>
 
-            <Card sx={{ minWidth: 275 }} style={{backgroundColor:"#F0E7F5",margin:"20px"}}>
+            <Card  style={{backgroundColor:"#F0E7F5",margin:"20px"}}>
                 <Grid container justifyContent="space-between" alignItems="center" style={{padding:"5px"}}>
                     <Grid item>
                         <Typography variant="body1" component="span" style={proteinStyle}>
@@ -272,7 +274,7 @@ export default function DietPlan(){
                     </Grid>
                 </Grid>
             </Card>
-            <Card sx={{ minWidth: 275 }} style={{backgroundColor:"#F0E7F5",margin:"20px"}}>
+            <Card  style={{backgroundColor:"#F0E7F5",margin:"20px"}}>
             <Grid container justifyContent="space-between" alignItems="center" style={{padding:"5px"}}>
                 <Grid item>
                     <Typography variant="body1" component="span" style={proteinStyle}>
@@ -299,7 +301,7 @@ export default function DietPlan(){
                 </Grid>
             </Grid>
             </Card>
-            <Card sx={{ minWidth: 275}} style={{backgroundColor:"#F0E7F5",margin:"20px"}}>
+            <Card  style={{backgroundColor:"#F0E7F5",margin:"20px"}}>
             <Grid container justifyContent="space-between" alignItems="center" style={{padding:"5px"}}>
                 <Grid item>
                     <Typography variant="body1" component="span" style={proteinStyle}>
@@ -307,7 +309,7 @@ export default function DietPlan(){
                     Vegetables
                     </Typography>
                 </Grid>
-                <Grid item>
+                <Grid item sx={{ml:"10px"}}>
                     <Typography variant="h5" component="span" style={plusStyle}>
                     +
                     </Typography>

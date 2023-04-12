@@ -6,6 +6,9 @@ import Logo from "./pictures/nova.svg"
  // import Lunge from "./pictures/Lunge.svg"
 // import Sidestep from "./pictures/Sidestep.svg"
 import Poultry from "./pictures/Poultry.svg"
+import SideStepping from "./pictures/SideStepping.svg"
+import WaterWalking from "./pictures/WaterWalking.svg"
+import ForwardLunge from "./pictures/ForwardLunge.svg"
 
 export default function Aerobic() {
     return (
@@ -24,7 +27,7 @@ export default function Aerobic() {
                 </Grid>
                 <Grid item xs={6}>
                     <CardContent >
-                        <Card sx={{Width: 200,height:100}} style={{backgroundColor:"#E1B725"}}>
+                        <Card sx={{Width: 200,height:"auto"}} style={{backgroundColor:"#E1B725"}}>
                             <Typography variant="h3" style={{textAlign:"center"}}>
                                 7
                             </Typography>
@@ -50,7 +53,7 @@ export default function Aerobic() {
             <Grid container spacing={2} justifyContent='center' alignItems='center' >
                  <Grid item xs={2} md={2}>
                 <ButtonBase sx={{ width: "auto", height: "auto" }}>
-                    <img src={Poultry} alt="nova logo" style={{height: "100", width: "100px"}}/>
+                    <img src={SideStepping} alt="nova logo" style={{height: "100", width: "100px"}}/>
                 </ButtonBase>
                 </Grid> 
                 <Grid item xs={10} spacing={2} md={10} >
@@ -83,7 +86,7 @@ export default function Aerobic() {
             <Grid container spacing={2} justifyContent='center' alignItems='center' >
                  <Grid item xs={2} md={2}>
                 <ButtonBase sx={{ width: "auto", height: "auto" }}>
-                    <img src={Poultry} alt="nova logo" style={{height: "100", width: "100px"}}/>
+                    <img src={WaterWalking} alt="nova logo" style={{height: "100", width: "100px"}}/>
                 </ButtonBase>
                 </Grid> 
                 <Grid item xs={10} spacing={2} md={10} >
@@ -123,7 +126,7 @@ export default function Aerobic() {
             <Grid container spacing={2} justifyContent='center' alignItems='center' >
                  <Grid item xs={2} md={2}>
                 <ButtonBase sx={{ width: "auto", height: "auto" }}>
-                    <img src={Poultry} alt="nova logo" style={{height: "100", width: "100px"}}/>
+                    <img src={ForwardLunge} alt="nova logo" style={{height: "100", width: "100px"}}/>
                 </ButtonBase>
                 </Grid> 
                 <Grid item xs={10} spacing={2} md={10} >

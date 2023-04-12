@@ -1,10 +1,12 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link as RouterLink, useNavigate} from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 // @mui
-import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox } from '@mui/material';
+import { Link, Stack, IconButton, InputAdornment, TextField, Card, Checkbox } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // components
 import Iconify from '../../../components/iconify';
+// import Card from 'src/theme/overrides/Card';
 
 // ----------------------------------------------------------------------
 
@@ -45,10 +47,12 @@ export default function LoginForm() {
           Forgot password?
         </Link>
       </Stack>
-
+      <Card to="/dashboard" component={RouterLink} sx={{textDecoration:'none'}}>
       <LoadingButton fullWidth size="large" type="submit" variant="contained" onClick={handleClick}>
         Login
       </LoadingButton>
+      </Card>
+      
     </>
   );
 }

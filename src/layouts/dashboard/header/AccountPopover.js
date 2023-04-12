@@ -36,7 +36,7 @@ export default function AccountPopover() {
   };
 
   return (
-    <>
+    <div style={{float:"right"}}>
       <IconButton
         onClick={handleOpen}
         sx={{
@@ -48,7 +48,7 @@ export default function AccountPopover() {
               width: '100%',
               height: '100%',
               borderRadius: '50%',
-              position: 'absolute',
+              // position: 'absolute',
               bgcolor: (theme) => alpha(theme.palette.grey[900], 0.8),
             },
           }),
@@ -101,6 +101,6 @@ export default function AccountPopover() {
           Logout
         </MenuItem>
       </Popover>
-    </>
+    </div>
   );
 }

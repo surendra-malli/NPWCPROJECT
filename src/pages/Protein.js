@@ -29,7 +29,11 @@ export default function Protein() {
     };
   
     const handleDecrement1 = () => {
-      setCount1(count1 - 1);
+        if (count1 > 0){
+
+            setCount1(count1 - 1);
+        }
+      
     };
 
 
@@ -61,7 +65,10 @@ export default function Protein() {
     };
   
     const handleDecrement3 = () => {
-      setCount3(count3 - 1);
+        if (count3 > 0){
+            setCount3(count3 - 1);
+        }
+      
     };
 
 
@@ -136,7 +143,7 @@ export default function Protein() {
                     <Grid item xs>
                         <div style={{display:'flex'}}>
                             <Typography gutterBottom variant="h5" component="div">
-                            Fish
+                            poultry
                             </Typography>
                             <Card  sx={{position:'absolute',right:20,borderRadius:1,boxShadow: '#c4c4c4'}} >
                                   
@@ -153,7 +160,7 @@ export default function Protein() {
                             </Card>
                         </div>
                     <Typography variant="body2" gutterBottom>
-                    fresh, canned or frozen, Cod, Flounder, Haddock, Halibut.
+                    white meat, skinless, chicken, turkey, hen, duck
                     </Typography>
                     
                     </Grid>
@@ -169,7 +176,7 @@ export default function Protein() {
             <Grid container spacing={2} justifyContent='center' alignItems='center' >
                  <Grid item xs={2} md={2}>
                 <ButtonBase sx={{ width: "auto", height: "auto" }}>
-                    <img src={Poultry} alt="nova logo" style={{height: "100", width: "100px"}}/>
+                    <img src={Fish} alt="nova logo" style={{height: "100", width: "100px"}}/>
                 </ButtonBase>
                 </Grid> 
                 <Grid item xs={10} spacing={2} md={10} >
@@ -211,7 +218,7 @@ export default function Protein() {
             <Grid container spacing={2} justifyContent='center' alignItems='center' >
                  <Grid item xs={2} md={2}>
                 <ButtonBase sx={{ width: "auto", height: "auto" }}>
-                    <img src={Poultry} alt="nova logo" style={{height: "100", width: "100px"}}/>
+                    <img src={Fish} alt="nova logo" style={{height: "100", width: "100px"}}/>
                 </ButtonBase>
                 </Grid> 
                 <Grid item xs={10} spacing={2} md={10} >

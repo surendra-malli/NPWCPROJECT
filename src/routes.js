@@ -33,6 +33,11 @@ export default function Router() {
                     path: 'protein',
                     element: < Protein />
                 },
+
+                {
+                    path: 'login',
+                    element: < LoginPage /> ,
+                },
                 {
                     path: 'adminuser',
                     element: <Adminuser/ >
@@ -65,10 +70,7 @@ export default function Router() {
 
             ],
         },
-        {
-            path: 'login',
-            element: < LoginPage /> ,
-        },
+        
 
         {
             element: < SimpleLayout /> ,

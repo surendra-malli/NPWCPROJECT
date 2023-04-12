@@ -16,29 +16,21 @@ const navConfig = [{
     },
     {
         title: 'Diet',
-        path: '/dashboard/user',
+        path: '/dashboard/DietPlan',
         icon: icon('ic_user'),
     },
     {
-        title: 'Excercise',
-        path: '/dashboard/products',
+        title: 'Exercise',
+        path: '/dashboard/Exercise',
         icon: icon('ic_cart'),
     },
-    {
-        title: 'Protein',
-        path: '/dashboard/protein',
-        icon: icon('ic_blog'),
-    },
+
     {
         title: 'login',
-        path: '/login',
+        path: '/dashboard/login',
         icon: icon('ic_lock'),
     },
-    {
-        title: 'Not found',
-        path: '/404',
-        icon: icon('ic_disabled'),
-    },
+
 ];
 
 export default navConfig;
