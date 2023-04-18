@@ -31,10 +31,16 @@ import Typography from '@mui/material/Typography';
 // import peas from '../images/peas.png'
 
 // import ExerciseLogo from '../images/ExerciseLogo.png';
+import IconButton from '@mui/material/IconButton';
+import ArrowForward from '@mui/icons-material/ArrowForward';
 
-import Poultry from "./pictures/Poultry.svg";
-import Exerciselogo from "./pictures/Exerciselogo.svg";
-import Logo from "./pictures/nova.svg";
+
+import Poultry from "../pictures/Poultry.svg";
+import Exerciselogo from "../pictures/Exerciselogo.svg";
+import Logo from "../pictures/nova.svg";
+import Arrowforward from "../pictures/Arrowforward.svg";
+
+
 
 const plusStyle = {
     width: "34px",
@@ -95,13 +101,14 @@ export default function Exercise(){
             
             <Grid>
                 <Card style={{backgroundColor:"#D1A6E7",margin:"10px"}}>
-                    <Grid container justifyContent="space-between" alignItems="center" item >
-                    <Card sx={{minWidth:145,minHeight:65}} style={{backgroundColor:"#8D25C1",margin:"10px"}}>
-                        <Grid container flexDirection="row"  >
+                    <Grid container  item flexDirection={'row'} alignItems="center"  >
+                      <Grid item xs={6}> 
+                    <Card  style={{backgroundColor:"#8D25C1",margin:"10px"}}>
+                        <Grid container c justifyContent="center" alignItems="center" item flexDirection="row" >
                         
-                           <Grid item>
+                           <Grid item alignSelf={"center"} >
                             
-                           <Typography ml={1} variant="body1" component="span" style={totalservingsStyle} style={{ fontSize:"40px" ,color:"white"}}>
+                           <Typography ml={1} variant="body1" component="span" style={totalservingsStyle} style={{ fontSize:"30px" ,color:"white"}}>
                                             15
                                     </Typography>
                             </Grid> 
@@ -124,8 +131,11 @@ export default function Exercise(){
                             
                         </Grid>
                     </Card>
-                    <Card sx={{minWidth:145,minHeight:65}} style={{backgroundColor:"#8D25C1",margin:"10px"}}>
-                    <Grid container flexDirection="column" justifyItems="center">
+                    </Grid> 
+
+                    <Grid item xs={6}>
+                    <Card  sx={{minHeight:65}} style={{backgroundColor:"#8D25C1",margin:"10px"}}>
+                    <Grid container  justifyContent="center" alignItems="center" flexDirection="column" j>
                         
                         <Grid item>
                         <Typography  style={{ fontSize:"13px" ,color:"black",marginLeft:"10px"}}>Today's Goal</Typography>
@@ -145,22 +155,30 @@ export default function Exercise(){
 
                     </Card>
                     </Grid>
+
+
+                    </Grid>
                     
                     
                 </Card>
             </Grid>
         <Grid Item>
-             <Card sx={{ minWidth: 275 }} style={{backgroundColor:"#212121",margin:"20px"}}>
+             <Card  style={{backgroundColor:"#212121",margin:"10px"}}>
                     <CardContent>
                         <Grid container flexDirection="row" justifyContent="space-between">
                             
-                            <Grid mt={2} Item>
+                            <Grid mt={2} xs={6} Item>
+                                <CardContent alignSelf={"center"} alignItems={"center"}  alignContent={"center"}>
                                 <Typography style={{ fontSize:"20px" ,color:"#E1B725"}}>10 Exercise Left</Typography>
-                               
+                                </CardContent>
                             </Grid>
                         
-                            <Grid item> 
-                                 <img src={Exerciselogo} className='dinning-img' alt="dinning" />
+                            <Grid item xs={6} alignSelf={"center"} alignItems={"flex-end"}  alignContent={"flex-end"}> 
+                            <CardContent  sx={{textAlign:'flex-end'}}  >
+                                <Typography  sx={{textAlign:'flex-end'}}>
+                                 <img src={Exerciselogo}  alt="dinning" style={{display: 'block', margin: 'auto' ,float:"right"}}/>
+                                 </Typography>
+                                 </CardContent>
                             </Grid>
                             
                         </Grid>
@@ -171,10 +189,10 @@ export default function Exercise(){
 
            
 
-            <Card sx={{ minWidth: 275 }} style={{backgroundColor:"#F0E7F5",margin:"20px"}}>
-                <CardContent to="/dashboard/aerobic" component={RouterLink} sx={{textDecoration:'none'}}>
-                <Grid container justifyContent="space-between" alignItems="center" style={{padding:"5px"}}>
-                    <Grid item>
+            <Card  style={{backgroundColor:"#F0E7F5", margin:"10px"}}>
+            
+                <Grid container to="/dashboard/aerobic" component={RouterLink} sx={{textDecoration:'none'}} justifyContent="space-between" alignItems="center" style={{padding:"30px"}}>
+                    <Grid item style={{padding:"5px"}}>
                         
                         <Typography variant="body1" component="span" style={proteinStyle}>
                         Aerobic<br/>Activity
@@ -182,28 +200,34 @@ export default function Exercise(){
                     </Grid>
                     <Grid item>
                         <Typography variant="h5" component="span" style={plusStyle}>
-                        +
+                        <img src={Arrowforward} alt="Arrowforward logo" />
                         </Typography>
                     </Grid>
                 </Grid>
-              </CardContent>
+              
             </Card>
-            <Card sx={{ minWidth: 275 }} style={{backgroundColor:"#F0E7F5",margin:"20px"}}>
-            <Grid container justifyContent="space-between" alignItems="center" style={{padding:"5px"}}>
-                <Grid item>
-                    <Typography variant="body1" component="span" style={proteinStyle}>
-                       Strength<br/>
-                        Training
-                    </Typography>
-                </Grid>
-                <Grid item>
-                    <Typography variant="h5" component="span" style={plusStyle}>
-                    +
-                    </Typography>
-                </Grid>
-            </Grid>
+
+            <Card  style={{backgroundColor:"#F0E7F5", margin:"10px"}}>
             
+                <Grid container to="/dashboard/aerobic" component={RouterLink} sx={{textDecoration:'none'}} justifyContent="space-between" alignItems="center" style={{padding:"30px"}}>
+                    <Grid item style={{padding:"5px"}}>
+                        
+                        <Typography variant="body1" component="span" style={proteinStyle}>
+                        Strength<br/>Training
+                        </Typography>
+                    </Grid>
+                    <Grid item>
+                        <Typography variant="h5" component="span" style={plusStyle}>
+                        <img src={Arrowforward} alt="Arrowforward logo" />
+                        </Typography>
+                    </Grid>
+                </Grid>
+              
             </Card>
+            
+
+            
+            
            
            
          </Card>
