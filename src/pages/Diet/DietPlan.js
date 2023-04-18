@@ -5,16 +5,16 @@ import React from 'react';
 
 import { Link as RouterLink } from 'react-router-dom';
 import Box from '@mui/material/Box';
-
+import {   Select, FormControl, InputLabel } from '@mui/material';
 import Card from '@mui/material/Card';
 
 import CardActions from '@mui/material/CardActions';
 
 import CardContent from '@mui/material/CardContent';
 
-
+import MenuItem from '@mui/material/MenuItem';
 import Grid from '@mui/material/Grid';
-
+import { MarginOutlined } from '@mui/icons-material';
 import Button from '@mui/material/Button';
 
 import Typography from '@mui/material/Typography';
@@ -29,6 +29,7 @@ import Diet from "../pictures/Diet.svg";
 import Peas from "../pictures/Peas.svg";
 import Arrowforward from "../pictures/Arrowforward.svg";
 import ProteinChicken from "../pictures/ProteinChicken.svg"
+
 // import companyimage from '../images/CompanyName.png';
 
 // import chicken from '../images/chicken.png';
@@ -49,8 +50,8 @@ const plusStyle = {
     fontFamily: 'Poppins',
     fontStyle: "normal",
     fontWeight: "400",
-    fontSize: "25px",
-    lineHeight: "38px",
+    fontSize: "20px",
+    // lineHeight: "38px",
 
     color: "#000000"
   };
@@ -85,25 +86,56 @@ export default function DietPlan(){
                 <img src={Logo} alt="loading" className='dietplan-companyname-image'/>
                 
             </CardContent>
-            <CardContent>
-                <Grid container justifyContent="space-between">
-                        <Grid item className="my-grid-item" style={{marginleft:"30px"}}>
-                            <span style={{fontWeight: "bold"}}>Diet Plan</span>
-                        </Grid>
-                        <Grid item className="my-grid-item" style={{marginRight:"30px"}}>
-                            <span>Today</span>
-                        </Grid>
-                </Grid>
-            </CardContent>
             
+            <CardContent >
+            <Grid container   style={{display:'flex',flexDirection:"row",position:'relative'}}>
+               <Grid item xs={8}>
+               <CardContent >
+                         <Typography color="black" variant='h5' >
+                              Diet plan
+                          </Typography>    
+
+               </CardContent>
+               </Grid>
+               
+
+         
+
+            <Grid  item xs={4} >
+              <CardContent >
+                      <FormControl  sx={{ position:'absolute',right:6 }} size="small">
+                     <Select sx={{backgroundColor:"white"}} defaultValue="Today">
+                     <MenuItem value="Today" >Today</MenuItem>
+                     <MenuItem value="Next Week">Next Week</MenuItem>
+                     <MenuItem value="Previous Week">Previous Week</MenuItem>
+                     </Select>
+                     </FormControl>
+                 <br/>
+                
+              </CardContent>
+              </Grid>
+                   
+
+           
+         
+          
+          </Grid>
+
+          </CardContent>
+            
+        
+          
+            
+          
+
             <Grid>
                 <Card style={{backgroundColor:"#D1A6E7",margin:"10px"}}>
-                    <Grid container justifyContent="space-between" flexDirection={"row"} alignItems="center" item >
-                    <Grid item xs={6}> 
-                    <Card xs={6} style={{backgroundColor:"#8D25C1",margin:"10px"}}>
-                        <Grid container flexDirection="row" paddingTop={1} >
+                    <Grid container  item flexDirection={'row'} alignItems="center"  >
+                      <Grid item xs={6}> 
+                    <Card  style={{backgroundColor:"#8D25C1",margin:"10px"}}>
+                        <Grid container mt={1} justifyContent="center" alignItems="center" item flexDirection="row" >
                         
-                           <Grid item>
+                           <Grid item alignSelf={"center"} >
                             
                            <Typography ml={1} variant="body1" component="span" style={totalservingsStyle} style={{ fontSize:"30px" ,color:"white"}}>
                                             15
@@ -128,20 +160,21 @@ export default function DietPlan(){
                             
                         </Grid>
                     </Card>
-                    </Grid>
-                     <Grid item xs={6}>
-                    <Card  xs={6} style={{backgroundColor:"#8D25C1",margin:"10px"}}>
-                    <Grid container flexDirection="column" justifyItems="center">
+                    </Grid> 
+
+                    <Grid item xs={6}>
+                    <Card  sx={{minHeight:65}} style={{backgroundColor:"#8D25C1",margin:"10px"}}>
+                    <Grid container  justifyContent="center" alignItems="center" flexDirection="column" j>
                         
-                        <Grid item paddingTop={1}>
-                        <Typography  style={{ fontSize:"13px" ,color:"black",marginLeft:"10px"}}>Today's Intakes</Typography>
+                        <Grid item mt={1}>
+                        <Typography  style={{ fontSize:"13px" ,color:"black",marginLeft:"10px"}}>Today's Goal</Typography>
                         </Grid>
                         <Grid item>
 
                        
                         <Grid ml={2} container flexDirection="row">
-                           <Grid item><Typography style={{ fontSize:"35px" ,color:"white",fontWeight:"40px"}}>100</Typography></Grid>
-                           <Grid item><Typography mt={3} style={{ fontSize:"12px" ,color:"white",fontWeight:"20px"}}>servings</Typography></Grid>
+                           <Grid item ><Typography style={{ fontSize:"35px" ,color:"white",fontWeight:"40px"}}>20</Typography></Grid>
+                           <Grid item><Typography mt={3} style={{ fontSize:"12px" ,color:"white",fontWeight:"20px"}}>Exercise</Typography></Grid>
                             </Grid>
                         </Grid>
                         
@@ -151,227 +184,205 @@ export default function DietPlan(){
 
                     </Card>
                     </Grid>
+
+
                     </Grid>
-               
                     
                     
                 </Card>
-            </Grid>
+            </Grid>  
+        
+         
+                
+            
         
         
         
+            
         
-        
-        <Grid Item>
-             <Card  style={{backgroundColor:"#212121",margin:"20px"}}>
-                    <CardContent>
-                        <Grid container flexDirection="row" justifyContent="space-between">
-                            
-                            <Grid  xs={6} Item>
-                                <CardContent sx={{alignItems:"center",alignSelf:'center',alignContent:"center"}}>
-                                <Typography style={{ fontSize:"20px" ,color:"#E1B725"}}>60 servings Left</Typography>
-                                </CardContent>
-                            </Grid>
-                        
-                            <Grid mt={2} item xs={6}> 
-                            <CardContent sx={{alignItems:"center",alignSelf:'center',alignContent:"center"}}>
+           
+
+            
+            <Card  style={{backgroundColor:"#212121",margin:"20px"}} >
+                    <Grid container    sx={{textDecoration:'none'}} alignItems="center" style={{padding:"0px"}}>
+                    <Grid item xs={8} alignItems="flex-end"  >
+                        <Grid item  container justifyContent="center" alignItems="center">
+                        <CardContent sx={{alignItems:"center",alignSelf:'center',alignContent:"center"}}>
+                                <Typography variant="body1" component="span" style={{ fontSize:"20px" ,color:"#E1B725"}}>
+                                    60 servings left
+                                </Typography>
+                                 </CardContent>
+                        </Grid>
+                           
+                        </Grid>
+
+                     
+                         
+                       
+
+                        <Grid item xs={4} alignItems="flex-end"  >
+                        <Grid item  container justifyContent="center" alignItems="center">
+                        <CardContent sx={{alignItems:"center",alignSelf:'center',alignContent:"center"}}>
                                  <img src={Diet} className='dinning-img' alt="dinning" style={{display: 'block', margin: 'auto'}}/>
                                  </CardContent>
-                            </Grid>
-                            
                         </Grid>
-                    </CardContent>
-            </Card>
-        </Grid>
-           
-
-            <Card  style={{backgroundColor:"#F0E7F5",margin:"20px"}}>
-                
-                    <Grid container  to="/dashboard/protein" component={RouterLink} sx={{textDecoration:'none'}}justifyContent="space-between" flexDirection={"row"} alignItems="center" style={{padding:"5px"}}>
-                     
-                     <Grid item xs={8} marginLeft={1}>
-                            <Typography variant="body1" component="span" style={proteinStyle}>
-                                proteins
-                            </Typography>
+                           
                         </Grid>
-                        <Grid item xs={3}  alignItems="flex-end" sx={{alignItems:"center" ,alignContent:"center",alignText:"center"}} >
-                            <Grid  sx={{alignItems:"center" ,alignContent:"center",alignText:"center"}} >
-                            <Typography >
-                            <img src={Arrowforward} alt="Arrowforward logo" />
-                            </Typography>
-                            </Grid>
-
-                             
-                             
-                                </Grid>
-
                         
-                       {/* <Grid item>
-                            <Typography variant="body1" component="span" style={totalservingsStyle}>
-                        45 Calories/Servings
-                            </Typography>
-                        </Grid>
-                        <Grid item>
-                            <Typography variant="h5" component="span" style={dayservingsStyle}>
-                            13/servings/Day
-                            </Typography>
-    </Grid> */}
-                        
-                    
-                       
                     </Grid>
                     
-                    <Grid  container flexDirection="row" spacing={1} >
-                    <Grid item xs={4}  >
-                            <Grid container     >
-                                <Grid item marginLeft={3}>
-                                
-                                    <Typography  style={{ color: "black" }}>
-                                    7 
-                                    </Typography>
-                                    <Typography  style={{ color: "black" }}>
-                                     Calories 
-                                    </Typography>
-                                    <Typography  style={{ color: "black" }}>
-                                     remained
-                                    </Typography>
-                                
-                                
-                                
-                                
-                                    
-                                </Grid>
-                            </Grid>
-                        </Grid>
                     
-                        <Grid item xs={4}  >
-                            
-                                
-                                    
-                                        <img src={ProteinChicken} alt="chicken" />
-                                    
-                                
-                                  
-                                       <Typography   style={{ color: "black" }}>
-                                         10 calories
-                                       </Typography>
-                                    
-                                    
-                                
-                            
-                        </Grid>
-                        
-                       <Grid  item xs={4}  >
-                                
-                                    
-                                        <img src={Peas}  alt="peas" />
-                                  
-                               
-                                    <Typography  style={{ color: "black"}}>
-                                    50 calories
-                                    </Typography>
-                                    
-                               
-                            </Grid>
-                     
-                    </Grid>
    
-               
-            </Card>
-
+               </Card> 
             
-           
            
             <Card style={{backgroundColor:"#F0E7F5",margin:"20px"}} >
+                    
+                    <CardContent>
+                     <Grid  container flexDirection={"column"} item  to="/dashboard/protein" component={RouterLink}  sx={{textDecoration:'none'}}>
+                    <Grid container item   justifyContent={"row"}>
+                     <Grid item xs={6}>
+                           
+                            <Typography variant="body1" component="span" style={proteinStyle}>
+                                Proteins
+                            </Typography>
+                            
+                        </Grid>
+                        <Grid item  container justifyContent="center" alignItems="center"  xs={3}>
+
+                        <img src={ProteinChicken}  alt="chicken" />
+
+                        </Grid>
+                        <Grid item xs={3} container justifyContent="center" alignItems="center">
+
+                        <img src={ProteinChicken} className='chicken-img' alt="chicken" />
+
+                        </Grid>
+                     </Grid>
             
-                    <Grid container  to="/dashboard/protein" component={RouterLink} sx={{textDecoration:'none'}} alignItems="center" style={{padding:"0px"}}>
-                     <Grid item xs={9}>
-                     <CardContent>
-                     <Grid item>
-                           
-                            <Typography variant="body1" component="span" style={proteinStyle}>
-                                Carbohydrates 
-                            </Typography>
-                            
-                        </Grid>
+                   
 
-                        <Grid item>
-                           
-                            <Typography variant="body1" component="span" style={proteinStyle}>
-                                fruits 
+                     <Grid container  justifyContent={"row"} >
+                     <Grid container item xs={6} flex-direction={'row'}>
+                            <Grid item >
+                            <Typography variant="body1" component="span" sx={{fontSize:"30px"}}>
+                                7   
                             </Typography>
-                            
+                            </Grid>
+                            <Grid item marginTop={2} >
+                            <Typography  >
+                                calories remained 
+                            </Typography>
+                            </Grid>
                         </Grid>
+                        <Grid item xs={3} container justifyContent="center" alignItems="center"  >
 
-                        <Grid item>
-                            <Typography variant="body1" component="span" style={totalservingsStyle}>
-                        45 Calories/Servings
-                            </Typography>
+                        <Typography > 
+                            10 Calories
+                        </Typography>
+
                         </Grid>
-                        <Grid item>
-                            <Typography variant="h5" component="span" style={dayservingsStyle}>
-                            13/servings/Day
-                            </Typography>
+                        <Grid item xs={3} container justifyContent="center" alignItems="center" >
+                        <Typography>
+                            8 Calories
+                        </Typography>
+
+                      
+
                         </Grid>
+                     </Grid>
+
+
+                     </Grid> 
+                       
                         
-                        </CardContent>
-                        </Grid>    
-                        <Grid item xs={2}  alignItems="flex-end"  >
-                           <CardContent >
-                            <Typography variant="h5" component="span"    style={plusStyle}>
-                            <img src={Arrowforward} alt="Arrowforward logo" />
-                            </Typography>
-                            </CardContent> 
-                        </Grid>
                         
-                    </Grid>
+                       
+                     </CardContent>
+                        
                     
                     
-                
-               </Card>
+                    
+   
+               </Card> 
+           
+           
 
             <Card style={{backgroundColor:"#F0E7F5",margin:"20px"}}  >
-                    <Grid container   to="/dashboard/protein" component={RouterLink} sx={{textDecoration:'none'}} alignItems="center" style={{padding:"0px"}}>
-                     <Grid item xs={9}>
+                    <CardContent to="/dashboard/protein" component={RouterLink} sx={{textDecoration:'none'}}>
+                    <Grid container    alignItems="center" style={{padding:"0px"}}>
+                     <Grid item xs={8}>
                      <CardContent>
-                     <Grid item>
+                     <Grid item alignSelf={'center'}>
                            
                             <Typography variant="body1" component="span" style={proteinStyle}>
-                                Carbohydrates 
-                            </Typography>
+                                Carbohydrates Fru..
+                            </Typography> 
                             
                         </Grid>
 
-                        <Grid item>
-                           
-                            <Typography variant="body1" component="span" style={proteinStyle}>
-                                Vegetables
-                            </Typography>
-                            
-                        </Grid>
-
-                        <Grid item>
-                            <Typography variant="body1" component="span" style={totalservingsStyle}>
+                        
+                       
+                        
+                        </CardContent>
+                        </Grid>    
+                        <Grid item xs={3}  alignItems="flex-end"  >
+                        <Grid item  container justifyContent="center" alignItems="center">
+                            <Typography alignContent="center" variant="body1" component="span" style={totalservingsStyle}>
                         45 Calories/Servings
                             </Typography>
                         </Grid>
-                        <Grid item>
+                        <Grid item container justifyContent="center" alignItems="center">
                             <Typography variant="h5" component="span" style={dayservingsStyle}>
                             13/servings/Day
                             </Typography>
                         </Grid>
-                        
-                        </CardContent>
-                        </Grid>    
-                        <Grid item xs={2}  alignItems="flex-end"  >
-                           <CardContent >
-                            <Typography variant="h5" component="span"    style={plusStyle}>
-                            <img src={Arrowforward} alt="Arrowforward logo" />
-                            </Typography>
-                            </CardContent> 
+                           
                         </Grid>
                         
                     </Grid>
+                    </CardContent>
+                    
+                    
+   
+               </Card> 
+
+               <Card style={{backgroundColor:"#F0E7F5",margin:"20px"}}  >
+                    <CardContent to="/dashboard/protein" component={RouterLink} sx={{textDecoration:'none'}}>
+                    <Grid container    alignItems="center" >
+                     <Grid item xs={8}>
+                     <CardContent>
+                     <Grid item alignSelf={'center'}>
+                           
+                            <Typography variant="body1" component="span"  style={proteinStyle}>
+                                Carbohydrates veg..
+                            </Typography> 
+                             
+                        </Grid>
+
+                        
+                       
+                        
+                        </CardContent>
+                        </Grid>    
+                        <Grid item xs={3}  alignItems="flex-end"  >
+                        <Grid item  container justifyContent="center" alignItems="center">
+                            <Typography alignContent="center" variant="body1" component="span" style={totalservingsStyle}>
+                               45 Calories/Servings
+                            </Typography>
+                            
+                             
+                        </Grid>
+                        <Grid item container justifyContent="center"  >
+                             <Typography alignContent="center" variant="body1" component="span" style={totalservingsStyle} >
+                                 13/servings/Day
+                            </Typography>
+                        </Grid> 
+                           
+                        </Grid>
+                        
+                    </Grid>
+                    </CardContent>
                     
                     
    
@@ -379,89 +390,10 @@ export default function DietPlan(){
 
 
                
-            
-                    <Card style={{backgroundColor:"#F0E7F5",margin:"20px"}} >
-                    <Grid container   alignItems="center" style={{padding:"0px"}}>
-                     <Grid item xs={9}>
-                     <CardContent>
-                    <Grid container justifyContent={"row"}>
-                     <Grid item >
-                           
-                            <Typography variant="body1" component="span" style={proteinStyle}>
-                                Carbohydrates 
-                            </Typography>
-                            
-                        </Grid>
-                        
-                     </Grid>
-            
 
-                       <Grid container item flexDirection={"row"}>
-                        
-                        <CardContent style={{marginTop:-20}}>
-                        <Grid item>
-                            <Typography variant="body1" component="span" style={totalservingsStyle}>
-                        45 Calories/Servings
-                            </Typography>
-                        </Grid>
-                        <Grid item>
-                            <Typography variant="h5" component="span" style={dayservingsStyle}>
-                            13/servings/Day
-                            </Typography>
-                        </Grid>
-                        </CardContent>
-                        <Grid item   >
-                            
-                                
-                                    
-                                        <img src={ProteinChicken} className='chicken-img' alt="chicken" />
-                                    
-                                
-                                  
-                                       <Typography   style={{ color: "black" }}>
-                                         10 calories
-                                       </Typography>
-                                    
-                                    
-                                
-                            
-                        </Grid>
-                        <Grid item   >
-                            
-                                
-                                    
-                                        <img src={ProteinChicken} className='chicken-img' alt="chicken" />
-                                    
-                                
-                                  
-                                       <Typography   style={{ color: "black" }}>
-                                         10 calories
-                                       </Typography>
-                                    
-                                    
-                                
-                            
-                        </Grid>
-                        
-
-                        </Grid>
-                        
-                        </CardContent>
-                        </Grid>    
-                        <Grid item xs={2}  alignItems="flex-end"  >
-                           <CardContent >
-                            <Typography variant="h5" component="span"    style={plusStyle}>
-                            <img src={Arrowforward} alt="Arrowforward logo" />
-                            </Typography>
-                            </CardContent> 
-                        </Grid>
-                        
-                    </Grid>
-                    
-                    
-   
-               </Card> 
-           
+               
+            
+                 
            
          </div>
 

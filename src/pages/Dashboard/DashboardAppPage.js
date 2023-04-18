@@ -98,31 +98,31 @@ export default function DashboardAppPage() {
     <Card   style={{backgroundColor:"#212121",margin:"10px"}}>
                     <CardContent   to="/dashboard/dietplan" component={RouterLink} sx={{textDecoration:'none'}}>
                     <Grid container flexDirection="row" spacing="1" alignItems="center" justifyContent="center" >
-                        <Grid item xs={4} alignItems="center" justifyContent="center">
-                               <CardContent sx={{textAlign:'center'}}>
+                        <Grid item xs={4} alignItems="center" sx={{textAlign:'center'}} justifyContent="center">
+                               
                                 <Typography style={{  fontSize:"25px" ,color:"#E1B725"}}>
                                   120
                                 </Typography>
                                 <Typography style={{ fontSize:"10px" ,color:"white"}}>Servings recommended</Typography>
-                                </CardContent>
+                                
                         </Grid>
-                        <Grid item xs={4}  sx={{justifyContent:'center',alignItems:"center",alignSelf:'center',alignContent:'center',}}>
-                        <CardContent style={{textAlign: 'center'}}>
+                        <Grid item xs={4}  sx={{justifyContent:'center',textAlign: 'center',alignItems:"center",alignSelf:'center',alignContent:'center',}}>
+                       
                           <Typography >
                           <img src={Diet}  alt="dinning" style={{display: 'block', margin: 'auto'}}/>
                           </Typography>
                        
 
-                        </CardContent>
+                       
                        
                         </Grid>
-                        <Grid item xs={4} alignItems="center" justifyContent="center">
-                               <CardContent sx={{textAlign:'center'}}>
+                        <Grid item xs={4} sx={{textAlign:'center'}} alignItems="center" justifyContent="center">
+                               
                                 <Typography style={{ fontSize:"25px" ,color:"#E1B725"}}>
                                   16
                                 </Typography>
                                 <Typography style={{ fontSize:"10px" ,color:"white"}}>Servings left</Typography>
-                                </CardContent>
+                              
                         </Grid>
                         
                        
@@ -141,32 +141,32 @@ export default function DashboardAppPage() {
                     <CardContent   to="/dashboard/Exercise" component={RouterLink} sx={{textDecoration:'none'}}>
                     <Grid container flexDirection="row" spacing="1" alignItems="center" justifyContent="center" >
                         
-                        <Grid item xs={4} alignItems="center" alignSelf={"center"} justifyContent="center">
+                        <Grid item xs={4} alignItems="center" sx={{textAlign:'center'}} alignSelf={"center"} justifyContent="center">
                               
-                                <CardContent  sx={{textAlign:'center'}}>
+                                
                                 <Typography style={{  fontSize:"25px" ,color:"#E1B725"}}>
                                   100
                                 </Typography>
                                 <Typography style={{ fontSize:"10px" ,color:"white"}}>exercise recommended</Typography>
-                                </CardContent>
+                               
 
                               
                                
                         </Grid>
-                        <Grid item xs={4}  sx={{justifyContent:'center',alignItems:"center",alignSelf:'center',alignContent:'center'}}>
-                        <CardContent sx={{textAlign:'center'}} >
+                        <Grid item xs={4}  sx={{justifyContent:'center',alignItems:"center",textAlign:'center',alignSelf:'center',alignContent:'center'}}>
+                        
                         <img src={Exerciselogo}  alt="dinning" style={{display: 'block', margin: 'auto'}}/>
-                        </CardContent>
+                        
                        
                         </Grid>
-                        <Grid item xs={4}   >
+                        <Grid item xs={4} sx={{textAlign:'center'}}  >
                           
-                          <CardContent sx={{textAlign:'center'}}>
+                          
                                 <Typography style={{  fontSize:"25px" ,color:"#E1B725"}}>
                                   10
                                 </Typography>
                                 <Typography style={{ fontSize:"10px" ,color:"white"}}>exercise left</Typography>
-                                </CardContent>
+                                
 
 
                           

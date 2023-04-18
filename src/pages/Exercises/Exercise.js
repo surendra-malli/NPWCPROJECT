@@ -104,7 +104,7 @@ export default function Exercise(){
                     <Grid container  item flexDirection={'row'} alignItems="center"  >
                       <Grid item xs={6}> 
                     <Card  style={{backgroundColor:"#8D25C1",margin:"10px"}}>
-                        <Grid container c justifyContent="center" alignItems="center" item flexDirection="row" >
+                        <Grid container mt={1} justifyContent="center" alignItems="center" item flexDirection="row" >
                         
                            <Grid item alignSelf={"center"} >
                             
@@ -137,14 +137,14 @@ export default function Exercise(){
                     <Card  sx={{minHeight:65}} style={{backgroundColor:"#8D25C1",margin:"10px"}}>
                     <Grid container  justifyContent="center" alignItems="center" flexDirection="column" j>
                         
-                        <Grid item>
+                        <Grid item mt={1}>
                         <Typography  style={{ fontSize:"13px" ,color:"black",marginLeft:"10px"}}>Today's Goal</Typography>
                         </Grid>
                         <Grid item>
 
                        
                         <Grid ml={2} container flexDirection="row">
-                           <Grid item><Typography style={{ fontSize:"35px" ,color:"white",fontWeight:"40px"}}>20</Typography></Grid>
+                           <Grid item ><Typography style={{ fontSize:"35px" ,color:"white",fontWeight:"40px"}}>20</Typography></Grid>
                            <Grid item><Typography mt={3} style={{ fontSize:"12px" ,color:"white",fontWeight:"20px"}}>Exercise</Typography></Grid>
                             </Grid>
                         </Grid>
