@@ -6,8 +6,8 @@ import ThreeDRotation from '@mui/icons-material/ThreeDRotation';
 
 import CardContent from '@mui/material/CardContent';
 
-import Logo from "./pictures/nova.svg";
-import Diet from "./pictures/Diet.svg";
+import Logo from "../assets/nova.svg";
+import Diet from "../assets/Diet.svg";
 
 
 

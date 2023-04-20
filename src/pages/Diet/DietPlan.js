@@ -2,7 +2,6 @@ import React from 'react';
 
 // import '../css/DietPlan.css';
 
-
 import { Link as RouterLink } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import {   Select, FormControl, InputLabel } from '@mui/material';
@@ -24,11 +23,11 @@ import Typography from '@mui/material/Typography';
 
 // import CardMedia from '@material-ui/core/CardMedia';
 // import Poultry from "../pictures/Poultry.svg";
-import Logo from "../pictures/nova.svg";
-import Diet from "../pictures/Diet.svg";
-import Peas from "../pictures/Peas.svg";
-import Arrowforward from "../pictures/Arrowforward.svg";
-import ProteinChicken from "../pictures/ProteinChicken.svg"
+import Logo from "../../assets/nova.svg";
+import Diet from "../../assets/Diet.svg";
+import Peas from "../../assets/Peas.svg";
+import Arrowforward from "../../assets/Arrowforward.svg";
+import ProteinChicken from "../../assets/ProteinChicken.svg"
 
 // import companyimage from '../images/CompanyName.png';
 
@@ -37,6 +36,33 @@ import ProteinChicken from "../pictures/ProteinChicken.svg"
 // import peas from '../images/peas.png'
 
 // import dinning from '../images/dinningicon.png';
+
+import  "../styles.css";
+
+
+const title={
+    
+    fontFamily:"Inter-Bold",
+    fontSize:"30px" ,
+    color:"#112866",
+};
+ const caloriesremained={
+    fontFamily:"Inter-Regular",
+    fontStyle: "normal",
+    fontWeight: "600",
+    fontSize: "12px",
+    lineHeight: "15px",
+    color:"#112866",
+ };
+
+ const exercise={
+    fontFamily:"Inter-Regular",
+    fontSize:"12px" ,
+    color:"white",
+    fontWeight:"20px",
+
+ }
+ 
 
 const plusStyle = {
     width: "34px",
@@ -47,34 +73,87 @@ const plusStyle = {
    
   };
   const proteinStyle={
-    fontFamily: 'Poppins',
+    fontFamily: 'Inter-SemiBold',
     fontStyle: "normal",
     fontWeight: "400",
     fontSize: "20px",
     // lineHeight: "38px",
 
-    color: "#000000"
+    color: "#112886"
   };
   const totalservingsStyle={
-    fontFamily: 'Poppins',
+    fontFamily: 'Inter-Regular',
     fontStyle: "normal",
     fontWeight: "600",
     fontSize: "12px",
     lineHeight: "15px",
-    
-    color: "#000000"
+    color:"#112866",
+    // color: "#000000"
   };
-  const dayservingsStyle={
-    fontFamily: 'Poppins',
+  const day={
+    fontFamily: 'Inter-Regular',
     fontStyle: "normal",
     fontWeight: "600",
-    fontSize: "12px",
+    fontSize:"30px",
     lineHeight: "15px",
-    
-    color: "#000000"
+    color:"white",
+    marginLeft:'1'
+
   };
 
-  
+const month={
+    fontFamily: 'Inter-Regular',
+    fontSize:"15px" ,
+    
+    marginTop:"10px",
+    alignSelf:"center",
+    color:"#112866",
+}
+
+const year={
+    fontFamily: 'Inter-Regular',
+    fontSize:"15px" ,
+    
+    marginBottom:"10px",
+    color:"#112866",
+}
+
+  const dayservingsStyle={
+    fontFamily: 'Inter-Regular',
+    fontStyle: "normal",
+    fontWeight: "600",
+    fontSize: "12px",
+    lineHeight: "15px",
+    color:"#112866",
+       
+  };
+
+  const maincardStyle={
+    backgroundColor:"#F0E7F5",
+    margin:"20px"
+
+  };
+  const todaysgoal={
+    fontFamily:'Inter-Regular',
+    fontSize:"13px" ,
+    
+    marginLeft:"10px",
+    color:"#112866",
+  };
+
+  const servingleft={
+    fontFamily:'Inter-Regular',
+
+    fontSize:"20px" ,
+    color:"#E1B725"
+  };
+  const regular={
+    fontFamily:'Inter-Regular',
+    color:"#112866"
+  }
+
+
+
 export default function DietPlan(){
 
       
@@ -91,7 +170,7 @@ export default function DietPlan(){
             <Grid container   style={{display:'flex',flexDirection:"row",position:'relative'}}>
                <Grid item xs={8}>
                <CardContent >
-                         <Typography color="black" variant='h5' >
+                         <Typography  variant='h5' style={title} >
                               Diet plan
                           </Typography>    
 
@@ -102,10 +181,10 @@ export default function DietPlan(){
          
 
             <Grid  item xs={4} >
-              <CardContent >
+              <CardContent  >
                       <FormControl  sx={{ position:'absolute',right:6 }} size="small">
                      <Select sx={{backgroundColor:"white"}} defaultValue="Today">
-                     <MenuItem value="Today" >Today</MenuItem>
+                     <MenuItem value="Today"  >Today</MenuItem>
                      <MenuItem value="Next Week">Next Week</MenuItem>
                      <MenuItem value="Previous Week">Previous Week</MenuItem>
                      </Select>
@@ -137,20 +216,20 @@ export default function DietPlan(){
                         
                            <Grid item alignSelf={"center"} >
                             
-                           <Typography ml={1} variant="body1" component="span" style={totalservingsStyle} style={{ fontSize:"30px" ,color:"white"}}>
+                           <Typography variant="body1" component="span" style={day} >
                                             15
                                     </Typography>
                             </Grid> 
                             <Grid item>
                                 <Grid  container flexDirection="column"  style={{backgroundColor:"#8D25C1",margin:"10px"}} >
                                     <Grid item>
-                                        <Typography variant="h5" component="span" style={{ fontSize:"15px" ,color:"black",marginTop:"10px"}}>
+                                        <Typography variant="h5" component="span" style={month}>
                                                 March
                                         </Typography>
                                     </Grid>
                                 
                                     <Grid item>
-                                        <Typography  variant="h5" component="span" style={{ fontSize:"15px" ,color:"black",marginBottom:"10px"}}>
+                                        <Typography  variant="h5" component="span" style={year}>
                                                 2023
                                         </Typography>
                                     </Grid>
@@ -167,14 +246,14 @@ export default function DietPlan(){
                     <Grid container  justifyContent="center" alignItems="center" flexDirection="column" j>
                         
                         <Grid item mt={1}>
-                        <Typography  style={{ fontSize:"13px" ,color:"black",marginLeft:"10px"}}>Today's Goal</Typography>
+                        <Typography  style={todaysgoal}>Today's Goal</Typography>
                         </Grid>
                         <Grid item>
 
                        
                         <Grid ml={2} container flexDirection="row">
                            <Grid item ><Typography style={{ fontSize:"35px" ,color:"white",fontWeight:"40px"}}>20</Typography></Grid>
-                           <Grid item><Typography mt={3} style={{ fontSize:"12px" ,color:"white",fontWeight:"20px"}}>Exercise</Typography></Grid>
+                           <Grid item><Typography mt={3}  ml={1} style={exercise}>Exercise</Typography></Grid>
                             </Grid>
                         </Grid>
                         
@@ -204,11 +283,11 @@ export default function DietPlan(){
 
             
             <Card  style={{backgroundColor:"#212121",margin:"20px"}} >
-                    <Grid container    sx={{textDecoration:'none'}} alignItems="center" style={{padding:"0px"}}>
+                    <Grid container    sx={{textDecoration:'none'}} alignItems="center" >
                     <Grid item xs={8} alignItems="flex-end"  >
                         <Grid item  container justifyContent="center" alignItems="center">
                         <CardContent sx={{alignItems:"center",alignSelf:'center',alignContent:"center"}}>
-                                <Typography variant="body1" component="span" style={{ fontSize:"20px" ,color:"#E1B725"}}>
+                                <Typography variant="body1" component="span"   style={servingleft}>
                                     60 servings left
                                 </Typography>
                                  </CardContent>
@@ -236,7 +315,7 @@ export default function DietPlan(){
                </Card> 
             
            
-            <Card style={{backgroundColor:"#F0E7F5",margin:"20px"}} >
+            <Card style={maincardStyle} >
                     
                     <CardContent>
                      <Grid  container flexDirection={"column"} item  to="/dashboard/protein" component={RouterLink}  sx={{textDecoration:'none'}}>
@@ -255,7 +334,7 @@ export default function DietPlan(){
                         </Grid>
                         <Grid item xs={3} container justifyContent="center" alignItems="center">
 
-                        <img src={ProteinChicken} className='chicken-img' alt="chicken" />
+                        <img src={ProteinChicken}  alt="chicken" />
 
                         </Grid>
                      </Grid>
@@ -269,21 +348,21 @@ export default function DietPlan(){
                                 7   
                             </Typography>
                             </Grid>
-                            <Grid item marginTop={2} >
-                            <Typography  >
+                            <Grid item marginTop={3} >
+                            <Typography style={caloriesremained} >
                                 calories remained 
                             </Typography>
                             </Grid>
                         </Grid>
                         <Grid item xs={3} container justifyContent="center" alignItems="center"  >
 
-                        <Typography > 
+                        <Typography style={totalservingsStyle} > 
                             10 Calories
                         </Typography>
 
                         </Grid>
                         <Grid item xs={3} container justifyContent="center" alignItems="center" >
-                        <Typography>
+                        <Typography style={totalservingsStyle}>
                             8 Calories
                         </Typography>
 
@@ -308,7 +387,7 @@ export default function DietPlan(){
            
            
 
-            <Card style={{backgroundColor:"#F0E7F5",margin:"20px"}}  >
+            <Card style={maincardStyle}  >
                     <CardContent to="/dashboard/protein" component={RouterLink} sx={{textDecoration:'none'}}>
                     <Grid container    alignItems="center" style={{padding:"0px"}}>
                      <Grid item xs={8}>
@@ -347,7 +426,7 @@ export default function DietPlan(){
    
                </Card> 
 
-               <Card style={{backgroundColor:"#F0E7F5",margin:"20px"}}  >
+               <Card style={maincardStyle}  >
                     <CardContent to="/dashboard/protein" component={RouterLink} sx={{textDecoration:'none'}}>
                     <Grid container    alignItems="center" >
                      <Grid item xs={8}>

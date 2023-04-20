@@ -1,4 +1,6 @@
 import { Helmet } from 'react-helmet-async';
+import axios from 'axios'
+import {useEffect} from 'react'
 // @mui
 import { Link as RouterLink } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
@@ -7,7 +9,7 @@ import { Link, Container, Typography, Divider, Stack, Button, Grid } from '@mui/
 import useResponsive from '../hooks/useResponsive';
 // components
 import Logo from '../components/logo';
-import Nova from "./pictures/nova.svg";
+import Nova from "../assets/nova.svg";
 
 import Iconify from '../components/iconify';
 // sections
@@ -20,6 +22,7 @@ const StyledRoot = styled('div')(({ theme }) => ({
     display: 'flex',
   },
 }));
+
 
 const StyledSection = styled('div')(({ theme }) => ({
   width: 'auto',
@@ -45,65 +48,68 @@ const StyledContent = styled('div')(({ theme }) => ({
 
 export default function LoginPage() {
   const mdUp = useResponsive('up', 'md');
+  
+  useEffect(() => {
+  
+    axios.get("http: //192.168.1.207:8081/searchUser?name=&page=1&count=7").then(res=>{
+      console.log()
+    })
+  
+  
+  
+  
+  
+  
+  
+  }, [])
+    return ( 
+      <>
+  <Helmet>
+    <title> Login | Minimal UI </title>{" "}
+  </Helmet>
+  <StyledRoot>
+    <Logo
+      sx={{
+        position: "fixed",
+        top: { xs: 16, sm: 24, md: 40 },
+        left: { xs: 16, sm: 24, md: 40 },
+      }}
+    />
+    <Container maxWidth="sm">
+      <StyledContent>
+        <Grid
+          container
+          direction="column"
+          alignItems="center"
+          justifyContent="center"
+          spacing={2}
+        >
+          <Grid item variant="h2">
+            Hi, Welcome Back
+          </Grid>
+          <Grid item>
+            <img
+              src={Nova}
+              alt="nova logo"
+              style={{ height: "auto", width: "auto" }}
+            />
+          </Grid>
+        </Grid>
 
-  return (
-    <>
-      <Helmet>
-        <title> Login | Minimal UI </title>
-      </Helmet>
+        <Typography variant="h4" gutterBottom>
+          Sign In
+        </Typography>
 
-      <StyledRoot>
-        <Logo
-          sx={{
-            position: 'fixed',
-            top: { xs: 16, sm: 24, md: 40 },
-            left: { xs: 16, sm: 24, md: 40 },
-          }}
-        />
+        <Typography variant="body2" sx={{ mb: 5 }}>
+          Don’ t have an account ? 
+          <Link variant="subtitle2"> Get started </Link>
+        </Typography>
 
-        
+        <LoginForm />
+      </StyledContent>
+    </Container>
+  </StyledRoot>
+</>
 
-        
-
-        < Container maxWidth="sm">
-          <StyledContent>
-
-          <Grid  container direction="column" alignItems="center" justifyContent="center" spacing={2}>
-              
-          <Grid item variant="h2"   >
-              Hi, Welcome Back
-            </Grid >
-              <Grid item   >
-            <img src={Nova} alt="nova logo" style={{ height: "auto", width: "auto" }} />
-
-            </Grid>
-
-              
-            </Grid>
-
-
-
-
-            <Typography variant="h4" gutterBottom>
-              Sign In
-            </Typography>
-
-            <Typography variant="body2" sx={{ mb: 5 }}>
-              Don’t have an account? {''}
-              <Link variant="subtitle2">Get started</Link>
-            </Typography>
-
-              
-
-            
-            
-
-            
-
-            <LoginForm />
-          </StyledContent>
-        </Container>
-      </StyledRoot>
-    </>
-  );
+    );
 }

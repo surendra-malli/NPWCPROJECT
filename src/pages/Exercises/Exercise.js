@@ -35,13 +35,19 @@ import IconButton from '@mui/material/IconButton';
 import ArrowForward from '@mui/icons-material/ArrowForward';
 
 
-import Poultry from "../pictures/Poultry.svg";
-import Exerciselogo from "../pictures/Exerciselogo.svg";
-import Logo from "../pictures/nova.svg";
-import Arrowforward from "../pictures/Arrowforward.svg";
+import Poultry from "../../assets/Poultry.svg";
+import Exerciselogo from "../../assets/Exerciselogo.svg";
+import Logo from "../../assets/nova.svg";
+import Arrowforward from "../../assets/Arrowforward.svg";
 
 
-
+const pageheading={
+    fontFamily:"Inter-Bold",
+    fontWeight: "bold",
+    fontSize: "30px",
+    lineHeight: "38px",
+    color: "#112866"
+};
 const plusStyle = {
     width: "34px",
     height: "26px",
@@ -50,15 +56,87 @@ const plusStyle = {
     borderRadius: "7px"
    
   };
-  const proteinStyle={
-    fontFamily: 'Poppins',
+  const textparaStyle = {
+    fontFamily: 'Inter-Regular',
+    // padding: "30px",
+    
+    fontSize:"20px" ,
+    color:"#E1B725"
+   
+  };
+
+  const day={
+    fontFamily: 'Inter-Regular',
+    fontStyle: "normal",
+    fontWeight: "600",
+    fontSize:"30px",
+    lineHeight: "15px",
+    color:"white",
+    
+    marginLeft:"3px"
+    
+
+  };
+
+const month={
+    fontFamily: 'Inter-Regular',
+    fontSize:"15px" ,
+    color:"black",
+    marginTop:"10px",
+    alignSelf:"center",
+    // color: "#112866"
+}
+
+const year={
+    fontFamily: 'Inter-Regular',
+    fontSize:"15px" ,
+    // color:"#112866",
+    color:"black",
+    marginBottom:"10px",
+    
+}
+
+
+
+
+  const maintitle={
+    fontFamily: 'Inter-SemiBold',
     fontStyle: "normal",
     fontWeight: "300",
-    fontSize: "35px",
+    fontSize: "30px",
     lineHeight: "38px",
 
-    color: "#000000"
+    color: "#112866"
   };
+
+  const todaysgoal={
+    fontFamily:'Inter-Regular',
+    fontSize:"13px" ,
+    color:"black",
+    marginLeft:"10px",
+    // color:"#112866"
+  };
+  const exercise={
+    fontFamily:"Inter-Regular",
+    fontSize:"12px" ,
+    color:"white",
+    fontWeight:"20px",
+    
+ };
+  const excerciseNo={
+    fontFamily:"Inter-Regular",
+    fontSize:"30px" ,
+    color:"white",
+    fontWeight:"40px",
+    
+  };
+
+  const today={
+    fontFamily:"Inter-Regular",
+    color:"#112866",
+  }
+
+
   const totalservingsStyle={
     fontFamily: 'Poppins',
     fontStyle: "normal",
@@ -91,10 +169,10 @@ export default function Exercise(){
             <CardContent>
                 <Grid container justifyContent="space-between">
                         <Grid item className="my-grid-item" style={{marginleft:"30px"}}>
-                            <span style={{fontWeight: "bold"}}>Exercise</span>
+                            <span style={pageheading}>Exercise</span>
                         </Grid>
                         <Grid item className="my-grid-item" style={{marginRight:"30px"}}>
-                            <span>Today</span>
+                            <span style={today}>Today</span>
                         </Grid>
                 </Grid>
             </CardContent>
@@ -104,24 +182,24 @@ export default function Exercise(){
                     <Grid container  item flexDirection={'row'} alignItems="center"  >
                       <Grid item xs={6}> 
                     <Card  style={{backgroundColor:"#8D25C1",margin:"10px"}}>
-                        <Grid container mt={1} justifyContent="center" alignItems="center" item flexDirection="row" >
+                        <Grid container mt={1} justifyContent="center" spacing={1} alignItems="center" item flexDirection="row" >
                         
-                           <Grid item alignSelf={"center"} >
+                           <Grid item alignSelf="center" >
                             
-                           <Typography ml={1} variant="body1" component="span" style={totalservingsStyle} style={{ fontSize:"30px" ,color:"white"}}>
+                           <Typography  variant="body1" mt="1" component="span" style={day} >
                                             15
                                     </Typography>
                             </Grid> 
-                            <Grid item>
-                                <Grid  container flexDirection="column"  style={{backgroundColor:"#8D25C1",margin:"10px"}} >
+                            <Grid item >
+                                <Grid  container flexDirection="column" mb="2" >
                                     <Grid item>
-                                        <Typography variant="h5" component="span" style={{ fontSize:"15px" ,color:"black",marginTop:"10px"}}>
+                                        <Typography variant="h5" component="span"  style={month}>
                                                 March
                                         </Typography>
                                     </Grid>
                                 
-                                    <Grid item>
-                                        <Typography  variant="h5" component="span" style={{ fontSize:"15px" ,color:"black",marginBottom:"10px"}}>
+                                    <Grid item mr="3">
+                                        <Typography  variant="h5" component="span" style={year}>
                                                 2023
                                         </Typography>
                                     </Grid>
@@ -138,14 +216,14 @@ export default function Exercise(){
                     <Grid container  justifyContent="center" alignItems="center" flexDirection="column" j>
                         
                         <Grid item mt={1}>
-                        <Typography  style={{ fontSize:"13px" ,color:"black",marginLeft:"10px"}}>Today's Goal</Typography>
+                        <Typography  style={todaysgoal}>Today's Goal</Typography>
                         </Grid>
                         <Grid item>
 
                        
                         <Grid ml={2} container flexDirection="row">
-                           <Grid item ><Typography style={{ fontSize:"35px" ,color:"white",fontWeight:"40px"}}>20</Typography></Grid>
-                           <Grid item><Typography mt={3} style={{ fontSize:"12px" ,color:"white",fontWeight:"20px"}}>Exercise</Typography></Grid>
+                           <Grid item ><Typography style={excerciseNo}>20</Typography></Grid>
+                           <Grid item mt={2.5}><Typography ml={1}   style={exercise}>Exercise</Typography></Grid>
                             </Grid>
                         </Grid>
                         
@@ -169,7 +247,7 @@ export default function Exercise(){
                             
                             <Grid mt={2} xs={6} Item>
                                 <CardContent alignSelf={"center"} alignItems={"center"}  alignContent={"center"}>
-                                <Typography style={{ fontSize:"20px" ,color:"#E1B725"}}>10 Exercise Left</Typography>
+                                <Typography style={textparaStyle}>10 Exercise Left</Typography>
                                 </CardContent>
                             </Grid>
                         
@@ -194,7 +272,7 @@ export default function Exercise(){
                 <Grid container to="/dashboard/aerobic" component={RouterLink} sx={{textDecoration:'none'}} justifyContent="space-between" alignItems="center" style={{padding:"30px"}}>
                     <Grid item style={{padding:"5px"}}>
                         
-                        <Typography variant="body1" component="span" style={proteinStyle}>
+                        <Typography variant="body1" component="span" style={maintitle}>
                         Aerobic<br/>Activity
                         </Typography>
                     </Grid>
@@ -212,7 +290,7 @@ export default function Exercise(){
                 <Grid container to="/dashboard/aerobic" component={RouterLink} sx={{textDecoration:'none'}} justifyContent="space-between" alignItems="center" style={{padding:"30px"}}>
                     <Grid item style={{padding:"5px"}}>
                         
-                        <Typography variant="body1" component="span" style={proteinStyle}>
+                        <Typography variant="body1" component="span" style={maintitle}>
                         Strength<br/>Training
                         </Typography>
                     </Grid>

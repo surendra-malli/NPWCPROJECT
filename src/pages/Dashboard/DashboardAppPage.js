@@ -7,15 +7,31 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 
 import MenuItem from '@mui/material/MenuItem';
-import DietPlan from '../Diet/DietPlan';
-import Logo from "../pictures/nova.svg";
-import Diet from "../pictures/Diet.svg";
-import Exerciselogo from "../pictures/Exerciselogo.svg";
+// import DietPlan from '../Diet/DietPlan';
+import Logo from "../../assets/nova.svg";
+import Diet from "../../assets/Diet.svg";
+import Exerciselogo from "../../assets/Exerciselogo.svg";
+import  "../styles.css";
+
 // components
 
 // sections
 
 // ----------------------------------------------------------------------
+  
+const hello={
+  color:"#112866",
+  fontFamily:"Inter-SemiBold",
+
+}
+const subtext={
+  
+  fontSize:"10px" ,
+  color:"white",
+  fontFamily:"Inter-regular",
+
+}
+
 
 export default function DashboardAppPage() {
 
@@ -32,7 +48,7 @@ export default function DashboardAppPage() {
             <Grid container   style={{display:'flex',flexDirection:"row",position:'relative',marginBottom:'1rem'}}>
                <Grid item xs={6}>
                <CardContent >
-                         <Typography color="black" variant='h5' >
+                         <Typography  variant='h5' style={hello} >
                               Hello, Seema
                           </Typography>    
 
@@ -103,7 +119,7 @@ export default function DashboardAppPage() {
                                 <Typography style={{  fontSize:"25px" ,color:"#E1B725"}}>
                                   120
                                 </Typography>
-                                <Typography style={{ fontSize:"10px" ,color:"white"}}>Servings recommended</Typography>
+                                <Typography style={subtext}>Servings recommended</Typography>
                                 
                         </Grid>
                         <Grid item xs={4}  sx={{justifyContent:'center',textAlign: 'center',alignItems:"center",alignSelf:'center',alignContent:'center',}}>
@@ -121,7 +137,7 @@ export default function DashboardAppPage() {
                                 <Typography style={{ fontSize:"25px" ,color:"#E1B725"}}>
                                   16
                                 </Typography>
-                                <Typography style={{ fontSize:"10px" ,color:"white"}}>Servings left</Typography>
+                                <Typography style={subtext}>Servings left</Typography>
                               
                         </Grid>
                         
@@ -130,8 +146,7 @@ export default function DashboardAppPage() {
                        
                         
                         
-                        
-                        
+    
                         
                         </Grid>
                     </CardContent>
@@ -147,7 +162,7 @@ export default function DashboardAppPage() {
                                 <Typography style={{  fontSize:"25px" ,color:"#E1B725"}}>
                                   100
                                 </Typography>
-                                <Typography style={{ fontSize:"10px" ,color:"white"}}>exercise recommended</Typography>
+                                <Typography style={subtext}>exercise recommended</Typography>
                                
 
                               
@@ -165,7 +180,7 @@ export default function DashboardAppPage() {
                                 <Typography style={{  fontSize:"25px" ,color:"#E1B725"}}>
                                   10
                                 </Typography>
-                                <Typography style={{ fontSize:"10px" ,color:"white"}}>exercise left</Typography>
+                                <Typography style={subtext}>exercise left</Typography>
                                 
 
 
