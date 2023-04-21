@@ -25,3 +25,16 @@
                          /* font-family: 'sure'; */
                          color: brown;
                      }
+                     /* Media query for small devices */
+                     
+                     @media only screen and (max-width: 300px) {
+                         .proteinstyle {
+                             /* Reduce font size and line height for small devices */
+                             font-size: 14px;
+                             line-height: 1.2;
+                             /* Set text overflow to ellipsis */
+                             text-overflow: ellipsis;
+                             white-space: nowrap;
+                             overflow: hidden;
+                         }
+                     }

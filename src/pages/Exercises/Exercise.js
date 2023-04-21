@@ -177,7 +177,7 @@ export default function Exercise(){
                 </Grid>
             </CardContent>
             
-            <Grid>
+           {/* <Grid>
                 <Card style={{backgroundColor:"#D1A6E7",margin:"10px"}}>
                     <Grid container  item flexDirection={'row'} alignItems="center"  >
                       <Grid item xs={6}> 
@@ -224,6 +224,70 @@ export default function Exercise(){
                         <Grid ml={2} container flexDirection="row">
                            <Grid item ><Typography style={excerciseNo}>20</Typography></Grid>
                            <Grid item mt={2.5}><Typography ml={1}   style={exercise}>Exercise</Typography></Grid>
+                            </Grid>
+                        </Grid>
+                        
+                        
+                        
+                    </Grid>
+
+                    </Card>
+                    </Grid>
+
+
+                    </Grid>
+                    
+                    
+                </Card>
+    </Grid> */}
+
+            <Grid>
+                <Card style={{backgroundColor:"#D1A6E7",margin:"10px"}}>
+                    <Grid container  item flexDirection={'row'} alignItems="center"  >
+                      <Grid item xs={6}> 
+                    <Card  style={{backgroundColor:"#8D25C1",margin:"10px"}}>
+                        <Grid container mt={1} justifyContent="center" alignItems="center" item flexDirection="row" >
+                        
+                           <Grid item alignSelf={"center"} >
+                            
+                           <Typography variant="body1" component="span" style={day} >
+                                            15
+                                    </Typography>
+                            </Grid> 
+                            <Grid item>
+                                <Grid  container flexDirection="column"  style={{backgroundColor:"#8D25C1",margin:"10px"}} >
+                                    <Grid item>
+                                        <Typography variant="h5" component="span" style={month}>
+                                                March
+                                        </Typography>
+                                    </Grid>
+                                
+                                    <Grid item>
+                                        <Typography  variant="h5" component="span" style={year}>
+                                                2023
+                                        </Typography>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                           
+                            
+                        </Grid>
+                    </Card>
+                    </Grid> 
+
+                    <Grid item xs={6}>
+                    <Card  sx={{minHeight:65}} style={{backgroundColor:"#8D25C1",margin:"10px"}}>
+                    <Grid container  justifyContent="center" alignItems="center" flexDirection="column" j>
+                        
+                        <Grid item mt={1}>
+                        <Typography  style={todaysgoal}>Today's Goal</Typography>
+                        </Grid>
+                        <Grid item>
+
+                       
+                        <Grid ml={2} container flexDirection="row">
+                           <Grid item ><Typography style={{ fontSize:"35px" ,color:"white",fontWeight:"40px"}}>20</Typography></Grid>
+                           <Grid item><Typography mt={3}  ml={0.5} style={exercise}>Exercise</Typography></Grid>
                             </Grid>
                         </Grid>
                         

@@ -35,6 +35,7 @@ const maintext = {
   fontSize: "14px",
   lineHeight: "21px",
   color:"#112866",
+  
 
 
 };
@@ -203,7 +204,7 @@ export default function Aerobic() {
 
                   </Grid>     
                 
-                <Typography variant="body2" gutterBottom style={maintext}>
+                <Typography variant="body2" mt={1} gutterBottom style={maintext}>
                   Stand in waist - or chest - high water, facing the pool
                   wall.Take sideways steps with your body and toes facing the
                   wall.Take 10 to 20 steps in one direction and then return
@@ -224,7 +225,8 @@ export default function Aerobic() {
             </Grid>
             <Grid item xs={10} spacing={2} md={10}>
                <Grid item >
-                  <Grid container flexDirection={"row"}>
+                
+                  <Grid container spacing={1} flexDirection={"row"}>
                    <Grid item xs={9}>
                   <Typography gutterBottom variant="h5" component="div" style={maintitle}>
                     Forward Lunge
@@ -249,7 +251,7 @@ export default function Aerobic() {
 
                   </Grid>     
                 
-                <Typography variant="body2" gutterBottom style={maintext}>
+                <Typography variant="body2" mt={1} gutterBottom style={maintext}>
                   Stand in waist - or chest - high water, facing the pool
                   wall.Take sideways steps with your body and toes facing the
                   wall.Take 10 to 20 steps in one direction and then return
@@ -260,6 +262,10 @@ export default function Aerobic() {
           </Grid>
         </CardContent>
       </Card>
+
+
+
+
       <Card style={{backgroundColor: "#F0E7F5", margin: "1rem", boxShadow: "#c4c4c4"}}>
         <CardContent>
           <Grid container spacing={2} justifyContent="center" alignItems="center" >
@@ -270,7 +276,7 @@ export default function Aerobic() {
             </Grid>
             <Grid item xs={10} spacing={2} md={10}>
               <Grid item >
-                  <Grid container flexDirection={"row"}>
+                  <Grid container  flexDirection={"row"}>
                    <Grid item xs={8}>
                   <Typography gutterBottom variant="h5" component="div" style={maintitle}>
                     Step Walking
@@ -299,7 +305,7 @@ export default function Aerobic() {
 
                   </Grid>     
                 
-                <Typography variant="body2" gutterBottom style={maintext}>
+                <Typography variant="body2" mt={1} gutterBottom style={maintext}>
                   Stand in waist - or chest - high water, facing the pool
                   wall.Take sideways steps with your body and toes facing the
                   wall.Take 10 to 20 steps in one direction and then return

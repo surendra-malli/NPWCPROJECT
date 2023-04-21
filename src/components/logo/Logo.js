@@ -27,7 +27,7 @@ const Logo = forwardRef(({ disabledLink = false, sx, ...other }, ref) => {
   // );
 
   const logo = (
-    <Box
+ <Box
       ref={ref}
       component="div"
       sx={{

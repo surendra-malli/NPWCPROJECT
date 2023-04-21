@@ -31,9 +31,10 @@ const pageheading={
 const buttonStyle = {
 
     position: 'absolute',
-    right: 20,
+    right:20,
     borderRadius: "10px",
-    boxShadow: '#c4c4c4'
+    boxShadow: '#c4c4c4',
+    
 
 }
 
@@ -71,6 +72,7 @@ const maintext = {
     fontSize: "14px",
     lineHeight: "21px",
     color:"#112866",
+    
 
 
 };
@@ -215,7 +217,7 @@ export default function Protein() {
                 </IconButton>
               </Card>
             </div>
-            <Typography variant="body2" gutterBottom style={maintext}>
+            <Typography variant="body2" mt={1} gutterBottom style={maintext}>
               white meat, skinless, chicken, turkey, hen, duck
             </Typography>
           </Grid>
@@ -252,7 +254,7 @@ export default function Protein() {
                 </IconButton>
               </Card>
             </div>
-            <Typography variant="body2" gutterBottom style={maintext}>
+            <Typography variant="body2" gutterBottom mt={1} style={maintext}>
               fresh, canned or frozen, Cod, Flounder, Haddock, Halibut.
             </Typography>
           </Grid>
@@ -279,7 +281,7 @@ export default function Protein() {
               >
                 Fish
               </Typography>
-              <Card style={buttonStyle}>
+              <Card style={buttonStyle} >
                 <IconButton onClick={handleDecrement3}>
                   <RemoveIcon />
                 </IconButton>
@@ -289,7 +291,7 @@ export default function Protein() {
                 </IconButton>
               </Card>
             </div>
-            <Typography variant="body2" gutterBottom style={maintext}>
+            <Typography variant="body2" gutterBottom mt={1} style={maintext}>
               fresh, canned or frozen, Cod, Flounder, Haddock, Halibut.
             </Typography>
           </Grid>
