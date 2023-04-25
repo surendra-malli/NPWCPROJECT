@@ -13,23 +13,57 @@ const navConfig = [{
         title: 'dashboard',
         path: '/dashboard/app',
         icon: icon('ic_analytics'),
+        id: 1,
+
     },
     {
         title: 'Diet',
         path: '/dashboard/DietPlan',
         icon: icon('ic_user'),
+        id: 1,
+
     },
     {
         title: 'Exercise',
         path: '/dashboard/Exercise',
         icon: icon('ic_cart'),
+        id: 1,
+
     },
 
     {
         title: 'login',
         path: '/dashboard/login',
         icon: icon('ic_lock'),
+        id: 1,
+
+
     },
+    {
+        title: 'Dashboard',
+        path: '/dashboardadmin/login',
+        icon: icon('ic_lock'),
+        id: 0,
+
+
+
+    },
+    {
+        title: 'Diet',
+        path: '/dashboardadmin/Adminitems',
+        icon: icon('ic_cart'),
+        id: 0,
+
+    },
+    {
+        title: 'Exercise',
+        path: '/dashboardadmin/AdminExercise',
+        icon: icon('ic_cart'),
+        id: 0,
+
+    },
+
+
 
 ];
 

@@ -1,6 +1,7 @@
 // @mui
 import { Grid, Typography, Select, FormControl, InputLabel } from '@mui/material';
 
+import axios from 'axios';
 
 import { Link as RouterLink } from 'react-router-dom';
 import Card from '@mui/material/Card';
@@ -156,7 +157,7 @@ export default function DashboardAppPage() {
                     <CardContent   to="/dashboard/Exercise" component={RouterLink} sx={{textDecoration:'none'}}>
                     <Grid container flexDirection="row" spacing="1" alignItems="center" justifyContent="center" >
                         
-                        <Grid item xs={4} alignItems="center" sx={{textAlign:'center'}} alignSelf={"center"} justifyContent="center">
+                        <Grid item xs={4} alignItems="center"  sx={{textAlign:'center'}} alignSelf={"center"} justifyContent="center">
                               
                                 
                                 <Typography style={{  fontSize:"25px" ,color:"#E1B725"}}>

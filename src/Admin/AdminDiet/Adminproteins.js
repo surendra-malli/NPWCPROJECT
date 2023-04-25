@@ -14,9 +14,9 @@ import  { useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-import Logo from "../assets/nova.svg";
-import Poultry from "../assets/Poultry.svg";
-import Fish from "../assets/Fish.svg";
+import Logo from "../../assets/nova.svg";
+import Poultry from "../../assets/Poultry.svg";
+import Fish from "../../assets/Fish.svg";
 
 
 export default function Protein() {
@@ -56,7 +56,7 @@ export default function Protein() {
                                 serving
                             </Typography>
                             <Typography variant="h5" style={{textAlign:"center"}}>
-                                remained
+                                remained 
                             </Typography>
                         </Card>
                     </CardContent>

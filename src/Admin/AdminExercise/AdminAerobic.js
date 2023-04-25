@@ -1,7 +1,7 @@
 import { CardContent, Grid, ButtonBase, Typography } from "@mui/material";
 import Card from "@mui/material/Card";
 import  { useState } from 'react';
-
+import { Link as RouterLink } from 'react-router-dom';
 // import WaterWalk from "./pictures/Waterwalk.svg"
 // import Lunge from "./pictures/Lunge.svg"
 // import Sidestep from "./pictures/Sidestep.svg"
@@ -14,7 +14,8 @@ import WaterWalking from "../../assets/WaterWalking.svg";
 import ForwardLunge from "../../assets/ForwardLunge.svg";
 import Logo from "../../assets/nova.svg";
 
-import  "../styles.css";
+import Plusimage from "../../assets/Plusimage.svg";
+import CreateExercise from "./components/CreateExercise";
 
 
 
@@ -179,31 +180,12 @@ export default function Aerobic() {
             <Grid item xs={10} spacing={2} md={10}>
             <Grid item >
                   <Grid container flexDirection={"row"}>
-                   <Grid item xs={8}>
+                   <Grid item >
                   <Typography gutterBottom variant="h5" component="div" style={maintitle}>
                     Forward Lunge
                   </Typography>
                   </Grid>
-                  <Grid item xs={4} >
-                  <Card  sx={{position:'absolute', right:10,borderRadius:1,boxShadow: '#c4c4c4'}} >
-                                
-                            
-                                <IconButton onClick={handleDecrement1}>
-                                <RemoveIcon />
-                                 </IconButton>
-                                 {count1}
-                                 <IconButton onClick={handleIncrement1}>
-                                 <AddIcon />
-                                 </IconButton>
-                                
-  
-                            
-                            
-
-                          
-                         
-                      </Card>
-                      </Grid>  
+                  
 
                   </Grid>     
                 
@@ -230,27 +212,12 @@ export default function Aerobic() {
                <Grid item >
                 
                   <Grid container spacing={1} flexDirection={"row"}>
-                   <Grid item   xs={8}>
+                   <Grid item   >
                   <Typography gutterBottom variant="h5"    style={maintitle}>
                     Forward Lunge
                   </Typography>
                   </Grid>
-                  <Grid item xs={4}  >
-                  <Card   sx={{position:'absolute', right:10,  borderRadius:1,boxShadow: '#c4c4c4'}} >
-                                
-                              
-                                <IconButton onClick={handleDecrement2}>
-                                <RemoveIcon />
-                                 </IconButton>
-                                 {count2}
-                                 <IconButton onClick={handleIncrement2}>
-                                 <AddIcon />
-                                 </IconButton>
-                            
-                          
-                         
-                      </Card>
-                      </Grid>  
+                 
 
                   </Grid>     
                 
@@ -280,31 +247,12 @@ export default function Aerobic() {
             <Grid item xs={10} spacing={2} md={10}>
               <Grid item >
                   <Grid container  flexDirection={"row"}>
-                   <Grid item xs={8}>
+                   <Grid item >
                   <Typography gutterBottom variant="h5" component="div" style={maintitle}>
                     Step Walking
                   </Typography>
                   </Grid>
-                  <Grid item xs={4}  >
-                  <Card  sx={{position:'absolute', right:10,borderRadius:1,boxShadow: '#c4c4c4'}} >
-                                
-                            
-                                <IconButton onClick={handleDecrement3}>
-                                <RemoveIcon />
-                                 </IconButton>
-                                 {count3}
-                                 <IconButton onClick={handleIncrement3}>
-                                 <AddIcon />
-                                 </IconButton>
-                                
-  
-                            
-                            
-
-                          
-                         
-                      </Card>
-                      </Grid>  
+                   
 
                   </Grid>     
                 
@@ -319,6 +267,8 @@ export default function Aerobic() {
           </Grid>
         </CardContent>
       </Card>
+<CreateExercise />
+      
 
       
 

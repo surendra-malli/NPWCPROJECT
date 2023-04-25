@@ -3,10 +3,10 @@ import * as React from 'react';
 import Card from '@mui/material/Card';
 
 import CardContent from '@mui/material/CardContent';
-import Backbutton from "../assets/Backbutton.svg";
+import Backbutton from "../../assets/Backbutton.svg";
 
-import Userfiggirl from "../assets/Userfiggirl.svg";
-import Userfig from "../assets/Userfig.svg";
+import Userfiggirl from "../../assets/Userfiggirl.svg";
+import Userfig from "../../assets/Userfig.svg";
 
 
 

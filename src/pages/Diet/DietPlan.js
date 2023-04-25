@@ -1,4 +1,4 @@
-import React from 'react';
+import {React, useEffect, useState }from 'react';
 
 // import '../css/DietPlan.css';
 
@@ -6,7 +6,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import {   Select, FormControl, InputLabel } from '@mui/material';
 import Card from '@mui/material/Card';
-
+import axios from 'axios';
 import CardActions from '@mui/material/CardActions';
 
 import CardContent from '@mui/material/CardContent';
@@ -163,6 +163,25 @@ const caloriesremainedNo={
 
 export default function DietPlan(){
 
+
+
+    const [count, setCount] = useState(0);
+
+        useEffect(() => {
+      getData()
+    },[]);
+   
+
+    const getData=()=>{
+        axios.get('')
+        .then(response => {
+        setCount(response.data)
+        //   console.log(response.data);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
       
      
     return (
@@ -175,7 +194,7 @@ export default function DietPlan(){
             
            
             <Grid container   style={{display:'flex',flexDirection:"row",position:'relative'}}>
-               <Grid item xs={8}>
+               <Grid item xs={6}>
                <CardContent >
                          <Typography  variant='h5' style={title} >
                               Diet plan
@@ -187,7 +206,7 @@ export default function DietPlan(){
 
          
 
-            <Grid  item xs={4} >
+            <Grid  item xs={6} mt={1} >
               <CardContent  >
                       <FormControl  sx={{ position:'absolute',right:6 }} size="small">
                      <Select sx={{backgroundColor:"white"}} defaultValue="Today">
@@ -350,12 +369,12 @@ export default function DietPlan(){
 
                      <Grid container  justifyContent={"row"}  spacing={1}>
                      <Grid container item xs={6} flex-direction={'row'}>
-                            <Grid item >
-                            <Typography variant="body1" sx={caloriesremainedNo}>
-                                7   
+                            <Grid item    >
+                            <Typography  variant="body1" sx={caloriesremainedNo}>
+                                {count}   
                             </Typography>
                             </Grid>
-                            <Grid item justifySelf={"end"} >
+                            <Grid item mb={0.7}  flexDirection={"column"} alignSelf={"flex-end"}>
                             <Typography style={caloriesremained} >
                                 calories remained 
                             </Typography>
@@ -402,7 +421,7 @@ export default function DietPlan(){
                      <Grid item  alignSelf={'center'}>
                            
                             <Typography variant="body1"  component="span" style={proteinStyle}>
-                                Carbohydrates Frui..
+                                Carbohydrates vegetables
                             </Typography> 
                             
                         </Grid>
@@ -445,8 +464,8 @@ export default function DietPlan(){
                      
                      <Grid item  alignSelf={'center'}>
                            
-                            <Typography variant="body1"  component="span" style={proteinStyle}>
-                                Carbohydrates Frui..
+                            <Typography variant="body1" Wrap component="span" style={proteinStyle}>
+                                Carbohydrates Fruits
                             </Typography> 
                             
                         </Grid>

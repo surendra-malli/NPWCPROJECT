@@ -11,15 +11,29 @@ NavSection.propTypes = {
   data: PropTypes.array,
 };
 
-export default function NavSection({ data = [], ...other }) {
+
+
+export default function NavSection({ data = [],  ...other }) {
+  const userId=0
+ 
+
+
   return (
     <Box {...other}>
       <List disablePadding sx={{ p: 1 }}>
-        {data.map((item) => (
-          <NavItem key={item.title} item={item} />
-        ))}
+      {data.map((item) => {
+          if (item?.id === userId) {
+            return <NavItem key={item.title} item={item} />;
+          }
+        
+          return null;
+        })}
+          
+        
       </List>
     </Box>
+    
+    
   );
 }
 
@@ -52,3 +66,12 @@ function NavItem({ item }) {
     </StyledNavItem>
   );
 }
+
+
+
+
+
+
+
+
+

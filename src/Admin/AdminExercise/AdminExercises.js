@@ -241,99 +241,16 @@ export default function Exercise(){
                 </Card>
     </Grid> */}
 
-            <Grid>
-                <Card style={{backgroundColor:"#D1A6E7",margin:"10px"}}>
-                    <Grid container  item flexDirection={'row'} alignItems="center"  >
-                      <Grid item xs={6}> 
-                    <Card  style={{backgroundColor:"#8D25C1",margin:"10px"}}>
-                        <Grid container mt={1} justifyContent="center" alignItems="center" item flexDirection="row" >
-                        
-                           <Grid item alignSelf={"center"} >
-                            
-                           <Typography variant="body1" component="span" style={day} >
-                                            15
-                                    </Typography>
-                            </Grid> 
-                            <Grid item>
-                                <Grid  container flexDirection="column"  style={{backgroundColor:"#8D25C1",margin:"10px"}} >
-                                    <Grid item>
-                                        <Typography variant="h5" component="span" style={month}>
-                                                March
-                                        </Typography>
-                                    </Grid>
-                                
-                                    <Grid item>
-                                        <Typography  variant="h5" component="span" style={year}>
-                                                2023
-                                        </Typography>
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-                           
-                            
-                        </Grid>
-                    </Card>
-                    </Grid> 
-
-                    <Grid item xs={6}>
-                    <Card  sx={{minHeight:65}} style={{backgroundColor:"#8D25C1",margin:"10px"}}>
-                    <Grid container  justifyContent="center" alignItems="center" flexDirection="column" j>
-                        
-                        <Grid item mt={1}>
-                        <Typography  style={todaysgoal}>Today's Goal</Typography>
-                        </Grid>
-                        <Grid item>
-
-                       
-                        <Grid ml={2} container flexDirection="row">
-                           <Grid item ><Typography style={{ fontSize:"35px" ,color:"white",fontWeight:"40px"}}>20</Typography></Grid>
-                           <Grid item><Typography mt={3}  ml={0.5} style={exercise}>Exercise</Typography></Grid>
-                            </Grid>
-                        </Grid>
-                        
-                        
-                        
-                    </Grid>
-
-                    </Card>
-                    </Grid>
-
-
-                    </Grid>
-                    
-                    
-                </Card>
-            </Grid>
-        <Grid Item>
-             <Card  style={{backgroundColor:"#212121",margin:"10px"}}>
-                    <CardContent>
-                        <Grid container flexDirection="row" justifyContent="space-between">
-                            
-                            <Grid mt={2} xs={6} Item>
-                                <CardContent alignSelf={"center"} alignItems={"center"}  alignContent={"center"}>
-                                <Typography style={textparaStyle}>10 Exercise Left</Typography>
-                                </CardContent>
-                            </Grid>
-                        
-                            <Grid item xs={6} alignSelf={"center"} alignItems={"flex-end"}  alignContent={"flex-end"}> 
-                            <CardContent  sx={{textAlign:'flex-end'}}  >
-                                <Typography  sx={{textAlign:'flex-end'}}>
-                                 <img src={Exerciselogo}  alt="dinning" style={{display: 'block', margin: 'auto' ,float:"right"}}/>
-                                 </Typography>
-                                 </CardContent>
-                            </Grid>
-                            
-                        </Grid>
-                    </CardContent>
-            </Card>
-        </Grid>
+            
+        
+        
            
 
            
 
             <Card  style={{backgroundColor:"#F0E7F5", margin:"10px"}}>
             
-                <Grid container to="/dashboard/aerobic" component={RouterLink} sx={{textDecoration:'none'}} justifyContent="space-between" alignItems="center" style={{padding:"30px"}}>
+                <Grid container to="/dashboardadmin/adminaerobic" component={RouterLink} sx={{textDecoration:'none'}} justifyContent="space-between" alignItems="center" style={{padding:"30px"}}>
                     <Grid item style={{padding:"5px"}}>
                         
                         <Typography variant="body1" component="span" style={maintitle}>
@@ -351,7 +268,7 @@ export default function Exercise(){
 
             <Card  style={{backgroundColor:"#F0E7F5", margin:"10px"}}>
             
-                <Grid container to="/dashboard/aerobic" component={RouterLink} sx={{textDecoration:'none'}} justifyContent="space-between" alignItems="center" style={{padding:"30px"}}>
+                <Grid container to="/dashboardadmin/adminaerobic" component={RouterLink} sx={{textDecoration:'none'}} justifyContent="space-between" alignItems="center" style={{padding:"30px"}}>
                     <Grid item style={{padding:"5px"}}>
                         
                         <Typography variant="body1" component="span" style={maintitle}>

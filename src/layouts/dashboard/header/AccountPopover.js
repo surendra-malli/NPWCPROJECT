@@ -36,11 +36,12 @@ export default function AccountPopover() {
   };
 
   return (
-    <div style={{float:"right"}}>
+    <div style={{float:"right", }}>
       <IconButton
         onClick={handleOpen}
         sx={{
           p: 0,
+          paddingRight:"10px",
           ...(open && {
             '&:before': {
               zIndex: 1,

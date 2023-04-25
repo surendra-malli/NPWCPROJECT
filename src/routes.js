@@ -1,6 +1,7 @@
 import { Navigate, useRoutes } from 'react-router-dom';
 // layouts
-import DashboardLayout from './layouts/dashboard';
+import DashboardLayout from './layouts/dashboard/DashboardLayout';
+import DashboardAdmin from './layouts/dashboard/DashboardAdmin';
 import SimpleLayout from './layouts/simple';
 //
 import Protein from './pages/Diet/Protein';
@@ -9,15 +10,19 @@ import LoginPage from './pages/LoginPage';
 import Page404 from './pages/Page404';
 import ProductsPage from './pages/ProductsPage';
 import DashboardAppPage from './pages/Dashboard/DashboardAppPage';
-import Adminuser from './pages/Adminuser';
-import Adminuserlist from './pages/Adminuserlist';
-import Adminproteins from './pages/Adminproteins';
-import Adminitems from './pages/Adminitems';
+import Adminuser from './Admin/AdminDashboard/Adminuser';
+import Adminuserlist from './Admin/AdminDashboard/Adminuserlist'; 
+import Adminproteins from './Admin/AdminDiet/Adminproteins';
+import Adminitems from './Admin/AdminDiet/Adminitems';
+import AdminExercises from './Admin/AdminExercise/AdminExercises';
+import AdminAerobic from './Admin/AdminExercise/AdminAerobic';
+// import CreateExerciseItems from './Admin/AdminExercise/CreateExerciseItems';
 import Createuser from './pages/Createuser';
 import DietPlan from './pages/Diet/DietPlan';
 import Exercise from './pages/Exercises/Exercise';
 
 import Aerobic from './pages/Exercises/Aerobic';
+import CreateExerciseItems from './Admin/AdminExercise/CreateExerciseItems';
 // ----------------------------------------------------------------------
 
 export default function Router() {
@@ -33,6 +38,7 @@ export default function Router() {
                     path: 'protein',
                     element: < Protein / >
                 },
+
 
                 {
                     path: 'login',
@@ -66,10 +72,34 @@ export default function Router() {
                     path: 'exercise',
                     element: < Exercise / > ,
                 },
-                { path: 'aerobic', element: < Aerobic / > }
+                { path: 'aerobic', element: < Aerobic / > },
+
 
             ],
         },
+        {
+            path: '/dashboardadmin',
+            element: < DashboardAdmin/> ,
+            children: [
+                { element: < Navigate to = "/dashboardadmin/app" / > , index: true },
+                { path: 'login', element: < LoginPage / > },
+                { path: 'adminitems', element: < Adminitems / > },
+                { path: 'adminexercise', element: < AdminExercises / > },
+                {
+                    path: 'adminaerobic',
+                    element: <AdminAerobic  / >
+                },
+                {
+                    path: 'createexerciseitems',
+                    element: <CreateExerciseItems / >
+                },
+            ]
+
+        },
+
+
+
+
 
 
         {

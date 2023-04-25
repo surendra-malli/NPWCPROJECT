@@ -205,7 +205,7 @@ export default function Protein() {
                 style={maintitle}
                 className="maintitlecss"
               >
-                Poultry
+                Poultry 
               </Typography>
               <Card style={buttonStyle}>
                 <IconButton onClick={handleDecrement1}>
