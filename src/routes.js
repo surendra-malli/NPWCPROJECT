@@ -93,6 +93,10 @@ export default function Router() {
                     path: 'createexerciseitems',
                     element: <CreateExerciseItems / >
                 },
+                {
+                    path: 'adminuser',
+                    element: < Adminuser / >
+                },
             ]
 
         },

@@ -8,7 +8,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 
 import MenuItem from '@mui/material/MenuItem';
-// import DietPlan from '../Diet/DietPlan';
+// import DietPlan from '../Diet/DietPlan'; 
 import Logo from "../../assets/nova.svg";
 import Diet from "../../assets/Diet.svg";
 import Exerciselogo from "../../assets/Exerciselogo.svg";

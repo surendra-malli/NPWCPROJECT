@@ -8,8 +8,6 @@ import Backbutton from "../../assets/Backbutton.svg";
 import Userfiggirl from "../../assets/Userfiggirl.svg";
 import Userfig from "../../assets/Userfig.svg";
 
-
-
 export default function Adminuserlist() {
     return (
         <div>
