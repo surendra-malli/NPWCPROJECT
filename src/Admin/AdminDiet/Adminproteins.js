@@ -2,7 +2,7 @@ import { Grid, Typography,  Select, FormControl, InputLabel } from '@mui/materia
 import * as React from 'react';
 
 
-
+import CreateDiet from "./component/CreateDiet";
 import Card from '@mui/material/Card';
 
 import CardContent from '@mui/material/CardContent';
@@ -31,7 +31,7 @@ export default function Protein() {
 
 
             <Grid container spacing={2}>
-                <Grid item xs={6}>
+                <Grid item >
                     <CardContent >
                         <Typography  variant='h3'>
                                 Proteins 
@@ -46,21 +46,7 @@ export default function Protein() {
                             
                     </CardContent>
                 </Grid>
-                <Grid item xs={6} >
-                    <CardContent >
-                        <Card sx={{Width: 200,height:110}} style={{backgroundColor:"#E1B725"}}>
-                            <Typography variant="h3" style={{textAlign:"center"}}>
-                                7
-                            </Typography>
-                            <Typography variant="h5" style={{textAlign:"center"}}>
-                                serving
-                            </Typography>
-                            <Typography variant="h5" style={{textAlign:"center"}}>
-                                remained 
-                            </Typography>
-                        </Card>
-                    </CardContent>
-                </Grid>
+               
             </Grid>
 
 
@@ -69,13 +55,16 @@ export default function Protein() {
 
 
 
-    <CardContent >
-        <Card >
+    
+        <Card style={{margin:'1rem',boxShadow: '#c4c4c4', }} >
+            
             <Typography variant="body1" style={{padding:"30px", color:"#9B54BF"}} >
             Weigh AFTER cooked / 1 serving = 1 cooked oz
             </Typography>
+
+            
         </Card>
-    </CardContent>
+    
 
            
 
@@ -169,6 +158,10 @@ export default function Protein() {
             </Grid>
         </CardContent>
     </Card>
+
+
+
+    <CreateDiet />
 
     
 

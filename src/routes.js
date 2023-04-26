@@ -14,9 +14,10 @@ import Adminuser from './Admin/AdminDashboard/Adminuser';
 import Adminuserlist from './Admin/AdminDashboard/Adminuserlist'; 
 import Adminproteins from './Admin/AdminDiet/Adminproteins';
 import Adminitems from './Admin/AdminDiet/Adminitems';
+// import CreateDietItems from './Admin/AdminDiet/component/CreateDietItems';
+
 import AdminExercises from './Admin/AdminExercise/AdminExercises';
 import AdminAerobic from './Admin/AdminExercise/AdminAerobic';
-// import CreateExerciseItems from './Admin/AdminExercise/CreateExerciseItems';
 import Createuser from './pages/Createuser';
 import DietPlan from './pages/Diet/DietPlan';
 import Exercise from './pages/Exercises/Exercise';
@@ -90,8 +91,12 @@ export default function Router() {
                     element: <AdminAerobic  / >
                 },
                 {
-                    path: 'createexerciseitems',
-                    element: <CreateExerciseItems / >
+                    path: 'adminuser',
+                    element: <Adminuser  / >
+                },
+                {
+                    path: 'adminproteins',
+                    element: <Adminproteins  / >
                 },
             ]
 

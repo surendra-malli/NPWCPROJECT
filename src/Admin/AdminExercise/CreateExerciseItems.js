@@ -30,9 +30,10 @@ export default function CreateExerciseItems (){
                             <Grid mb={2}   Item>
                                <Grid container flexDirection="row" justifyContent="space-between">
                                     <Grid  md={6} lg={6} xs={6} style={{backgroundColor:"#F7EEFC"}}  item>
-                                        <TextField   label="Count" variant='outlined'  fullWidth/></Grid>
-                                    <Grid md={5} lg={5} xs={5} style={{backgroundColor:"#F7EEFC"}} item > 
-                                    <FormControl variant='outlined' >
+                                        <TextField   label="Count" variant='outlined'  fullWidth/>
+                                    </Grid>
+                                    <Grid md={5} lg={5} xs={5} style={{backgroundColor:"#F7EEFC"}}  item > 
+                                    <FormControl variant="outlined" >
                                             <InputLabel variant="ourtlined" >
                                                 Sets
                                             </InputLabel>
@@ -48,7 +49,10 @@ export default function CreateExerciseItems (){
                                                 <option value={20}>Twenty</option>
                                                 <option value={30}>Thirty</option>
                                             </NativeSelect>
-                                            </FormControl></Grid>
+                                            </FormControl>
+                                            
+                                            
+                                     </Grid>
                               
                                  </Grid>  
                                         

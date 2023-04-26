@@ -16,7 +16,6 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
 import Plusimage from "../../../assets/Plusimage.svg";   
-import { BorderColor } from '@mui/icons-material';
 
 
 const Transition = React.forwardRef( (props, ref) => {
@@ -34,14 +33,6 @@ export default function FullScreenDialog() {
   const handleClose = () => {
     setOpen(false);
   };
-
-
- const design={
-  
-  ackgroundColor:"#F7EEFC", 
-  borderRadius:"9px"
- }
-
 
   return (
     <div>
@@ -62,19 +53,18 @@ export default function FullScreenDialog() {
           }}
           sx={{
             ':hover': {
-              bgcolor: '#ffd796', // theme.palette.primary.main #ffd796
-                color: '#ff7424', //#ff7424
-              border: '#ffd796',
+                bgcolor: '#ffd796', // theme.palette.primary.main #ffd796
+                 color: '#ff7424', //#ff7424
+                border: '#ffd796',
+                borderStyle:"solid",
+                BorderColor:"#9B54BF",
+                
+              },
+              bgcolor: 'white', //ffd796
+              color: '#9B54BF',
+              border: '3px',
               borderStyle:"solid",
               BorderColor:"#9B54BF",
-              
-            },
-            bgcolor: 'white', //ffd796 white
-            color: '#9B54BF',
-            border: '3px',
-            borderStyle:"solid",
-            BorderColor:"#9B54BF",
-              
             
           }}
           title="Create POA"
@@ -96,7 +86,7 @@ export default function FullScreenDialog() {
         onClose={handleClose}
         TransitionComponent={Transition}
       >
-        <AppBar sx={{ position: 'relative', backgroundColor:"#F7EEFC" , color:"black" }}>
+        <AppBar sx={{ position: 'relative' ,backgroundColor:"#F7EEFC" ,color:"black"}}>
           <Toolbar>
             <IconButton
               edge="start"
@@ -106,8 +96,8 @@ export default function FullScreenDialog() {
             >
               <CloseIcon />
             </IconButton>
-            <Typography sx={{ ml: 2, flex: 1, }} variant="h6" component="div">
-            Create Exercise Items
+            <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+              Create Diet Items
             </Typography>
             <Button autoFocus color="inherit" onClick={handleClose}>
               save
@@ -127,25 +117,25 @@ export default function FullScreenDialog() {
             
                 <CardContent>
                     <Grid container flexDirection="column" spacing={1}>
-                        <Grid xs={12}   mb={2}  style={{backgroundColor:"#F7EEFC", borderRadius:"9px"}}
+                        <Grid xs={12}   mb={2}  style={{backgroundColor:"#F7EEFC"}}
                         Item>
                             <TextField label="Name" variant='outlined' fullWidth/>
                         </Grid>
 
                     
                     
-                        <Grid xs={12}  mb={2}  style={{backgroundColor:"#F7EEFC" , borderRadius:"9px"}}
+                        <Grid xs={12}  mb={2}  style={{backgroundColor:"#F7EEFC"}}
                          Item>
                             <TextField label="Choose Exercise Image" variant='outlined' fullWidth/>
                         </Grid>
                        
                             <Grid mb={2}   Item>
                                <Grid container flexDirection="row" justifyContent="space-between">
-                                    <Grid  md={6} lg={6} xs={6} style={{backgroundColor:"#F7EEFC",borderRadius:"9px"}}  item>
+                                    <Grid  md={6} lg={6} xs={6} style={{backgroundColor:"#F7EEFC"}}  item>
                                         <TextField   label="Count" variant='outlined'  fullWidth/></Grid>
-                                    <Grid md={5} lg={5} xs={5} style={{backgroundColor:"#F7EEFC", borderRadius:"9px"}} sx={{ border:'2px',borderColor:" #DEDEDE", borderStyle:"solid" }} item > 
-                                    <FormControl variant='outlined'  >
-                                            <InputLabel  variant='ourtlined'>
+                                    <Grid md={5} lg={5} xs={5} style={{backgroundColor:"#F7EEFC"}}  item > 
+                                    <FormControl variant='outlined' >
+                                            <InputLabel variant="ourtlined" >
                                                 Sets
                                             </InputLabel>
                                             <NativeSelect
@@ -170,11 +160,11 @@ export default function FullScreenDialog() {
                                 
 
                         
-                        <Grid xs={12}   mb={2}  style={{backgroundColor:"#F7EEFC", borderRadius:"9px" }}
+                        <Grid xs={12}   mb={2}  style={{backgroundColor:"#F7EEFC"}}
                          Item>
                             <TextField label="Calories" variant='outlined' fullWidth/>
                         </Grid>
-                        <Grid mb={2} xs={12}    sx={{ border:'2px',borderColor:" #DEDEDE", borderStyle:"solid" }} style={{backgroundColor:"#F7EEFC" , borderRadius:"9px"}}
+                        <Grid mb={2} xs={12}   ml={1}  style={{backgroundColor:"#F7EEFC"}}
                              Item>
                                        <FormControl variant='outlined' fullWidth>
                                             <InputLabel variant="ourtlined" htmlFor="uncontrolled-native">
@@ -194,7 +184,7 @@ export default function FullScreenDialog() {
                                             </NativeSelect>
                                             </FormControl>
                         </Grid> 
-                        <Grid xs={12}   mb={2}  style={{backgroundColor:"#F7EEFC", borderRadius:"9px"}}
+                        <Grid xs={12}   mb={2}  style={{backgroundColor:"#F7EEFC"}}
                          Item>
                             <TextField label="Description" variant='outlined' multiline rows={5} fullWidth/>
                         </Grid>
