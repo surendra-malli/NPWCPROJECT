@@ -3,6 +3,11 @@ import * as React from 'react';
 import Dialog from '@mui/material/Dialog';
 import {Button, ButtonBase, CardContent, Card , DialogContent, DialogContentText,Typography, Grid, TextField ,MenuItem,InputLabel,NativeSelect,FormControl} from '@mui/material';
 // import  ButtonBase  from '@mui/material';
+import Box from '@mui/material/Box';
+// import InputLabel from '@mui/material/InputLabel';
+// import MenuItem from '@mui/material/MenuItem';
+// import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 // import {   DialogContent, DialogContentText,  } from '@mui/material';
 import ListItemText from '@mui/material/ListItemText';
@@ -16,6 +21,28 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
 import Plusimage from "../../../assets/Plusimage.svg";   
+import { Form } from 'react-router-dom';
+
+
+
+const currencies = [
+  {
+    value: 'USD',
+    label: 'Ten',
+  },
+  {
+    value: 'EUR',
+    label: 'Twenty',
+  },
+  {
+    value: 'BTC',
+    label:'Thirty',
+  },
+  {
+    value: 'JPY',
+    label: 'Fats',
+  },
+];
 
 
 const Transition = React.forwardRef( (props, ref) => {
@@ -32,6 +59,22 @@ export default function FullScreenDialog() {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+
+
+  const [age, setAge] = React.useState('');
+
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
+
+
+
+  const [grams, setgrams] = React.useState('');
+
+  const handleChanges = (event) => {
+    setgrams(event.target.value);
   };
 
   return (
@@ -53,20 +96,18 @@ export default function FullScreenDialog() {
           }}
           sx={{
             ':hover': {
-                bgcolor: '#ffd796', // theme.palette.primary.main #ffd796
-                 color: '#ff7424', //#ff7424
-                border: '#ffd796',
-                borderStyle:"solid",
-                BorderColor:"#9B54BF",
-                
-              },
-              bgcolor: 'white', //ffd796
-              color: '#9B54BF',
-              border: '3px',
-              borderStyle:"solid",
-              BorderColor:"#9B54BF",
-            
-          }}
+              bgcolor: "#F0E7F5", // theme.palette.primary.main
+              color: '#9B59B6',
+              border: '#ffd796'
+            },
+            ':active': {
+              bgcolor: "#F0E7F5",
+              color: "#9B59B6"
+            },
+            bgcolor: '#F0E7F5',
+            color: "#9B59B6",
+            border: 'none'
+          }} 
           title="Create POA"
         >
           {/* style={{ float: "right", marginLeft:100, borderRadius: "50%", padding: "0.2rem", position:'relative', zIndex: '-1',marginRight:10,marginTop:15}} */}
@@ -86,7 +127,7 @@ export default function FullScreenDialog() {
         onClose={handleClose}
         TransitionComponent={Transition}
       >
-        <AppBar sx={{ position: 'relative' ,backgroundColor:"#F7EEFC" ,color:"black"}}>
+        <AppBar sx={{ position: 'relative' ,backgroundColor:"purple" ,color:"white"}}>
           <Toolbar>
             <IconButton
               edge="start"
@@ -117,40 +158,41 @@ export default function FullScreenDialog() {
             
                 <CardContent>
                     <Grid container flexDirection="column" spacing={1}>
-                        <Grid xs={12}   mb={2}  style={{backgroundColor:"#F7EEFC"}}
+                        <Grid xs={12}   mb={2}  style={{ borderRadius:"10px"}}
                         Item>
-                            <TextField label="Name" variant='outlined' fullWidth/>
+                            <TextField label=" Item Name"  variant='outlined' fullWidth/>
                         </Grid>
 
                     
                     
-                        <Grid xs={12}  mb={2}  style={{backgroundColor:"#F7EEFC"}}
+                        <Grid xs={12}  mb={2}  
                          Item>
-                            <TextField label="Choose Exercise Image" variant='outlined' fullWidth/>
+                            <TextField label="Choose Diet Image" variant='outlined' fullWidth/>
                         </Grid>
                        
-                            <Grid mb={2}   Item>
-                               <Grid container flexDirection="row" justifyContent="space-between">
-                                    <Grid  md={6} lg={6} xs={6} style={{backgroundColor:"#F7EEFC"}}  item>
-                                        <TextField   label="Count" variant='outlined'  fullWidth/></Grid>
-                                    <Grid md={5} lg={5} xs={5} style={{backgroundColor:"#F7EEFC"}}  item > 
-                                    <FormControl variant='outlined' >
-                                            <InputLabel variant="ourtlined" >
-                                                Sets
-                                            </InputLabel>
-                                            <NativeSelect
-                                             variant='outlined'
-                                                defaultValue={30}
-                                                inputProps={{
-                                                name: 'age',
-                                                id: 'uncontrolled-native',
-                                                }}
-                                            >
-                                                <option value={10}>Ten</option>
-                                                <option value={20}>Twenty</option>
-                                                <option value={30}>Thirty</option>
-                                            </NativeSelect>
-                                            </FormControl></Grid>
+                            <Grid mb={2}    Item>
+                               <Grid container flexDirection="row"  justifyContent="space-between">
+                                    <Grid  md={6} lg={6} xs={6}    item>
+                                        <TextField   label="Weight" variant='outlined'  fullWidth/></Grid>
+                                    <Grid md={5.5} lg={5.5} xs={5.5}   item > 
+                                    
+                                    <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label">Grams</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={grams}
+          label="Grams"
+          onChange={handleChanges}
+        >
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>
+      </FormControl>
+                                    
+                                    
+                                    </Grid>
                               
                                  </Grid>  
                                         
@@ -160,31 +202,36 @@ export default function FullScreenDialog() {
                                 
 
                         
-                        <Grid xs={12}   mb={2}  style={{backgroundColor:"#F7EEFC"}}
+                        <Grid xs={12}   mb={2}  
                          Item>
                             <TextField label="Calories" variant='outlined' fullWidth/>
                         </Grid>
-                        <Grid mb={2} xs={12}   ml={1}  style={{backgroundColor:"#F7EEFC"}}
-                             Item>
-                                       <FormControl variant='outlined' fullWidth>
-                                            <InputLabel variant="ourtlined" htmlFor="uncontrolled-native">
-                                                Select Type Of Exercise
-                                            </InputLabel>
-                                            <NativeSelect
-                                             variant='outlined'
-                                                defaultValue={30}
-                                                inputProps={{
-                                                name: 'age',
-                                                id: 'uncontrolled-native',
-                                                }}
-                                            >
-                                                <option value={10}>Ten</option>
-                                                <option value={20}>Twenty</option>
-                                                <option value={30}>Thirty</option>
-                                            </NativeSelect>
-                                            </FormControl>
+                        <Grid mb={2} xs={12}    style={{ borderRadius:"10px"}} Item>
+                                      
+                        
+      <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label">Category</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={age}
+          label="Category"
+          onChange={handleChange}
+        >
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>
+      </FormControl>
+           
+                        
+
+                                            
+                                   
                         </Grid> 
-                        <Grid xs={12}   mb={2}  style={{backgroundColor:"#F7EEFC"}}
+
+
+                        <Grid xs={12}   mb={2}  
                          Item>
                             <TextField label="Description" variant='outlined' multiline rows={5} fullWidth/>
                         </Grid>

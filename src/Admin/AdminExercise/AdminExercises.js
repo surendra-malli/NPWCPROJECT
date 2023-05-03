@@ -172,9 +172,7 @@ export default function Exercise(){
                         <Grid item className="my-grid-item" style={{marginleft:"30px"}}>
                             <span style={pageheading}>Exercise</span>
                         </Grid>
-                        <Grid item className="my-grid-item" mt={1} style={{marginRight:"30px"}}>
-                            <span style={today}>Today</span>
-                        </Grid>
+                       
                 </Grid>
             </CardContent>
             
