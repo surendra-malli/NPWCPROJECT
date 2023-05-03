@@ -11,7 +11,7 @@ import Iconify from '../../../components/iconify';
 // ----------------------------------------------------------------------
 
 const HEADER_MOBILE = 64;
-const HEADER_DESKTOP = 92;
+const HEADER_DESKTOP = 10;
 
 const StyledSearchbar = styled('div')(({ theme }) => ({
   ...bgBlur({ color: theme.palette.background.default }),

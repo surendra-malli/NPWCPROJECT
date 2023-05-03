@@ -70,6 +70,15 @@ const ERROR = {
   contrastText: '#fff',
 };
 
+const NUTRITION = {
+  lighter: '#800080',
+  light: '#800080',
+  main: '#800080',
+  dark: '#800080',
+  darker: '#800080',
+  contrastText: '#fff',
+}
+
 const palette = {
   common: { black: '#000', white: '#fff' },
   primary: PRIMARY,
@@ -77,6 +86,7 @@ const palette = {
   info: INFO,
   success: SUCCESS,
   warning: WARNING,
+  nutrition: NUTRITION,
   error: ERROR,
   grey: GREY,
   divider: alpha(GREY[500], 0.24),

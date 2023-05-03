@@ -11,6 +11,7 @@ import * as React from "react";
 import Card from "@mui/material/Card";
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
 import ThreeDRotation from "@mui/icons-material/ThreeDRotation";
+import { Link as RouterLink } from 'react-router-dom';
 
 import CardContent from "@mui/material/CardContent";
 
@@ -34,18 +35,18 @@ export default function Adminuser() {
       >
         <CardContent>
           <Grid
-            container
+            container to="/dashboardadmin/adminsearch" component={RouterLink} sx={{textDecoration:'none'}} 
             flexDirection="row"
             spacing="1"
             alignItems="center"
             justifyContent="center"
           >
             <Grid item xs={4} alignItems="center" justifyContent="center">
-              <span style={{ fontSize: "25px", color: "#E1B725" }}> 100 </span>{" "}
+              <span style={{ fontSize: "25px", color: "#E1B725", fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:'10px' }}> 100 </span>{" "}
             </Grid>{" "}
             <Grid item xs={4} alignItems="center" justifyContent="center">
               <span
-                style={{ fontSize: "25px", color: "white", fontWeight: "20px" }}
+                style={{ fontSize: "25px", color: "white", fontWeight: "20px", fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:'10px' }}
               >
                 {" "}
                 Total Users{" "}
@@ -53,10 +54,10 @@ export default function Adminuser() {
             </Grid>{" "}
             <Grid
               item
-              xs={4}
-              alignItems="center"
-              justifyContent="center"
-              sx={{ justifyContent: "center", alignItems: "center" }}
+              xs={4} container
+              // alignItems="center"
+              // justifyContent="center"
+              sx={{ justifyContent: "flex-end" }}
             >
               <img src={Diet} className="dinning-img" alt="dinning" />
             </Grid>
@@ -68,7 +69,7 @@ export default function Adminuser() {
         style={{ backgroundColor: "#212121", margin: "10px" }}
       >
         <CardContent>
-          <Grid
+          <Grid to="/dashboardadmin/adminsearch" component={RouterLink} sx={{textDecoration:'none'}} 
             container
             flexDirection="row"
             spacing="1"
@@ -76,11 +77,11 @@ export default function Adminuser() {
             justifyContent="center"
           >
             <Grid item xs={4} alignItems="center" justifyContent="center">
-              <span style={{ fontSize: "25px", color: "#E1B725" }}> 100 </span>{" "}
+              <span style={{ fontSize: "25px", color: "#E1B725", fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:'10px' }}> 100 </span>{" "}
             </Grid>{" "}
             <Grid item xs={4} alignItems="center" justifyContent="center">
               <span
-                style={{ fontSize: "25px", color: "white", fontWeight: "20px" }}
+                style={{ fontSize: "25px", color: "white", fontWeight: "20px", fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:'10px' }}
               >
                 {" "}
                 InActive Users{" "}
@@ -88,10 +89,10 @@ export default function Adminuser() {
             </Grid>{" "}
             <Grid
               item
-              xs={4}
-              alignItems="center"
-              justifyContent="center"
-              sx={{ justifyContent: "center", alignItems: "center" }}
+              xs={4} container
+              // alignItems="center"
+              // justifyContent="center"
+              sx={{ justifyContent: "flex-end" }}
             >
               <img src={Diet} className="dinning-img" alt="dinning" />
             </Grid>
@@ -103,7 +104,7 @@ export default function Adminuser() {
         style={{ backgroundColor: "#212121", margin: "10px" }}
       >
         <CardContent>
-          <Grid
+          <Grid to="/dashboardadmin/adminsearch" component={RouterLink} sx={{textDecoration:'none'}} 
             container
             flexDirection="row"
             spacing="1"
@@ -111,11 +112,11 @@ export default function Adminuser() {
             justifyContent="center"
           >
             <Grid item xs={4} alignItems="center" justifyContent="center">
-              <span style={{ fontSize: "25px", color: "#E1B725" }}> 160 </span>{" "}
+              <span style={{ fontSize: "25px", color: "#E1B725", fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:'10px' }}> 160 </span>{" "}
             </Grid>{" "}
             <Grid item xs={4} alignItems="center" justifyContent="center">
               <span
-                style={{ fontSize: "25px", color: "white", fontWeight: "20px" }}
+                style={{ fontSize: "25px", color: "white", fontWeight: "20px", fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:'10px' }}
               >
                 {" "}
                 Active Users{" "}
@@ -123,10 +124,10 @@ export default function Adminuser() {
             </Grid>{" "}
             <Grid
               item
-              xs={4}
-              alignItems="center"
-              justifyContent="center"
-              sx={{ justifyContent: "center", alignItems: "center" }}
+              xs={4} container
+              // alignItems="center"
+              // justifyContent="center"
+              sx={{ justifyContent: "flex-end"}}
             >
               <img src={Diet} className="dinning-img" alt="dinning" />
             </Grid>
