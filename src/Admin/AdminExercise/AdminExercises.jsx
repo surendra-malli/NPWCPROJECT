@@ -7,12 +7,11 @@ import { Link as RouterLink } from 'react-router-dom';
 import Box from '@mui/material/Box';
 
 import Card from '@mui/material/Card';
-
 import CardActions from '@mui/material/CardActions';
 
 import CardContent from '@mui/material/CardContent';
 
-
+import CreateCategoryExercise from "./components/CreateCategoryExercise";
 import Grid from '@mui/material/Grid';
 
 import Button from '@mui/material/Button';
@@ -161,6 +160,8 @@ export default function Exercise(){
       
      
     return (
+
+        <div>
         <Card className='dietplan-container'>
             <CardContent className='dietplan-companyname'>
                 <img src={Logo} alt="loading" className='dietplan-companyname-image'/>
@@ -171,9 +172,7 @@ export default function Exercise(){
                         <Grid item className="my-grid-item" style={{marginleft:"30px"}}>
                             <span style={pageheading}>Exercise</span>
                         </Grid>
-                        <Grid item className="my-grid-item" mt={1} style={{marginRight:"30px"}}>
-                            <span style={today}>Today</span>
-                        </Grid>
+                       
                 </Grid>
             </CardContent>
             
@@ -290,5 +289,10 @@ export default function Exercise(){
            
            
          </Card>
+
+
+         <CreateCategoryExercise />
+  
+         </div>
     );
 }

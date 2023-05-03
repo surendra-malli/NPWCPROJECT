@@ -11,12 +11,13 @@ import Page404 from './pages/Page404';
 import ProductsPage from './pages/ProductsPage';
 import DashboardAppPage from './pages/Dashboard/DashboardAppPage';
 import Adminuser from './Admin/AdminDashboard/Adminuser';
-
+// 
 import Adminproteins from './Admin/AdminDiet/Adminproteins';
 import Adminitems from './Admin/AdminDiet/Adminitems';
+// import CreateDietItems from './Admin/AdminDiet/component/CreateDietItems';
+
 import AdminExercises from './Admin/AdminExercise/AdminExercises';
 import AdminAerobic from './Admin/AdminExercise/AdminAerobic';
-// import CreateExerciseItems from './Admin/AdminExercise/CreateExerciseItems';
 import Createuser from './pages/Createuser';
 import DietPlan from './pages/Diet/DietPlan';
 import Exercise from './pages/Exercises/Exercise';
@@ -27,6 +28,9 @@ import Userstats from './Admin/UserStats/Userstats';
 import Adminsearch from './Admin/AdminSearch/Adminsearch'
 import ListAllDietPlan from './Admin/AdminDiet/ListAllDietPlan';
 // ----------------------------------------------------------------------
+
+
+
 
 export default function Router() {
     const routes = useRoutes([{
@@ -51,8 +55,11 @@ export default function Router() {
                     path: 'adminuser',
                     element: < Adminuser / >
                 },
-               
-               {
+                {
+                    path: 'adminuserlist',
+                    element: < Adminuserlist / >
+                },
+                {
                     path: 'adminproteins',
                     element: < Adminproteins / >
                 },
@@ -90,8 +97,12 @@ export default function Router() {
                     element: <AdminAerobic  / >
                 },
                 {
-                    path: 'createexerciseitems',
-                    element: <CreateExerciseItems / >
+                    path: 'adminuser',
+                    element: <Adminuser  / >
+                },
+                {
+                    path: 'adminproteins',
+                    element: <Adminproteins  / >
                 },
                 {
                     path: 'adminuser',
@@ -116,6 +127,7 @@ export default function Router() {
                     path: 'adminsearch',
                     element: < Adminsearch / >
                 },
+                
             ]
 
         },

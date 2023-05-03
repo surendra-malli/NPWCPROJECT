@@ -9,14 +9,6 @@ import Box from '@mui/material/Box';
 // import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-
-
-
-
-
-
-
-
 // import {   DialogContent, DialogContentText,  } from '@mui/material';
 import ListItemText from '@mui/material/ListItemText';
 import ListItem from '@mui/material/ListItem';
@@ -71,12 +63,6 @@ export default function FullScreenDialog() {
 
 
 
-  const [sets, setsets] = React.useState('');
-
-  const handleChanges = (event) => {
-    setsets(event.target.value);
-  };
-
   const [age, setAge] = React.useState('');
 
   const handleChange = (event) => {
@@ -84,11 +70,12 @@ export default function FullScreenDialog() {
   };
 
 
-  
 
-  
-  
+  const [grams, setgrams] = React.useState('');
 
+  const handleChanges = (event) => {
+    setgrams(event.target.value);
+  };
 
   return (
     <div>
@@ -137,7 +124,6 @@ export default function FullScreenDialog() {
       <Dialog
         fullScreen
         open={open}
-
         onClose={handleClose}
         TransitionComponent={Transition}
       >
@@ -152,7 +138,7 @@ export default function FullScreenDialog() {
               <CloseIcon />
             </IconButton>
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-              Create Exercise Items
+              Create Diet Items
             </Typography>
             <Button autoFocus color="inherit" onClick={handleClose}>
               save
@@ -172,30 +158,31 @@ export default function FullScreenDialog() {
             
                 <CardContent>
                     <Grid container flexDirection="column" spacing={1}>
-                        <Grid xs={12}   mb={2}  sx={{borderColor:"purple"}} Item>
-                            <TextField label="Name" sx={{borderColor:"purple"}} variant='outlined' fullWidth/>
+                        <Grid xs={12}   mb={2}  style={{ borderRadius:"10px"}}
+                        Item>
+                            <TextField label=" Item Name"  variant='outlined' fullWidth/>
                         </Grid>
 
                     
                     
-                        <Grid xs={12}  mb={2}   variant='outlined' 
+                        <Grid xs={12}  mb={2}  
                          Item>
-                            <TextField label="Choose Exercise Image"  fullWidth/>
+                            <TextField label="Choose Diet Image" variant='outlined' fullWidth/>
                         </Grid>
                        
-                            <Grid mb={2}   Item>
-                               <Grid container flexDirection="row" justifyContent="space-between">
-                                    <Grid  md={6} lg={6}    item>
-                                        <TextField  label="count"  variant='outlined'  fullWidth/></Grid>
-                                    <Grid md={5.5} lg={5.5} xs={5.5}  item > 
+                            <Grid mb={2}    Item>
+                               <Grid container flexDirection="row"  justifyContent="space-between">
+                                    <Grid  md={6} lg={6} xs={6}    item>
+                                        <TextField   label="Weight" variant='outlined'  fullWidth/></Grid>
+                                    <Grid md={5.5} lg={5.5} xs={5.5}   item > 
                                     
                                     <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Sets</InputLabel>
+        <InputLabel id="demo-simple-select-label">Grams</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={sets}
-          label="Set"
+          value={grams}
+          label="Grams"
           onChange={handleChanges}
         >
           <MenuItem value={10}>Ten</MenuItem>
@@ -219,16 +206,16 @@ export default function FullScreenDialog() {
                          Item>
                             <TextField label="Calories" variant='outlined' fullWidth/>
                         </Grid>
-                        <Grid mb={2} xs={12}     Item>
+                        <Grid mb={2} xs={12}    style={{ borderRadius:"10px"}} Item>
                                       
                         
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Select Type Of Exercise</InputLabel>
+        <InputLabel id="demo-simple-select-label">Category</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={age}
-          label="Select Type Of Exercise"
+          label="Category"
           onChange={handleChange}
         >
           <MenuItem value={10}>Ten</MenuItem>
@@ -244,8 +231,9 @@ export default function FullScreenDialog() {
                         </Grid> 
 
 
-                        <Grid xs={12}   mb={2}    Item>
-                            <TextField label="Description"   variant='outlined' multiline rows={5} fullWidth/>
+                        <Grid xs={12}   mb={2}  
+                         Item>
+                            <TextField label="Description" variant='outlined' multiline rows={5} fullWidth/>
                         </Grid>
 
                     </Grid>

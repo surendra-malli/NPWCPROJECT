@@ -133,31 +133,17 @@ export default function Aerobic() {
         alt="nova logo"
         style={{ height: "auto", width: "250px", marginLeft: "30px" }}
       />
-      <Grid container spacing={2}>
-        <Grid item xs={6}>
-          <CardContent>
+      
+        
+    <CardContent>
             <Typography x variant="h3" style={title}>
               Aerobic Activity
             </Typography>
             
-          </CardContent>
-        </Grid>
-        <Grid item xs={6}>
-          <CardContent>
-            <Card sx={{ Width: 200, height: "auto" }} style={{ backgroundColor: "#E1B725" }}>
-              <Typography variant="h3" style={regular}>
-                7
-              </Typography>
-              <Typography variant="h5" style={regular}>
-                activities
-              </Typography>
-              <Typography variant="h5" style={regular}>
-                remained
-              </Typography>
-            </Card>
-          </CardContent>
-        </Grid>
-      </Grid>
+     </CardContent>
+       
+        
+     
 
       <Card style={{ margin: "1rem"}}>
         <Typography  style={textparaStyle}>
