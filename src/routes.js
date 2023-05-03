@@ -55,10 +55,8 @@ export default function Router() {
                     path: 'adminuser',
                     element: < Adminuser / >
                 },
-                {
-                    path: 'adminuserlist',
-                    element: < Adminuserlist / >
-                },
+
+               
                 {
                     path: 'adminproteins',
                     element: < Adminproteins / >
