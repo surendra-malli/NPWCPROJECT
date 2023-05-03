@@ -11,7 +11,7 @@ import Page404 from './pages/Page404';
 import ProductsPage from './pages/ProductsPage';
 import DashboardAppPage from './pages/Dashboard/DashboardAppPage';
 import Adminuser from './Admin/AdminDashboard/Adminuser';
-import Adminuserlist from './Admin/AdminDashboard/Adminuserlist'; 
+// import Adminuserlist from './Admin/AdminDashboard/Adminuserlist'; 
 import Adminproteins from './Admin/AdminDiet/Adminproteins';
 import Adminitems from './Admin/AdminDiet/Adminitems';
 // import CreateDietItems from './Admin/AdminDiet/component/CreateDietItems';
@@ -25,6 +25,9 @@ import Exercise from './pages/Exercises/Exercise';
 import Aerobic from './pages/Exercises/Aerobic';
 import CreateExerciseItems from './Admin/AdminExercise/CreateExerciseItems';
 // ----------------------------------------------------------------------
+
+
+
 
 export default function Router() {
     const routes = useRoutes([{
@@ -49,10 +52,7 @@ export default function Router() {
                     path: 'adminuser',
                     element: < Adminuser / >
                 },
-                {
-                    path: 'adminuserlist',
-                    element: < Adminuserlist / >
-                },
+                
                 {
                     path: 'adminproteins',
                     element: < Adminproteins / >
@@ -98,6 +98,7 @@ export default function Router() {
                     path: 'adminproteins',
                     element: <Adminproteins  / >
                 },
+                
             ]
 
         },

@@ -1,45 +1,69 @@
-import { Grid, Typography, Select, FormControl, InputLabel } from '@mui/material';
+import { Grid, Typography, Box, Select, FormControl, InputLabel, Stack, IconButton, Container } from '@mui/material';
 import * as React from 'react';
 import Card from '@mui/material/Card';
+import { Link as RouterLink } from 'react-router-dom';
+import TextField from '@mui/material/TextField';
 
 import CardContent from '@mui/material/CardContent';
 import Backbutton from "../../assets/Backbutton.svg";
-
+import Page from 'src/components/Page';
 import Userfiggirl from "../../assets/Userfiggirl.svg";
 import Userfig from "../../assets/Userfig.svg";
+import Iconify from 'src/components/iconify/Iconify';
+import { Link } from 'react-router-dom';
+import Searchbar from 'src/layouts/dashboard/Searchbar';
 
 
 
+const pageheading={
+    fontFamily:"Inter-Bold",
+    fontWeight: "bold",
+    fontSize: "30px",
+    lineHeight: "30px",
+    color: "#112866"
+  };
 export default function Adminuserlist() {
     return (
-        <div>
+        
+            <Page  title="Dashboard: Admin">
+
+            <Searchbar getSearch={(e) => searchFunction(e)} id="search-bar" sx={{height:"100px"}}/>
+
+            <Container>
              
              <Grid container flexDirection="row">
-                <Grid  style={{margin:"10px"}} >
-                <img src={Backbutton} className='dinning-img' alt="dinning" />
+                <Grid   >
+                <Link to="/dashboardadmin/adminuser">
+      <IconButton>
+        <Iconify icon="material-symbols:arrow-back-rounded" />
+      </IconButton></Link>
 
                 </Grid>
+               
                 <Grid>
-                <Typography style={{margin:"10px", fontSize:"20px",fontWeight:"bold"}}>USERS</Typography>
+                <Typography style={pageheading}>Users uuhuhhuh</Typography>
                 </Grid>
+                
             
                     
                         
                         
              
              </Grid>
-             
-             
-              
-
             
+             
+             
               
 
+             <Stack direction="row" spacing={1} flexShrink={0} sx={{ my: 1 }}>
+              
 
+             <Box sx={{ width: '100%' }}>  <Box sx={{ borderBottom: 1, borderColor: 'divider' }} >
+         
        
 <Card sx={{ minWidth: 275 }} style={{margin:"20px"}}>
                     <CardContent>
-                    <Grid container flexDirection="row" >
+                    <Grid container flexDirection="row" to="/dashboardadmin/adminprofile" component={RouterLink} sx={{textDecoration:'none'}} >
                         
                         <div>
                         <img src={Userfig} alt="diet logo" style={{height: "auto",borderRadius:"40px", width: "auto"}}/>
@@ -59,8 +83,7 @@ export default function Adminuserlist() {
                         
                         </Grid>
                     </CardContent>
-            </Card>
-
+            </Card> 
 
 
           
@@ -90,7 +113,6 @@ export default function Adminuserlist() {
             </Card>
 
             
-
 
 
 
@@ -197,16 +219,16 @@ export default function Adminuserlist() {
 
 
 
+            </Box>
+
+    </Box> </Stack>
 
 
-    
-
-
-    
+            </Container>
             
+            </Page>
 
-
-        </div>
+    
 
 
     );
