@@ -1,5 +1,6 @@
 import * as React from 'react';
-
+import { useLocation } from "react-router-dom";
+import {useEffect} from 'react'
 import IconButton from '@mui/material/IconButton';
 import { styled } from '@mui/material/styles'
 import { red } from '@mui/material/colors';
@@ -13,6 +14,8 @@ import { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import Iconify from 'src/components/iconify/Iconify';
 import { Link } from 'react-router-dom';
+import axios from 'axios'
+import  { forwardRef, useImperativeHandle, useRef } from "react";
 // import Page from '../../components/Page';
 
 
@@ -27,14 +30,46 @@ const pageheading={
   
   
 
-export default function Userprofile(){
+export default function Userprofile(props){
     const [checked, setChecked] = React.useState(true);
+    const location = useLocation();
+    
+  console.log(props, " props");
+  console.log(location, " useLocation Hook");
+  const [data,setData] = useState(location.state?.data);
+  const [usersData,setUsersData]=useState([])
+  const [condition,setCondition]=useState(1);
+  const [email,setEmail]=useState(data.email_id);
+  const ref = useRef();
+    useEffect(()=>{
+      console.log(props.data,'backkk')
+      apiHit()
+    },[checked])
+    //ndhoble@infobellit.com
+    const apiHit = async => {
+      let config = {
+          method: 'GET',
+          maxBodyLength: Infinity,
+          url: `https://aipse.in/api/userActivation?email=${email}&condition=${condition}`,
+          headers: { 'Content-Type': 'application/json' },
+      };
+      axios(config)
+          .then((response) => {
+              setUsersData(response)
+               console.log(usersData, "data from hit");
+          })
+          .catch((error) => {
+              console.log(error);
+          });
+  }
 
     const handleChange = (event, checked) => {
       setChecked(event.target.checked);
+      if(checked) setCondition(1);
+      else setCondition(0);
     };
    
-
+     
     return(
         <div> 
        <Container>
@@ -44,7 +79,7 @@ export default function Userprofile(){
                 <Grid container flexDirection="row">
 
 <Grid >
-<Link to="/dashboardadmin/adminsearch">
+<Link state={{data:'all'}} to="/dashboardadmin/adminsearch">
       <IconButton>
         <Iconify icon="material-symbols:arrow-back-rounded" />
       </IconButton></Link>
@@ -72,10 +107,10 @@ export default function Userprofile(){
                   </div>
                  
                   <Typography sx={{ fontSize: 30, fontWeight: 'bold',  fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:"10px"  }} mt={3} textAlign={'center'} >
-                   Sahib
+                  {data.user_name}
                   </Typography>
                   <div style={{ textAlign: "center", fontSize: 20,color:"black", fontWeight:'normal',  fontFamily: 'Inter-Regular', lineHeight: "50px", marginLeft:"10px" }}>
-                   sahib@infobellit.com
+                   {data.email_id}
                   </div>
                 </Grid>
               </CardContent>
@@ -112,9 +147,9 @@ export default function Userprofile(){
                 </Grid></Stack></CardContent> */}
                 
                 <Stack mt={4}> 
-      <Card to="/dashboardadmin/userstats" component={RouterLink} sx={{textDecoration:'none'}} justifyContent="space-between" alignItems="center"  style={{backgroundColor:"#F0E7F5", margin:"10px"}}>
-            
-            <Grid container  sx={{textDecoration:'none'}} justifyContent="space-between" alignItems="center" >
+      <Card to="/dashboard/app"  state={{data:data}} component={RouterLink} sx={{textDecoration:'none'}} justifyContent="space-between" alignItems="center"  style={{backgroundColor:"#F0E7F5", margin:"10px"}}>
+           
+           {checked===true &&( <Grid container  sx={{textDecoration:'none'}} justifyContent="space-between" alignItems="center" >
                 <Grid item >
                     
                 <Typography sx={{ fontSize: 20, fontWeight: 'bold', fontFamily: 'Inter-SemiBold', lineHeight: "50px", marginLeft:"10px" }} mt={2} mb={2} >
@@ -128,7 +163,7 @@ export default function Userprofile(){
       </IconButton>
                     </Typography>
                 </Grid>
-            </Grid>
+            </Grid>)}
             
         </Card>
         </Stack>

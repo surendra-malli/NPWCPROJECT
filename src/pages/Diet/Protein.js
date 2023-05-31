@@ -3,7 +3,7 @@ import * as React from 'react';
 // import '../../fonts/Poppins-BoldItalic.ttf'
 
 // import '../../fonts/Poppins-ExtraBold.ttf';
-
+import CreateDiet from './CreateDiet'
 
 import Card from '@mui/material/Card';
 
@@ -145,6 +145,8 @@ export default function Protein() {
 
     return ( 
         <div>
+
+          {/* <CreateDiet/> */}
   
   {
     <img
