@@ -243,7 +243,13 @@ const convertImage = (e) => {
   const handleClose = () => {
     // alert("form saved sucesfully");
 
+    setFormDataEdit({})
+    setItemName("");
+    setItemdescription("");
+    setItemCalories("");
    
+    
+
     setOpen(false);
     
   };
@@ -261,7 +267,7 @@ const convertImage = (e) => {
   }
 
 
-  const apiHitEdit=async=>{
+  const apiHitEdit=async()=>{
 
     let data = JSON.stringify({
       "item_id":formDataEdit?.item_id,
@@ -287,7 +293,7 @@ const convertImage = (e) => {
       data : data
     };
     
-    axios.request(config)
+   await axios.request(config)
     .then((response) => {
       console.log(JSON.stringify(response.data),'------edit response');
     })

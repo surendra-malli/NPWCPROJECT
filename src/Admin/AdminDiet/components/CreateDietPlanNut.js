@@ -142,7 +142,8 @@ const currencies = [
     var [createBoxLoop,setCreateBoxLoop]=useState([1]);
     const [categoryToUpdate,setCategoryToUpdate]=useState([]);
     //const [userId,setUserId]=useState(props.userid)
-    console.log(props.userid,'props.userid')
+    console.log(props.userid,'props.userid');
+    const [endDateMessage,setEndDateMessage]=useState("based on selected interval and start date");
     const [formDataEdit,setFormDataEditHit]=useState(
       {
         "user_id": 7,
@@ -170,8 +171,8 @@ const currencies = [
 
     const intialValuesData = {
       interval: "",
-      startDate: moment(today)?.format('DD-MM-YYYY'),
-      endDate: moment(today)?.format('DD-MM-YYYY'),
+      start_date: moment(today)?.format('DD-MM-YYYY'),
+      end_date: moment(today)?.format('DD-MM-YYYY'),
       category: {},
       total_servings: {
         "aerobic": 150,
@@ -181,7 +182,7 @@ const currencies = [
 
       
     };
-    const [valuesD, setValuesD] = useState(intialValuesData);
+    const [valuesD, setValuesD] = useState({});
 
  
     const [formData,setFormdata]=useState({
@@ -271,12 +272,34 @@ const currencies = [
       return convertedDate;
     }
 
+    function setValues(){
+      
+      console.log(actionToDo,'actionToDo');
+      if(actionToDo!=='Edit')setValuesD(intialValuesData);
+    
+    }
+
     function editClick(val){
-     
+     setAcionToDo('Edit');
      //setFormdata(val)
      setValuesD(val);
+     
+     setValuesD({
+      ...val,
+      start_date:moment(val?.start_date,"MM-DD-YYYY").format('MM-DD-YYYY'),
+      end_date:moment(val?.end_date,"DD-MM-YYYY").format('DD-MM-YYYY'),
+      interval:val?.interval==='week'?'7':val?.interval==='month'?'30':'1'
+     })
+    // console.log(val?.start_date,valuesD?.start_date,'check date');
+     setFormDataEditHit({
+      ...val,
+      start_date:moment(valuesD?.start_date,"DD-MM-YYYY").format('DD-MM-YYYY'),
+      end_date:moment(valuesD?.endDate,"DD-MM-YYYY").format('DD-MM-YYYY'),
+      interval:val?.interval==='week'?'7':val?.interval==='month'?'30':'1'
+     })
+     
      setFormDataEditHit(val)
-     console.log(formDataEdit,'formdataedit',valuesD,'intiale value',val,'values')
+     console.log(val,valuesD,'intiale value valuesD')
       // var startdate=convertDateFormat(formData.start_date);
       // var enddate=convertDateFormat(formData.end_date);
       // console.log(formData.start_date,'---',startdate,formData.end_date,'--',enddate)
@@ -290,7 +313,7 @@ const currencies = [
       setIntialValues(val);
      
        setCategoryList(val?.Category)
-       setAcionToDo('Edit');
+       
        funSetcategory(val?.Category);
        editCategory2d.shift();
       // console.log(editCategory2d,'--editCategory2d',editCategory);
@@ -331,17 +354,19 @@ const currencies = [
   
     const handleClickOpen = () => {
       setOpen(true);
+      setValues();
       categoryhit();
     };
   
     const handleClose = (e) => {
       console.log(formData,'--on save----');
-      setValuesD(intialValuesData)
+      setValuesD({})
       setCategoryListCreate({})
+      setEndDateMessage("")
       setOpen(false);
     };
    
-    const handleCloseSave=(e)=>{
+    const handleCloseSave=async(e)=>{
       console.log(formData,'--on save----');
       console.log(actionToDo,'actionToDo');
       setValuesD({
@@ -356,20 +381,24 @@ const currencies = [
       else{
       console.log(valuesD,'valuesD')
       if(actionToDo==='Edit'){
+        //dataToHit();
         console.log(formDataEdit,'formDatAediton save')
-        apiHitEdit();
+       await apiHitEdit();
+       console.log("inside if after await")
       }
       else {
         console.log(valuesD,'before save');
-        apiHit()
+       await apiHit()
+       console.log("else await");
       }
       //console.log(categoryListCreate,'categoryListCreate')
-      
-      setValuesD(intialValuesData)
+      console.log("await completed");
+      setValuesD({})
       setCategoryListCreate({})
     }
-      //dataToHit();
+      
       props.apiHitParent();
+       setEndDateMessage("")
       setOpen(false);
     }
    
@@ -437,7 +466,7 @@ const currencies = [
           "start_date":valuesD?.startDate,
           "end_date": valuesD?.endDate,
           "type": "food",
-          "interval":valuesD?.interval,
+          "interval":valuesD?.interval===1?'day':valuesD?.interval===7?'week':'month',
           "category":categoryListCreate,
           "total_servings": {
             "aerobic": 150,
@@ -508,7 +537,7 @@ const dataToHit=()=>{
     console.log('form data edit--save',formDataEdit);
     
 }
-  const apiHitEdit=async=>{
+  const apiHitEdit=async()=>{
     dataToHit();
 
 
@@ -532,7 +561,7 @@ const dataToHit=()=>{
       data : data
     };
     
-    axios.request(config)
+    await axios.request(config)
     .then((response) => {
       console.log(JSON.stringify(response.data));
     })
@@ -623,20 +652,20 @@ const dataToHit=()=>{
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={(valuesD?.interval)}
-                  label={interval}
+                  label={valuesD?.interval}
                   onChange={e => {
                     
                   setValuesD({
                     ...valuesD,
-                    interval:(e?.target?.value) ,
+                    interval:parseInt((e?.target?.value)) ,
                   
                   });
                   // console.log(e,"<---qwerty")
                 }}
                 >
-                  <MenuItem value="day">Day</MenuItem>
-                  <MenuItem value="month">Month</MenuItem>
-                  <MenuItem value="week">Week</MenuItem>
+                  <MenuItem value="1">Day</MenuItem>
+                  <MenuItem value="30">Month</MenuItem>
+                  <MenuItem value="7">Week</MenuItem>
                 </Select>
               </FormControl>
             </Stack>
@@ -653,23 +682,32 @@ const dataToHit=()=>{
         <CardContent>  
           <LocalizationProvider   dateAdapter={AdapterDateFns}>
         <DemoContainer components={['DesktopDatePicker']} fullWidth>
-          <DatePicker  label="Start Date" value={setValuesD?.startDate}  
+          <DatePicker  label="Start Date" value={valuesD?.start_date}  
           onChange={(e)=>{
+            const newDate = moment(e)
+              ?.add(valuesD?.interval, 'days')
+              ?.format('DD-MM-YYYY')
              setValuesD({
               ...valuesD,
-              startDate: moment(e)?.format('DD-MM-YYYY'),
+              start_date: moment(e)?.format('DD-MM-YYYY'),
+              end_date:newDate
+
               
             })
+            
             if(actionToDo==='Edit'){
               setFormDataEditHit({
                 ...formDataEdit,
                 start_date:moment(e)?.format('DD-MM-YYYY'),
+                end_date:newDate
               })
              }
-            console.log(valuesD,'valuesD');
+             setEndDateMessage(newDate);
+            console.log(newDate,moment(e)?.format('DD-MM-YYYY'),'valuesD of date');
           }}
            renderInput={(params) => <TextField {...params} />}  />
         </DemoContainer>
+        
       </LocalizationProvider>
       </CardContent>  
          </Grid>
@@ -677,8 +715,8 @@ const dataToHit=()=>{
   
         <Grid item  xs={6} xl={6}  >
          <CardContent>
-      <LocalizationProvider  dateAdapter={AdapterDateFns}>
-        {/* <DemoContainer  components={['DesktopDatePicker']}> */}
+      {/* <LocalizationProvider  dateAdapter={AdapterDateFns}>
+       
           <DatePicker value={setValuesD?.endDate}  slotProps={{ textField: { fullWidth: true } }}
            onChange={(e)=>{
             setValuesD({
@@ -695,8 +733,10 @@ const dataToHit=()=>{
            }
            console.log(valuesD,'valuesD');
          }}  label="End Date"   />
-        {/* </DemoContainer> */}
-      </LocalizationProvider>
+       
+      </LocalizationProvider> */}
+
+      <TextField label="End Date" onChange={e=>handleChangeWeightEdit(e,ind,'Edit')} variant='outlined' value={endDateMessage}fullWidth/>
 
       
 

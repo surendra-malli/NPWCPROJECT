@@ -5226,6 +5226,16 @@
     "capital-case" "^1.0.4"
     "tslib" "^2.0.3"
 
+"highcharts-react-official@^3.2.0":
+  "integrity" "sha512-71IJZsLmEboYFjONpwC3NRsg6JKvtKYtS5Si3e6s6MLRSOFNOY8KILTkzvO36kjpeR/A0X3/kvvewE+GMPpkjw=="
+  "resolved" "https://registry.npmjs.org/highcharts-react-official/-/highcharts-react-official-3.2.0.tgz"
+  "version" "3.2.0"
+
+"highcharts@^11.0.1":
+  "integrity" "sha512-KRwNwm6kJsp3JxNSpORuWLzvLnPuqCR3n0qbGjw+0m6MIxrlkUWnFaZJ2uXjMur6j3RUC66te36tldlSheYydQ=="
+  "resolved" "https://registry.npmjs.org/highcharts/-/highcharts-11.0.1.tgz"
+  "version" "11.0.1"
+
 "history@^5.3.0":
   "integrity" "sha512-ZqaKwjjrAYUYfLG+htGaIIZ4nioX2L70ZUMIFysS3xvBsSG4x/n1V6TXV3N8ZYNuFGlDirFg32T7B6WOUPDYcQ=="
   "resolved" "https://registry.npmjs.org/history/-/history-5.3.0.tgz"
