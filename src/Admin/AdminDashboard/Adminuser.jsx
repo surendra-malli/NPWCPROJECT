@@ -24,7 +24,10 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Highcharts from "highcharts/highstock";
 //import HighchartsReact from "./HighchartsReact.js";
 import PieChart from "highcharts-react-official";
+<<<<<<< HEAD
 import BarGraph1 from "./BarGraph1";
+=======
+>>>>>>> aastha
 export default function Adminuser() {
   const location=useLocation();
   const navigate=useNavigate();
@@ -66,11 +69,19 @@ export default function Adminuser() {
                y:response?.data?.totalNoOfUsersFoodPlanCreated
   
               },
+<<<<<<< HEAD
               // {
               //  name: "User Exercise Plan Not Created",
               //  y:response?.data?.totalNoofUsersDietPlanNotCreated
   
               // },
+=======
+              {
+               name: "User Exercise Plan Not Created",
+               y:response?.data?.totalNoofUsersDietPlanNotCreated
+  
+              },
+>>>>>>> aastha
               {
                name: "User Exercise Plan Created",
                y:response?.data?.totalNoofUsersExercisePlanCreated
@@ -128,10 +139,17 @@ useEffect(()=>{
             name:barGraphData[4].name,
             y: barGraphData[4].y
           },
+<<<<<<< HEAD
           // {
           //   name:barGraphData[5].name,
           //   y: barGraphData[5].y
           // },
+=======
+          {
+            name:barGraphData[5].name,
+            y: barGraphData[5].y
+          },
+>>>>>>> aastha
         ]
       }
     ]
@@ -217,7 +235,11 @@ const count = async => {
       >
         <CardContent>
           <Grid
+<<<<<<< HEAD
              sx={{textDecoration:'none',cursor:'pointer'}} 
+=======
+             sx={{textDecoration:'none'}} 
+>>>>>>> aastha
              container
             flexDirection="row"
             spacing="1"
@@ -225,8 +247,13 @@ const count = async => {
             justifyContent="space-between"
             onClick={()=>{
               const objectData = {userStatus:'all',pathname:location.pathname}
+<<<<<<< HEAD
             //const encodedData = encodeURIComponent(JSON.stringify(objectData));
             navigate('/dashboardadmin/adminsearch',{state:objectData});
+=======
+            const encodedData = encodeURIComponent(JSON.stringify(objectData));
+            navigate(`/dashboardadmin/adminsearch?data=${encodedData}`);
+>>>>>>> aastha
 
             }}
           >
@@ -264,7 +291,11 @@ const count = async => {
       >
         <CardContent>
           <Grid
+<<<<<<< HEAD
               sx={{textDecoration:'none',cursor:'pointer'}} 
+=======
+              sx={{textDecoration:'none'}} 
+>>>>>>> aastha
              container
             flexDirection="row"
             spacing="1"
@@ -272,8 +303,13 @@ const count = async => {
             justifyContent="space-between"
             onClick={()=>{
               const objectData = {userStatus:'active',pathname:location.pathname}
+<<<<<<< HEAD
            // const encodedData = encodeURIComponent(JSON.stringify(objectData));
             navigate('/dashboardadmin/adminsearch',{state:objectData});
+=======
+            const encodedData = encodeURIComponent(JSON.stringify(objectData));
+            navigate(`/dashboardadmin/adminsearch?data=${encodedData}`);
+>>>>>>> aastha
 
             }}
           >
@@ -307,7 +343,11 @@ const count = async => {
       >
         <CardContent>
           <Grid
+<<<<<<< HEAD
               sx={{textDecoration:'none',cursor:'pointer'}} 
+=======
+              sx={{textDecoration:'none'}} 
+>>>>>>> aastha
              container
             flexDirection="row"
             spacing="1"
@@ -315,8 +355,13 @@ const count = async => {
             justifyContent="space-between"
             onClick={()=>{
               const objectData = {userStatus:'inactive',pathname:location.pathname}
+<<<<<<< HEAD
             //const encodedData = encodeURIComponent(JSON.stringify(objectData));
             navigate('/dashboardadmin/adminsearch',{state:objectData});
+=======
+            const encodedData = encodeURIComponent(JSON.stringify(objectData));
+            navigate(`/dashboardadmin/adminsearch?data=${encodedData}`);
+>>>>>>> aastha
 
             }}
           >
@@ -351,7 +396,10 @@ const count = async => {
      
               
               <PieChart highcharts={Highcharts} options={optionsGraph} />
+<<<<<<< HEAD
               <BarGraph1></BarGraph1>
+=======
+>>>>>>> aastha
         
      
       {/* <Card sx={{ minWidth: 275 }} style={{ margin: "20px" }} >

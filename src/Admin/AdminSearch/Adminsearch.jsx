@@ -45,9 +45,15 @@ const pageheading={
     const navigate =useNavigate();
     const location = useLocation();
     
+<<<<<<< HEAD
     //const encodedData = new URLSearchParams(location.search).get('data');
       const objectData = location?.state;
   console.log(location)
+=======
+    const encodedData = new URLSearchParams(location.search).get('data');
+      const objectData = JSON.parse(decodeURIComponent(encodedData));
+
+>>>>>>> aastha
     const [data,setData] = useState(objectData);
     console.log(objectData,'objectData')
     const [loading, setLoading] = useState(false)
@@ -154,8 +160,12 @@ const selectedProfileCalled=(yourData)=>{
   //console.group(location.pathname,'00000')
 const encodedData = encodeURIComponent(JSON.stringify(objectData));
   //from=location.pathname;
+<<<<<<< HEAD
   
   navigate('/dashboardadmin/adminprofile',{state:objectData});
+=======
+  navigate(`/dashboardadmin/adminprofile?data=${encodedData}`);
+>>>>>>> aastha
 }
 
 
@@ -334,7 +344,11 @@ const encodedData = encodeURIComponent(JSON.stringify(objectData));
                             return(
 
                            
+<<<<<<< HEAD
                             <Card onClick={e=>{selectedProfileCalled(item)}} sx={{ minWidth: 275 }} style={{margin:"20px",cursor:'pointer'}} key={item.id}>
+=======
+                            <Card onClick={e=>{selectedProfileCalled(item)}} sx={{ minWidth: 275 }} style={{margin:"20px"}} key={item.id}>
+>>>>>>> aastha
                                     <CardContent>
                                     <Grid container  flexDirection="row"  sx={{textDecoration:'none'}} >
                                         

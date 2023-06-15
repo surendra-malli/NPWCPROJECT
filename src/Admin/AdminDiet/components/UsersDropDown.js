@@ -75,7 +75,11 @@ const Dropdown =React.forwardRef(({onDataChangeuserId,valuesD}, ref,props) => {
           
           objectData.pathnameCurrent=[location.pathname,0]
           const encodedData = encodeURIComponent(JSON.stringify(objectData));
+<<<<<<< HEAD
           navigate('/dashboardadmin/adminprofile',{state:objectData});
+=======
+          navigate(`/dashboardadmin/adminprofile?data=${encodedData}`);
+>>>>>>> aastha
 
             console.log(selectedUser1,'selectedUser1')
             onDataChangeuserId(selectedUser1);
@@ -91,7 +95,11 @@ const Dropdown =React.forwardRef(({onDataChangeuserId,valuesD}, ref,props) => {
           
           objectData.pathnameCurrent=[location.pathname,0]
           const encodedData = encodeURIComponent(JSON.stringify(objectData));
+<<<<<<< HEAD
           navigate('/dashboardadmin/createinstandietplan',{state:objectData});
+=======
+          navigate(`/dashboardadmin/createinstandietplan?data=${encodedData}`);
+>>>>>>> aastha
 
           onDataChangeuserId(selectedUser1);
         }

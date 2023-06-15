@@ -171,8 +171,12 @@ export default function AdminDietCategory(props) {
                                 id:''
                               };
                             const encodedData = encodeURIComponent(JSON.stringify(intialValues));
+<<<<<<< HEAD
                             //navigate(`/dashboardadmin/createinstandietplan?data=${encodedData}`);
                             navigate(`/dashboardadmin/createinstandietplan`,{state:intialValues})
+=======
+                            navigate(`/dashboardadmin/createinstandietplan?data=${encodedData}`);
+>>>>>>> aastha
                         }
 
                             }>Create Instant Diet Plan</Button>

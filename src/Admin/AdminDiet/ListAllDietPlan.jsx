@@ -58,8 +58,13 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export default function ListAllDietPlan(props){
   let  navigate = useNavigate();
   const location = useLocation();
+<<<<<<< HEAD
   //const encodedData = new URLSearchParams(location.search).get('data');
   const objectData = location?.state
+=======
+  const encodedData = new URLSearchParams(location.search).get('data');
+  const objectData = JSON.parse(decodeURIComponent(encodedData));
+>>>>>>> aastha
 
   
 
@@ -77,8 +82,12 @@ export default function ListAllDietPlan(props){
     userData.pathnameCurrent[1]=1;
     
     const encodedData = encodeURIComponent(JSON.stringify(userData));
+<<<<<<< HEAD
     //navigate(`${userData?.pathnamePrevious[userData?.pathnamePrevious.length-1]}?data=${encodedData}`);
     navigate(`${userData?.pathnamePrevious[userData?.pathnamePrevious.length-1]}`,{state:userData})
+=======
+    navigate(`${userData?.pathnamePrevious[userData?.pathnamePrevious.length-1]}?data=${encodedData}`);
+>>>>>>> aastha
   
  }
   

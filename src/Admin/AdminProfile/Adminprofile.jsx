@@ -19,7 +19,10 @@ import  { forwardRef, useImperativeHandle, useRef } from "react";
 import {  Snackbar } from '@mui/material';
 import MuiAlert from '@mui/lab/Alert';
 import AlertDialog from '../UserStats/AlertDialog';
+<<<<<<< HEAD
 import BarGraph from '../AdminDashboard/BarGraph';
+=======
+>>>>>>> aastha
 // import Page from '../../components/Page';
 
 
@@ -40,7 +43,11 @@ console.log(location,'location?.pathname')
   const navigate=useNavigate();
   const goback=useNavigate(-1)
 const encodedData = new URLSearchParams(location.search).get('data');
+<<<<<<< HEAD
 const objectData = location?.state
+=======
+const objectData = JSON.parse(decodeURIComponent(encodedData));
+>>>>>>> aastha
 console.log(objectData,'objectData admin profile')
   const [data,setData] = useState(objectData);
   console.log(location,'location?.state?.data')
@@ -99,7 +106,11 @@ console.log(objectData,'objectData admin profile')
                   msg='User Activated Sucessfully';
                }
               else{
+<<<<<<< HEAD
                 msg='User De Activated Sucessfully';
+=======
+                msg='User In Activated Sucessfully';
+>>>>>>> aastha
               }
               childcomrefAlert.current.handleClickOpenAlert(msg);
           })
@@ -118,12 +129,20 @@ console.log(objectData,'objectData admin profile')
       if(con) {
         setCondition(1);
         con=1;
+<<<<<<< HEAD
         setMessageOfUserStatus('User Activated');
+=======
+        setMessageOfUserStatus('user Activated');
+>>>>>>> aastha
         setActionMessage('Inactivation')
       
       }
       else{
+<<<<<<< HEAD
         setMessageOfUserStatus('User De Activated');
+=======
+        setMessageOfUserStatus('user  In Activated');
+>>>>>>> aastha
         setCondition(0);
         setActionMessage('Activation')
         con=0
@@ -255,7 +274,11 @@ console.log(objectData?.id,'objectDataobjectData')
    // const { from } = location.state || { from: '/' };
    console.log(dataToSent,'daaaa')
     dataToSent.pathnameCurrent[1]===0?1:dataToSent?.pathnamePrevious.pop();;
+<<<<<<< HEAD
     navigate(`${dataToSent?.pathnamePrevious[dataToSent?.pathnamePrevious.length-1]}`,{state:dataToSent});
+=======
+    navigate(`${dataToSent?.pathnamePrevious[dataToSent?.pathnamePrevious.length-1]}?data=${encodedData}`);
+>>>>>>> aastha
 
     // const encodedData = encodeURIComponent(JSON.stringify(dataToSent));
     // const previousUrl = new URL(location.state?.referrer || '/', window.location.origin);
@@ -270,7 +293,12 @@ console.log(objectData?.id,'objectDataobjectData')
     
     objectData.pathnameCurrent[0]=location.pathname
     const encodedData = encodeURIComponent(JSON.stringify(objectData));
+<<<<<<< HEAD
     navigate('/dashboard/app',{state:objectData});
+=======
+    navigate(`/dashboard/app?data=${encodedData}`);
+
+>>>>>>> aastha
   }
    
      
@@ -387,7 +415,10 @@ console.log(objectData?.id,'objectDataobjectData')
       </CardContent>
       </Card>
       <AlertDialog Message="Created Sucessfully" ref={childcomrefAlert}/>
+<<<<<<< HEAD
       <BarGraph></BarGraph>
+=======
+>>>>>>> aastha
       
     </>
     );

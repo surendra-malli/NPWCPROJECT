@@ -11,6 +11,7 @@ import Box from '@mui/material/Box';
 // import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Iconify from 'src/components/iconify/Iconify';
+import AlertDialog from '../../UserStats/AlertDialog'
 
 
 
@@ -62,11 +63,12 @@ const Transition = React.forwardRef( (props, ref) => {
 
 const FullScreenDialog = forwardRef((props, ref) => {
  
+  const childrefAlert=useRef();
   const [open, setOpen] = React.useState(false);
   const [name,setName]=useState('');
   const[exercise,setExercise]=useState({});
   const [viewImage, setViewImage] = React.useState(false);
-  const [action,setAction]=useState("crea");
+  const [action,setAction]=useState("Create");
   const [reload,setReload]=React.useState(false);
   const [dataOfItem,setData]=useState("");
   const handleClickOpen = () => {
@@ -95,7 +97,9 @@ const FullScreenDialog = forwardRef((props, ref) => {
 
   const handleClose = () => {
     setExercise({})
+    deleteImage(0);
     setOpen(false);
+    setAction("Create")
   };
   const handleCloseSave=()=>{
 
@@ -106,10 +110,12 @@ const FullScreenDialog = forwardRef((props, ref) => {
     else{
       apiHit();
     }
+    setDiet({})
+    setAction("Create")
+    deleteImage(0);
    
     //console.log('data to post ',exercise);
-    setExercise({})
-    setOpen(false);
+    
   }
 
 useEffect(()=>{
@@ -132,6 +138,14 @@ useEffect(()=>{
   useEffect(()=>{
     setAction(action);
   },[action])
+
+  const handleCloseDelete=()=>{
+    DeleteDietPlan();
+    setOpen(false);
+    setAction("");
+    setExercise({})
+    setImages([])
+  }
   
   useImperativeHandle(ref, () => ({
    async handleClickEdit(data,action){
@@ -139,9 +153,10 @@ useEffect(()=>{
      //console.log(action,'setAction')
       const dt=data;
       setData(data);
+      const imagData='https://aipse.in'+data?.item_image;
+      getBase64FromUrl(imagData)
       await setExercise(dt)
 
-      console.log(exercise,'--data from edit 1',dt);
 
       //console.log(dt,'111',exercise)
       //convertImageEdit(data.category_id,'check');
@@ -184,7 +199,7 @@ const convertImage = async(e) => {
   //   setViewImage(true)
   
 });
-  console.log("upload method is calling ",images[0]?.toString().slice(22,))
+ /// console.log("upload method is calling ",images[0]?.toString().slice(22,))
   //console.log(images[0],'slicing-----',images[0].toString().slice(22,),'----image to upload----');
   exercise.item_image=images[0]?.toString().slice(22,);
   
@@ -192,11 +207,26 @@ const convertImage = async(e) => {
   //   ...formData,
   //   [item_image]:images[0]?.toString().slice(22,)
   // }))
-   setImages([])
+  // setImages([])
   setReload(!reload);
   
   //alert("Photo Uploaded Successfully..")
   
+}
+console.log("upload method is calling ",images[0]?.toString().slice(22,))
+
+const getBase64FromUrl = async (url) => {
+  const data = await fetch(url);
+  const blob = await data.blob();
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(blob); 
+    reader.onloadend = () => {
+      const base64data = reader.result;   
+      setImages([base64data]);
+      resolve(base64data);
+    }
+  });
 }
 
 const convertImageEdit = (img) => {
@@ -236,18 +266,52 @@ const deleteImage = (index) => {
   setImages([...images]);
 };
 
+const DeleteDietPlan=()=>{
+
+  let data = JSON.stringify({
+    "item_id": exercise.item_id,
+  });
+  
+  let config = {
+    method: 'PUT',
+    maxBodyLength: Infinity,
+    url: 'https://aipse.in/api/deleteItem',
+    headers: { 
+      'Content-Type': 'application/json'
+    },
+    data : data
+  };
+  
+  axios.request(config)
+  .then((response) => {
+    console.log(JSON.stringify(response.data));
+    //alert('Diet plan deleted sucessfully');
+    childrefAlert.current.handleClickOpenAlert('Exercise plan deleted sucessfully');
+    props.dataHitParent();
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+}
+
 
 const apiHit=async=>{
+  if(exercise?.item_name==='' || exercise?.item_name===undefined){
+    childrefAlert.current.handleClickOpenAlert('Please fill All Fields');
+  }
+  else{
+    console.log('00000000000')
+
   let data = JSON.stringify({
     "item_name": exercise?.item_name,
     "time_or_weight": 500,
     "units": "grams",
-    "calories": 100,
-    "category_id": 32380,
+    "calories": 0,
+    "category_id": props.categorydata.category_id,
     "description":exercise?.description,
-    "item_image": exercise?.item_image,
-    "sets": 0,
-    "counts": 0,
+    "item_image": images?.toString().slice(images.toString()[22]===','?23:22,),
+    "sets": parseInt(exercise?.sets),
+    "counts": parseInt(exercise?.counts),
     "type": "exercise",
    
   });
@@ -265,13 +329,24 @@ const apiHit=async=>{
   axios.request(config)
   .then((response) => {
     console.log(JSON.stringify(response.data));
+    childrefAlert.current.handleClickOpenAlert('Exercise plan created sucessfully');
+    props.dataHitParent();
   })
   .catch((error) => {
     console.log(error);
   });
+  setOpen(false);
+  setExercise({})
+
+}
+
 }
 
 const apiHitEdit=async()=>{
+  if(exercise?.item_name==='' || exercise?.item_name===undefined){
+    childrefAlert.current.handleClickOpenAlert('Please fill All Fields');
+  }
+  else{
 
   let data = JSON.stringify({
     "item_name": exercise?.item_name,
@@ -280,13 +355,14 @@ const apiHitEdit=async()=>{
     "calories": 100,
     "category_id": dataOfItem.category_id,
     "description":exercise?.description,
-    "item_image": exercise?.item_image,
-    "sets": 0,
-    "counts": 0,
+    "item_image": images?.toString().slice(images.toString()[22]===','?23:22,),
+    "sets": parseInt(exercise?.sets),
+    "counts": parseInt(exercise?.counts),
     "type": "exercise",
     "item_id":dataOfItem.item_id
    
   });
+  
   
   let config = {
     method: 'PUT',
@@ -301,16 +377,23 @@ const apiHitEdit=async()=>{
  await axios.request(config)
   .then((response) => {
     console.log(JSON.stringify(response.data),'------edit response');
+    childrefAlert.current.handleClickOpenAlert('Exercise plan updated sucessfully');
+
   })
   .catch((error) => {
     console.log(error);
   });
+  props.dataHitParent();
 
+setOpen(false)
+setExercise({})
+setImages([])
 
-
+}
 }
 
   
+//console.log(exercise,'--data from edit 1',dt);
 
 
   return (
@@ -375,11 +458,16 @@ const apiHitEdit=async()=>{
               <CloseIcon />
             </IconButton>
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-              Create Exercise Items
+            {action} Exercise Items
             </Typography>
             <Button autoFocus color="inherit" onClick={handleCloseSave}>
               save
             </Button>
+            { action==='Edit' &&(
+              <Button autoFocus color="inherit" onClick={handleCloseDelete}>
+                Delete
+              </Button>)
+            } 
           </Toolbar>
         </AppBar>
         
@@ -489,25 +577,22 @@ const apiHitEdit=async()=>{
                         
                         <Grid xs={12}   mb={2}  
                          Item>
-                            <TextField value={exercise.calories} onChange={(e)=>setExercise({...exercise,calories:e?.target?.value})} label="Calories" variant='outlined' fullWidth/>
+                            <TextField value={exercise.counts} onChange={(e)=>setExercise({...exercise,counts:e?.target?.value})} label="Counts" variant='outlined' fullWidth/>
+                        </Grid>
+                        <Grid xs={12}   mb={2}  
+                         Item>
+                            <TextField value={exercise.sets} onChange={(e)=>setExercise({...exercise,sets:e?.target?.value})} label="Sets" variant='outlined' fullWidth/>
                         </Grid>
                         <Grid mb={2} xs={12}     Item>
+                        <Grid xs={12}   mb={2}  style={{ borderRadius:"10px"}}
+                        Item>
+                            <TextField  InputProps={{
+                                  readOnly: true,
+                                }}  label="Category"  value={props.categorydata.category_name} name="item_name" variant='outlined' fullWidth/>
+                        </Grid>
                                       
                         
-      <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Select Type Of Exercise</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={age}
-          label="Select Type Of Exercise"
-          onChange={handleChange}
-        >
-          <MenuItem value={10}>Ten123</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
-      </FormControl>
+   
            
                         
 
@@ -534,6 +619,8 @@ const apiHitEdit=async()=>{
         
        
       </Dialog>
+      <AlertDialog Message="Created Sucessfully" ref={childrefAlert}/>
+
     </div>
   );
 })

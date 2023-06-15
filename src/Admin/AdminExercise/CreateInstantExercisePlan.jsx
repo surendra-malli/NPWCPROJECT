@@ -28,10 +28,10 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Select from '@mui/material/Select';
 import InputBase from '@mui/material/InputBase';
-import DropdownUsers from './UsersDropDown';
+import DropdownUsers from 'src/Admin/AdminDiet/components/UsersDropDown';
 import axios from 'axios'
-import InactiveProfile from './InactiveProfile';
-import AlertDialog from '../../UserStats/AlertDialog'
+import InactiveProfile from 'src/Admin/AdminDiet/components/InactiveProfile';
+import AlertDialog from 'src/Admin/UserStats/AlertDialog'
 
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import {CardContent, Card, Stack, Grid, TextField ,MenuItem,InputLabel,NativeSelect,FormControl} from '@mui/material';
@@ -125,7 +125,7 @@ const currencies = [
 
 
   
-const  CreateInstantDietPlan= React.forwardRef((props, ref) => {
+const  CreateInstantExercisePlan= React.forwardRef((props, ref) => {
     
 let  navigate = useNavigate();
     const [selectedDate, setSelectedDate] = useState(null);
@@ -147,11 +147,7 @@ let  navigate = useNavigate();
     };
     const location = useLocation();
 const encodedData = new URLSearchParams(location.search).get('data');
-<<<<<<< HEAD
-const objectData = location?.state;
-=======
 const objectData = JSON.parse(decodeURIComponent(encodedData));
->>>>>>> aastha
 
     const intialValues = {
       interval: 0,
@@ -254,30 +250,10 @@ function setStatusOfUser(users){
     // console.log(itm,"<--qwewqeqw")
     if(itm?.id===valuesD?.id){
       if(itm?.status==='inactive'){
-<<<<<<< HEAD
-        childcomrefAlert.current.handleClickOpenAlert('Diet Plan cannot be created on In active Users');
-
-        //alert('Diet Plan cannot be created on In active Users');
-        const newObj={...itm,email:itm.email_id};
-        //childComponentRef.current.handleClickOpenData(newObj)
-        const objectData =valuesD;
-        console.log(valuesD,'teset fot in active ')
-          // objectData.email_id=selectedUser1.email;
-          // objectData.user_name=selectedUser1.value
-          // objectData.id=selectedUser1.id;
-          // valuesD.id=selectedUser1.id
-
-          objectData.pathnamePrevious=[location.pathname]
-          
-          objectData.pathnameCurrent=[location.pathname,0]
-          const encodedData = encodeURIComponent(JSON.stringify(objectData));
-          navigate('/dashboardadmin/adminprofile',{state:objectData});
-=======
         //alert('Diet Plan cannot be created on In active Users');
         const newObj={...itm,email:itm.email_id};
         childComponentRef.current.handleClickOpenData(newObj)
         childcomrefAlert.current.handleClickOpenAlert('Diet Plan cannot be created on In active Users');
->>>>>>> aastha
 
         s=0
         //console.log('userId',userId,flag)
@@ -384,21 +360,12 @@ const addItems = () => {
       childcomrefAlert.current.handleClickOpenAlert(msg);
       // console.log(JSON.stringify(response.data));
       //navigate('/dashboardadmin/alldietplan',{state:{data:usersDataSelected}})
-<<<<<<< HEAD
-      const objectData = valuesD;
-=======
       const objectData = usersDataSelected;
->>>>>>> aastha
       objectData.pathnamePrevious=['/dashboardadmin/Adminitems']
     
       objectData.pathnameCurrent=[location.pathname,0]
       const encodedData = encodeURIComponent(JSON.stringify(objectData));
-<<<<<<< HEAD
-     // navigate(`/dashboardadmin/alldietplan?data=${encodedData}`);
-     navigate('/dashboardadmin/alldietplan',{state:objectData})
-=======
       navigate(`/dashboardadmin/alldietplan?data=${encodedData}`);
->>>>>>> aastha
 
       props.apiHitParent();
     })
@@ -564,7 +531,7 @@ const checkDuplicateCategory=(data,dup)=>{
                 <CloseIcon />
               </IconButton>
               <Typography sx={{ ml: 2, flex: 1, fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:'10px' }} variant="h6" component="div">
-                Create Diet Plan
+                Create Exercise Plan
               </Typography>
               <Button autoFocus color="inherit" onClick={handleCloseSave}>
                 save
@@ -690,20 +657,12 @@ const checkDuplicateCategory=(data,dup)=>{
                     <Grid item xs={4}  md={5} lg={5}> 
                                    
        <FormControl fullWidth>
-<<<<<<< HEAD
-        <InputLabel >Category</InputLabel>
-        <Select
-          l
-          value={item.category}
-          label="Category"
-=======
         <InputLabel id="demo-simple-select-label">Category</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={item.category}
           label="Select Your Category"
->>>>>>> aastha
           onChange={e => {
 
           
@@ -820,4 +779,4 @@ const checkDuplicateCategory=(data,dup)=>{
 
  
 
-export default CreateInstantDietPlan
+export default CreateInstantExercisePlan

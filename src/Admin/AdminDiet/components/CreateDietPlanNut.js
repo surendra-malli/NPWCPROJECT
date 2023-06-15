@@ -346,7 +346,11 @@ const currencies = [
             Category: itm?.category,
             recommended_servings: parseInt(itm?.value),
             Diet_id: itm?.Diet_id?itm?.Diet_id:0,
+<<<<<<< HEAD
             total_servings:  parseInt(itm?.value)* valuesD?.interval,
+=======
+            total_servings: itm?.total_servings,
+>>>>>>> aastha
           };
           
         }

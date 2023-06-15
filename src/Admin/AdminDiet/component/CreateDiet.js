@@ -98,6 +98,10 @@ const FullScreenDialog = forwardRef((props, ref) => {
     deleteImage(0);
     setOpen(false);
     setData("")
+<<<<<<< HEAD
+=======
+    //setImages("")
+>>>>>>> aastha
     setAction("Create")
   };
   const handleCloseSave=()=>{
@@ -339,6 +343,10 @@ const apiHit=async=>{
    
   });
   
+<<<<<<< HEAD
+=======
+  
+>>>>>>> aastha
   let config = {
     method: 'POST',
     maxBodyLength: Infinity,

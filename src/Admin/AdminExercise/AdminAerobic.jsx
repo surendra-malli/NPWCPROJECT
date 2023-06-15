@@ -18,6 +18,8 @@ import Logo from "../../assets/nova.svg";
 import axios from "axios";
 import Plusimage from "../../assets/Plusimage.svg";
 import CreateExercise from "./components/CreateExercise";
+import Iconify from 'src/components/iconify/Iconify';
+import { Link } from 'react-router-dom';
 
 
 
@@ -80,6 +82,7 @@ const Aerobic = forwardRef((props, ref) => {
     console.log(dataOfExercise,'dataOfExercise');
     const [exerciseData,setExerciseData]=useState([])
     const childref=useRef();
+    const imgurl='https://aipse.in';
 
     const handleIncrement1 = () => {
       setCount1(count1 + 1);
@@ -156,17 +159,22 @@ const Aerobic = forwardRef((props, ref) => {
 
   return (
     <div>
-      <img
-        src={Logo}
-        alt="nova logo"
-        style={{ height: "auto", width: "250px", marginLeft: "30px" }}
-      />
+     
+      <Grid>
+    <img src={Logo} alt="nova logo" style={{height: "auto", width: "250px", marginLeft: "30px"}}/></Grid>
+    
       
         
     <CardContent>
+       <Grid container flexDirection="row">
+     <Grid item textAlign={"center"} marginTop={0.5}>
+    <Link to="/dashboardadmin/AdminExercise" >
+      <IconButton>
+        <Iconify icon="material-symbols:arrow-back-rounded" />
+      </IconButton></Link></Grid><Grid>
             <Typography x variant="h3" style={title}>
              {dataOfExercise.category_name}
-            </Typography>
+            </Typography></Grid></Grid>
             
      </CardContent>
        
@@ -193,7 +201,10 @@ const Aerobic = forwardRef((props, ref) => {
               <Grid container spacing={2} justifyContent="center" alignItems="center">
                 <Grid item xs={2} md={2}>
                   <ButtonBase sx={{ width: "auto", height: "auto" }}>
-                    <img src={SideStepping} alt="nova logo" style={{ height: "100", width: "100px" }} />
+                    <img  src={imgurl+item.item_image} alt="nova logo" style={{display: 'inline-block',
+  width: '60px',
+  height: '60px',
+  borderRadius: '50%'}} />
                   </ButtonBase>
                 </Grid>
                 <Grid sx={{display:'flex',justifyContent:'space-between'}}item xs={10} spacing={2} md={10}>
@@ -230,7 +241,7 @@ const Aerobic = forwardRef((props, ref) => {
 
 
     
-<CreateExercise ref={childref} />
+<CreateExercise dataHitParent={apiHit} categorydata={dataOfExercise} ref={childref} />
       
 
       

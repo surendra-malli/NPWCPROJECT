@@ -21,7 +21,11 @@ const CreateExerciseItems = forwardRef((props, ref) => {
            
             <Card style={{padding:"20px 5px", margin:"0px auto"}}>
          {/* < ArrowBackIosIcon/>  */}
+<<<<<<< HEAD
             <Typography  style={{display: 'inline-block',marginRight:"5"}} variant='h5' gutterLeft >Create Diet Items </Typography>
+=======
+            <Typography  style={{display: 'inline-block',marginRight:"5"}} variant='h5' gutterLeft >Create Exercise Items </Typography>
+>>>>>>> aastha
             
                 <CardContent>
                     <Grid container flexDirection="column" spacing={1}>
