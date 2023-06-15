@@ -72,7 +72,7 @@ export default function LoginPage() {
   
   // }, [])
   const classes = useStyles();
-  const navigate = useNavigate();
+  let  navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
   const [showPassword, setShowPassword] = useState(false);
@@ -83,7 +83,7 @@ export default function LoginPage() {
 
   // const [item,setItem]=useState()
   const [response, setResponse] = useState()
-  const [formValue, setFormValue] = useState({ email_id: "Diya@123", password: "123" })
+  const [formValue, setFormValue] = useState({ email_id: " ", password: " " })
 
   // localStorage.setItem('Username', 'response?.data?.Username')
   const loginUser = () => {
@@ -97,7 +97,7 @@ export default function LoginPage() {
       .then(function (response) {
         console.log(response?.data, "responseeeeeee------")
         console.log(formValue,"---form value checking--");
-        if (response?.data?.status) {  
+        if (response?.data?.Status) {  
           localStorage.setItem('Username', response?.data?.Username)
          localStorage.setItem('userId', response?.data?.['User ID'])
          
@@ -190,7 +190,7 @@ export default function LoginPage() {
       <Card >
       {/* to="/dashboard" component={RouterLink} sx={{textDecoration:'none'}}  ^ onPress={loginUser} */}
       {isLoading ? (
-        <CircularProgress  sx={{display:'flex',alignItems:'center',justifyContent:'center'}} className={classes.loader} />
+        <CircularProgress  sx={{display:'flex',alignItems:'center',justifyContent:'center', alignContent:'center'}}  style={{marginLeft:'50%'}}className={classes.loader} />
       ) :(
       <LoadingButton fullWidth size="large" type="submit" variant="contained" onClick={loginUser} > 
         Login

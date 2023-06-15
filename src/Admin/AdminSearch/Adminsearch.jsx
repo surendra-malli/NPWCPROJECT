@@ -14,6 +14,8 @@ import { Link } from 'react-router-dom';
 import Searchbar from 'src/layouts/dashboard/Searchbar';
 import {Pagination} from '@mui/material';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 
 
 
@@ -26,13 +28,28 @@ const pageheading={
     lineHeight: "30px",
     color: "#112866"
   };
+  
+  const pageWords={
+    fontFamily:"Inter-Bold",
+    
+    fontSize: "15px",
+    lineHeight: "30px",
+    color: "#112866"
+  };
   const chips={
     fontFamily:"Inter-Regular",
     fontWeight: "bold",
   }
  const Adminuserlist=forwardRef((props, ref) =>{
+
+    const navigate =useNavigate();
     const location = useLocation();
-    const [data,setData] = useState(location.state?.data);
+    
+    //const encodedData = new URLSearchParams(location.search).get('data');
+      const objectData = location?.state;
+  console.log(location)
+    const [data,setData] = useState(objectData);
+    console.log(objectData,'objectData')
     const [loading, setLoading] = useState(false)
     const [searchTitle, setSearchTitle] = useState("");
     const [usersData,setUsersData]=useState([]);
@@ -43,10 +60,11 @@ const pageheading={
     const [totalCountOfUser,setTotalCountOfUsers]=useState(0);
     const [totalCountOfActiveUser,setTotalCountOfactiveUsers]=useState(0);
     const [totalCountOfInActiveUser,setTotalCountOfInActiveUsers]=useState(0);
-    const [status,setStatus]=useState(data);
+    const [status,setStatus]=useState(objectData?.userStatus);
     const [displayUser,setDisplayUser]=useState('Total Users');
     const [displayNumber,setDisplayNumber]=useState('0');
     const [selectedUsers,setSelectedUsers]=useState('0');
+    const [message,setMessage]=useState("");
 
     const changeName = (i)=>{
       const str2 = i.charAt(0).toUpperCase() + i.slice(1);
@@ -57,10 +75,7 @@ const pageheading={
 
     var userStatus='all'
     //pagination
-    const handlePageChange = (page) => {
-      setCurrentPage(page);
-    };
-
+   
 
     useImperativeHandle(ref, () => ({
       log() {
@@ -80,16 +95,23 @@ const pageheading={
        apiHit()
     },[currentPage,searchTitle]);
 
-
     useEffect(()=>{
       console.log("status is", status)
       console.log("usersdata is",usersData);
+      if(status==='all'){
+        setDisplayUser('Total Users')
+      }
+      else if(status==='active'){
+        setDisplayUser('Total Active Users')
+      }
+      else{
+        setDisplayUser('Total In Active Users')
+      }
 
       apiHit();
       setCurrentPage(1)
       console.log(currentPage,'currentpage')
-      if(usersData)
-      sortBasedOnStatus();
+      
       //filterItems(userStatus)
 },[status]);
 useEffect(()=>{
@@ -105,7 +127,6 @@ useEffect(()=>{
   setTotalPages(temp)
 //console.log("inside use effect for users and pages",totalCountOfUser,totalPages,temp)
  },[selectedUsers])
-
 
     const filterItems = (status) => {
       var arr;
@@ -125,27 +146,21 @@ useEffect(()=>{
 };
 
 // const filteredItems = filterItems(currentStatus);
-const selectedProfileCalled=(e)=>{
-  console.log(e.target.value,'----selectedprofile');
+const selectedProfileCalled=(yourData)=>{
+  console.log(yourData,'----yourData');
+  const objectData = yourData;
+  objectData.pathnameCurrent=[location.pathname,0];
+  objectData.pathnamePrevious=[location.pathname];
+  //console.group(location.pathname,'00000')
+const encodedData = encodeURIComponent(JSON.stringify(objectData));
+  //from=location.pathname;
+  
+  navigate('/dashboardadmin/adminprofile',{state:objectData});
 }
 
 
-
-    const filterBySearch = (event) => {
-        // Access input value
-        const query = event.target.value;
-        // Create copy of item list
-        var updatedList = [...usersData];
-        // Include all elements which includes the search query
-        updatedList = updatedList.filter((item) => {
-          return item.user_name.toLowerCase().includes(query);
-        });
-        // Trigger render with updated values
-        setUsersData(updatedList);
-       
-      };
-      const [pageNumber,setPageNumber]=useState(1);
-      const [numberOfRecords,setNumberOfRecords]=useState(6);
+    
+    
       //https://aipse.in/api/searchUser?name=&page=1&count=100
       //`https://aipse.in/api/searchUser?name=${searchTitle}&page=${page}&count=6`,
 
@@ -169,16 +184,19 @@ const selectedProfileCalled=(e)=>{
             setTotalCountOfInActiveUsers(response.data.totalCountOfInactiveUser);
             setDisplayNumber(response.data.totalCountOfUser);
             
-            console.log(response.data)
-            sortBasedOnStatus(response.data.data);
+            console.log(response.data,'-0310')
+            setMessage(response.data.Message);
+            console.log(message,'message');
+            
             setUsersDataOrginal(response.data.data);
+            setUsersData(response?.data?.data)
             //setUsersData(response.data.data);
 
               var arr;
               if (status === "all" || typeof (status) ==='undefined') {
                 setSelectedUsers(response.data.totalCountOfUser);
-                console.log(selectedUsers,'selectedUsers');
-
+                
+                  
                 setDisplayNumber(response.data.totalCountOfUser);
                 arr= response.data.data.filter(item =>
                   item.user_name.toLowerCase().includes(searchTitle.toLowerCase())
@@ -194,9 +212,9 @@ const selectedProfileCalled=(e)=>{
                 );
               }
 
-                console.log(arr,'from searcg filter',searchTitle,status)
+              //   console.log(arr,'from searcg filter',searchTitle,status)
 
-                setUsersData(arr);
+                // setUsersData(arr);
 
                
                 
@@ -216,65 +234,9 @@ const selectedProfileCalled=(e)=>{
         console.log(pageNumber,'pagination')
         setCurrentPage(pageNumber);
 
-
     }
-    function sortBasedOnStatus(){
-
-      
-     // var arr;
-      if(status==='all'){
-        //arr=dataArr;
-        setUsersData(usersDataOrginal);
-        setDisplayUser('Total Users');
-        setDisplayNumber(totalCountOfUser);
-        
-      }
-      else if(status==='active'){
-
-      let usersDataFiltered=usersDataOrginal.filter(item=>{
-        return  item.status===status;
-      })
-      setUsersData(usersDataFiltered);
-      console.log(usersData,"after filter")
-        setDisplayUser('Active Users');
-        setDisplayNumber(totalCountOfActiveUser);
-    }
-    else{
-      let usersDataFiltered=usersDataOrginal.filter(item=>{
-        return  item.status===status;
-      })
-      setUsersData(usersDataFiltered);
-      console.log(usersData,"after filter");
-        setDisplayUser('In Active Users');
-        setDisplayNumber(totalCountOfInActiveUser);
-    }
-        //console.log(arr,'-----sortBasedOnStatus')
-        //setUsersData(arr);
-
-        if(status==='all'){
-          
-          setTotalPages(Math.ceil(totalCountOfUser/10));
-          setTotalPages(Math.ceil(totalCountOfUser/10));
-        }
-        else if(status==='active'){
-          
-          setTotalPages(Math.ceil(totalCountOfActiveUser/10));
-        }
-        else if(status==='inactive'){
-          
-          setTotalPages(Math.ceil(totalCountOfInActiveUser/10));
-        }
-        //console.log(totalPages,'totalCountOfUser');
-    }
-    const handleClickActiveInactive=async (item)=>{
-        console.log("item => ", item);
-        await setStatus(item);
-        console.log("status is =>",status);
-        sortBasedOnStatus();
-       // userStatus=item
-        //console.log(status,`----${item} users`)
-        
-    }
+    
+  
     
     return (
         
@@ -285,17 +247,17 @@ const selectedProfileCalled=(e)=>{
 
             <Container>
              
-             <Grid container flexDirection="row">
-                <Grid   >
+             <Grid mt={10} mb={2} container flexDirection="row">
+                <Grid  item >
                 <Link to="/dashboardadmin/adminuser">
-      <IconButton>
-        <Iconify icon="material-symbols:arrow-back-rounded" />
-      </IconButton></Link>
+                <IconButton>
+                  <Iconify icon="material-symbols:arrow-back-rounded" />
+                </IconButton></Link>
 
                 </Grid>
                
-                <Grid>
-                <Typography style={pageheading}>Users Sheema</Typography>
+                <Grid item>
+                <Typography  style={pageheading}>User Sheema</Typography>
                 </Grid>
                 
             
@@ -305,21 +267,26 @@ const selectedProfileCalled=(e)=>{
              
              </Grid>
              
-             <Grid container flexDirection='row' alignItems='center' justifyContent='space-between'>
-                <Stack  direction="row" spacing={1}  marginLeft={"20px"} marginTop={"20px"}>
-                
+             <Grid container  display='flex' flexDirection='row' alignItems='center' justifyContent='space-between'>
+                  <Grid item>
+                <Grid container spacing={1}  >
+                  <Grid item>
                  <Chip label="All Users " value='All Users' 
                   sx={chips} 
                  style={{
                   backgroundColor: status==='all' ? 'purple' : '',
                   color: status==='all'? 'white' : '',
                 }} 
-                onClick={()=>setStatus('all')}
+                onClick={()=>{setStatus('all');setDisplayUser('Total Users')}}
                  />
+                 </Grid>
+                 <Grid item>
                   <Chip label="Active " value='Active' sx={chips}  style={{
                   backgroundColor: status==='active' ? 'purple' : '',
                   color: status==='active'? 'white' : '',
-                }}  onClick={()=>setStatus('active')}  />
+                }}  onClick={()=>{setStatus('active');setDisplayUser('Total Active')  }}/>
+                </Grid>
+                <Grid item>
                   <Chip label="Inactive" value='Inactive' sx={chips} 
                   
                   style={{
@@ -327,10 +294,14 @@ const selectedProfileCalled=(e)=>{
                     color: status==='inactive'? 'white' : '',
                   }}
                   
-                  onClick={()=>setStatus('inactive')}   />
-                  </Stack>
-                  <Typography variant="h6" component="h2">{displayUser} : {displayNumber}</Typography>
-            
+                  onClick={()=>{setStatus('inactive');setDisplayUser('Total In Active')}}   />
+                  </Grid>
+
+                </Grid>
+                </Grid>
+                <Grid item >
+                  <Typography variant="h6" sx={{marginRight:'2rem'}} style={pageWords} component="h2">{displayUser} : {displayNumber}</Typography>
+                </Grid>
 
              </Grid>
               
@@ -340,12 +311,14 @@ const selectedProfileCalled=(e)=>{
 
              <Box sx={{ width: '100%' }}>  <Box sx={{ borderBottom: 1, borderColor: 'divider' }} >
 
-                    {/* {usersData[0].id} */}
 
-                    {
+
+                    { 
+                      
+                      
                         usersData?.filter((value) => {
                             if (searchTitle === "") {
-                                // console.log(searchTitle,'-----------searchTitle---------');
+                                
                               return value;
                             } else if (
                               value.user_name.toLowerCase().includes(searchTitle.toLowerCase())
@@ -361,16 +334,16 @@ const selectedProfileCalled=(e)=>{
                             return(
 
                            
-                            <Card sx={{ minWidth: 275 }} style={{margin:"20px"}} key={item.id}>
+                            <Card onClick={e=>{selectedProfileCalled(item)}} sx={{ minWidth: 275 }} style={{margin:"20px",cursor:'pointer'}} key={item.id}>
                                     <CardContent>
-                                    <Grid container onClick={selectedProfileCalled} flexDirection="row" to="/dashboardadmin/adminprofile" state={{ data: item }} component={RouterLink} sx={{textDecoration:'none'}} >
+                                    <Grid container  flexDirection="row"  sx={{textDecoration:'none'}} >
                                         
                                         <div>
                                         <img src={Userfig} alt="diet logo" style={{height: "auto",borderRadius:"40px", width: "auto"}}/>
                                         </div>
                                         <div>
                                         <span style={{ fontSize:"25px" ,color:"black",fontWeight:"20px",marginLeft:"10px"}}>{changeName(item.user_name)}</span>
-                                        <Typography style={{ fontSize:"15px" ,color:"black",marginLeft:"10px"}} >
+                                        <Typography style={{ fontSize:"15px" ,color:"#112866",marginLeft:"10px"}} >
                                         {item.user_name}
                                         </Typography>
                                         </div>
@@ -389,14 +362,16 @@ const selectedProfileCalled=(e)=>{
                             );
                            
                         })
-                    }
+                      }
+                    
        
             </Box>
 
     </Box> </Stack>
 
-
             </Container>
+
+            {message==='no such user' && <h1>No Data</h1>}
 
            
           <Box py={3} display="flex" justifyContent="center">
@@ -425,8 +400,8 @@ const selectedProfileCalled=(e)=>{
 
     
 
-
     );
       })
 
 export default Adminuserlist
+

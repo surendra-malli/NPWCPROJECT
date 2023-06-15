@@ -9,6 +9,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import { CardContent, Stack, TextField, Typography, AppBar,Toolbar,} from '@mui/material';
 import axios from 'axios';
+import AlertDialog from 'src/Admin/UserStats/AlertDialog';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -20,10 +21,11 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 
 const CreateCategory = forwardRef((props, ref,categoryData,setShowState,showState) => {
+    const childcomrefAlert=useRef();
 
 
 const [readOnlyAction,setReadOnlyAction]=useState(false)
-  
+  let message='';
   
 const [editing, setEditing] = useState(true);
 const [value, setValue] = useState('Initial value');
@@ -48,10 +50,13 @@ const deleteHit=async=>{
       axios.request(config)
       .then((response) => {
         console.log(JSON.stringify(response.data));
+        props.categoryhit(0)
+        childcomrefAlert.current.handleClickOpenAlert('category Delete Sucessfully');
       })
       .catch((error) => {
         console.log(error);
       });
+
 }
 
   console.log(categoryData,showState,"<-------------------forwardRefforwardRef-")
@@ -81,10 +86,16 @@ const deleteHit=async=>{
             addCategory();
         }
         setOpen(false);
+        message='category Renamed Sucessfully'
+        //childcomrefAlert.current.handleClickOpenAlert('category Renamed Sucessfully');
     }
   
       const addCategory = async() => {
-  
+        if(createData?.category_name===''){
+            childcomrefAlert.current.handleClickOpenAlert('Please fill All Fields');
+        }
+
+        else{
   
           let data = JSON.stringify({
               "category_name": createData?.category_name,
@@ -113,8 +124,9 @@ const deleteHit=async=>{
   
   
                   }
-                  props.categoryhit()
+                  props.categoryhit(1)
                       //  < alert/>
+                      childcomrefAlert.current.handleClickOpenAlert('category Added Sucessfully');
                   console.log((response.data.data, "-----create dataikiii"));
   
                   setOpen(false);
@@ -123,6 +135,8 @@ const deleteHit=async=>{
               .catch((error) => {
                   console.log(error);
               });
+
+        }
   
       }
   
@@ -160,10 +174,13 @@ const deleteHit=async=>{
               .then((response) => {
                   setRenameData(response?.data?.data)
                   console.log(response.data.data, "<-----------------setDelete Dataset DeleteData");
+                  childcomrefAlert.current.handleClickOpenAlert('category Renamed Sucessfully');
+                  props.categoryhit(2)
               })
               .catch((error) => {
                   console.log(error);
               });
+            
       }
   
   
@@ -327,7 +344,7 @@ const deleteHit=async=>{
                 </Dialog>
 
 
-     
+                <AlertDialog Message={message} ref={childcomrefAlert}/>
   
       </div>
   );

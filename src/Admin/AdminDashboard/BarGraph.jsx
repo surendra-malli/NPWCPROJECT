@@ -1,169 +1,107 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-// import ChartView from 'react-native-highcharts';
-import { Line } from 'react-chartjs-2';
-import {Card}  from '@mui/material';
+import React from 'react'
+import Highcharts from "highcharts/highstock";
+import {
+  HighchartsStockChart,
+  Chart,
+  HighchartsProvider,
+  XAxis,
+  YAxis,
+  Title,
+  Legend,
+  AreaSplineSeries,
+  SplineSeries,
+  Navigator,
+  RangeSelector,
+  Tooltip,
+} from "highcharts/highstock";
+import PieChart from "highcharts-react-official";
+const BarGraph = () => {
 
-import HighchartsReact from 'highcharts-react-official';
-import Highcharts from 'highcharts';
 
-const BarGraph = () =>{
-    const [countData,setCountData] = useState("")
-useEffect(() => {
-    count ();
-}, [])
-const count = async => {
-    var config = {
-        method: 'GET',
-        maxBodyLength: Infinity,
-        url: 'https://aipse.in/api/count',
-        headers: { } 
-      };
-      
-      axios(config)
-      
-      .then(function (response) {
-        console.log(response?.data,"<-zwertyu")
-        const realData = [
-            {
-             name: "Active Users",
-             y:response?.data?.totalCountOfActiveUser
 
-            },
-            {
-                name: "Inactive Users",
-                y:response?.data?.totalCountOfInactiveUser
-   
-               },
-               {
-                name: "Total Users",
-                y:response?.data?.totalCountOfUsers
-   
-               },
-               {
-                name: "No of Users Diet Plan Created",
-                y:response?.data?.totalNoOfUserDietPlanCreated
-   
-               },
-               {
-                name: "No of Users Diet Plan Not Created",
-                y:response?.data?.totalNoofUserDietPlanNotCreated
-   
-               }
-        ]
-        setCountData(realData)
-// const mappedData = Object?.keys(response?.data)?.map(itm=>{
-//     if(response?.data[itm]==="success"){
-//         console.log(itm,"<----itmersss",response?.data[itm])
-       
-//     }
-//     else if(
-//         itm==="Code"
-//     )
-//     {
-        
-//     }
-//     else if(
-//         itm==="Status"
-//     )
-//     {
-        
-//     }
-//     else{
-//         return{name:itm,
-//             y:response?.data[itm]
-//         }
-//     }
-   
-// })
-        //setCountData(response.data)
-        //setIsActive([response.data?.totalCountOfActiveUser,response.data?.totalCountOfInactiveUser,response.data?.totalCountOfUsers,response.data?.totalNoOfUserDietPlanCreated,response.data?.totalNoofUserDietPlanNotCreated])
-        // const filterdata = mappedData.filter(function( element ) {
-        //     return element !== undefined;
-        //  });
-        //setCountData(filterdata)
-        console.log(mappedData,"<--------------setCountDatasetCountData-");
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-}
   
-
-var conf={
+  const option= {
+    chart: {
+        type: 'column'
+    },
     title: {
         text: ''
-      },
-      
-        chart: {
-            type: 'pie',
-            animation: Highcharts.svg, // don't animate in old IE
-            dataLabels: {
-                enabled: true,
-                format: '<b>{totalCountOfUsers}</b>: {point.percentage:.1f} %'
-            }
-        },
-        
-        series: [{
-            name: 'Total Count',
-            colorByPoint: true,
-            data:countData
-           
-        }],
-        // dataLabels: {
-        //     distance: 5,
-        //     format: '{point.name}<br>{point.percentage:.1f} %',
-        //     connectorWidth: 0,
-        //     style: {
-        //       width: '40px',
-        //       fontSize: '0.8em'
-        //     }
-        //   }
-        
-        
-    };
-
-// const options = {
-//     global: {
-//         useUTC: false
-//     },
-//     lang: {
-//         decimalPoint: ',',
-//         thousandsSep: '.'
-//     }
-// };
-
-const options = {
-  chart: {
-    type: 'pie',
-  },
-  title: {
-    text: 'My Pie Chart',
-  },
-  series: [
-    {
-      name: 'Data',
-      data: [
-        ['Category 1', 25],
-        ['Category 2', 30],
-        ['Category 3', 15],
-        ['Category 4', 10],
-        ['Category 5', 20],
-      ],
     },
-  ],
+    credits: {
+      enabled: false
+  },
+   
+    xAxis: {
+        categories: [
+            '21-05-2023',
+            '22-05-2023',
+            '23-05-2023',
+            '24-05-2023',
+            '25-05-2023',
+            '26-05-2023',
+            '27-05-2023',
+            '28-05-2023',
+            '29-05-2023',
+            '30-05-2023',
+            '31-05-2023',
+            '01-06-2023',
+        ],
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Servings'
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: 'Servings Recommended',
+        data: [40, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4,
+            194.1, 95.6, 54.4]
+
+    }, {
+        name: 'Total Servings',
+        data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5,
+            106.6, 92.3]
+
+    }, {
+        name: 'Consumed',
+        data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3,
+            51.2]
+
+    }, 
+    // {
+    //     name: 'Berlin',
+    //     data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8,
+    //         51.1]
+
+    // }
+  ]
 };
-    return (
-      
-      <Card > 
-     123
-        {/* <PieChart highcharts={Highcharts} options={options} /> */}
-        {/* <Line style={{height:250,width:400}} config={conf} options={options}></Line> */}
-        <HighchartsReact highcharts={Highcharts} options={options} />
 
-      </Card>
-    );
+return (
+  <>
+   
+   <PieChart highcharts={Highcharts} options={option} />
+    
+  </>
+);
 
+  
 }
 
 export default BarGraph

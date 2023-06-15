@@ -27,13 +27,19 @@ import CreateExerciseItems from './Admin/AdminExercise/CreateExerciseItems';
 import Userstats from './Admin/UserStats/Userstats';
 import Adminsearch from './Admin/AdminSearch/Adminsearch'
 import ListAllDietPlan from './Admin/AdminDiet/ListAllDietPlan';
+import CreateInstantDietPlan from './Admin/AdminDiet/components/CreateInstantDietPlan';
 // ----------------------------------------------------------------------
 
 
 
 
 export default function Router() {
-    const routes = useRoutes([{
+    const routes = useRoutes([
+        {
+            path: 'login',
+            element: < LoginPage / > ,
+        },
+        {
             path: '/dashboard',
             element: < DashboardLayout / > ,
             children: [
@@ -125,6 +131,10 @@ export default function Router() {
                     path: 'adminsearch',
                     element: < Adminsearch / >
                 },
+                {
+                    path: 'createinstandietplan',
+                    element: < CreateInstantDietPlan / >
+                }
                 
             ]
 
@@ -138,7 +148,7 @@ export default function Router() {
         {
             element: < SimpleLayout / > ,
             children: [
-                { element: < Navigate to = "/dashboard/app" / > , index: true },
+                { element: < Navigate to = "/login" / > , index: true },
                 { path: '404', element: < Page404 / > },
                 { path: '*', element: < Navigate to = "/404" / > },
             ],

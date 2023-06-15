@@ -5,6 +5,7 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import { Grid } from '@mui/material';
  // import Typography from 'src/theme/overrides/Typography';
 
 import Typography  from '@mui/material/Typography';
@@ -14,26 +15,29 @@ const cardstyle={
   fontFamily: 'Inter-Regular',
   color:"white",
   fontSize:"12px",
-  textAlign:"center",
+  
  
   
 };
 
 
 
+
+
 export default function ScrollableTabsButtonPrevent(props) {
   const [value, setValue] = React.useState(0);
+   console.log("updated the state of props", props.category);
+  const categoryData= props.category;
+  //setCategoryData(props.category)
+  console.log(categoryData,'----propscategoryData');
 
-  const [categoryData,setCategoryData]=useState(props.category)
-  // setCategoryData(props.category)
-  //console.log(categoryData,'----propscategoryData');
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   return (
-    <Box sx={{  bgcolor: 'background.paper', width:"100%" ,  }}>
+    <Box sx={{ width:"100%" ,  }}>
       <Tabs
       
         // value={value}
@@ -47,49 +51,28 @@ export default function ScrollableTabsButtonPrevent(props) {
 
     {
       categoryData?.map(item=>{
+          
         return (
-          <Card sx={{ minWidth: 200, m: 1,p:2,  background:'#BF40BF' , color:"white"}} >
-        
-          <Typography style={cardstyle} mt={0.3} >Category:{item.Category}</Typography>
-          <Typography style={cardstyle} mt={0.3} >Recommended Servings:{item.recommended_servings}</Typography>
-          <Typography style={cardstyle} mt={0.3} >Total Servings:{item.recommended_servings}</Typography>
-        
-      </Card>
+          
+          <Card sx={{ minWidth: 200, m: 1,p:2,  backgroundColor:'purple' , color:"white"}} >
+        <Grid container display="flex" flexDirection="column">
+          <Grid item>
+          <Typography style={cardstyle} mt={0.3} >Category: {item.Category}</Typography>
+          </Grid>
+          <Grid item>
+          <Typography style={cardstyle} mt={0.3} >Recommended Servings: {item.recommended_servings}</Typography>
+          </Grid>
+          <Grid item>
+          <Typography style={cardstyle} mt={0.3} >Total Servings: {item.total_servings}</Typography>
+          </Grid>
+        </Grid>
+        </Card>
         );
       })
     } 
 
       
-      {/* <Card sx={{ minWidth: 140, maxWidth: 200, minHeight:20,maxHeight:30, m: 1,  background:'purple' ,color:"white" }}>
-        
-          <Typography sx={cardstyle}  mt={0.3}>Crabs:"20"</Typography>
-        
-      </Card>
-      <Card sx={{ minWidth: 140, maxWidth: 200, minHeight:20,maxHeight:30, m: 1,  background:'purple' ,color:"white" }}>
-        
-          <Typography style={cardstyle}  mt={0.3}>Crabs:"20"</Typography>
-        
-      </Card>
-      <Card sx={{ minWidth: 140, maxWidth: 200, minHeight:20,maxHeight:30, m: 1,  background:'purple' , color:"white"}}>
-        
-          <Typography style={cardstyle}  mt={0.3}>Crabs:"20"</Typography>
-        
-      </Card>
-      <Card sx={{ minWidth: 140, maxWidth: 200, minHeight:20,maxHeight:30, m: 1,  background:'purple' ,color:"white" }}>
-        
-          <Typography style={cardstyle}  mt={0.3}>Crabs:"20"</Typography>
-        
-      </Card>
-      <Card sx={{ minWidth: 140, maxWidth: 200, minHeight:20,maxHeight:30, m: 1,  background:'purple' ,color:"white" }}>
-        
-          <Typography style={cardstyle}  mt={0.3}>Crabs:"20"</Typography>
-        
-      </Card>
-      <Card sx={{ minWidth: 140, maxWidth: 200, minHeight:20,maxHeight:30, m: 1,  background:'purple' , color:"white"}}>
-        
-          <Typography style={cardstyle}  mt={0.3}>Crabs:"20"</Typography>
-        
-      </Card> */}
+
       
       
       

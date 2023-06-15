@@ -66,14 +66,17 @@ const FullScreenDialog = forwardRef((props, ref) => {
   const [name,setName]=useState('');
   const[exercise,setExercise]=useState({});
   const [viewImage, setViewImage] = React.useState(false);
-  const [action,setAction]=useState("");
+  const [action,setAction]=useState("crea");
   const [reload,setReload]=React.useState(false);
+  const [dataOfItem,setData]=useState("");
   const handleClickOpen = () => {
     if(action==='Edit'){
       console.log('inside edit action',exercise);
      
     }
-    else{
+    else if(action==='create'){
+      console.log(action,'inside123');
+      
         setExercise({
           "calories":"",
           "category_id":"",
@@ -91,15 +94,28 @@ const FullScreenDialog = forwardRef((props, ref) => {
   };
 
   const handleClose = () => {
+    setExercise({})
     setOpen(false);
   };
   const handleCloseSave=()=>{
-    apiHit();
-    console.log('date to post ',exercise);
+
+    if(action==='Edit'){
+      console.log('data to post ',exercise);
+      apiHitEdit();
+    }
+    else{
+      apiHit();
+    }
+   
+    //console.log('data to post ',exercise);
+    setExercise({})
     setOpen(false);
   }
 
-
+useEffect(()=>{
+  //console.log((exercise),'exxercise inside effect');
+  setExercise(exercise);
+},[exercise])
 
   const [sets, setsets] = React.useState('');
 
@@ -113,12 +129,21 @@ const FullScreenDialog = forwardRef((props, ref) => {
     setAge(event.target.value);
   };
 
-
+  useEffect(()=>{
+    setAction(action);
+  },[action])
   
   useImperativeHandle(ref, () => ({
-    handleClickEdit(data,action){
+   async handleClickEdit(data,action){
       setAction("Edit");
-      setExercise(data)
+     //console.log(action,'setAction')
+      const dt=data;
+      setData(data);
+      await setExercise(dt)
+
+      console.log(exercise,'--data from edit 1',dt);
+
+      //console.log(dt,'111',exercise)
       //convertImageEdit(data.category_id,'check');
       
       //console.log('inside edit action',exercise,action);
@@ -139,16 +164,20 @@ function getBase64(file, callback) {
 
 const [images,setImages]=useState([])
 
-const convertImage = (e) => {
+useEffect(()=>{
+    setImages(images);
+},[images])
+
+const convertImage = async(e) => {
   console.log("this is calleddddfdsfs",e.target.files[0])
   // data.append('emp_id', userid);
   // data.append('file', e.target.files[0]);
   // setImagePath([...imagePath, e.target.files[0]])
   const imageData = URL.createObjectURL(e.target.files[0]);
   //console.log(imageData, "files")
-  getBase64(e.target.files[0], function (base64Data) {
+  await getBase64(e.target.files[0], function (base64Data) {
     console.log('getBase64')
-    setImages([ base64Data])
+    setImages( [base64Data])
     setViewImage(true);
     console.log(images,'----images----');
     console.log(base64Data,'base64Data')
@@ -214,7 +243,7 @@ const apiHit=async=>{
     "time_or_weight": 500,
     "units": "grams",
     "calories": 100,
-    "category_id": 9,
+    "category_id": 32380,
     "description":exercise?.description,
     "item_image": exercise?.item_image,
     "sets": 0,
@@ -240,6 +269,45 @@ const apiHit=async=>{
   .catch((error) => {
     console.log(error);
   });
+}
+
+const apiHitEdit=async()=>{
+
+  let data = JSON.stringify({
+    "item_name": exercise?.item_name,
+    "time_or_weight": 500,
+    "units": "grams",
+    "calories": 100,
+    "category_id": dataOfItem.category_id,
+    "description":exercise?.description,
+    "item_image": exercise?.item_image,
+    "sets": 0,
+    "counts": 0,
+    "type": "exercise",
+    "item_id":dataOfItem.item_id
+   
+  });
+  
+  let config = {
+    method: 'PUT',
+    maxBodyLength: Infinity,
+    url: 'https://aipse.in/api/EditItemExerciseHandler',
+    headers: { 
+      'Content-Type': 'application/json'
+    },
+    data : data
+  };
+  
+ await axios.request(config)
+  .then((response) => {
+    console.log(JSON.stringify(response.data),'------edit response');
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+
+
+
 }
 
   

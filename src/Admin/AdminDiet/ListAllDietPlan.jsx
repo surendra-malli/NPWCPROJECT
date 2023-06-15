@@ -20,6 +20,7 @@ import Iconify from 'src/components/iconify/Iconify';
 import Slide from '@mui/material/Slide';
 import Page from 'src/components/Page';
 import CreateDietPlan from './components/CreateDietPlanNut';
+import { useNavigate} from 'react-router-dom';
 
 import axios from 'axios';
 // import EditCreateDietPlan from './components/EditCreateDietPlan';
@@ -48,25 +49,55 @@ const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
   });
   const pageheading={
-    fontFamily:"Inter-Bold",
+    // fontFamily:"Inter-Bold",
     fontWeight: "bold",
-    fontSize: "30px",
+    fontSize: "20px",
     lineHeight: "30px",
     color: "#112866"
   };
 export default function ListAllDietPlan(props){
+  let  navigate = useNavigate();
+  const location = useLocation();
+  //const encodedData = new URLSearchParams(location.search).get('data');
+  const objectData = location?.state
+
+  
 
   const [open, setOpen] = React.useState(false);
   const [dataFromApi,setDataFromApi]=useState([])
   const childComponentRef = useRef(null);
-  const location = useLocation();
-  const[userData,setUserData]=useState(location.state?.data);
-  console.log(userData,'list plan userdata')
+  console.log(objectData,'opop')
+  const[userData,setUserData]=useState(objectData);
+  
+  const [userId,setUserId]=useState("");
 
+ const handleback=()=>{
+  console.log(userData)
+    userData.pathnameCurrent[1]===0?1:userData?.pathnamePrevious.pop();
+    userData.pathnameCurrent[1]=1;
+    
+    const encodedData = encodeURIComponent(JSON.stringify(userData));
+    //navigate(`${userData?.pathnamePrevious[userData?.pathnamePrevious.length-1]}?data=${encodedData}`);
+    navigate(`${userData?.pathnamePrevious[userData?.pathnamePrevious.length-1]}`,{state:userData})
+  
+ }
+  
+ 
+useEffect(()=>{
+  console.log(userId,'user id to teset');
+  apiHit();
+},[userId])
 
   useEffect(()=>{
-    apiHit();
-  },[])
+    console.log(userData,'teseting instant  0')
+    
+      setUserId(userData.id)
+   
+   
+  },[userData])
+
+
+ 
 
   const apiHit=async()=>{
     let data = '';
@@ -74,7 +105,7 @@ export default function ListAllDietPlan(props){
         let config = {
           method: 'POST',
           maxBodyLength: Infinity,
-          url: `https://aipse.in/api/listalldietplans?user_id=${userData.id}&type=food`,
+          url: `https://aipse.in/api/listalldietplans?user_id=${userId}&type=food`,
           headers: { },
           data : data
         };
@@ -88,6 +119,8 @@ export default function ListAllDietPlan(props){
           console.log(error);
         });
   }
+
+  console.log(dataFromApi,'dataFromapi---12')
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -105,18 +138,20 @@ export default function ListAllDietPlan(props){
           <Page>
           
            <CreateDietPlan userid={userData.id} apiHitParent={apiHit} ref={childComponentRef} />
-            <Grid container flexDirection="row">
+           
+           
+            <Grid mt={2} container flexDirection="row" alignItems="center">
 
-        <Grid   >
+        <Grid   item>
             {/* <img src={Backbutton} className='dinning-img' alt="dinning" /> */}
-            <Link state={{data:userData}} to="/dashboard/app">
-                  <IconButton>
-                    <Iconify icon="material-symbols:arrow-back-rounded" />
-                  </IconButton></Link>
+            
+                  <IconButton >
+                    <Iconify onClick={handleback}  icon="material-symbols:arrow-back-rounded" />
+                  </IconButton>
             </Grid>
            
-            <Grid  >
-            <Typography style={pageheading}>List All Diet Plan</Typography>
+            <Grid  item>
+            <Typography style={pageheading}>List All Diet Plan {userData?.user_name}{userData?.value}</Typography>
             </Grid>
          </Grid>
 
@@ -154,6 +189,7 @@ export default function ListAllDietPlan(props){
             );
           })
          }
+         {dataFromApi?.length===undefined && <h1>No Diet Plans Created</h1>}
 
         
 

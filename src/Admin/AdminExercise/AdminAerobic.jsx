@@ -132,6 +132,8 @@ const Aerobic = forwardRef((props, ref) => {
     apiHit();
   },[])
 
+  console.log(dataOfExercise.category_id,'dataOfExercise.category_id');
+
     const apiHit=aysnc=>{
       let config = {
         method: 'GET',

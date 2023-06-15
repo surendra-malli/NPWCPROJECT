@@ -229,7 +229,7 @@ export default function Exercise(){
                         </Grid>
                     </Grid>
                   
-                </Card>
+                  </Card>
 
                 )
             })

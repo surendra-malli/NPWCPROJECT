@@ -1,7 +1,6 @@
 import React from "react"
 import { Grid, Typography, Select, FormControl, InputLabel,Button,IconButton,Stack,  } from '@mui/material';
 import{useState,useEffect} from 'react'
-import { useLocation,useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { styled } from '@mui/material/styles';
 
@@ -136,7 +135,7 @@ const handleExpandClick = () => {
 
 
   const [loading, setLoading] = useState(true)
- 
+  const [username, setusername] = useState('')
   const [userId, setuserId] = useState('')
   const [oneDietPlanData, setoneDietplanData] = useState([])
   const [oneExerciseData, setOneExerciseData] = useState([])
@@ -160,7 +159,7 @@ const handleExpandClick = () => {
   const location = useLocation();
   const navigate=useNavigate();
   const encodedData = new URLSearchParams(location.search).get('data');
-const objectData = location?.state
+const objectData = JSON.parse(decodeURIComponent(encodedData));
 
   const[userData,setUserDate]=useState(objectData);
   
@@ -169,7 +168,7 @@ const objectData = location?.state
     let uname =  objectData.user_name
     let uid = objectData.id
     
-     username=uname
+    await setusername(uname)
     await setuserId(uid)
     await listDietPlan(uid);
   }
@@ -346,8 +345,7 @@ const objectData = location?.state
     
     objectData.pathnameCurrent[0]=location.pathname
     const encodedData = encodeURIComponent(JSON.stringify(objectData));
-    //navigate(`/dashboardadmin/alldietplan?data=${encodedData}`);
-    navigate(`/dashboardadmin/alldietplan`,{state:objectData})
+    navigate(`/dashboardadmin/alldietplan?data=${encodedData}`);
 
   }
   const handlegoback=()=>{
@@ -356,8 +354,7 @@ const objectData = location?.state
     userData.pathnameCurrent[1]=1;
     
     const encodedData = encodeURIComponent(JSON.stringify(userData));
-    //navigate(`${userData?.pathnamePrevious[userData?.pathnamePrevious.length-1]}?data=${encodedData}`);
-    navigate(`${userData?.pathnamePrevious[userData?.pathnamePrevious.length-1]}`,{state:objectData});
+    navigate(`${userData?.pathnamePrevious[userData?.pathnamePrevious.length-1]}?data=${encodedData}`);
     
     //navigate(`${userData.pathname}?data=${encodedData}`,{ from: location.pathname });
 
