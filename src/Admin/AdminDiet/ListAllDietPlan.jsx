@@ -1,6 +1,7 @@
 
 
 import * as React from 'react';
+import moment from 'moment';
 import {useState,useEffect,useRef} from 'react';
 import { useLocation } from "react-router-dom";
 import { Card, CardContent, Grid, Typography, Avatar, Badge, Button, Stack, Container } from '@mui/material';
@@ -61,7 +62,7 @@ export default function ListAllDietPlan(props){
   //const encodedData = new URLSearchParams(location.search).get('data');
   const objectData = location?.state
 
-  
+  const today = new Date();
 
   const [open, setOpen] = React.useState(false);
   const [dataFromApi,setDataFromApi]=useState([])
@@ -78,7 +79,7 @@ export default function ListAllDietPlan(props){
     
     const encodedData = encodeURIComponent(JSON.stringify(userData));
     //navigate(`${userData?.pathnamePrevious[userData?.pathnamePrevious.length-1]}?data=${encodedData}`);
-    navigate(`${userData?.pathnamePrevious[userData?.pathnamePrevious.length-1]}`,{state:userData})
+    navigate(`/dashboardadmin/createdietplannut`,{state:userData})
   
  }
   
@@ -132,12 +133,24 @@ useEffect(()=>{
   
 
   console.log(dataFromApi,'dataFromApi[0]?.Category')
+  const Obj1 = {
+    category: '',
+    value: '',
+  };
+  const intialValues = {
+    interval: 0,
+    startDate: moment(today)?.format('DD-MM-YYYY'),
+    endDate: "",
+    category: '',
+    items: [Obj1],
+    id:userData.id
+  };
     
     return(
         <div> 
           <Page>
           
-           <CreateDietPlan userid={userData.id} apiHitParent={apiHit} ref={childComponentRef} />
+           <CreateDietPlan userdata={intialValues} apiHitParent={apiHit} ref={childComponentRef} />
            
            
             <Grid mt={2} container flexDirection="row" alignItems="center">
@@ -171,7 +184,16 @@ useEffect(()=>{
                   </Grid>
                   
                   <Grid>
-                  <Button onClick={() => childComponentRef.current.editClick(item)} >
+                  <Button onClick={ e=>{
+
+                    userData.pathnameCurrent[1]===0?1:userData?.pathnamePrevious.pop();
+                    userData.pathnameCurrent[1]=1;
+
+                    const encodedData = encodeURIComponent(JSON.stringify(userData));
+                    //navigate(`${userData?.pathnamePrevious[userData?.pathnamePrevious.length-1]}?data=${encodedData}`);
+                    navigate(``,{state:userData})
+
+                  } }>
                   <Typography  >Edit</Typography>
                   </Button>
                   </Grid>
@@ -203,6 +225,29 @@ useEffect(()=>{
                   
                       
               </Page>
+              <Button variant="contained"  style={{
+          float: "right", marginLeft: "1rem",  padding: "0.2rem", marginTop: "-0.5rem",
+          position: 'fixed', zIndex: '1', bottom: 40, right: 40
+        }}
+    
+        sx={{
+          ':hover': {
+            bgcolor: "#F0E7F5", // theme.palette.primary.main
+            color: '#9B59B6',
+            border: '#ffd796'
+          },
+          ':active': {
+            bgcolor: "#F0E7F5",
+            color: "#9B59B6"
+          },
+          bgcolor: '#F0E7F5',
+          color: "#9B59B6",
+          border: 'none'
+        }} >
+  
+  
+          <span >Create Diet Plan</span>
+        </Button>
                   </div>
     );
 }

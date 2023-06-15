@@ -4,7 +4,7 @@ import {useState,useEffect,useRef} from 'react'
 
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
-import { FormControl,InputLabel,Select,MenuItem, Grid,Typography } from '@mui/material';
+import { FormControl,InputLabel,Select,MenuItem, Grid,Typography,Card } from '@mui/material';
 import InactiveProfile from './InactiveProfile';
 import { useLocation,useNavigate } from 'react-router-dom';
 
@@ -107,18 +107,20 @@ const Dropdown =React.forwardRef(({onDataChangeuserId,valuesD}, ref,props) => {
 
   return (
     <>
+    
      <FormControl fullwidth>
       <InputLabel id="select-label">Select User</InputLabel>
       <Select
         
         label="Select User"
-        id="select"
+        //id="select"
         value={selectedUser}
         onChange={(e)=>handleChange(e)}
        
       >
        { dropvalue?.map(item=>{
         return (
+          
             <MenuItem value={item?.id}>
 
               <Grid container display='flex'flexDirection='row' justifyContent='space-between'>
@@ -137,6 +139,7 @@ const Dropdown =React.forwardRef(({onDataChangeuserId,valuesD}, ref,props) => {
             
             
             </MenuItem>
+            
         )
         })}
 

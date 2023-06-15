@@ -111,6 +111,7 @@ const pageheading={
       apiHit();
       setCurrentPage(1)
       console.log(currentPage,'currentpage')
+      //setSearchTitle("")
       
       //filterItems(userStatus)
 },[status]);
@@ -166,7 +167,7 @@ const encodedData = encodeURIComponent(JSON.stringify(objectData));
 
     const apiHit=async()=>{
         
-        console.log(`https://aipse.in/api/searchUser?name=${searchTitle}&page=${currentPage}&count=10`,);
+        console.log(`https://aipse.in/api/searchUser?name=${searchTitle}&page=${currentPage}&count=10&status=${status}`);
        let config = {
             method: 'GET',
             maxBodyLength: Infinity,

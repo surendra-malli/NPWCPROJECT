@@ -351,7 +351,7 @@ const count = async => {
      
               
               <PieChart highcharts={Highcharts} options={optionsGraph} />
-              <BarGraph1></BarGraph1>
+             
         
      
       {/* <Card sx={{ minWidth: 275 }} style={{ margin: "20px" }} >

@@ -48,7 +48,7 @@ console.log(objectData,'objectData admin profile')
     const [actionMessage,setActionMessage]=useState("")
     const childcomrefAlert=useRef();
     
-  console.log(objectData?.status, checked,"objectData?.status");
+  console.log(objectData,'jjjjjj');
   console.log(location, " useLocation Hook");
  
   const [usersData,setUsersData]=useState([])
@@ -69,6 +69,12 @@ console.log(objectData,'objectData admin profile')
 
 
     },[checked])
+
+    useEffect(()=>{
+      if(objectData.pathnameCurrent[0]==='/dashboardadmin/createinstandietplan'){
+        childcomrefAlert.current.handleClickOpenAlert('On In Active user Diet Plan Cannot Be Created');
+      }
+    },[objectData])
 
   const [openAlert, setOpenAlert] = useState(false);
 
@@ -387,7 +393,7 @@ console.log(objectData?.id,'objectDataobjectData')
       </CardContent>
       </Card>
       <AlertDialog Message="Created Sucessfully" ref={childcomrefAlert}/>
-      <BarGraph></BarGraph>
+      {/* <BarGraph></BarGraph> */}
       
     </>
     );

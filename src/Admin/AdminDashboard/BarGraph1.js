@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState,useEffect } from 'react';
 
 import Highcharts from "highcharts/highstock";
 import {
@@ -18,6 +19,180 @@ import {
 import PieChart from "highcharts-react-official";
 
 const BarGraph1 = () => {
+    var [recommended_servings, setRecommendedServings] = useState([])
+  var [servings_consumed,setServingsConsumed]=useState([])
+
+    const isFocused = true;
+  var responseData = [
+    {
+      "start_date": "12-06-2023",
+      "end_date": "18-06-2023",
+      "status": "ongoing",
+      "data": [
+        {
+          "recommended_servings": 3,
+          "servings_consumed": 1,
+          "difference": 0,
+          "log_date": "14-06-2023",
+          "status": "excessive"
+        },
+        {
+          "recommended_servings": 3,
+          "servings_consumed": 1,
+          "difference": 0,
+          "log_date": "15-06-2023",
+          "status": "excessive"
+        }
+      ]
+    },
+    {
+      "start_date": "12-05-2023",
+      "end_date": "18-05-2023",
+      "status": "previous",
+      "data": [
+        {
+          "recommended_servings": 3,
+          "servings_consumed": 3,
+          "difference": 0,
+          "log_date": "14-06-2023",
+          "status": "excessive"
+        }
+      ]
+    },
+    {
+      "start_date": "12-04-2023",
+      "end_date": "18-04-2023",
+      "status": "previous",
+      "data": [
+        {
+          "recommended_servings": 3,
+          "servings_consumed": 3,
+          "difference": 0,
+          "log_date": "14-06-2023",
+          "status": "excessive"
+        }
+      ]
+    }
+  ]
+  useEffect(() => {
+    if (isFocused) {
+      recommended_servings = []
+      servings_consumed=[]
+      setRecommendedServings(recommended_servings)
+      setServingsConsumed(servings_consumed)
+      //setValues()
+      apiCall("12-06-2023", "18-06-2023")
+    }
+
+  }, [isFocused])
+  const apiCall = (start_date,end_date) => {
+    let tempResponse = responseData.filter(e => e.start_date == start_date && e.end_date == end_date)
+   
+    if (tempResponse.length > 0) {
+      tempResponse = tempResponse[0].data;
+      if (tempResponse.length > 0) {
+        for (let i = 0; i < tempResponse.length; i++) {
+          let servingStatus = tempResponse[i]
+          recommended_servings.push(servingStatus.recommended_servings)
+          servings_consumed.push(servingStatus.servings_consumed)
+          if (i == tempResponse.length - 1) {
+            setRecommendedServings(recommended_servings)
+            setServingsConsumed(servings_consumed)
+          }
+        }
+      }
+    }
+  }
+
+//   var Highcharts = 'Highcharts';
+ 
+  var conf = {
+    chart: {
+      type: 'column'
+    },
+    title: {
+      text: 'Diet Status'
+    },
+    xAxis: {
+      categories: [
+        ' Jun 14',
+        'Jun 15',
+        'Jun 16'
+      ],
+      labels: {
+        style: {
+          padding:100
+        }
+      }
+    },
+    yAxis: [{
+      min: 0,
+      title: {
+        text: 'Servings Status'
+      }
+    },
+     ],
+    legend: {
+      shadow: false
+    },
+    tooltip: {
+      shared: true
+    },
+    plotOptions: {
+      column: {
+        grouping: false,
+        shadow: false,
+        borderWidth: 0
+      }
+    },
+    series: [{
+      name: 'Recommended Servings',
+      color: 'rgba(165,170,217,1)',
+      data: [1,2,3],
+      pointPadding: 0.3,
+      pointPlacement: -0.2
+    }, {
+      name: 'Consumed Servings',
+      color: 'rgba(126,86,134,.9)',
+      data: [5,8,9],
+      // pointPadding: 0.4,
+      // pointPlacement: -0.2
+      }
+    //   , {
+    //   name: 'Profit',
+    //   color: 'rgba(248,161,63,1)',
+    //   data: [183.6, 178.8, 198.5],
+    //   tooltip: {
+    //     valuePrefix: '$',
+    //     valueSuffix: ' M'
+    //   },
+    //   pointPadding: 0.3,
+    //   pointPlacement: 0.2,
+    //   yAxis: 1
+    // }, {
+    //   name: 'Profit Optimized',
+    //   color: 'rgba(186,60,61,.9)',
+    //   data: [203.6, 198.8, 208.5],
+    //   tooltip: {
+    //     valuePrefix: '$',
+    //     valueSuffix: ' M'
+    //   },
+    //   pointPadding: 0.4,
+    //   pointPlacement: 0.2,
+    //   yAxis: 1
+    //   }
+    ]
+  }
+  console.log(conf?.series, "cpnffff")
+  const options = {
+    global: {
+      useUTC: false
+    },
+    lang: {
+      decimalPoint: ',',
+      thousandsSep: '.'
+    }
+  };
 
     const dataPrev = {
         2020: [
@@ -330,7 +505,7 @@ const BarGraph1 = () => {
     //     });
     // });
   return (
-    <div> <PieChart highcharts={Highcharts} options={chart} /></div>
+    <div> <PieChart highcharts={Highcharts} options={conf} /></div>
   )
 }
 

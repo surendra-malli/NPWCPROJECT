@@ -28,6 +28,7 @@ import Userstats from './Admin/UserStats/Userstats';
 import Adminsearch from './Admin/AdminSearch/Adminsearch'
 import ListAllDietPlan from './Admin/AdminDiet/ListAllDietPlan';
 import CreateInstantDietPlan from './Admin/AdminDiet/components/CreateInstantDietPlan';
+import CreateDietPlanNut from './Admin/AdminDiet/components/CreateDietPlanNut'
 // ----------------------------------------------------------------------
 
 
@@ -134,7 +135,12 @@ export default function Router() {
                 {
                     path: 'createinstandietplan',
                     element: < CreateInstantDietPlan / >
+                },
+                {
+                    path: 'createdietplannut',
+                    element: < CreateDietPlanNut / >
                 }
+                
                 
             ]
 

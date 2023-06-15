@@ -69,6 +69,7 @@ const FullScreenDialog = forwardRef((props, ref) => {
   const [action,setAction]=useState("Create");
   const [reload,setReload]=React.useState(false);
   const [dataOfItem,setData]=useState("");
+  const [images,setImages]=useState([])
   const handleClickOpen = () => {
     if(action==='Edit'){
       console.log('inside edit action',diet);
@@ -178,7 +179,7 @@ useEffect(()=>{
     }
     
 }))
-const [images,setImages]=useState([])
+
 function getBase64(file, callback) {
 
   const reader = new FileReader();
@@ -220,7 +221,7 @@ const convertImage = async(e) => {
   //   ...formData,
   //   [item_image]:images[0]?.toString().slice(22,)
   // }))
-   setImages([])
+   //setImages([])
   setReload(!reload);
   
   //alert("Photo Uploaded Successfully..")
@@ -247,38 +248,7 @@ console.log(images[0],'----images----222');
 
 
 
-const convertImageEdit = (img) => {
-  console.log("this is calleddddfdsfs edit",img)
-  // data.append('emp_id', userid);
-  // data.append('file', e.target.files[0]);
-  // setImagePath([...imagePath, e.target.files[0]])
-  const imageData = URL.createObjectURL(img);
-  //console.log(imageData, "files")
-  getBase64(img, function (base64Data) {
-    console.log('getBase64')
-    setImages([ base64Data])
-    setViewImage(true);
-    console.log(images,'----images----');
-    console.log(base64Data,'base64Data')
-  //   setViewImage(true)
-  
-});
-  console.log("upload method is calling ")
-  //console.log(images[0],'slicing-----',images[0].toString().slice(22,),'----image to upload----');
-  diet.item_image=images[0]?.toString().slice(22,);
-  
-  // setFormData(formData=>({
-  //   ...formData,
-  //   [item_image]:images[0]?.toString().slice(22,)
-  // }))
-   setImages([])
-  setReload(!reload);
 
-  console.log(diet,'after image is upload');
-  
-  //alert("Photo Uploaded Successfully..")
-  
-}
 const deleteImage = (index) => {
   images.splice(index, 1);
   setImages([...images]);
