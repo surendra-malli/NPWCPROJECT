@@ -51,7 +51,7 @@ const deleteHit=async=>{
       .then((response) => {
         console.log(JSON.stringify(response.data));
         props.categoryHit(0)
-        childcomreffAlert.current.handleClickOpenAlert('category Delete Sucessfully');
+        childcomreffAlert.current.handleClickOpenAlert('Category Delete Sucessfully');
       })
       .catch((error) => {
         console.log(error);
@@ -86,13 +86,13 @@ const deleteHit=async=>{
             addCategory();
         }
         setOpen(false);
-        message='category Renamed Sucessfully'
+        message='Category Renamed Sucessfully'
         //childcomreffAlert.current.handleClickOpenAlert('category Renamed Sucessfully');
     }
   
     const addCategory = async() => {
       if(createData?.category_name===''){
-          childcomreffAlert.current.handleClickOpenAlert('Please fill All Fields');
+          childcomreffAlert.current.handleClickOpenAlert('Please Fill All Fields');
           
       }
 
@@ -127,7 +127,7 @@ const deleteHit=async=>{
                 }
                 props.categoryHit(1)
                     //  < alert/>
-                    childcomreffAlert.current.handleClickOpenAlert('category Added Sucessfully');
+                    childcomreffAlert.current.handleClickOpenAlert('Category Added Sucessfully');
                 console.log((response.data.data, "-----create dataikiii"));
                 // props.categoryHit(1)
 
@@ -176,7 +176,7 @@ const deleteHit=async=>{
               .then((response) => {
                   setRenameData(response?.data?.data)
                   console.log(response.data.data, "<-----------------setDelete Dataset DeleteData");
-                  childcomreffAlert.current.handleClickOpenAlert('category Renamed Sucessfully');
+                  childcomreffAlert.current.handleClickOpenAlert('Category Renamed Sucessfully');
                   props.categoryHit(2)
               })
               .catch((error) => {
@@ -295,7 +295,7 @@ const deleteHit=async=>{
                   { position: 'relative', backgroundColor: "purple" }
               } >
               < Toolbar >
-              <Typography sx = {{ ml: 2, flex: 1 } }
+              <Typography sx = {{ ml: 2, flex: 1,cursor:'pointer' } }
               variant = "h6"
               component = "div" onClick={handleRename}> Rename </Typography>
   
@@ -307,7 +307,7 @@ const deleteHit=async=>{
               Category </Typography> 
               <Typography onClick = { handleClose }
               sx = {
-                  { ml: 2, flex: 1 }
+                  { ml: 2, flex: 1,cursor:'pointer' }
               }
               variant = "h6"
               component = "div" >

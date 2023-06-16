@@ -22,7 +22,7 @@ import Slide from '@mui/material/Slide';
 import Page from 'src/components/Page';
 import CreateExercisePlan from './components/CreateExercisePlan'
 import { useNavigate} from 'react-router-dom';
-
+import AlertDialog from '../UserStats/AlertDialog';
 import axios from 'axios';
 // import EditCreateDietPlan from './components/EditCreateDietPlan';
 
@@ -62,7 +62,7 @@ export default function ListAllExercisePlan(props){
   //const encodedData = new URLSearchParams(location.search).get('data');
   const objectData = location?.state
 
-  
+  const childcomrefAlert=useRef();
 
   const [open, setOpen] = React.useState(false);
   const [dataFromApi,setDataFromApi]=useState([])
@@ -83,7 +83,12 @@ export default function ListAllExercisePlan(props){
   
  }
   
- 
+ useEffect(()=>{
+  if(objectData.pathnameCurrent[0]==='/dashboardadmin/adminprofile' || objectData.pathnameCurrent[0]==='/dashboardadmin/createinstantexerciseplan' ){
+    childcomrefAlert.current.handleClickOpenAlert('Exercise Plan Created Sucessfully');
+  }
+  console.log(objectData,'////////')
+},[objectData])
 useEffect(()=>{
   console.log(userId,'user id to teset');
   apiHit();
@@ -252,6 +257,7 @@ useEffect(()=>{
   
           <span >Create Exercise Plan</span>
              </Button>
+             <AlertDialog Message="Created Sucessfully" ref={childcomrefAlert}/>
                   </div>
     );
 }

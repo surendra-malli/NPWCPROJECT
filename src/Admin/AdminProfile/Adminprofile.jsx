@@ -23,6 +23,7 @@ import MuiAlert from '@mui/lab/Alert';
 import AlertDialog from '../UserStats/AlertDialog';
 import BarGraph from '../AdminDashboard/BarGraph';
 import CreateDietPlan from '../AdminDiet/components/CreateDietPlanNut';
+import CreateExercisePlan from '../AdminDiet/components/CreateExercisePlan';
 // import Page from '../../components/Page';
 
 
@@ -40,6 +41,7 @@ const pageheading={
 export default function Userprofile({props}){
   const location = useLocation();
   const childComponentRef = useRef(null);
+  const childComponentRefExercise=useRef(null);
 console.log(location,'location?.pathname')
   const navigate=useNavigate();
   const goback=useNavigate(-1)
@@ -75,8 +77,8 @@ console.log(objectData,'objectData admin profile')
     },[checked])
 
     useEffect(()=>{
-      if(objectData.pathnameCurrent[0]==='/dashboardadmin/createinstandietplan'){
-        childcomrefAlert.current.handleClickOpenAlert('On In Active user Diet Plan Cannot Be Created');
+      if(objectData.pathnameCurrent[0]==='/dashboardadmin/createinstandietplan' || objectData.pathnameCurrent[0]==='/dashboardadmin/createinstantexerciseplan' ){
+        childcomrefAlert.current.handleClickOpenAlert('On Inactive User Diet Plan Cannot Be Created');
       }
     },[objectData])
 
@@ -291,6 +293,7 @@ console.log(objectData?.id,'objectDataobjectData')
         <> 
        
        <CreateDietPlan userid={objectData.id} apiHitParent={apiHit1} ref={childComponentRef} />
+       <CreateExercisePlan userid={objectData.id} apiHitParent={apiHit1} ref={childComponentRefExercise} />
             <Card>
                 <CardContent>
    <Grid container flexDirection="row">
@@ -368,7 +371,7 @@ console.log(objectData?.id,'objectDataobjectData')
                 
                 
 <Stack mt={4}> 
-        <Card  onClick={handleDashboardStats}  sx={{textDecoration:'none'}} justifyContent="space-between" alignItems="center"  style={{backgroundColor:"#F0E7F5"}}>
+        <Card  onClick={handleDashboardStats}  sx={{textDecoration:'none',cursor:'pointer'}} justifyContent="space-between" alignItems="center"  style={{backgroundColor:"#F0E7F5"}}>
            
            {checked===true &&( <Grid container  sx={{textDecoration:'none'}} justifyContent="space-between" alignItems="center" >
                 <Grid item >
@@ -410,7 +413,7 @@ console.log(objectData?.id,'objectDataobjectData')
       const sendData={...intialValues,...objectData}
       sendData.action='Create'
       childComponentRef.current.editClick(sendData)
-        }}  sx={{textDecoration:'none'}} justifyContent="space-between" alignItems="center"  style={{backgroundColor:"#F0E7F5"}}>
+        }}  sx={{textDecoration:'none',cursor:'pointer'}} justifyContent="space-between" alignItems="center"  style={{backgroundColor:"#F0E7F5"}}>
            
            {checked===true &&( <Grid container  sx={{textDecoration:'none'}} justifyContent="space-between" alignItems="center" >
                 <Grid item >
@@ -452,10 +455,10 @@ console.log(objectData?.id,'objectDataobjectData')
           objectData.pathnameCurrent[0]=location.pathname
       const sendData={...intialValues,...objectData}
       sendData.action='Create'
-      childComponentRef.current.editClick(sendData)
-        }}  sx={{textDecoration:'none'}} justifyContent="space-between" alignItems="center"  style={{backgroundColor:"#F0E7F5"}}>
+      childComponentRefExercise.current.editClick(sendData)
+        }}  sx={{textDecoration:'none',cursor:'pointer'}} justifyContent="space-between" alignItems="center"  style={{backgroundColor:"#F0E7F5"}}>
            
-           {checked===true &&( <Grid container  sx={{textDecoration:'none'}} justifyContent="space-between" alignItems="center" >
+           {checked===true &&( <Grid container  sx={{textDecoration:'none',pointer:'cursor'}} justifyContent="space-between" alignItems="center" >
                 <Grid item >
                     
                 <Typography sx={{ fontSize: 20, fontWeight: 'bold', fontFamily: 'Inter-SemiBold', lineHeight: "50px", marginLeft:"10px" }} mt={2} mb={2} >
@@ -475,7 +478,7 @@ console.log(objectData?.id,'objectDataobjectData')
  </Stack>
 
                   <Stack  mt={10}>
-                    <Card onClick={handleDelete} style={{backgroundColor:"purple", margin:"10px", alignItems:"center"}}>
+                    <Card onClick={handleDelete} style={{cursor:'pointer',backgroundColor:"purple", margin:"10px", alignItems:"center"}}>
                       <Stack  mb={2}> 
                     <Typography sx={{ fontSize: 20, fontWeight: 'bold', textAlign:'center', color:'white',  fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:"10px" }} mt={3}  >
                      Delete Account

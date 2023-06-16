@@ -346,7 +346,7 @@ const objectData = location?.state
     objectData.pathnamePrevious.push(location.pathname)
     
     objectData.pathnameCurrent[0]=location.pathname
-    const encodedData = encodeURIComponent(JSON.stringify(objectData));
+    //const encodedData = encodeURIComponent(JSON.stringify(objectData));
     //navigate(`/dashboardadmin/alldietplan?data=${encodedData}`);
     navigate(`/dashboardadmin/alldietplan`,{state:objectData})
 
@@ -687,7 +687,7 @@ console.log(upcoming,"----upcoming----")
                 <CardContent key={index} > 
         
                 
-                    <Card  onClick={() => { index == viewOneDietPlan.previous ? setViewOneDietPlan(-1) : getOneDiet(item, index) }} style={{backgroundColor:"white", boxShadow:10, borderRadius: 10 }} >
+                    <Card  onClick={() => { index == viewOneDietPlan.previous ? setViewOneDietPlan(-1) : getOneDiet(item, index) }} style={{backgroundColor:"white", boxShadow:10, borderRadius: 10,cursor:'pointer' }} >
 
 <Grid container item alignContent={"center"} minHeight="80px" >
 <Grid item xs={5.5} >
@@ -964,11 +964,11 @@ console.log(upcoming,"----upcoming----")
       )}
     
       
-    <Stack mt={10}><Card  onClick={handleListAllDietPlan}  sx={{textDecoration:'none'}} style={{backgroundColor:"purple", margin:"10px", alignItems:"center"}}><Stack mb={2}> <Typography sx={{ fontSize: 20, fontWeight: 'bold', textAlign:'left', color:'white', fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:'10px'}} gutterBottom variant="h5" component="div" mt={3}  >
+    <Stack mt={10}><Card  onClick={handleListAllDietPlan}  sx={{textDecoration:'none',cursor:'pointer'}} style={{backgroundColor:"purple", margin:"10px", alignItems:"center"}}><Stack mb={2}> <Typography sx={{ fontSize: 20, fontWeight: 'bold', textAlign:'left', color:'white', fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:'10px'}} gutterBottom variant="h5" component="div" mt={3}  >
                    List All Diet Plan
                   </Typography></Stack></Card></Stack>
 
-                  <Stack mt={5}><Card  onClick={handleListAllExercisePlan}  sx={{textDecoration:'none'}} style={{backgroundColor:"purple", margin:"10px", alignItems:"center"}}><Stack mb={2}> <Typography sx={{ fontSize: 20, fontWeight: 'bold', textAlign:'left', color:'white', fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:'10px'}} gutterBottom variant="h5" component="div" mt={3}  >
+                  <Stack mt={5}><Card  onClick={handleListAllExercisePlan}  sx={{textDecoration:'none',cursor:'pointer'}} style={{backgroundColor:"purple", margin:"10px", alignItems:"center"}}><Stack mb={2}> <Typography sx={{ fontSize: 20, fontWeight: 'bold', textAlign:'left', color:'white', fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:'10px'}} gutterBottom variant="h5" component="div" mt={3}  >
                    List All Exercise Plan
                   </Typography></Stack></Card></Stack>
 

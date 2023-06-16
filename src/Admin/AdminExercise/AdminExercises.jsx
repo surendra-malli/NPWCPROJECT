@@ -194,7 +194,7 @@ export default function AdminExerciseCategory(props) {
                 return (
                    
 
- <Card key={item?.category_id} style={{backgroundColor:"#F0E7F5", margin:"10px"}}>
+ <Card key={item?.category_id} style={{backgroundColor:"#EBF5FF", margin:"10px"}}>
             
 <Grid container   justifyContent="space-between" alignItems="center" style={{padding:"30px"}}>
     <Grid xs={11} to="/dashboardadmin/adminaerobic" sx={{textDecoration:'none'}} component={RouterLink} state={{data:item}}  style={{padding:"5px"}} item>

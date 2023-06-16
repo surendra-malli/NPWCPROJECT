@@ -1,5 +1,7 @@
 import { Grid, Typography, Box,Stack, IconButton, Container,Button,Chip, } from '@mui/material';
 import * as React from 'react';
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
 import  { forwardRef, useImperativeHandle } from "react";
 import {useState,useEffect} from 'react';
 import Card from '@mui/material/Card';
@@ -15,7 +17,6 @@ import Searchbar from 'src/layouts/dashboard/Searchbar';
 import {Pagination} from '@mui/material';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
 
 
 
@@ -40,6 +41,7 @@ const pageheading={
     fontFamily:"Inter-Regular",
     fontWeight: "bold",
   }
+
  const Adminuserlist=forwardRef((props, ref) =>{
 
     const navigate =useNavigate();
@@ -72,6 +74,20 @@ const pageheading={
       return str2
       
       }
+      const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      setIsScrolled(scrollTop > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
     var userStatus='all'
     //pagination
@@ -105,7 +121,7 @@ const pageheading={
         setDisplayUser('Total Active Users')
       }
       else{
-        setDisplayUser('Total In Active Users')
+        setDisplayUser('Total Inactive Users')
       }
 
       apiHit();
@@ -270,7 +286,7 @@ const encodedData = encodeURIComponent(JSON.stringify(objectData));
              
              <Grid container  display='flex' flexDirection='row' alignItems='center' justifyContent='space-between'>
                   <Grid item>
-                <Grid container spacing={1}  >
+                <Grid container spacing={1} ml={2} >
                   <Grid item>
                  <Chip label="All Users " value='All Users' 
                   sx={chips} 
@@ -301,7 +317,7 @@ const encodedData = encodeURIComponent(JSON.stringify(objectData));
                 </Grid>
                 </Grid>
                 <Grid item >
-                  <Typography variant="h6" sx={{marginRight:'2rem'}} style={pageWords} component="h2">{displayUser} : {displayNumber}</Typography>
+                 {displayNumber>0 && <Typography variant="h6" sx={{marginRight:'2rem'}} style={pageWords} component="h2">{displayUser} : {displayNumber}</Typography>}
                 </Grid>
 
              </Grid>
@@ -371,9 +387,9 @@ const encodedData = encodeURIComponent(JSON.stringify(objectData));
     </Box> </Stack>
 
             </Container>
-
-            {message==='no such user' && <h1>No Data</h1>}
-
+            <Grid display='flex' justifyContent='center' alignItems='center'>
+            {message==='no such user' && <Typography>No Users Found</Typography>}
+            </Grid>
            
           <Box py={3} display="flex" justifyContent="center">
           <Pagination
@@ -395,6 +411,8 @@ const encodedData = encodeURIComponent(JSON.stringify(objectData));
       </div>
 
         </Box> */}
+
+
         
             </Page>
             

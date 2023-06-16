@@ -51,7 +51,7 @@ const deleteHit=async=>{
       .then((response) => {
         console.log(JSON.stringify(response.data));
         props.categoryhit(0)
-        childcomrefAlert.current.handleClickOpenAlert('category Delete Sucessfully');
+        childcomrefAlert.current.handleClickOpenAlert('Category Deleted Sucessfully');
       })
       .catch((error) => {
         console.log(error);
@@ -126,7 +126,7 @@ const deleteHit=async=>{
                   }
                   props.categoryhit(1)
                       //  < alert/>
-                      childcomrefAlert.current.handleClickOpenAlert('category Added Sucessfully');
+                      childcomrefAlert.current.handleClickOpenAlert('Category Added Sucessfully');
                   console.log((response.data.data, "-----create dataikiii"));
   
                   setOpen(false);
@@ -174,7 +174,7 @@ const deleteHit=async=>{
               .then((response) => {
                   setRenameData(response?.data?.data)
                   console.log(response.data.data, "<-----------------setDelete Dataset DeleteData");
-                  childcomrefAlert.current.handleClickOpenAlert('category Renamed Sucessfully');
+                  childcomrefAlert.current.handleClickOpenAlert('Category Renamed Sucessfully');
                   props.categoryhit(2)
               })
               .catch((error) => {
@@ -293,7 +293,7 @@ const deleteHit=async=>{
                   { position: 'relative', backgroundColor: "purple" }
               } >
               < Toolbar >
-              <Typography sx = {{ ml: 2, flex: 1 } }
+              <Typography sx = {{ ml: 2, flex: 1,cursor:'pointer' } }
               variant = "h6"
               component = "div" onClick={handleRename}> Rename </Typography>
   
@@ -305,7 +305,7 @@ const deleteHit=async=>{
               Category </Typography> 
               <Typography onClick = { handleClose }
               sx = {
-                  { ml: 2, flex: 1 }
+                  { ml: 2, flex: 1 ,cursor:'pointer'}
               }
               variant = "h6"
               component = "div" >
