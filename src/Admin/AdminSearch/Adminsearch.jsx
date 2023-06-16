@@ -90,7 +90,7 @@ const pageheading={
       if(typeof (str) ==='undefined') {
         console.log('from back');
       }
-      
+      window.scrollTo(0, 0);
       
        apiHit()
     },[currentPage,searchTitle]);

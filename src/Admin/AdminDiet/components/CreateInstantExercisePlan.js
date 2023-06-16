@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useState,useEffect,useRef } from 'react';
 import moment from 'moment';
-import  { forwardRef, useImperativeHandle } from "react";
 import {AdapterDateFns} from '@mui/x-date-pickers/AdapterDateFns';
 import dayjs, { Dayjs } from 'dayjs';
 import Button from '@mui/material/Button';
@@ -20,7 +19,7 @@ import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
 import { format } from 'date-fns';
-import AlertDialog from '../../UserStats/AlertDialog'
+import { Link as RouterLink, useNavigate} from 'react-router-dom';
 
 import { DemoContainer , DemoItem} from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -29,13 +28,14 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Select from '@mui/material/Select';
 import InputBase from '@mui/material/InputBase';
-
+import DropdownUsers from './UsersDropDownExercise';
 import axios from 'axios'
+import InactiveProfile from './InactiveProfile';
+import AlertDialog from '../../UserStats/AlertDialog'
 
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
-import {CardContent, Card, Stack, Grid, TextField ,MenuItem,InputLabel,NativeSelect,FormControl,Box} from '@mui/material';
-
-
+import {CardContent, Card, Stack, Grid, TextField ,MenuItem,InputLabel,NativeSelect,FormControl} from '@mui/material';
+import { useLocation } from 'react-router-dom';
 
 
 // import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -44,8 +44,6 @@ import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 import { Action } from 'history';
 import { values } from 'lodash';
-import DateRangePicker from './DateRangePicker';
-import { useNavigate } from 'react-router-dom';
 
 
 
@@ -127,21 +125,30 @@ const currencies = [
 
 
   
-  const  CreateDietPlan= forwardRef((props, ref) => {
+const  CreateInstantExercisePlan= React.forwardRef((props, ref) => {
+    
+let  navigate = useNavigate();
     const [selectedDate, setSelectedDate] = useState(null);
-    const [intervalValue,setIntervalValue]=useState("")
     const childcomrefAlert=useRef();
-    const [open, setOpen] = React.useState(false);
+    const [userData,setUserData]=useState("")
+   const [flag,setFlag]=useState("falsee");
+   const[usersDataSelected,setUserDataSelected]=useState({});
+   
+    const [open, setOpen] = React.useState(true);
     const [dataOfDiet,setDataOfDiet]=useState("")
     const [categoryData,setCategoryData]=useState([])
-    const navigate=useNavigate();
+    const childComponentRef = useRef(null);
+
     const [action,setAction]=useState("");
-    const [backData,setBackData]=useState({});
     const today = new Date();
     const Obj1 = {
       category: '',
       value: '',
     };
+    const location = useLocation();
+const encodedData = new URLSearchParams(location.search).get('data');
+const objectData = location?.state;
+
     const intialValues = {
       interval: 0,
       startDate: moment(today)?.format('DD-MM-YYYY'),
@@ -149,48 +156,12 @@ const currencies = [
       category: '',
       items: [Obj1],
     };
-    const [valuesD, setValuesD] = useState(intialValues);
+    const [valuesD, setValuesD] = useState(objectData);
 
-    const setValuesFromEdit=() => {
-     
-        // console.log(
-        //   route?.params,
-        //   '<-route?.params?.item?',
-        //   route?.params?.item?.start_date,
-        // );
-        console.log('fun called');
-        const data = dataOfDiet.Category?.map(itm => {
-          console.log(itm, '<---wewqeqe');
-          return {
-            Category: itm?.Category,
-            category: itm?.Category,
-            value: itm?.recommended_servings,
-            Diet_id: itm?.Diet_id,
-            total_servings: itm?.total_servings,
-          };
-        });
-        //  console.log(route?.params?.item,"<---qwwewqeqweq")
-        setValuesD({
-          ...valuesD,
-          interval:
-              dataOfDiet?.interval === 'month'
-              ? 30
-              : dataOfDiet?.interval === 'week'
-              ? 7
-              : 90,
-          startDate:moment?.(dataOfDiet?.start_date,"MM-DD-YYYY")?.format("DD-MM-YYYY"),
-          endDate: moment?.(dataOfDiet?.end_date,"MM-DD-YYYY")?.format("DD-MM-YYYY"),
-          plan_id: dataOfDiet?.plan_id,
-  
-          items: data,
-        });
 
-        setSelectedDate('2025-12-12');
-        console.log(valuesD?.startDate,'valuesD?.Startdate');
-      
-    }
+ 
 
-    console.log(valuesD,'intial values');
+    console.log(objectData,'intial values');
 
     useEffect(()=>{
         console.log(valuesD,'inside effect')
@@ -200,260 +171,257 @@ const currencies = [
       setValuesD({...valuesD, items: [...valuesD?.items, Obj1]});
     };
 
+  
     const dataDelete = (i,index) => {
-        console.log(i,'iii',index,'indexx')
-      let firstData = [...valuesD?.items]
-      console.log(i,"<---asdasdas", firstData)
-      const filterData  =firstData?.filter((itm,ind)=>ind!==index)
-      console.log(filterData,"<--fghbjnk")
-      if(i?.Diet_id){
-      var data = JSON.stringify({
-        "diet_id": i?.Diet_id
-      });
-      
-      var config = {
-        method: 'PUT',
-      maxBodyLength: Infinity,
-        url: 'https://aipse.in/api/deleteDiet',
-        headers: { 
-          'Content-Type': 'application/json'
-        },
-        data : data
-      };
-      
-      axios(config)
-      .then(function (response) {
-     setValuesD({...valuesD,items:filterData})
-      alert("Category Deleted Successfully")
-
-        console.log(JSON.stringify(response.data));
-        props.apiHitParent();
-      })
-      .catch(function (error) {
-       alert("Something Went Wrong")
-  
-        console.log(error);
-      });
-    }
-    else{
-      setValuesD({...valuesD,items:filterData})
-      // Alert?.alert("delete")
-    }
-      // const data = {...valuesD};
-      // data?.items.pop();
-  
-      // setValuesD(data);
-    };
-
-    const addItems = () => {
-      if(valuesD?.interval===0){
-        let msg='Please fill all fields'
-        //console.log(backData,'before back')
-        childcomrefAlert.current.handleClickOpenAlert(msg);
-      }
-      else{
-      let newss = {};
-      let flag=false;
-      const categoryData = valuesD?.items?.map(itm => {
-        newss = {...newss, [itm?.category]: parseInt(itm?.value)};
-        if(itm?.category==='' || itm?.value===''){
-          flag=true;
-        }
-        return {
-          [itm?.category]: parseInt(itm?.value),
-        };
-      });
-      if(flag){
-        let msg='Please fill all fields'
-        console.log(valuesD,'before back')
-        childcomrefAlert.current.handleClickOpenAlert(msg);
-      }
-      else{
-        console.log(valuesD,'before back')
-      let alldata = {};
-      const totaldata = valuesD?.items?.map(itm => {
-        alldata = {
-          ...alldata,
-          [itm?.category]: parseInt(parseInt(itm?.value) * parseInt(valuesD?.interval)),
-        };
-        return {
-          [itm?.category]: parseInt(itm?.value * valuesD?.interval),
-        };
-      });
-       console.log(alldata,"<--fdcghvbj")
-      const reqyest = {
-        user_id: props.userid,
-        start_date:moment(valuesD?.startDate,"DD-MM-YYYY").format('DD-MM-YYYY'),
-        end_date:moment(valuesD?.endDate,"DD-MM-YYYY").format('DD-MM-YYYY'),
-        type: 'food', 
-        interval:
-          valuesD?.interval == 7
-            ? 'week'
-            : valuesD?.interval == 30
-            ? 'month'
-            : '2 month',
-        category: newss,
-        total_servings: alldata,
-     
+      console.log(i,'iii',index,'indexx')
+    let firstData = [...valuesD?.items]
+    console.log(i,"<---asdasdas", firstData)
+    const filterData  =firstData?.filter((itm,ind)=>ind!==index)
+    console.log(filterData,"<--fghbjnk")
+    if(i?.Diet_id){
+    var data = JSON.stringify({
+      "diet_id": i?.Diet_id
+    });
     
-       };
+    var config = {
+      method: 'PUT',
+    maxBodyLength: Infinity,
+      url: 'https://aipse.in/api/deleteDiet',
+      headers: { 
+        'Content-Type': 'application/json'
+      },
+      data : data
+    };
+    
+    axios(config)
+    .then(function (response) {
+   setValuesD({...valuesD,items:filterData})
+    alert("Category Deleted Successfully")
+
+
+      console.log(JSON.stringify(response.data));
+      props.apiHitParent();
+    })
+    .catch(function (error) {
+     alert("Something Went Wrong")
+
+      console.log(error);
+    });
+  }
+  else{
+    setValuesD({...valuesD,items:filterData})
+    // Alert?.alert("delete")
+  }
+    // const data = {...valuesD};
+    // data?.items.pop();
+
+    // setValuesD(data);
+  };
+
+    const dataHit =()=>{
+
       let config = {
-        method: 'POST',
+        method: 'GET',
         maxBodyLength: Infinity,
-      //  url: baseUrl + '/assignDietPlanForPatient',
-       url: `https://aipse.in/api/assignDietPlanForPatient`,
-  
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        data: [reqyest],
+        url: 'https://aipse.in/api/listallusers',
+        headers: { }
       };
-  
-      axios
-        .request(config)
-        .then(response => {
-         let msg='Diet Plan Created Successfully'
-          childcomrefAlert.current.handleClickOpenAlert(msg);
-          // console.log(JSON.stringify(response.data));
-          navigate('/dashboardadmin/alldietplan',{state:backData})
-          props.apiHitParent();
-        })
-        .catch(error => {
-           console.log(error);
-        });
-        {  console.log([reqyest],"<--gdfhdfdfhdfh")}
-        console.log(valuesD,'before back')
-       
-
-        setOpen(false);
-      }
       
-    }
-    };
-
-
-    const editSave = () => {
-      console.log(valuesD,"<---sadasdasdasdas")
-
-      let flag=false;
-        const valuess = valuesD?.items?.map(itm => {
-          if(itm?.category==='' || itm?.value===''){
-            flag=true;
-          }
-          if(!itm?.total_servings||itm?.total_servings==0)
-          {
-            return {
-              Category: itm?.category,
-              recommended_servings: parseInt(itm?.value),
-              Diet_id: itm?.Diet_id?itm?.Diet_id:0,
-              total_servings: parseInt(itm?.value)* valuesD?.interval
-            };
-          }
-          else{
-          return {
-            Category: itm?.category,
-            recommended_servings: parseInt(itm?.value),
-            Diet_id: itm?.Diet_id?itm?.Diet_id:0,
-            total_servings:  parseInt(itm?.value)* valuesD?.interval,
-          };
-          
-        }
-
+      axios.request(config)
+      .then(async(response) => {
+        console.log(response.data?.data,'response.data?.data?')
         
-       
-        });
-        console.log(valuess, '<--valuesD?.items', valuesD);
-        if(flag){
-          let msg='Please fill all fields'
-          childcomrefAlert.current.handleClickOpenAlert(msg);
-        }
-        else{
-        var data = JSON.stringify({
-          user_id: props.userid,
-          start_date: valuesD?.startDate,
-          end_date: valuesD?.endDate,
-          type: 'food',
-          interval:
-            valuesD?.interval === 7
-              ? 'week'
-              : valuesD?.interval === 30
-              ? 'month'
-              : 'two month',
-          plan_id: valuesD?.plan_id,
-          Category: valuess,
-        });
-        console.log(data,"<-qweqeqweqweq")
-        var config = {
-          method: 'PUT',
-          maxBodyLength: Infinity,
-          url: 'https://aipse.in/api/editDietPlanAssigned',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          data: data,
-        };
-    
-        axios(config)
-          .then(function (response) {
-           // alert('Diet Plan Updated SuccessFully');
-            childcomrefAlert.current.handleClickOpenAlert('Diet Plan Updated Successfully');
-           
-            console.log(response.data,"<------editDietPlanAssignededitDietPlanAssigned");
-            props.apiHitParent();
-          })
-          .catch(function (error) {
-           alert('Something Went Wrong');
-            console.log({...error});
-          });
-        console.log(valuesD, '<----qwewq');
-        setOpen(false)
-        }
-      };
-
-      const DeleteDietPlan = async =>{
-    
-        var data = JSON.stringify({
-          "user_id": props.userid,
-          "plan_id": dataOfDiet?.plan_id
-        });
-        
-        var config = {
-          method: 'PUT',
-        maxBodyLength: Infinity,
-          url: 'https://aipse.in/api/deleteDietOnPlanid',
-          headers: { 
-            'Content-Type': 'application/json'
-          },
-          data : data
-        };
-        console.log(data,"<-FTVGYBHUNJIKM")
-        axios(config)
-        .then(function (response) {
+        console.log('datahit callled');
           
-         let msg='Diet Plan Deleted Successfully'
-          childcomrefAlert.current.handleClickOpenAlert(msg);
-          props.apiHitParent();
-          console.log(JSON.stringify(response.data));
+         setStatusOfUser(response.data?.data);
+          
+        
+        //console.log("dataass is ",datass());
         })
-        .catch(function (error) {
-         alert('Something Went Wrong');
+        .catch((error) => {
           console.log(error);
         });
-      }
+}
 
+function setStatusOfUser(users){
+  console.log('setStatusOfUser called')
+  let s=1;
+  users.map((itm,index)=>{
+    // console.log(itm,"<--qwewqeqw")
+    if(itm?.id===valuesD?.id){
+      if(itm?.status==='inactive'){
+        childcomrefAlert.current.handleClickOpenAlert('Diet Plan cannot be created on In active Users');
+
+        //alert('Diet Plan cannot be created on In active Users');
+        const newObj={...itm,email:itm.email_id};
+        //childComponentRef.current.handleClickOpenData(newObj)
+        const objectData =valuesD;
+        console.log(valuesD,'teset fot in active ')
+          // objectData.email_id=selectedUser1.email;
+          // objectData.user_name=selectedUser1.value
+          // objectData.id=selectedUser1.id;
+          // valuesD.id=selectedUser1.id
+
+          objectData.pathnamePrevious=[location.pathname]
+          
+          objectData.pathnameCurrent=[location.pathname,0]
+          const encodedData = encodeURIComponent(JSON.stringify(objectData));
+          navigate('/dashboardadmin/adminprofile',{state:objectData});
+
+        s=0
+        //console.log('userId',userId,flag)
+        
+        //itm[email]=itm.email_id;
+       
+        return;
+      }
+    }
+    if(index===users?.length-1){
+      if(itm?.id===valuesD?.id){
+        if(itm?.status==='inactive'){
+          
+          
+          console.log('userId',valuesD?.id)
+        }
+        else{
+         
+          addItems();
+        }
+      }
+      else if(s===1){
+        
+        addItems();
+        
+      }
+     
+    }
+  return {label: itm?.user_name, value: itm?.user_name,status:itm?.status,id:itm?.id,email:itm?.email_id}
+})
+}
+      // apihit
+    //  setUserData(datass)
+
+const addItemsHandler=()=>{
+  console.log('addItemsHandler called')
+  dataHit();
+}
+const addItems = () => {
+  if(valuesD?.interval===0){
+    let msg='Please fill all fields'
+    childcomrefAlert.current.handleClickOpenAlert(msg);
+  }
+  else{
+  let newss = {};
+  let flag=false;
+  const categoryData = valuesD?.items?.map(itm => {
+    newss = {...newss, [itm?.category]: parseInt(itm?.value)};
+    if(itm?.category==='' || itm?.value===''){
+      flag=true;
+    }
+    return {
+      [itm?.category]: parseInt(itm?.value),
+    };
+  });
+  if(flag){
+    let msg='Please fill all fields'
+    childcomrefAlert.current.handleClickOpenAlert(msg);
+  }
+  else{
+  let alldata = {};
+  const totaldata = valuesD?.items?.map(itm => {
+    alldata = {
+      ...alldata,
+      [itm?.category]: parseInt(parseInt(itm?.value) * parseInt(valuesD?.interval)),
+    };
+    return {
+      [itm?.category]: parseInt(itm?.value * valuesD?.interval),
+    };
+  });
+   console.log(valuesD,"<--fdcghvbj")
+  const reqyest = {
+    user_id: valuesD.id,
+    start_date:moment(valuesD?.startDate,"DD-MM-YYYY").format('DD-MM-YYYY'),
+    end_date:moment(valuesD?.endDate,"DD-MM-YYYY").format('DD-MM-YYYY'),
+    type: 'exercise', 
+    interval:
+      valuesD?.interval == 7
+        ? 'week'
+        : valuesD?.interval == 30
+        ? 'month'
+        : '2 month',
+    category: newss,
+    total_servings: alldata,
+ 
+
+   };
+  let config = {
+    method: 'POST',
+    maxBodyLength: Infinity,
+  //  url: baseUrl + '/assignDietPlanForPatient',
+   url: `https://aipse.in/api/assignDietPlanForPatient`,
+
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: [reqyest],
+  };
+
+  axios
+    .request(config)
+    .then(response => {
+     let msg='Diet Plan Created Successfully'
+      childcomrefAlert.current.handleClickOpenAlert(msg);
+      // console.log(JSON.stringify(response.data));
+      //navigate('/dashboardadmin/alldietplan',{state:{data:usersDataSelected}})
+      const objectData = valuesD;
+      objectData.pathnamePrevious=['/dashboardadmin/Adminexercise']
+    
+      objectData.pathnameCurrent=[location.pathname,0]
+     
+     // navigate(`/dashboardadmin/alldietplan?data=${encodedData}`);
+     navigate('/dashboardadmin/listallexerciseplan',{state:objectData})
+
+      props.apiHitParent();
+    })
+    .catch(error => {
+       console.log(error);
+    });
+    {  console.log([reqyest],"<--gdfhdfdfhdfh")}
+
+    setOpen(false);
+  }
+  
+}
+};
+
+
+  
+
+const checkDuplicateCategory=(data,dup)=>{
+  let flag=false;
+ data?.map((item)=>{
+  if(item.category===dup) flag=true
+ })
+
+ return flag
+}
+
+      const [userId,setUserId]=useState()
+      
+      const handleDataChangeUserId = (newData) => {
+        setUserDataSelected(newData);
+        console.log(newData.id,'new data')
+        setUserId(newData.id);
+      };
 
     
     
     React.useImperativeHandle(ref, () => ({
-      editClick
+      editClick,
+      handleClickOpen
     }));
    
-    useEffect(()=>{
-      if(dataOfDiet.action==='Edit')setValuesFromEdit();
-    },[dataOfDiet])
-
-
-
+   
     function editClick(val){
      
 
@@ -461,27 +429,16 @@ const currencies = [
       const val1=val;
       setDataOfDiet(val1);
 
-      if(val.action!=='Edit'){
-        setBackData(val)
-      }
-
       
       
-      setAction(val.action);
+      setAction('Edit');
       
 
       handleClickOpen();
     
     }
 
-    const checkDuplicateCategory=(data,dup)=>{
-      let flag=false;
-     data?.map((item)=>{
-      if(item.category===dup) flag=true
-     })
 
-     return flag
-    }
 
    
   
@@ -497,22 +454,19 @@ const currencies = [
       
      setValuesD(intialValues);
      console.log(intialValues,'intialvalues111');
-     props.apiHitParent();
-     setAction("");
+    //  props.apiHitParent();
+    //  setAction("");
+    navigate('/dashboardadmin/AdminExercise');
       setOpen(false);
     };
    
     const handleCloseSave=async(e)=>{
-      if(action==='Edit'){
-        //console.log('hitting edit')
-       editSave();
-      }
-      else{
-        //console.log('hitting create')
-        addItems();
-      }
-      
      
+        //console.log('hitting create')
+        addItemsHandler();
+      
+      
+      
     }
     const handleCloseDelete=()=>{
       DeleteDietPlan();
@@ -527,7 +481,7 @@ const currencies = [
       let config = {
           method: 'GET',
           maxBodyLength: Infinity,
-          url: 'https://aipse.in/api/getAllCategories?type=food',
+          url: 'https://aipse.in/api/getAllCategories?type=exercise',
           headers: { 'Content-Type': 'application/json' },
       };
       axios(config)
@@ -540,13 +494,7 @@ const currencies = [
           });
 
   }
-   //testing 
-   const [selectedDateTesting, setSelectedDateTesting] = useState(new Date());
-
-  const handleDateChangeTesting= (date) => {
-    setSelectedDateTesting(date);
-  };
-
+   
    
 
 
@@ -597,7 +545,7 @@ const currencies = [
                 <CloseIcon />
               </IconButton>
               <Typography sx={{ ml: 2, flex: 1, fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:'10px' }} variant="h6" component="div">
-                Create Diet Plan
+                Create Exercise Plan
               </Typography>
               <Button autoFocus color="inherit" onClick={handleCloseSave}>
                 save
@@ -610,7 +558,7 @@ const currencies = [
             </Toolbar>
           </AppBar>
           {/* <Card style={{padding:"20px 5px", margin:"0px"}}><CardContent> */}
-          <Stack mt={3}>
+          <Stack m={3}>
             <Typography  style={{display: 'inline-block',marginRight:"30", fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:'10px'}} variant='h5' gutterLeft >Select Interval </Typography>
             </Stack>
   
@@ -629,39 +577,11 @@ const currencies = [
               </MenuItem>
             ))}</TextField></Stack> */}
 
-            {/* <Grid m={3} >
-            <FormControl fullWidth >
-                <InputLabel shrink >Select Interval </InputLabel>
-                <Select
-                  value={valuesD?.interval}
-                  onChange={e => {
-                      console.log(valuesD?.startDate,"<--valuesD?.startDate")
-                    const newDate = moment(valuesD?.startDate,"DD-MM-YYYY")
-                      ?.add( e?.target?.value, 'days')
-                       ?.format('DD-MM-YYYY');
-                      console.log(newDate,"<---newDate",e,typeof e,valuesD?.startDate)
-                    setValuesD({
-                      ...valuesD,
-                      interval:parseInt(e?.target?.value) ,
-                      endDate: newDate,
-                    });
-                    console.log(parseInt(e?.target?.value),'parseInt(e?.target?.value)')
-                  }}
-                >
-                  <MenuItem value="7">Week</MenuItem>
-                  <MenuItem value="30">Month</MenuItem>
-                  <MenuItem value="90">3 Month</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid> */}
+<Stack  m={3}><DropdownUsers  valuesD={valuesD} onDataChangeuserId={handleDataChangeUserId}></DropdownUsers></Stack>
 
 
-            {/* teseting */}
-
-
-           
-            <Box sx={{ minWidth: 120 }} m={3}>
-      <FormControl fullWidth>
+            <Stack m={3}>
+            <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Select Interval</InputLabel>
         <Select
           labelId="demo-simple-select-label"
@@ -684,23 +604,19 @@ const currencies = [
          
         > 
               <MenuItem value="7">Week</MenuItem>
-                  <MenuItem value="30">1 Month</MenuItem>
-                  <MenuItem value="90">3 Months</MenuItem>
+                  <MenuItem value="30">Month</MenuItem>
+                  <MenuItem value="90">3 Month</MenuItem>
         </Select>
       </FormControl>
-    </Box>
-          
+            </Stack>
 
 
-
-          
-
-  
+ 
             
   
   
        
-     <Grid container  id="date-picker-stack" flexDirection="row">
+            <Grid container  id="date-picker-stack" flexDirection="row">
         <Grid  xs={6} xl={6}   item>
          
         <CardContent>  
@@ -744,12 +660,6 @@ const currencies = [
        
        </Grid> 
 
-
-       {/* testing */}
-
-
-
-
        {
         valuesD?.items?.map((item,index)=>{
           return (
@@ -758,39 +668,39 @@ const currencies = [
             <Grid mb={4}   Item><Card> <CardContent>
                 <Grid container flexDirection="row" justifyContent="space-between" >
                     
- <Grid item xs={4}  md={5} lg={5}> 
+                    <Grid item xs={4}  md={5} lg={5}> 
                                    
        <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Category</InputLabel>
+        <InputLabel >Category</InputLabel>
         <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
+          l
           value={item.category}
-          label="Select Your Category"
+          label="Category"
           onChange={e => {
 
           
             
-              const data = [...valuesD?.items];
-              let flag=checkDuplicateCategory(data, e?.target?.value)
-              if(flag){
-                let msg=`Category ${e?.target?.value} Already Selected`
-              childcomrefAlert.current.handleClickOpenAlert(msg);
-              }else{
-              data[index] = {...data[index], category: e?.target?.value};
-              setValuesD({...valuesD, items: data});
-              }
+            const data = [...valuesD?.items];
+            let flag=checkDuplicateCategory(data, e?.target?.value)
+            if(flag){
+              let msg=`Category ${e?.target?.value} Already Selected`
+            childcomrefAlert.current.handleClickOpenAlert(msg);
+            }else{
+            data[index] = {...data[index], category: e?.target?.value};
+            setValuesD({...valuesD, items: data});
+            }
+          
           }}
           
         >
          
          {categoryData?.map((option,index) => (
-        <MenuItem key={option.category_name} value={option.category_name}>
-          {option.category_name}
+        <MenuItem key={option?.category_name} value={option?.category_name}>
+          {option?.category_name}
         </MenuItem>
            ))}
          
-          
+            
         </Select>
            </FormControl>
               </Grid>
@@ -798,7 +708,7 @@ const currencies = [
             <Grid xs={5}  md={5} lg={5} marginRight={1} item>
                                                   
                                               
-                <TextField label="Calories" 
+                <TextField label="Sets" 
                 type='number'
                   onChange={e => {
 
@@ -812,9 +722,9 @@ const currencies = [
                 
                 variant='outlined' value={item.value} fullWidth/>
                                   
-          </Grid>
+                                      </Grid>
     
-                    <Grid xs={2} md={1} lg={1}  item> 
+                                      <Grid xs={2} md={1} lg={1}  item> 
                     {index!==0 && (
                     
                      <IconButton
@@ -846,7 +756,7 @@ const currencies = [
        
       
 
-
+        
               
   
         <Button variant="contained" onClick={addButton} style={{
@@ -872,6 +782,7 @@ const currencies = [
   
           <span style={{ fontSize: "2rem" }}>+</span>
         </Button>
+        <InactiveProfile ref={childComponentRef}></InactiveProfile>
             
         </Dialog>
       </div>
@@ -879,4 +790,6 @@ const currencies = [
   });
 
 
-  export default CreateDietPlan;
+ 
+
+export default CreateInstantExercisePlan

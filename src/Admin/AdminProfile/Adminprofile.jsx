@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
+import moment from 'moment';
+
 import {useEffect} from 'react'
 import IconButton from '@mui/material/IconButton';
 import { styled } from '@mui/material/styles'
@@ -20,6 +22,7 @@ import {  Snackbar } from '@mui/material';
 import MuiAlert from '@mui/lab/Alert';
 import AlertDialog from '../UserStats/AlertDialog';
 import BarGraph from '../AdminDashboard/BarGraph';
+import CreateDietPlan from '../AdminDiet/components/CreateDietPlanNut';
 // import Page from '../../components/Page';
 
 
@@ -36,6 +39,7 @@ const pageheading={
 
 export default function Userprofile({props}){
   const location = useLocation();
+  const childComponentRef = useRef(null);
 console.log(location,'location?.pathname')
   const navigate=useNavigate();
   const goback=useNavigate(-1)
@@ -278,12 +282,15 @@ console.log(objectData?.id,'objectDataobjectData')
     const encodedData = encodeURIComponent(JSON.stringify(objectData));
     navigate('/dashboard/app',{state:objectData});
   }
+  const apiHit1=()=>{
+    
+  }
    
      
     return(
         <> 
        
-
+       <CreateDietPlan userid={objectData.id} apiHitParent={apiHit1} ref={childComponentRef} />
             <Card>
                 <CardContent>
    <Grid container flexDirection="row">
@@ -380,7 +387,92 @@ console.log(objectData?.id,'objectDataobjectData')
             </Grid>)}
             
         </Card>
-               </Stack>
+ </Stack>
+
+ <Stack mt={4}> 
+        <Card  onClick={(e)=>{
+          const today = new Date();
+          const Obj1 = {
+            category: '',
+            value: '',
+          };
+          const intialValues = {
+            interval: 0,
+            startDate: moment(today)?.format('DD-MM-YYYY'),
+            endDate: "",
+            category: '',
+            items: [Obj1],
+            
+          };
+          
+          objectData.pathnamePrevious.push(location.pathname)
+          objectData.pathnameCurrent[0]=location.pathname
+      const sendData={...intialValues,...objectData}
+      sendData.action='Create'
+      childComponentRef.current.editClick(sendData)
+        }}  sx={{textDecoration:'none'}} justifyContent="space-between" alignItems="center"  style={{backgroundColor:"#F0E7F5"}}>
+           
+           {checked===true &&( <Grid container  sx={{textDecoration:'none'}} justifyContent="space-between" alignItems="center" >
+                <Grid item >
+                    
+                <Typography sx={{ fontSize: 20, fontWeight: 'bold', fontFamily: 'Inter-SemiBold', lineHeight: "50px", marginLeft:"10px" }} mt={2} mb={2} >
+                   Create Diet Plan
+                  </Typography>
+                </Grid>
+                <Grid item>
+                    <Typography mt={2} mb={2}>
+                    <IconButton  aria-label="delete">
+        <ArrowForwardIcon />
+      </IconButton>
+                    </Typography>
+                </Grid>
+            </Grid>)}
+            
+        </Card>
+ </Stack>
+
+
+ <Stack mt={4}> 
+        <Card  onClick={(e)=>{
+          const today = new Date();
+          const Obj1 = {
+            category: '',
+            value: '',
+          };
+          const intialValues = {
+            interval: 0,
+            startDate: moment(today)?.format('DD-MM-YYYY'),
+            endDate: "",
+            category: '',
+            items: [Obj1],
+            
+          };
+          
+          objectData.pathnamePrevious.push(location.pathname)
+          objectData.pathnameCurrent[0]=location.pathname
+      const sendData={...intialValues,...objectData}
+      sendData.action='Create'
+      childComponentRef.current.editClick(sendData)
+        }}  sx={{textDecoration:'none'}} justifyContent="space-between" alignItems="center"  style={{backgroundColor:"#F0E7F5"}}>
+           
+           {checked===true &&( <Grid container  sx={{textDecoration:'none'}} justifyContent="space-between" alignItems="center" >
+                <Grid item >
+                    
+                <Typography sx={{ fontSize: 20, fontWeight: 'bold', fontFamily: 'Inter-SemiBold', lineHeight: "50px", marginLeft:"10px" }} mt={2} mb={2} >
+                   Create Exercise Plan
+                  </Typography>
+                </Grid>
+                <Grid item>
+                    <Typography mt={2} mb={2}>
+                    <IconButton  aria-label="delete">
+        <ArrowForwardIcon />
+      </IconButton>
+                    </Typography>
+                </Grid>
+            </Grid>)}
+            
+        </Card>
+ </Stack>
 
                   <Stack  mt={10}>
                     <Card onClick={handleDelete} style={{backgroundColor:"purple", margin:"10px", alignItems:"center"}}>

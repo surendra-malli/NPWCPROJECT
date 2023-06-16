@@ -20,7 +20,7 @@ import { Link } from 'react-router-dom';
 import Iconify from 'src/components/iconify/Iconify';
 import Slide from '@mui/material/Slide';
 import Page from 'src/components/Page';
-import CreateDietPlan from './components/CreateDietPlanNut';
+import CreateExercisePlan from './components/CreateExercisePlan'
 import { useNavigate} from 'react-router-dom';
 
 import axios from 'axios';
@@ -56,7 +56,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
     lineHeight: "30px",
     color: "#112866"
   };
-export default function ListAllDietPlan(props){
+export default function ListAllExercisePlan(props){
   let  navigate = useNavigate();
   const location = useLocation();
   //const encodedData = new URLSearchParams(location.search).get('data');
@@ -106,7 +106,7 @@ useEffect(()=>{
         let config = {
           method: 'POST',
           maxBodyLength: Infinity,
-          url: `https://aipse.in/api/listalldietplans?user_id=${userId}&type=food`,
+          url: `https://aipse.in/api/listalldietplans?user_id=${userId}&type=exercise`,
           headers: { },
           data : data
         };
@@ -139,7 +139,7 @@ useEffect(()=>{
         <div> 
           <Page>
           
-           <CreateDietPlan userid={userData.id} apiHitParent={apiHit} ref={childComponentRef} />
+           <CreateExercisePlan userid={userData.id} apiHitParent={apiHit} ref={childComponentRef} />
            
            
             <Grid mt={2} container flexDirection="row" alignItems="center">
@@ -153,7 +153,7 @@ useEffect(()=>{
             </Grid>
            
             <Grid  item>
-            <Typography style={pageheading}>List All Diet Plan {userData?.user_name}{userData?.value}</Typography>
+            <Typography style={pageheading}>List All Exercise Plan {userData?.user_name}{userData?.value}</Typography>
             </Grid>
          </Grid>
 
@@ -197,7 +197,7 @@ useEffect(()=>{
             );
           })
          }
-         {dataFromApi?.length===undefined && <h1>No Diet Plans Created</h1>}
+         {dataFromApi?.length===undefined && <Grid display="flex" justifyContent='center' alignItems='center'>No Exercise Items Created</Grid>}
 
         
 
@@ -250,7 +250,7 @@ useEffect(()=>{
         }} >
   
   
-          <span >Create Diet Plan</span>
+          <span >Create Exercise Plan</span>
              </Button>
                   </div>
     );

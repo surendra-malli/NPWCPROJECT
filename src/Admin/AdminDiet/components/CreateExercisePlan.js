@@ -127,7 +127,7 @@ const currencies = [
 
 
   
-  const  CreateDietPlan= forwardRef((props, ref) => {
+  const  CreateExercisePlan= forwardRef((props, ref) => {
     const [selectedDate, setSelectedDate] = useState(null);
     const [intervalValue,setIntervalValue]=useState("")
     const childcomrefAlert=useRef();
@@ -285,7 +285,7 @@ const currencies = [
         user_id: props.userid,
         start_date:moment(valuesD?.startDate,"DD-MM-YYYY").format('DD-MM-YYYY'),
         end_date:moment(valuesD?.endDate,"DD-MM-YYYY").format('DD-MM-YYYY'),
-        type: 'food', 
+        type: 'exercise', 
         interval:
           valuesD?.interval == 7
             ? 'week'
@@ -315,7 +315,7 @@ const currencies = [
          let msg='Diet Plan Created Successfully'
           childcomrefAlert.current.handleClickOpenAlert(msg);
           // console.log(JSON.stringify(response.data));
-          navigate('/dashboardadmin/alldietplan',{state:backData})
+          navigate('/dashboardadmin/listallexerciseplan',{state:backData})
           props.apiHitParent();
         })
         .catch(error => {
@@ -372,7 +372,7 @@ const currencies = [
           user_id: props.userid,
           start_date: valuesD?.startDate,
           end_date: valuesD?.endDate,
-          type: 'food',
+          type: 'exercise',
           interval:
             valuesD?.interval === 7
               ? 'week'
@@ -396,7 +396,7 @@ const currencies = [
         axios(config)
           .then(function (response) {
            // alert('Diet Plan Updated SuccessFully');
-            childcomrefAlert.current.handleClickOpenAlert('Diet Plan Updated Successfully');
+            childcomrefAlert.current.handleClickOpenAlert('Exercise Plan Updated Successfully');
            
             console.log(response.data,"<------editDietPlanAssignededitDietPlanAssigned");
             props.apiHitParent();
@@ -430,7 +430,7 @@ const currencies = [
         axios(config)
         .then(function (response) {
           
-         let msg='Diet Plan Deleted Successfully'
+         let msg='Exercise Plan Deleted Successfully'
           childcomrefAlert.current.handleClickOpenAlert(msg);
           props.apiHitParent();
           console.log(JSON.stringify(response.data));
@@ -527,7 +527,7 @@ const currencies = [
       let config = {
           method: 'GET',
           maxBodyLength: Infinity,
-          url: 'https://aipse.in/api/getAllCategories?type=food',
+          url: 'https://aipse.in/api/getAllCategories?type=exercise',
           headers: { 'Content-Type': 'application/json' },
       };
       axios(config)
@@ -597,7 +597,7 @@ const currencies = [
                 <CloseIcon />
               </IconButton>
               <Typography sx={{ ml: 2, flex: 1, fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:'10px' }} variant="h6" component="div">
-                Create Diet Plan
+                Create Exercise Plan
               </Typography>
               <Button autoFocus color="inherit" onClick={handleCloseSave}>
                 save
@@ -798,7 +798,7 @@ const currencies = [
             <Grid xs={5}  md={5} lg={5} marginRight={1} item>
                                                   
                                               
-                <TextField label="Calories" 
+                <TextField label="Sets" 
                 type='number'
                   onChange={e => {
 
@@ -879,4 +879,4 @@ const currencies = [
   });
 
 
-  export default CreateDietPlan;
+  export default CreateExercisePlan;

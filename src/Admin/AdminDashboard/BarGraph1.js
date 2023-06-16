@@ -110,6 +110,9 @@ const BarGraph1 = () => {
     chart: {
       type: 'column'
     },
+    credits: {
+      enabled: false
+  },
     title: {
       text: 'Diet Status'
     },

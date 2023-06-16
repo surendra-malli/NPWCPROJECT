@@ -351,6 +351,20 @@ const objectData = location?.state
     navigate(`/dashboardadmin/alldietplan`,{state:objectData})
 
   }
+  
+  
+  const handleListAllExercisePlan=()=>{
+   
+    const objectData = userData;
+    objectData.pathnamePrevious.push(location.pathname)
+    
+    objectData.pathnameCurrent[0]=location.pathname
+    const encodedData = encodeURIComponent(JSON.stringify(objectData));
+    //navigate(`/dashboardadmin/alldietplan?data=${encodedData}`);
+    navigate(`/dashboardadmin/listallexerciseplan`,{state:objectData})
+
+  }
+
   const handlegoback=()=>{
     console.log(userData,'userdataaa')
     userData.pathnameCurrent[1]===0?1:userData?.pathnamePrevious.pop();
@@ -952,6 +966,10 @@ console.log(upcoming,"----upcoming----")
       
     <Stack mt={10}><Card  onClick={handleListAllDietPlan}  sx={{textDecoration:'none'}} style={{backgroundColor:"purple", margin:"10px", alignItems:"center"}}><Stack mb={2}> <Typography sx={{ fontSize: 20, fontWeight: 'bold', textAlign:'left', color:'white', fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:'10px'}} gutterBottom variant="h5" component="div" mt={3}  >
                    List All Diet Plan
+                  </Typography></Stack></Card></Stack>
+
+                  <Stack mt={5}><Card  onClick={handleListAllExercisePlan}  sx={{textDecoration:'none'}} style={{backgroundColor:"purple", margin:"10px", alignItems:"center"}}><Stack mb={2}> <Typography sx={{ fontSize: 20, fontWeight: 'bold', textAlign:'left', color:'white', fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:'10px'}} gutterBottom variant="h5" component="div" mt={3}  >
+                   List All Exercise Plan
                   </Typography></Stack></Card></Stack>
 
 

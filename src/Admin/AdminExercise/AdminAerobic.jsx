@@ -18,6 +18,8 @@ import Logo from "../../assets/nova.svg";
 import axios from "axios";
 import Plusimage from "../../assets/Plusimage.svg";
 import CreateExercise from "./components/CreateExercise";
+import Iconify from 'src/components/iconify/Iconify';
+import { Link } from 'react-router-dom';
 
 
 
@@ -38,7 +40,7 @@ const maintext = {
   fontSize: "14px",
   lineHeight: "21px",
   color:"#112866",
-  
+ 
 
 
 };
@@ -61,7 +63,7 @@ const maintitle = {
    color:"#112866"
  // fontFamily: "'Poppins', sans-serif",
   // src: `url(${poppinsItalic}) format('truetype')`,
-  // lineHeight: "38px", 
+  // lineHeight: "38px",
 };
 
 const regular={
@@ -80,17 +82,18 @@ const Aerobic = forwardRef((props, ref) => {
     console.log(dataOfExercise,'dataOfExercise');
     const [exerciseData,setExerciseData]=useState([])
     const childref=useRef();
+    const imgurl='https://aipse.in';
 
     const handleIncrement1 = () => {
       setCount1(count1 + 1);
     };
-  
+ 
     const handleDecrement1 = () => {
         if (count1 > 0){
 
             setCount1(count1 - 1);
         }
-      
+     
     };
 
 
@@ -101,18 +104,18 @@ const Aerobic = forwardRef((props, ref) => {
     const [count2, setCount2] = useState(0);
 
     const handleIncrement2 = () => {
-        
+       
       setCount2(count2 + 1);
     };
-  
+ 
     const handleDecrement2 = () => {
         if (count2 > 0){
             setCount2(count2 - 1);
         }
-      
+     
     };
 
-    
+   
 
 
 
@@ -121,12 +124,12 @@ const Aerobic = forwardRef((props, ref) => {
     const handleIncrement3 = () => {
       setCount3(count3 + 1);
     };
-  
+ 
     const handleDecrement3 = () => {
         if (count3 > 0){
             setCount3(count3 - 1);
         }
-      
+     
     };
   useEffect(()=>{
     apiHit();
@@ -141,7 +144,7 @@ const Aerobic = forwardRef((props, ref) => {
         url: `https://aipse.in/api/getItemsOfCategory?category_id=${dataOfExercise.category_id}&type=exercise`,
         headers: { }
       };
-      
+     
       axios.request(config)
       .then((response) => {
         console.log(response?.data?.data,'responseDate');
@@ -156,21 +159,26 @@ const Aerobic = forwardRef((props, ref) => {
 
   return (
     <div>
-      <img
-        src={Logo}
-        alt="nova logo"
-        style={{ height: "auto", width: "250px", marginLeft: "30px" }}
-      />
-      
-        
+     
+      <Grid>
+    <img src={Logo} alt="nova logo" style={{height: "auto", width: "250px", marginLeft: "30px"}}/></Grid>
+   
+     
+       
     <CardContent>
+       <Grid container flexDirection="row">
+     <Grid item textAlign={"center"} marginTop={0.5}>
+    <Link to="/dashboardadmin/AdminExercise" >
+      <IconButton>
+        <Iconify icon="material-symbols:arrow-back-rounded" />
+      </IconButton></Link></Grid><Grid>
             <Typography x variant="h3" style={title}>
              {dataOfExercise.category_name}
-            </Typography>
-            
+            </Typography></Grid></Grid>
+           
      </CardContent>
        
-        
+       
      
 
       <Card style={{ margin: "1rem"}}>
@@ -182,8 +190,8 @@ const Aerobic = forwardRef((props, ref) => {
         </Typography>
       </Card>
 
-      
-      
+     
+     
 
       {
         exerciseData?.map(item=>{
@@ -193,7 +201,10 @@ const Aerobic = forwardRef((props, ref) => {
               <Grid container spacing={2} justifyContent="center" alignItems="center">
                 <Grid item xs={2} md={2}>
                   <ButtonBase sx={{ width: "auto", height: "auto" }}>
-                    <img src={SideStepping} alt="nova logo" style={{ height: "100", width: "100px" }} />
+                    <img  src={imgurl+item.item_image} alt="nova logo" style={{display: 'inline-block',
+  width: '60px',
+  height: '60px',
+  borderRadius: '50%'}} />
                   </ButtonBase>
                 </Grid>
                 <Grid sx={{display:'flex',justifyContent:'space-between'}}item xs={10} spacing={2} md={10}>
@@ -204,10 +215,10 @@ const Aerobic = forwardRef((props, ref) => {
                        {item.item_name}
                       </Typography>
                       </Grid>
-                      
-    
-                      </Grid>     
-                    
+                     
+   
+                      </Grid>    
+                   
                     <Typography variant="body2" mt={1} gutterBottom style={maintext}>
                      {item.description}
                     </Typography>
@@ -229,15 +240,15 @@ const Aerobic = forwardRef((props, ref) => {
 
 
 
-    
-<CreateExercise ref={childref} />
-      
+   
+<CreateExercise dataHitParent={apiHit} categorydata={dataOfExercise} ref={childref} />
+     
 
-      
+     
 
 
 
-    
+   
     </div>
   );
 })

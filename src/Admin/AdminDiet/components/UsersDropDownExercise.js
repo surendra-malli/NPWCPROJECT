@@ -103,7 +103,7 @@ const MenuProps = {
           
           objectData.pathnameCurrent=[location.pathname,0]
           const encodedData = encodeURIComponent(JSON.stringify(objectData));
-          navigate('/dashboardadmin/createinstandietplan',{state:objectData});
+          navigate('/dashboardadmin/createinstantexerciseplan',{state:objectData});
 
           onDataChangeuserId(selectedUser1);
         }
