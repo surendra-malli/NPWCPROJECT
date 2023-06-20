@@ -193,7 +193,7 @@ const Aerobic = forwardRef((props, ref) => {
      
      
 
-      {
+      { exerciseData?
         exerciseData?.map(item=>{
           return (
             <Card style={{backgroundColor: "#F0E7F5", margin: "1rem", boxShadow: "#c4c4c4", }}>
@@ -234,7 +234,7 @@ const Aerobic = forwardRef((props, ref) => {
           </Card>
           )
         })
-      }
+      :<Grid container flexDirection='column' justifyContent='center' alignItems='center'><Typography >No Exercise Items Are Created</Typography></Grid>}
      
 
 

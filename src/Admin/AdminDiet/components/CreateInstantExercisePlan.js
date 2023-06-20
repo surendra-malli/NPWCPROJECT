@@ -150,14 +150,21 @@ const encodedData = new URLSearchParams(location.search).get('data');
 const objectData = location?.state;
 
     const intialValues = {
-      interval: 0,
+      interval: "",
       startDate: moment(today)?.format('DD-MM-YYYY'),
-      endDate: "",
+      endDate:  moment(today)?.format('DD-MM-YYYY'),
       category: '',
       items: [Obj1],
     };
     const [valuesD, setValuesD] = useState(objectData);
-
+    
+    const [date,setDate]=useState(moment(today)?.format('YYYY-MM-DD'));
+    console.log(date,'datee')
+    const [valueDate, setValueDate] = useState(dayjs(date));
+    useEffect(()=>{
+      setValueDate(dayjs(date))
+      //console.log(valueDate);
+    },[date])
 
  
 
@@ -636,7 +643,7 @@ const checkDuplicateCategory=(data,dup)=>{
             <Grid container  id="date-picker-stack" flexDirection="row">
         <Grid  xs={6} xl={6}   item>
          
-        <CardContent>  
+        {/* <CardContent>  
           <LocalizationProvider   dateAdapter={AdapterDayjs}>
           <DemoContainer components={['DesktopDatePicker']} >
           <DatePicker  label="Start Date"  slotProps={{ textField: { fullWidth: true } }}
@@ -646,7 +653,38 @@ const checkDuplicateCategory=(data,dup)=>{
         </DemoContainer>
         
       </LocalizationProvider>
-      </CardContent>  
+      </CardContent>  */}
+      <CardContent>
+
+<LocalizationProvider dateAdapter={AdapterDayjs}>
+<DemoContainer components={["DatePicker", "DatePicker"]} fullWidth>
+
+<DatePicker
+slotProps={{ textField: { fullWidth: true } }} 
+format="DD-MM-YYYY"
+label="Start Date"
+value={valueDate}
+onChange={date => {
+  if (date) {
+    //date.toDate()
+    setValueDate(date)
+    console.log(moment(date.toDate())?.format('DD-MM-YYYY'),"<---eee")
+    const newDate = moment(date.toDate())
+      ?.add(valuesD?.interval, 'days')
+      ?.format('DD-MM-YYYY');
+      console.log(newDate,date,valuesD?.interval,"<--qwert")
+    setValuesD({
+      ...valuesD,
+      startDate: moment(date.toDate())?.format('DD-MM-YYYY'),
+      endDate: newDate,
+    });
+  }
+}}
+/>
+</DemoContainer>
+</LocalizationProvider>
+</CardContent>
+
          </Grid>
   
          <Grid item xs={6} xl={6}  fullWidth mt="10px">

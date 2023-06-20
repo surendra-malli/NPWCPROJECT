@@ -420,7 +420,7 @@ export default function Protein(props) {
 
   )
 
-})):(<Typography   align="center"  style={calories}>No Data Found</Typography> )}
+})):(<Typography   align="center"  style={calories}>No Diet Items Created</Typography> )}
 
 
 

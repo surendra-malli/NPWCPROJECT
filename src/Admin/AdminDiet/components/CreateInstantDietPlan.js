@@ -621,7 +621,7 @@ const checkDuplicateCategory=(data,dup)=>{
                           />
                           </DemoContainer>
                           </LocalizationProvider>
-                          </CardContent>
+          </CardContent>
 
 
 

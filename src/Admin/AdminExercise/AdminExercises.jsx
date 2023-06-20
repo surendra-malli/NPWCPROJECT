@@ -163,9 +163,9 @@ export default function AdminExerciseCategory(props) {
                                 value: '',
                               };
                             const intialValues = {
-                                interval: 0,
+                                interval: "",
                                 startDate: moment(today)?.format('DD-MM-YYYY'),
-                                endDate: "",
+                                endDate: moment(today)?.format('DD-MM-YYYY'),
                                 category: '',
                                 items: [Obj1],
                                 pathname:location.pathname,
