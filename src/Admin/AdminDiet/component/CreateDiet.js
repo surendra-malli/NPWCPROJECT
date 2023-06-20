@@ -113,10 +113,7 @@ const FullScreenDialog = forwardRef((props, ref) => {
     }
    
     //console.log('data to post ',diet);
-    setDiet({})
-    setAction("Create")
-    deleteImage(0);
-    setData("");
+   
    
     
   }
@@ -231,6 +228,8 @@ const convertImage = async(e) => {
 
 
 const getBase64FromUrl = async (url) => {
+  console.log(url,'urlurl')
+  
   const data = await fetch(url);
   const blob = await data.blob();
   return new Promise((resolve) => {
@@ -324,12 +323,17 @@ const apiHit=async=>{
     console.log(JSON.stringify(response.data));
     //alert('Diet plan created sucessfully');
     childcomrefAlert.current.handleClickOpenAlert('Diet plan created sucessfully');
+    setDiet({})
+  setAction("Create")
+  deleteImage(0);
+  setData("");
     props.dataHitParent();
   })
   .catch((error) => {
     console.log(error);
   });
   setOpen(false);
+  
 }
 }
 
@@ -368,12 +372,17 @@ const apiHitEdit=async()=>{
     console.log(JSON.stringify(response.data),'------edit response');
     //alert('Diet plan updated sucessfully');
     childcomrefAlert.current.handleClickOpenAlert('Diet plan updated sucessfully');
+    setDiet({})
+    setAction("Create")
+    deleteImage(0);
+    setData("");
     props.dataHitParent();
   })
   .catch((error) => {
     console.log(error);
   });
   setOpen(false)
+ 
 }
 
 

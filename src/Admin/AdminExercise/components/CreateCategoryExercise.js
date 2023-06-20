@@ -295,9 +295,11 @@ const deleteHit=async=>{
                   { position: 'relative', backgroundColor: "purple" }
               } >
               < Toolbar >
+              { createData?.category_name &&
               <Typography sx = {{ ml: 2, flex: 1,cursor:'pointer' } }
               variant = "h6"
               component = "div" onClick={handleRename}> Rename </Typography>
+              }
   
               < Typography sx = {
                   { ml: 2, flex: 1 }
@@ -340,8 +342,8 @@ const deleteHit=async=>{
           <DialogActions >
           <Button onClick = { handleSave } > Save </Button> 
   
-  
-      <Button onClick = { handleCloseDelete } > Delete </Button> 
+  { createData?.category_name &&
+      <Button onClick = { handleCloseDelete } > Delete </Button> }
       </DialogActions > 
                 </Dialog>
 

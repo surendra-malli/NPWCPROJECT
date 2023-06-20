@@ -7,9 +7,10 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
-import { CardContent, Stack, TextField, Typography, AppBar,Toolbar,} from '@mui/material';
+import { CardContent, Stack, TextField, Typography, AppBar,Toolbar,Grid, Tooltip} from '@mui/material';
 import axios from 'axios';
 import AlertDialog from 'src/Admin/UserStats/AlertDialog';
+//import Tooltip from '@mui/material/Tooltip';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -59,7 +60,7 @@ const deleteHit=async=>{
 
 }
 
-  console.log(categoryData,showState,"<-------------------forwardRefforwardRef-")
+  //console.log(categoryData,showState,"<-------------------forwardRefforwardRef-")
       const [open, setOpen] = React.useState(false);
       const [createData, setCreateData] = useState({
           "category_name": "",
@@ -278,9 +279,10 @@ const deleteHit=async=>{
                       border: 'none'
                   }
               }
-              title = "Create POA" >
-  
+              title = "" >
+                <Tooltip title="Create Diet Item">
               <span style = {   { fontSize: '2rem' } } > + </span> 
+              </Tooltip>
               </Button >
   
               < Dialog position = "fixed"
@@ -291,11 +293,25 @@ const deleteHit=async=>{
               aria-describedby = "alert-dialog-slide-description" >
               < AppBar sx = {
                   { position: 'relative', backgroundColor: "purple" }
-              } >
-              < Toolbar >
-              <Typography sx = {{ ml: 2, flex: 1,cursor:'pointer' } }
+                  
+              }  >
+              < Toolbar display='flex' justifyContent='space-between'>
+                <Grid container justifyContent='space-between'>
+                  <Grid item>
+             { createData?.category_name && (
+             
+             <Tooltip title='Rename Diet Item'>
+             
+             <Typography sx = {{ cursor:'pointer' } }
               variant = "h6"
-              component = "div" onClick={handleRename}> Rename </Typography>
+              component = "div" onClick={handleRename}> Rename</Typography>
+              </Tooltip>
+              
+              )
+              }
+              </Grid>
+
+              <Grid item>
   
               < Typography sx = {
                   { ml: 2, flex: 1 }
@@ -303,17 +319,26 @@ const deleteHit=async=>{
               variant = "h6"
               component = "div" >
               Category </Typography> 
+
+              </Grid>
+              <Grid item>
+                <Tooltip title='Close'>
               <Typography onClick = { handleClose }
               sx = {
                   { ml: 2, flex: 1 ,cursor:'pointer'}
               }
               variant = "h6"
               component = "div" >
-              Close </Typography> {
+              Close </Typography>
+              </Tooltip>
+              
+              </Grid> {
               /* <Button sx={{marginTop:"5px",ml:2, fontSize:"17px"}} autoFocus color="inherit" onClick={handleClose}>
                             close
                           </Button> */
-          } </Toolbar> 
+          } 
+          </Grid>
+          </Toolbar> 
           </AppBar >
   
           <DialogContent >
@@ -336,10 +361,14 @@ const deleteHit=async=>{
       {/* <Button onClick={handleButtonClick} disabled={editing}>edit</Button> */}
           </DialogContent > 
           <DialogActions >
+            <Tooltip title='Save'>
           <Button onClick = { handleSave } > Save </Button> 
+          </Tooltip>
   
-  
+  {  createData?.category_name &&
+  <Tooltip title='Delete'>
       <Button onClick = { handleCloseDelete } > Delete </Button> 
+      </Tooltip> }
       </DialogActions > 
                 </Dialog>
 

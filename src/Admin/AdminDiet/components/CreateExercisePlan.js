@@ -143,13 +143,20 @@ const currencies = [
       value: '',
     };
     const intialValues = {
-      interval: 0,
+      interval: '',
       startDate: moment(today)?.format('DD-MM-YYYY'),
-      endDate: "",
+      endDate: moment(today)?.format('DD-MM-YYYY'),
       category: '',
       items: [Obj1],
     };
     const [valuesD, setValuesD] = useState(intialValues);
+    const [date,setDate]=useState(moment(today)?.format('YYYY-MM-DD'));
+    console.log(date,'datee')
+    const [valueDate, setValueDate] = useState(dayjs(date));
+    useEffect(()=>{
+      setValueDate(dayjs(date))
+      //console.log(valueDate);
+    },[date])
 
     const setValuesFromEdit=() => {
      
@@ -184,6 +191,10 @@ const currencies = [
   
           items: data,
         });
+        str=dataOfDiet?.start_date.substr(6)+'-'+dataOfDiet?.start_date.substr(0,2)+'-'+dataOfDiet?.start_date.substr(3,2); 
+        setValueDate((dayjs(str)))
+        setSelectedDate('2025-12-12');
+        console.log(dataOfDiet?.start_date,str,'valuesD?.Startdate----');
 
         setSelectedDate('2025-12-12');
         console.log(valuesD?.startDate,'valuesD?.Startdate');
@@ -312,10 +323,10 @@ const currencies = [
       axios
         .request(config)
         .then(response => {
-         let msg='Diet Plan Created Successfully'
+         let msg='Exercise Plan Created Successfully'
           childcomrefAlert.current.handleClickOpenAlert(msg);
           // console.log(JSON.stringify(response.data));
-          navigate('/dashboardadmin/listallexerciseplan',{state:backData})
+          //navigate('/dashboardadmin/listallexerciseplan',{state:backData})
           props.apiHitParent();
         })
         .catch(error => {
@@ -497,7 +508,7 @@ const currencies = [
       
      setValuesD(intialValues);
      console.log(intialValues,'intialvalues111');
-     props.apiHitParent();
+     //props.apiHitParent();
      setAction("");
       setOpen(false);
     };
@@ -610,9 +621,9 @@ const currencies = [
             </Toolbar>
           </AppBar>
           {/* <Card style={{padding:"20px 5px", margin:"0px"}}><CardContent> */}
-          <Stack mt={3}>
+          {/* <Stack mt={3}>
             <Typography  style={{display: 'inline-block',marginRight:"30", fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:'10px'}} variant='h5' gutterLeft >Select Interval </Typography>
-            </Stack>
+            </Stack> */}
   
   
           {/* <Stack marginLeft={3}> 
@@ -684,7 +695,7 @@ const currencies = [
          
         > 
               <MenuItem value="7">Week</MenuItem>
-                  <MenuItem value="30">1 Month</MenuItem>
+                  <MenuItem value="30">Month</MenuItem>
                   <MenuItem value="90">3 Months</MenuItem>
         </Select>
       </FormControl>
@@ -703,7 +714,39 @@ const currencies = [
      <Grid container  id="date-picker-stack" flexDirection="row">
         <Grid  xs={6} xl={6}   item>
          
-        <CardContent>  
+        <CardContent>
+
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DemoContainer components={["DatePicker", "DatePicker"]} fullWidth>
+
+          <DatePicker
+          slotProps={{ textField: { fullWidth: true } }} 
+          format="DD-MM-YYYY"
+          label="Start Date"
+          value={valueDate}
+          onChange={date => {
+            if (date) {
+              //date.toDate()
+              setValueDate(date)
+              console.log(moment(date.toDate())?.format('DD-MM-YYYY'),"<---eee")
+              const newDate = moment(date.toDate())
+                ?.add(valuesD?.interval, 'days')
+                ?.format('DD-MM-YYYY');
+                console.log(newDate,date,valuesD?.interval,"<--qwert")
+              setValuesD({
+                ...valuesD,
+                startDate: moment(date.toDate())?.format('DD-MM-YYYY'),
+                endDate: newDate,
+              });
+            }
+          }}
+          />
+          </DemoContainer>
+          </LocalizationProvider>
+          </CardContent>
+
+
+        {/* <CardContent>  
           <LocalizationProvider   dateAdapter={AdapterDayjs}>
           <DemoContainer components={['DesktopDatePicker']} >
           <DatePicker  label="Start Date"  slotProps={{ textField: { fullWidth: true } }}
@@ -726,7 +769,7 @@ const currencies = [
         </DemoContainer>
         
       </LocalizationProvider>
-      </CardContent>  
+      </CardContent>   */}
          </Grid>
   
          <Grid item xs={6} xl={6}  fullWidth mt="10px">

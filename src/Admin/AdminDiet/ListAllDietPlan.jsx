@@ -87,7 +87,20 @@ export default function ListAllDietPlan(props){
     
     const encodedData = encodeURIComponent(JSON.stringify(userData));
     //navigate(`${userData?.pathnamePrevious[userData?.pathnamePrevious.length-1]}?data=${encodedData}`);
-    navigate(`${userData?.pathnamePrevious[userData?.pathnamePrevious.length-1]}`,{state:userData})
+    //navigate(`${userData?.pathnamePrevious[userData?.pathnamePrevious.length-1]}`,{state:userData})
+    
+    
+    if(userData?.pathnameCurrent[0]==='/dashboardadmin/createinstandietplan' ){
+      
+      navigate(`/dashboardadmin/Adminitems`,{state:userData})
+    }
+    else{
+      console.log(userData?.pathnameCurrent[0],'/////----')
+    navigate(-1,{state:userData})
+  }
+
+ 
+    
   
  }
   
@@ -227,8 +240,8 @@ useEffect(()=>{
                         value: '',
                       };
                       const intialValues = {
-                        interval: 0,
-                        startDate: moment(today)?.format('DD-MM-YYYY'),
+                        interval: "",
+                        startDate: "",
                         endDate: "",
                         category: '',
                         items: [Obj1],

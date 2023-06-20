@@ -47,6 +47,7 @@ console.log(location,'location?.pathname')
   const goback=useNavigate(-1)
 const encodedData = new URLSearchParams(location.search).get('data');
 const objectData = location?.state
+console.log(objectData,'[[[[[[')
 console.log(objectData,'objectData admin profile')
   const [data,setData] = useState(objectData);
   console.log(location,'location?.state?.data')
@@ -61,6 +62,7 @@ console.log(objectData,'objectData admin profile')
   const [condition,setCondition]=useState(1);
   const [status,setStatus]=useState(data?.status);
   const [email,setEmail]=useState(data?.email_id);
+  const [memberid,setMemberid]=useState(objectData?.member_id)
   const [messageOfUserStatus,setMessageOfUserStatus]=useState("");
   const [countData,setCountData]=useState('')
 
@@ -77,7 +79,7 @@ console.log(objectData,'objectData admin profile')
     },[checked])
 
     useEffect(()=>{
-      if(objectData.pathnameCurrent[0]==='/dashboardadmin/createinstandietplan' || objectData.pathnameCurrent[0]==='/dashboardadmin/createinstantexerciseplan' ){
+      if(objectData?.pathnameCurrent[0]==='/dashboardadmin/createinstandietplan' || objectData?.pathnameCurrent[0]==='/dashboardadmin/createinstantexerciseplan' ){
         childcomrefAlert.current.handleClickOpenAlert('On Inactive User Diet Plan Cannot Be Created');
       }
     },[objectData])
@@ -161,14 +163,67 @@ console.log(objectData,'objectData admin profile')
       //handleToggleAlert();
 
     };
-    const handleSave=async=>{
-      count()
+    const handleSave=async(e)=>{
+      //console.log(e?.target?.value,'//////[[[')
+      
+      addMemberF()
     }
+    const addMemberF = async => {
 
+      console.log("this is calling")
+
+      var data = JSON.stringify({
+
+        "user_id": objectData?.id,
+
+        "member_id":memberid
+
+      });
+
+      
+
+      var config = {
+
+        method: 'PUT',
+
+        url: 'https://aipse.in/api/member_id',
+
+        headers: {
+
+          'Content-Type': 'application/json'
+
+        },
+
+        data : data
+
+      };
+
+      console.log(config,"<-config")
+
+      axios(config)
+
+      .then(function (response) {
+
+      
+       childcomrefAlert.current.handleClickOpenAlert('Memeber Id Added Sucessfully')
+
+        //setAddMember(response.data)
+
+        console.log(JSON.stringify(response.data),"<-wertyu");
+
+      })
+
+      .catch(function (error) {
+
+        console.log(error,"<-qwe");
+
+      });
+
+    }
 
     const count = async => {
       var config = {
-          method: 'GET',
+          method: 'PUT',
           maxBodyLength: Infinity,
           url: 'https://aipse.in/api/count',
           headers: { } 
@@ -236,9 +291,10 @@ console.log(objectData?.id,'objectDataobjectData')
     
     axios.request(config)
     .then((response) => {
+      childcomrefAlert.current.handleClickOpenAlert('User Deleted Sucesfully');
       console.log(JSON.stringify(response.data));
       setUsersData("")
-      childcomrefAlert.current.handleClickOpenAlert('User Deleted Sucesfully');
+      
       goBackk();
       // navigation
     })
@@ -267,7 +323,16 @@ console.log(objectData?.id,'objectDataobjectData')
    // const { from } = location.state || { from: '/' };
    console.log(dataToSent,'daaaa')
     dataToSent.pathnameCurrent[1]===0?1:dataToSent?.pathnamePrevious.pop();;
+    if(dataToSent?.pathnameCurrent[0]==='/dashboardadmin/createinstandietplan' || dataToSent?.pathnameCurrent[0]==='/dashboardadmin/createinstantexerciseplan'){
     navigate(`${dataToSent?.pathnamePrevious[dataToSent?.pathnamePrevious.length-1]}`,{state:dataToSent});
+
+    }
+    else{
+      console.log(dataToSent,'date')
+      navigate('/dashboardadmin/adminsearch',{state:dataToSent})
+    }
+    
+    
 
     // const encodedData = encodeURIComponent(JSON.stringify(dataToSent));
     // const previousUrl = new URL(location.state?.referrer || '/', window.location.origin);
@@ -285,15 +350,19 @@ console.log(objectData?.id,'objectDataobjectData')
     navigate('/dashboard/app',{state:objectData});
   }
   const apiHit1=()=>{
-    
+    //console.log('doneee')
+    navigate('/dashboardadmin/alldietplan',{state:objectData})
+  }
+  const apiHit2=()=>{
+    navigate('/dashboardadmin/listallexerciseplan',{state:objectData})
   }
    
      
     return(
         <> 
        
-       <CreateDietPlan userid={objectData.id} apiHitParent={apiHit1} ref={childComponentRef} />
-       <CreateExercisePlan userid={objectData.id} apiHitParent={apiHit1} ref={childComponentRefExercise} />
+       <CreateDietPlan userid={objectData?.id} apiHitParent={apiHit1} ref={childComponentRef} />
+       <CreateExercisePlan userid={objectData?.id} apiHitParent={apiHit2} ref={childComponentRefExercise} />
             <Card>
                 <CardContent>
    <Grid container flexDirection="row">
@@ -362,7 +431,7 @@ console.log(objectData?.id,'objectDataobjectData')
 
                 <Grid p={1} mt={2} container display='flex' flexDirection='row'>
                   <Grid  xs={10} item>
-                  <TextField id="outlined-basic" variant="outlined"  label='Enter Member ID' fullWidth/> </Grid>
+                  <TextField value={memberid} id="outlined-basic" variant="outlined"  label='Enter Member ID'  onChange={(e)=>setMemberid(e?.target?.value)} fullWidth/> </Grid>
                   <Grid xs={2} sx={{alignSelf:'center',justifyContent:'end',flexDirection:'end'}} item>
                   <Button onClick={handleSave} sx={{height:'53px',marginLeft:'10px'}} variant="contained" fullWidth>Save</Button></Grid>
                   
@@ -373,7 +442,7 @@ console.log(objectData?.id,'objectDataobjectData')
 <Stack mt={4}> 
         <Card  onClick={handleDashboardStats}  sx={{textDecoration:'none',cursor:'pointer'}} justifyContent="space-between" alignItems="center"  style={{backgroundColor:"#F0E7F5"}}>
            
-           {checked===true &&( <Grid container  sx={{textDecoration:'none'}} justifyContent="space-between" alignItems="center" >
+           {(checked===true &&(objectData?.dietcreated===1 || objectData?.exercisecreated===1)) &&( <Grid container  sx={{textDecoration:'none'}} justifyContent="space-between" alignItems="center" >
                 <Grid item >
                     
                 <Typography sx={{ fontSize: 20, fontWeight: 'bold', fontFamily: 'Inter-SemiBold', lineHeight: "50px", marginLeft:"10px" }} mt={2} mb={2} >

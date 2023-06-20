@@ -110,9 +110,8 @@ const FullScreenDialog = forwardRef((props, ref) => {
     else{
       apiHit();
     }
-    setDiet({})
-    setAction("Create")
-    deleteImage(0);
+    //setDiet({})
+    
    
     //console.log('data to post ',exercise);
    
@@ -216,8 +215,12 @@ const convertImage = async(e) => {
 console.log("upload method is calling ",images[0]?.toString().slice(22,))
 
 const getBase64FromUrl = async (url) => {
-  const data = await fetch(url);
+
+  console.log(url,'11');
+  const data =  await fetch(url);
+  console.log(data,'11');
   const blob = await data.blob();
+
   return new Promise((resolve) => {
     const reader = new FileReader();
     reader.readAsDataURL(blob);
@@ -330,6 +333,14 @@ const apiHit=async=>{
   .then((response) => {
     console.log(JSON.stringify(response.data));
     childrefAlert.current.handleClickOpenAlert('Exercise plan created sucessfully');
+    setExercise({})
+    setImages([])
+    
+    props.dataHitParent();
+    setOpen(false)
+    setAction("Create")
+        deleteImage(0);
+    
     props.dataHitParent();
   })
   .catch((error) => {
@@ -337,6 +348,8 @@ const apiHit=async=>{
   });
   setOpen(false);
   setExercise({})
+  setAction("Create")
+    deleteImage(0);
 
 }
 
@@ -376,18 +389,24 @@ const apiHitEdit=async()=>{
  
  await axios.request(config)
   .then((response) => {
+    
     console.log(JSON.stringify(response.data),'------edit response');
     childrefAlert.current.handleClickOpenAlert('Exercise plan updated sucessfully');
+    setExercise({})
+setImages([])
+
+props.dataHitParent();
+setOpen(false)
+setAction("Create")
+    deleteImage(0);
 
   })
   .catch((error) => {
     console.log(error);
   });
-  props.dataHitParent();
+ 
 
-setOpen(false)
-setExercise({})
-setImages([])
+
 
 }
 }

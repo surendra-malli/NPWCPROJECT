@@ -49,7 +49,7 @@ const pageheading={
     
     //const encodedData = new URLSearchParams(location.search).get('data');
       const objectData = location?.state;
-  console.log(location)
+  console.log(objectData,'[[[[[[')
     const [data,setData] = useState(objectData);
     console.log(objectData,'objectData')
     const [loading, setLoading] = useState(false)
@@ -112,8 +112,7 @@ const pageheading={
     },[currentPage,searchTitle]);
 
     useEffect(()=>{
-      console.log("status is", status)
-      console.log("usersdata is",usersData);
+      
       if(status==='all'){
         setDisplayUser('Total Users')
       }
@@ -170,6 +169,7 @@ const selectedProfileCalled=(yourData)=>{
   objectData.pathnamePrevious=[location.pathname];
   //console.group(location.pathname,'00000')
 const encodedData = encodeURIComponent(JSON.stringify(objectData));
+objectData.userStatus='all'
   //from=location.pathname;
   
   navigate('/dashboardadmin/adminprofile',{state:objectData});
@@ -252,6 +252,10 @@ const encodedData = encodeURIComponent(JSON.stringify(objectData));
         setCurrentPage(pageNumber);
 
     }
+
+    const goBack=()=>{
+      navigate('/dashboardadmin/adminuser')
+    }
     
   
     
@@ -265,11 +269,11 @@ const encodedData = encodeURIComponent(JSON.stringify(objectData));
             <Container>
              
              <Grid mt={10} mb={2} container flexDirection="row">
-                <Grid  item >
-                <Link to="/dashboardadmin/adminuser">
+                <Grid onClick={goBack} item >
+
                 <IconButton>
                   <Iconify icon="material-symbols:arrow-back-rounded" />
-                </IconButton></Link>
+                </IconButton>
 
                 </Grid>
                

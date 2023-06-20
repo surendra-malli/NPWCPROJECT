@@ -138,19 +138,29 @@ const currencies = [
     const [action,setAction]=useState("");
     const [backData,setBackData]=useState({});
     const today = new Date();
+    const [recievedData,setReceivedData]=useState({});
     const Obj1 = {
       category: '',
       value: '',
     };
     const intialValues = {
-      interval: 0,
+      interval: "",
       startDate: moment(today)?.format('DD-MM-YYYY'),
-      endDate: "",
+      endDate: moment(today)?.format('DD-MM-YYYY'),
       category: '',
       items: [Obj1],
     };
-    const [valuesD, setValuesD] = useState(intialValues);
-
+    const [valuesD, setValuesD] = useState("");
+    let str= ""  //19-06-2023
+    //console.log(valuesD?.startDate,'teset startdate')
+    const [date,setDate]=useState(moment(today)?.format('YYYY-MM-DD'));
+    console.log(date,'datee')
+    const [valueDate, setValueDate] = useState(dayjs(date));
+    useEffect(()=>{
+      setValueDate(dayjs(date))
+      //console.log(valueDate);
+    },[date])
+    
     const setValuesFromEdit=() => {
      
         // console.log(
@@ -178,15 +188,16 @@ const currencies = [
               : dataOfDiet?.interval === 'week'
               ? 7
               : 90,
-          startDate:moment?.(dataOfDiet?.start_date,"MM-DD-YYYY")?.format("DD-MM-YYYY"),
+          startDate:moment?.((dataOfDiet?.start_date),"MM-DD-YYYY")?.format("DD-MM-YYYY"),
           endDate: moment?.(dataOfDiet?.end_date,"MM-DD-YYYY")?.format("DD-MM-YYYY"),
           plan_id: dataOfDiet?.plan_id,
   
           items: data,
         });
-
+        str=dataOfDiet?.start_date.substr(6)+'-'+dataOfDiet?.start_date.substr(0,2)+'-'+dataOfDiet?.start_date.substr(3,2); 
+        setValueDate((dayjs(str)))
         setSelectedDate('2025-12-12');
-        console.log(valuesD?.startDate,'valuesD?.Startdate');
+        console.log(dataOfDiet?.start_date,str,'valuesD?.Startdate----');
       
     }
 
@@ -315,7 +326,10 @@ const currencies = [
          let msg='Diet Plan Created Successfully'
           childcomrefAlert.current.handleClickOpenAlert(msg);
           // console.log(JSON.stringify(response.data));
-          navigate('/dashboardadmin/alldietplan',{state:backData})
+         // console.log(valuesD,'valuesDddd')
+         
+          //navigate('/dashboardadmin/alldietplan',{state:backData})
+         
           props.apiHitParent();
         })
         .catch(error => {
@@ -457,7 +471,7 @@ const currencies = [
     function editClick(val){
      
 
-      console.log('edit clicked');
+      //console.log('edit clicked');
       const val1=val;
       setDataOfDiet(val1);
 
@@ -465,8 +479,8 @@ const currencies = [
         setBackData(val)
       }
 
-      
-      
+      setReceivedData(val)
+      //console.log(val,'[[[[[[')
       setAction(val.action);
       
 
@@ -497,8 +511,10 @@ const currencies = [
       
      setValuesD(intialValues);
      console.log(intialValues,'intialvalues111');
-     props.apiHitParent();
+    // props.apiHitParent();
      setAction("");
+    // setSelectedDate('')
+     setValueDate(dayjs(date))
       setOpen(false);
     };
    
@@ -511,6 +527,7 @@ const currencies = [
         //console.log('hitting create')
         addItems();
       }
+      setSelectedDate('')
       
      
     }
@@ -548,9 +565,13 @@ const currencies = [
   };
 
    
-
-
-    
+  
+//console.log(valuesD?.startDate,'startdate teset')
+  
+ 
+  // useEffect(()=>{
+  //   setValueDate(str)
+  // },[str])
   
     return (
       <div>
@@ -610,54 +631,12 @@ const currencies = [
             </Toolbar>
           </AppBar>
           {/* <Card style={{padding:"20px 5px", margin:"0px"}}><CardContent> */}
-          <Stack mt={3}>
+          {/* <Stack mt={3}>
             <Typography  style={{display: 'inline-block',marginRight:"30", fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:'10px'}} variant='h5' gutterLeft >Select Interval </Typography>
-            </Stack>
+            </Stack> */}
   
   
-          {/* <Stack marginLeft={3}> 
-          <TextField
-          onClick={changeHandler}
-            id="outlined-select-currency"
-            select
-            label="Select Your Interval"
-            defaultValue="month"
-          >
-              {currencies.map((option) => (
-              <MenuItem key={option.value} value={option.label} name= {option.value} label={option.label}>
-                {option.label}
-              </MenuItem>
-            ))}</TextField></Stack> */}
-
-            {/* <Grid m={3} >
-            <FormControl fullWidth >
-                <InputLabel shrink >Select Interval </InputLabel>
-                <Select
-                  value={valuesD?.interval}
-                  onChange={e => {
-                      console.log(valuesD?.startDate,"<--valuesD?.startDate")
-                    const newDate = moment(valuesD?.startDate,"DD-MM-YYYY")
-                      ?.add( e?.target?.value, 'days')
-                       ?.format('DD-MM-YYYY');
-                      console.log(newDate,"<---newDate",e,typeof e,valuesD?.startDate)
-                    setValuesD({
-                      ...valuesD,
-                      interval:parseInt(e?.target?.value) ,
-                      endDate: newDate,
-                    });
-                    console.log(parseInt(e?.target?.value),'parseInt(e?.target?.value)')
-                  }}
-                >
-                  <MenuItem value="7">Week</MenuItem>
-                  <MenuItem value="30">Month</MenuItem>
-                  <MenuItem value="90">3 Month</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid> */}
-
-
-            {/* teseting */}
-
+          
 
            
             <Box sx={{ minWidth: 120 }} m={3}>
@@ -684,7 +663,7 @@ const currencies = [
          
         > 
               <MenuItem value="7">Week</MenuItem>
-                  <MenuItem value="30">1 Month</MenuItem>
+                  <MenuItem value="30">Month</MenuItem>
                   <MenuItem value="90">3 Months</MenuItem>
         </Select>
       </FormControl>
@@ -702,22 +681,55 @@ const currencies = [
        
      <Grid container  id="date-picker-stack" flexDirection="row">
         <Grid  xs={6} xl={6}   item>
+
+          <CardContent>
+
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <DemoContainer components={["DatePicker", "DatePicker"]} fullWidth>
+       
+        <DatePicker
+        slotProps={{ textField: { fullWidth: true } }} 
+          format="DD-MM-YYYY"
+          label="Start Date"
+          value={valueDate}
+          onChange={date => {
+            if (date) {
+              //date.toDate()
+              setValueDate(date)
+               console.log(moment(date.toDate())?.format('DD-MM-YYYY'),"<---eee")
+              const newDate = moment(date.toDate())
+                ?.add(valuesD?.interval, 'days')
+                ?.format('DD-MM-YYYY');
+                console.log(newDate,date,valuesD?.interval,"<--qwert")
+              setValuesD({
+                ...valuesD,
+                startDate: moment(date.toDate())?.format('DD-MM-YYYY'),
+                endDate: newDate,
+              });
+            }
+          }}
+        />
+      </DemoContainer>
+    </LocalizationProvider>
+          </CardContent>
          
-        <CardContent>  
+        {/* <CardContent>  
           <LocalizationProvider   dateAdapter={AdapterDayjs}>
           <DemoContainer components={['DesktopDatePicker']} >
-          <DatePicker  label="Start Date"  slotProps={{ textField: { fullWidth: true } }}
-          
+          <DatePicker  label="Start Date"  slotProps={{ textField: { fullWidth: true } }} 
+          format="DD-MM-YYYY"
+          value={valueDate}
                   onChange={date => {
                     if (date) {
-                       console.log(moment(date)?.format('DD-MM-YYYY'),"<---eee")
-                      const newDate = moment(date)
+                      //date.toDate()
+                       console.log(moment(date.toDate())?.format('DD-MM-YYYY'),"<---eee")
+                      const newDate = moment(date.toDate())
                         ?.add(valuesD?.interval, 'days')
                         ?.format('DD-MM-YYYY');
                         console.log(newDate,date,valuesD?.interval,"<--qwert")
                       setValuesD({
                         ...valuesD,
-                        startDate: moment(date)?.format('DD-MM-YYYY'),
+                        startDate: moment(date.toDate())?.format('DD-MM-YYYY'),
                         endDate: newDate,
                       });
                     }
@@ -726,13 +738,13 @@ const currencies = [
         </DemoContainer>
         
       </LocalizationProvider>
-      </CardContent>  
+      </CardContent>   */}
          </Grid>
   
          <Grid item xs={6} xl={6}  fullWidth mt="10px">
          
          <CardContent alignItems='center'>  
-         <TextField label="End Date" value={valuesD.endDate} variant='outlined'  fullWidth/>
+         <TextField label="End Date" value={valuesD?.endDate} variant='outlined'  fullWidth/>
        </CardContent>  
           </Grid>
    
@@ -766,7 +778,7 @@ const currencies = [
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={item.category}
-          label="Select Your Category"
+          label="Category"
           onChange={e => {
 
           
@@ -802,11 +814,15 @@ const currencies = [
                 type='number'
                   onChange={e => {
 
-          
-            
+                    if(e?.target?.value.length===1 && e?.target?.value.startsWith(0)){
+
+                    }
+
+                    else{
                     const data = [...valuesD?.items];
                     data[index] = {...data[index], value: e?.target?.value};
                     setValuesD({...valuesD, items: data});
+                    }
                 
                 }}
                 

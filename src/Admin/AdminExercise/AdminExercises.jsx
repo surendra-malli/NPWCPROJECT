@@ -149,7 +149,7 @@ export default function AdminExerciseCategory(props) {
                 <Grid p={3}  xs={12} spacing={2} container display="flex" justifyContent="space-between">
                     <Grid  item>
                         <Typography style={title} variant='h1'>
-                            Exercise Category ({categoryData?.length})
+                            Exercise Category {categoryData?.length>0?'('+categoryData?.length+')':""}
                         </Typography>
                         
                     </Grid>

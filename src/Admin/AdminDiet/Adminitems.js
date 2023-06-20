@@ -3,7 +3,7 @@ import { useState, useEffect,useRef } from 'react';
 import moment from 'moment';
 // import { LongPressEventType, useLongPress } from "use-long-press";
 import { Link as RouterLink,useLocation } from 'react-router-dom';
-import { Grid, Typography, Card, CardContent,ButtonBase,Button } from '@mui/material';
+import { Grid, Typography, Card, CardContent,ButtonBase,Button, Tooltip } from '@mui/material';
  import CreateCategory from "../AdminDiet/component/CreateCategory";
 import useLongPress from '../AdminDiet/components/UseLongPress';
 import Logo from "../../assets/nova.svg";
@@ -147,7 +147,7 @@ export default function AdminDietCategory(props) {
                 <Grid p={3}  xs={12} spacing={2} container display="flex" justifyContent="space-between">
                     <Grid  item>
                         <Typography style={title} variant='h3'>
-                            Diet Category ({categoryData?.length})
+                            Diet Category {categoryData?.length>0?'('+categoryData?.length+')':""}
                         </Typography>
                         
                     </Grid>
@@ -161,9 +161,9 @@ export default function AdminDietCategory(props) {
                                 value: '',
                               };
                             const intialValues = {
-                                interval: 0,
+                                interval: '',
                                 startDate: moment(today)?.format('DD-MM-YYYY'),
-                                endDate: "",
+                                endDate: moment(today)?.format('DD-MM-YYYY'),
                                 category: '',
                                 items: [Obj1],
                                 pathname:location.pathname,
@@ -202,7 +202,12 @@ export default function AdminDietCategory(props) {
     </Grid>
   
         
-        <Grid xs={1} alignSelf='end' item> <Button onClick={e=>{handleClickEdit(e,item?.category_name,item?.category_id)}}>Edit</Button></Grid>
+        <Grid xs={1} alignSelf='end' item>
+            <Tooltip title='Edit Diet Item'>
+             <Button onClick={e=>{handleClickEdit(e,item?.category_name,item?.category_id)}}>Edit</Button>
+             </Tooltip>
+             
+             </Grid>
         
         
         
@@ -226,7 +231,7 @@ export default function AdminDietCategory(props) {
             {console.log(categoryData,"<--------bjuhjuhjnjhnjhn")}
             {/* <useLongPressCount/>  state={{ categoryData:categoryData  }} */}
             <AlertDialog Message="Created Sucessfully" ref={childcomrefAlert}/>
-        
+            {categoryData?.length===0 && <Typography>No Diet Items Are Created</Typography>}
         </>
     );
 }

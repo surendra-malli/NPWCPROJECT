@@ -162,9 +162,9 @@ const handleExpandClick = () => {
   const navigate=useNavigate();
   const encodedData = new URLSearchParams(location.search).get('data');
 const objectData = location?.state
-
+console.log(objectData,'[[[[[[')
   const[userData,setUserDate]=useState(objectData);
-  
+  window.scrollTo(0, 0);
 
   const setValues = async () => {
     let uname =  objectData.user_name
@@ -372,7 +372,8 @@ const objectData = location?.state
     
     const encodedData = encodeURIComponent(JSON.stringify(userData));
     //navigate(`${userData?.pathnamePrevious[userData?.pathnamePrevious.length-1]}?data=${encodedData}`);
-    navigate(`${userData?.pathnamePrevious[userData?.pathnamePrevious.length-1]}`,{state:objectData});
+   // navigate(`${userData?.pathnamePrevious[userData?.pathnamePrevious.length-1]}`,{state:objectData});
+   navigate(-1,{state:objectData})
     
     //navigate(`${userData.pathname}?data=${encodedData}`,{ from: location.pathname });
 
@@ -585,7 +586,7 @@ console.log(upcoming,"----upcoming----")
           </Card>
           </Card>):(<Card sx={{backgroundColor:"#8D25C1", marginTop:"10px" ,maxHeight:"800px"}}>
               <CardContent>
-              <Typography  align="center"   style={calories}> You don`t have any ongoing  diet plans. Please consult Dietician.</Typography>
+              <Typography  align="center"   style={calories}> No Diet Plans Are Created </Typography>
               </CardContent>
               </Card>)}
         
@@ -660,7 +661,7 @@ console.log(upcoming,"----upcoming----")
 </Card>
 </Card>):(<Card sx={{backgroundColor:"#8D25C1", marginTop:"10px" ,maxHeight:"800px"}}>
               <CardContent>
-              <Typography  align="center"   style={calories}> You don`t have any ongoing exercise plans. Please consult Dietician.</Typography>
+              <Typography  align="center"   style={calories}> No Exercise Plans Are Created</Typography>
               </CardContent>
               </Card>)}
 

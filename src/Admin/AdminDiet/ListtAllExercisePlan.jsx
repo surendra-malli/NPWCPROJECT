@@ -79,7 +79,15 @@ export default function ListAllExercisePlan(props){
     
     const encodedData = encodeURIComponent(JSON.stringify(userData));
     //navigate(`${userData?.pathnamePrevious[userData?.pathnamePrevious.length-1]}?data=${encodedData}`);
-    navigate(`${userData?.pathnamePrevious[userData?.pathnamePrevious.length-1]}`,{state:userData})
+    //navigate(`${userData?.pathnamePrevious[userData?.pathnamePrevious.length-1]}`,{state:userData})
+    
+    if(userData?.pathname==='/dashboardadmin/AdminExercise' ){
+      navigate(`${userData?.pathname}`,{state:userData})
+    }
+    else{
+    navigate(-1,{state:userData})
+    }
+    
   
  }
   

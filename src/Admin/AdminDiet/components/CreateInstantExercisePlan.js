@@ -403,6 +403,23 @@ const checkDuplicateCategory=(data,dup)=>{
   if(item.category===dup) flag=true
  })
 
+ const handleStartDate=(date)=>{
+ 
+    if (date) {
+       console.log(moment(date)?.format('DD-MM-YYYY'),"<---eee")
+      const newDate = moment(date)
+        ?.add(valuesD?.interval, 'days')
+        ?.format('DD-MM-YYYY');
+        console.log(newDate,date,valuesD?.interval,"<--qwert")
+      setValuesD({
+        ...valuesD,
+        startDate: moment(date)?.format('DD-MM-YYYY'),
+        endDate: newDate,
+      });
+    }
+  
+ }
+
  return flag
 }
 
@@ -624,20 +641,7 @@ const checkDuplicateCategory=(data,dup)=>{
           <DemoContainer components={['DesktopDatePicker']} >
           <DatePicker  label="Start Date"  slotProps={{ textField: { fullWidth: true } }}
           
-                  onChange={date => {
-                    if (date) {
-                       console.log(moment(date)?.format('DD-MM-YYYY'),"<---eee")
-                      const newDate = moment(date)
-                        ?.add(valuesD?.interval, 'days')
-                        ?.format('DD-MM-YYYY');
-                        console.log(newDate,date,valuesD?.interval,"<--qwert")
-                      setValuesD({
-                        ...valuesD,
-                        startDate: moment(date)?.format('DD-MM-YYYY'),
-                        endDate: newDate,
-                      });
-                    }
-                  }}
+                 
                      renderInput={(params) => <TextField {...params} sx={{ gridColumn: "span 4" }}/>} />
         </DemoContainer>
         

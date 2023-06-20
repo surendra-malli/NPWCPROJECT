@@ -141,6 +141,14 @@ let  navigate = useNavigate();
 
     const [action,setAction]=useState("");
     const today = new Date();
+    const [date,setDate]=useState(moment(today)?.format('YYYY-MM-DD'));
+    console.log(date,'datee')
+    const [valueDate, setValueDate] = useState(dayjs(date));
+    useEffect(()=>{
+      setValueDate(dayjs(date))
+      //console.log(valueDate);
+    },[date])
+   
     const Obj1 = {
       category: '',
       value: '',
@@ -150,9 +158,9 @@ const encodedData = new URLSearchParams(location.search).get('data');
 const objectData = location?.state;
 
     const intialValues = {
-      interval: 0,
+      interval: '',
       startDate: moment(today)?.format('DD-MM-YYYY'),
-      endDate: "",
+      endDate: moment(today)?.format('DD-MM-YYYY'),
       category: '',
       items: [Obj1],
     };
@@ -505,29 +513,7 @@ const checkDuplicateCategory=(data,dup)=>{
         <AlertDialog Message="Created Sucessfully" ref={childcomrefAlert}/>
           
       
-        {/* <Button variant="contained" style={{
-          float: "right", marginLeft: "1rem", borderRadius: "50%", padding: "0.2rem", marginTop: "-0.5rem",
-          position: 'fixed', zIndex: '1', bottom: 40, right: 40
-        }}
-       onClick={handleClickOpen} 
-        sx={{
-          ':hover': {
-            bgcolor: "#F0E7F5", // theme.palette.primary.main
-            color: '#9B59B6',
-            border: '#ffd796'
-          },
-          ':active': {
-            bgcolor: "#F0E7F5",
-            color: "#9B59B6"
-          },
-          bgcolor: '#F0E7F5',
-          color: "#9B59B6",
-          border: 'none'
-        }} >
-  
-  
-          <span style={{ fontSize: "2rem" }}>+</span>
-        </Button> */}
+      
         <Dialog
           fullScreen
           open={open}
@@ -563,29 +549,16 @@ const checkDuplicateCategory=(data,dup)=>{
             </Stack>
   
   
-          {/* <Stack marginLeft={3}> 
-          <TextField
-          onClick={changeHandler}
-            id="outlined-select-currency"
-            select
-            label="Select Your Interval"
-            defaultValue="month"
-          >
-              {currencies.map((option) => (
-              <MenuItem key={option.value} value={option.label} name= {option.value} label={option.label}>
-                {option.label}
-              </MenuItem>
-            ))}</TextField></Stack> */}
+          
 
 <Stack  m={3}><DropdownUsers  valuesD={valuesD} onDataChangeuserId={handleDataChangeUserId}></DropdownUsers></Stack>
 
 
             <Stack m={3}>
             <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Select Interval</InputLabel>
+        <InputLabel >Select Interval</InputLabel>
         <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
+          
           value={valuesD?.interval}
           label="Select Interval"
           onChange={e => {
@@ -605,7 +578,7 @@ const checkDuplicateCategory=(data,dup)=>{
         > 
               <MenuItem value="7">Week</MenuItem>
                   <MenuItem value="30">Month</MenuItem>
-                  <MenuItem value="90">3 Month</MenuItem>
+                  <MenuItem value="90">3 Months</MenuItem>
         </Select>
       </FormControl>
             </Stack>
@@ -619,6 +592,39 @@ const checkDuplicateCategory=(data,dup)=>{
             <Grid container  id="date-picker-stack" flexDirection="row">
         <Grid  xs={6} xl={6}   item>
          
+        <CardContent>
+
+                          <LocalizationProvider dateAdapter={AdapterDayjs}>
+                          <DemoContainer components={["DatePicker", "DatePicker"]} fullWidth>
+
+                          <DatePicker
+                          slotProps={{ textField: { fullWidth: true } }} 
+                          format="DD-MM-YYYY"
+                          label="Start Date"
+                          value={valueDate}
+                          onChange={date => {
+                            if (date) {
+                              //date.toDate()
+                              setValueDate(date)
+                              console.log(moment(date.toDate())?.format('DD-MM-YYYY'),"<---eee")
+                              const newDate = moment(date.toDate())
+                                ?.add(valuesD?.interval, 'days')
+                                ?.format('DD-MM-YYYY');
+                                console.log(newDate,date,valuesD?.interval,"<--qwert")
+                              setValuesD({
+                                ...valuesD,
+                                startDate: moment(date.toDate())?.format('DD-MM-YYYY'),
+                                endDate: newDate,
+                              });
+                            }
+                          }}
+                          />
+                          </DemoContainer>
+                          </LocalizationProvider>
+                          </CardContent>
+
+
+
         <CardContent>  
           <LocalizationProvider   dateAdapter={AdapterDayjs}>
           <DemoContainer components={['DesktopDatePicker']} >
@@ -648,7 +654,7 @@ const checkDuplicateCategory=(data,dup)=>{
          <Grid item xs={6} xl={6}  fullWidth mt="10px">
          
          <CardContent alignItems='center'>  
-         <TextField label="End Date" value={valuesD.endDate} variant='outlined'  fullWidth/>
+         <TextField label="End Date" value={valuesD?.endDate} variant='outlined'  fullWidth/>
        </CardContent>  
           </Grid>
    
