@@ -420,7 +420,11 @@ export default function Protein(props) {
 
   )
 
-})):(<Typography   align="center"  style={calories}>No Diet Items Created</Typography> )}
+})):( <div style={{ display: "flex", justifyContent: "center", flexDirection:"column", alignItems: "center" , height:"45vh" }}  >
+           
+<Typography   align="center"  style={calories}>No Diet Items Found</Typography>
+
+</div> )}
 
 
 
@@ -429,3 +433,5 @@ export default function Protein(props) {
 
             );
     }
+
+   

@@ -160,8 +160,8 @@ const Aerobic = forwardRef((props, ref) => {
   return (
     <div>
      
-      <Grid>
-    <img src={Logo} alt="nova logo" style={{height: "auto", width: "250px", marginLeft: "30px"}}/></Grid>
+      {/* <Grid>
+    <img src={Logo} alt="nova logo" style={{height: "auto", width: "250px", marginLeft: "30px"}}/></Grid> */}
    
      
        
@@ -181,14 +181,7 @@ const Aerobic = forwardRef((props, ref) => {
        
      
 
-      <Card style={{ margin: "1rem"}}>
-        <Typography  style={textparaStyle}>
-          Engaging in Water Aerobics is a great way to stay active while
-          limiting pain associated with arthritis.The water is a great place to
-          get moving while adding resistance and without putting too much
-          pressure on your joints.
-        </Typography>
-      </Card>
+      
 
      
      
@@ -196,7 +189,7 @@ const Aerobic = forwardRef((props, ref) => {
       { exerciseData?
         exerciseData?.map(item=>{
           return (
-            <Card style={{backgroundColor: "#F0E7F5", margin: "1rem", boxShadow: "#c4c4c4", }}>
+            <Card style={{backgroundColor: "#EBF5FF", margin: "1rem", boxShadow: "#c4c4c4", }}>
             <CardContent>
               <Grid container spacing={2} justifyContent="center" alignItems="center">
                 <Grid item xs={2} md={2}>
@@ -234,7 +227,15 @@ const Aerobic = forwardRef((props, ref) => {
           </Card>
           )
         })
-      :<Grid container flexDirection='column' justifyContent='center' alignItems='center'><Typography >No Exercise Items Are Created</Typography></Grid>}
+      :
+      <div style={{ display: "flex", justifyContent: "center", flexDirection:"column", alignItems: "center" , height:"45vh" }}  >
+           
+                <Typography   align="center" variant='h4' >No Exercise Items Found</Typography>
+
+                </div>
+        
+        
+        }
      
 
 

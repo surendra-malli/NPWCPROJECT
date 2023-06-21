@@ -191,7 +191,7 @@ const currencies = [
   
           items: data,
         });
-        str=dataOfDiet?.start_date.substr(6)+'-'+dataOfDiet?.start_date.substr(0,2)+'-'+dataOfDiet?.start_date.substr(3,2); 
+        let str=dataOfDiet?.start_date.substr(6)+'-'+dataOfDiet?.start_date.substr(0,2)+'-'+dataOfDiet?.start_date.substr(3,2); 
         setValueDate((dayjs(str)))
         setSelectedDate('2025-12-12');
         console.log(dataOfDiet?.start_date,str,'valuesD?.Startdate----');

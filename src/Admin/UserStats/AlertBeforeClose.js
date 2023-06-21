@@ -7,6 +7,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useEffect } from 'react';
+import {Typography,Grid,Card,CardContent} from '@mui/material'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -21,9 +22,6 @@ const AlertDialog = forwardRef((props, ref) => {
   };
 
   const handleClose = () => {
-    if(message==='User Deleted Sucesfully'){
-      props.gobackk();
-    }
     setOpen(false);
   };
 
@@ -43,6 +41,14 @@ const handleClickOpenAlert=(msg)=>{
     
 }
 
+const handleSave=()=>{
+    props.saveChanges();
+}
+
+const handleDiscard=()=>{
+    props.discardChanges();
+}
+
   return (
     <>
      
@@ -55,7 +61,18 @@ const handleClickOpenAlert=(msg)=>{
        
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-           {message}
+            <Grid container flexDirection="column" alignItems='center' justifyContent='space-between'>
+                <Grid sx={{cursor:'pointer'}} onClick={handleSave} item>
+            <CardContent>
+           <Typography>Save Changes</Typography>
+           </CardContent>
+            </Grid>
+            <Grid sx={{cursor:'pointer'}} onClick={handleDiscard} item>
+         <CardContent>
+           <Typography>Discard Changes</Typography>
+           </CardContent>
+           </Grid>
+           </Grid>
           </DialogContentText>
         </DialogContent>
         <DialogActions>

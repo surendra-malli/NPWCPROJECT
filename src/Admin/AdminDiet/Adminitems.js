@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 import AlertDialog from '../UserStats/AlertDialog';
 import ArrowForward from '@mui/icons-material/ArrowForward';
 import { useNavigate } from 'react-router-dom';
-
+import Page from 'src/components/Page'
 const title = {
     fontFamily: "Inter-Bold",
     fontSize: "30px",
@@ -140,14 +140,14 @@ export default function AdminDietCategory(props) {
   };
 
     return (
-        <>
+        <Page title=" Diet Category " >
         {/* <CreateInstantDietPlan ref={childComponentRef} ></CreateInstantDietPlan> */}
-            {<img src={Logo} alt="nova logo" style={{ height: "auto", width: "250px", marginLeft: "30px" }} />}
+            {<img src={Logo} alt="nova logo" style={{ height: "auto", width: "250px", marginTop:'20px'}} />}
             <Grid container spacing={2}>
                 <Grid p={3}  xs={12} spacing={2} container display="flex" justifyContent="space-between">
                     <Grid  item>
                         <Typography style={title} variant='h3'>
-                            Diet Category {categoryData?.length>0?'('+categoryData?.length+')':""}
+                            Diet Categories {categoryData?.length>0?'('+categoryData?.length+')':""}
                         </Typography>
                         
                     </Grid>
@@ -186,7 +186,7 @@ export default function AdminDietCategory(props) {
 
    
     </div>
-            { categoryData?.map(item => {
+            {categoryData ? categoryData?.map(item => {
                 return (
                    
 
@@ -220,6 +220,13 @@ export default function AdminDietCategory(props) {
 </Card>
                 );
             })
+            :
+            <div style={{ display: "flex", justifyContent: "center", flexDirection:"column", alignItems: "center" , height:"45vh" }}  >
+           
+                <Typography   align="center" variant='h4' >No Diet Categories Found</Typography>
+
+                </div>
+            
             }
 
                
@@ -231,8 +238,8 @@ export default function AdminDietCategory(props) {
             {console.log(categoryData,"<--------bjuhjuhjnjhnjhn")}
             {/* <useLongPressCount/>  state={{ categoryData:categoryData  }} */}
             <AlertDialog Message="Created Sucessfully" ref={childcomrefAlert}/>
-            {categoryData?.length===0 && <Typography>No Diet Items Are Created</Typography>}
-        </>
+            
+        </Page>
     );
 }
 

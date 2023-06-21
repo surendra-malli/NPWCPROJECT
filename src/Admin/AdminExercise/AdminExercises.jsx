@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect,useRef } from 'react';
 import moment from 'moment';
+//import { useLocation } from 'react-router-dom';
 // import { LongPressEventType, useLongPress } from "use-long-press";
 import { Link as RouterLink,useLocation } from 'react-router-dom';
 import { Grid, Typography, Card, CardContent,ButtonBase,Button } from '@mui/material';
@@ -12,6 +13,7 @@ import Peas from "../../assets/Peas.svg";
 import axios from 'axios';
 import {  Snackbar } from '@mui/material';
 import MuiAlert from '@mui/lab/Alert';
+import Page from 'src/components/Page';
 // import CreateInstantDietPlan from './components/CreateInstantDietPlan';
 import { Link } from "react-router-dom";
 
@@ -44,13 +46,15 @@ export default function AdminExerciseCategory(props) {
     const childcomreffAlert=useRef();
     
     const navigate=useNavigate();
+    const location=useLocation();
+    console.log(location?.state,'location?.state')
     const childComponentRef = useRef(null);
     const [longPressCount, setlongPressCount] = useState(0)
     const [clickCount, setClickCount] = useState(0)
     const [categoryData, setCategoryData] = useState([])
     const [isitem,setItem] = useState()
     const [showState,setShowState] = useState(false)
-    const location = useLocation();
+    
     const [messageOfUserStatus,setMessageOfUserStatus]=useState("Done");
 
     const onLongPress = (itemName) => {
@@ -142,14 +146,14 @@ export default function AdminExerciseCategory(props) {
   };
 
     return (
-        <>
+        <Page Title="  Exercise Categories" >
         {/* <CreateInstantDietPlan ref={childComponentRef} ></CreateInstantDietPlan> */}
-            {<img src={Logo} alt="nova logo" style={{ height: "auto", width: "250px", marginLeft: "30px" }} />}
+            {<img src={Logo} alt="nova logo" style={{ height: "auto", width: "250px",marginTop:'20px' }} />}
             <Grid container spacing={2}>
                 <Grid p={3}  xs={12} spacing={2} container display="flex" justifyContent="space-between">
                     <Grid  item>
                         <Typography style={title} variant='h1'>
-                            Exercise Category {categoryData?.length>0?'('+categoryData?.length+')':""}
+                            Exercise Categories {categoryData?.length>0?'('+categoryData?.length+')':""}
                         </Typography>
                         
                     </Grid>
@@ -190,7 +194,7 @@ export default function AdminExerciseCategory(props) {
 
    
     </div>
-            { categoryData?.map(item => {
+            { categoryData?categoryData?.map(item => {
                 return (
                    
 
@@ -218,7 +222,13 @@ export default function AdminExerciseCategory(props) {
 
 </Card>
                 );
-            })
+            }):
+
+            <div style={{ display: "flex", justifyContent: "center", flexDirection:"column", alignItems: "center" , height:"45vh" }}  >
+           
+                <Typography variant='h4'  align="center"  >No Exercise Categories Found</Typography>
+
+                </div>
             }
 
                
@@ -231,7 +241,7 @@ export default function AdminExerciseCategory(props) {
             {/* <useLongPressCount/>  state={{ categoryData:categoryData  }} */}
             <AlertDialog Message="Created Sucessfully" ref={childcomreffAlert}/>
         
-        </>
+        </Page>
     );
 }
 

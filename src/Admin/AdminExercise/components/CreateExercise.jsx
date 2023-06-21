@@ -424,8 +424,8 @@ setAction("Create")
           style={{
             float: 'right',
             marginLeft: '1rem',
-            borderRadius: '50%',
-            padding: '0.2rem',
+            
+            padding: '0.3rem',
             marginTop: '-0.5rem',
             position: 'fixed',
             zIndex: '1',
@@ -434,22 +434,22 @@ setAction("Create")
           }}
           sx={{
             ':hover': {
-              bgcolor: "#F0E7F5", // theme.palette.primary.main
-              color: '#9B59B6',
+             // bgcolor: "#F0E7F5", // theme.palette.primary.main
+              color: 'white',
               border: '#ffd796'
             },
             ':active': {
-              bgcolor: "#F0E7F5",
-              color: "#9B59B6"
+              bgcolor: "#007AFF",
+              color: "white"
             },
-            bgcolor: '#F0E7F5',
-            color: "#9B59B6",
+            bgcolor: '#007AFF',
+            color: "white",
             border: 'none'
           }} 
-          title="Create POA"
+          title=""
         >
           {/* style={{ float: "right", marginLeft:100, borderRadius: "50%", padding: "0.2rem", position:'relative', zIndex: '-1',marginRight:10,marginTop:15}} */}
-          <span style={{ fontSize: '2rem' }}>+</span>
+          <span >Create Exercise Item</span>
         </Button>
      
       {/* <Button variant="outlined" onClick={handleClickOpen}>
@@ -466,24 +466,25 @@ setAction("Create")
         onClose={handleClose}
         TransitionComponent={Transition}
       >
-        <AppBar sx={{ position: 'relative' ,backgroundColor:"purple" ,color:"white"}}>
+        <AppBar sx={{ position: 'relative' ,backgroundColor:"#007AFF" ,color:"black"}}>
           <Toolbar>
             <IconButton
               edge="start"
               color="inherit"
               onClick={handleClose}
               aria-label="close"
+              sx={{color:'white'}}
             >
               <CloseIcon />
             </IconButton>
-            <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-            {action} Exercise Items
+            <Typography sx={{ ml: 2, flex: 1,color:'white' }} variant="h6" component="div">
+            {action} Exercise Item
             </Typography>
-            <Button autoFocus color="inherit" onClick={handleCloseSave}>
+            <Button sx={{color:'white'}} autoFocus color="inherit" onClick={handleCloseSave}>
               save
             </Button>
             { action==='Edit' &&(
-              <Button autoFocus color="inherit" onClick={handleCloseDelete}>
+              <Button sx={{color:'white'}} autoFocus color="inherit" onClick={handleCloseDelete}>
                 Delete
               </Button>)
             } 
@@ -545,7 +546,7 @@ setAction("Create")
 <Typography variant="body2" gutterBottom>Choose Diet Image</Typography>
 <div id="project-input-tag-div" style={{ display: 'flex' ,marginTop:"10px" , marginBottom:"10px"}}>
                   <label id="input-tag-project-multi-drawer" for="inputTag" style={{ cursor: 'pointer', display: 'flex' }}>
-                    <Iconify id="camera-icon" icon={'mdi:camera'} sx={{ width: 25, height: 25, ml: 2, color: '#8B008B' }} />
+                    <Iconify id="camera-icon" icon={'mdi:camera'} sx={{ width: 25, height: 25, ml: 2, color: '#007AFF' }} />
                     &nbsp;
                     <input
                       style={{ display: 'none' }}

@@ -210,7 +210,7 @@ useEffect(()=>{
             );
           })
          }
-         {dataFromApi?.length===undefined && <Grid display="flex" justifyContent='center' alignItems='center'>No Exercise Items Created</Grid>}
+         {dataFromApi?.length===undefined && <Grid display="flex" justifyContent='center' alignItems='center'>No Exercise Plans Created</Grid>}
 
         
 

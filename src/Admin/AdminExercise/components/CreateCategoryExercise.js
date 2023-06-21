@@ -7,7 +7,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
-import { CardContent, Stack, TextField, Typography, AppBar,Toolbar,} from '@mui/material';
+import { CardContent, Stack, TextField, Typography, AppBar,Toolbar,Grid} from '@mui/material';
 import axios from 'axios';
 import AlertDialog from 'src/Admin/UserStats/AlertDialog';
 
@@ -254,8 +254,8 @@ const deleteHit=async=>{
                   {
                       float: 'right',
                       marginLeft: '1rem',
-                      borderRadius: '50%',
-                      padding: '0.2rem',
+                      
+                      padding: '0.3rem',
                       marginTop: '-0.5rem',
                       position: 'fixed',
                       zIndex: '1',
@@ -267,22 +267,22 @@ const deleteHit=async=>{
               sx = {
                   {
                       ':hover': {
-                          bgcolor: "#F0E7F5", // theme.palette.primary.main
-                          color: '#9B59B6',
+                          //bgcolor: "#F0E7F5", // theme.palette.primary.main
+                          color: 'white',
                           border: '#ffd796'
                       },
                       ':active': {
-                          bgcolor: "#F0E7F5",
-                          color: "#9B59B6"
+                          bgcolor: "#007AFF",
+                          color: "white"
                       },
-                      bgcolor: '#F0E7F5',
-                      color: "#9B59B6",
+                      bgcolor: '#007AFF',
+                      color: "white",
                       border: 'none'
                   }
               }
                >
   
-              <span style = {   { fontSize: '2rem' } } > + </span> 
+              <span > Create Exercise Category </span> 
               </Button >
   
               < Dialog position = "fixed"
@@ -292,32 +292,47 @@ const deleteHit=async=>{
               keepMounted onClose = { handleClose }
               aria-describedby = "alert-dialog-slide-description" >
               < AppBar sx = {
-                  { position: 'relative', backgroundColor: "purple" }
+                  { position: 'relative', backgroundColor: "#007AFF" }
               } >
               < Toolbar >
-              { createData?.category_name &&
-              <Typography sx = {{ ml: 2, flex: 1,cursor:'pointer' } }
-              variant = "h6"
+              <Grid container justifyContent='space-between'>
+                
+              { action==='edit' &&
+              <Grid item>
+              <Typography sx = {{ ml: 2, flex: 1,cursor:'pointer',color:'white' } }
+              
               component = "div" onClick={handleRename}> Rename </Typography>
+               </Grid>
               }
+             
+
+              <Grid item>
   
               < Typography sx = {
-                  { ml: 2, flex: 1 }
+                  { ml: 2, flex: 1,color:'white' }
               }
-              variant = "h6"
+              
               component = "div" >
               Category </Typography> 
+              </Grid>
+
+              <Grid item>
               <Typography onClick = { handleClose }
               sx = {
-                  { ml: 2, flex: 1,cursor:'pointer' }
+                  { ml: 2, flex: 1,cursor:'pointer',color:'white' }
               }
-              variant = "h6"
+              
               component = "div" >
-              Close </Typography> {
+              Close </Typography> 
+              </Grid>
+              {
               /* <Button sx={{marginTop:"5px",ml:2, fontSize:"17px"}} autoFocus color="inherit" onClick={handleClose}>
                             close
                           </Button> */
-          } </Toolbar> 
+          } 
+             </Grid>
+          
+          </Toolbar> 
           </AppBar >
   
           <DialogContent >
@@ -340,9 +355,9 @@ const deleteHit=async=>{
       {/* <Button onClick={handleButtonClick} disabled={editing}>edit</Button> */}
           </DialogContent > 
           <DialogActions >
-          <Button onClick = { handleSave } > Save </Button> 
+          <Button sx={{color:'lightgreen'}} onClick = { handleSave } > Save </Button> 
   
-  { createData?.category_name &&
+  { action==='edit' &&
       <Button onClick = { handleCloseDelete } > Delete </Button> }
       </DialogActions > 
                 </Dialog>

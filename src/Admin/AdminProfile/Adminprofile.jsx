@@ -295,8 +295,8 @@ console.log(objectData?.id,'objectDataobjectData')
       console.log(JSON.stringify(response.data));
       setUsersData("")
       
-      goBackk();
-      // navigation
+      //goBackk();
+      
     })
     .catch((error) => {
       console.log(error);
@@ -556,7 +556,7 @@ console.log(objectData?.id,'objectDataobjectData')
 
       </CardContent>
       </Card>
-      <AlertDialog Message="Created Sucessfully" ref={childcomrefAlert}/>
+      <AlertDialog gobackk={goBackk} Message="Created Sucessfully" ref={childcomrefAlert}/>
       {/* <BarGraph></BarGraph> */}
       
     </>

@@ -520,7 +520,7 @@ const checkDuplicateCategory=(data,dup)=>{
           onClose={handleClose}
           TransitionComponent={Transition}
         >
-          <AppBar color="nutrition" sx={{ position: 'relative'}}>
+          <AppBar backgroundColor="#007AFF" sx={{ position: 'relative'}}>
             <Toolbar>
               <IconButton
                 edge="start"
@@ -544,9 +544,9 @@ const checkDuplicateCategory=(data,dup)=>{
             </Toolbar>
           </AppBar>
           {/* <Card style={{padding:"20px 5px", margin:"0px"}}><CardContent> */}
-          <Stack m={3}>
+          {/* <Stack m={3}>
             <Typography  style={{display: 'inline-block',marginRight:"30", fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:'10px'}} variant='h5' gutterLeft >Select Interval </Typography>
-            </Stack>
+            </Stack> */}
   
   
           
@@ -624,7 +624,7 @@ const checkDuplicateCategory=(data,dup)=>{
           </CardContent>
 
 
-
+{/* 
         <CardContent>  
           <LocalizationProvider   dateAdapter={AdapterDayjs}>
           <DemoContainer components={['DesktopDatePicker']} >
@@ -648,7 +648,7 @@ const checkDuplicateCategory=(data,dup)=>{
         </DemoContainer>
         
       </LocalizationProvider>
-      </CardContent>  
+      </CardContent>   */}
          </Grid>
   
          <Grid item xs={6} xl={6}  fullWidth mt="10px">
@@ -730,7 +730,7 @@ const checkDuplicateCategory=(data,dup)=>{
                                   
                                       </Grid>
     
-                                      <Grid xs={2} md={1} lg={1}  item> 
+                <Grid xs={2} md={1} lg={1}  item> 
                     {index!==0 && (
                     
                      <IconButton
@@ -765,29 +765,32 @@ const checkDuplicateCategory=(data,dup)=>{
         
               
   
-        <Button variant="contained" onClick={addButton} style={{
-          float: "right", marginLeft: "1rem", borderRadius: "50%", padding: "0.2rem", marginTop: "-0.5rem",
+  <Button variant="contained" onClick={addButton} style={{
+          float: "right", marginLeft: "1rem", padding: "0.3rem", marginTop: "-0.5rem",
           position: 'fixed', zIndex: '1', bottom: 40, right: 40
         }}
     
         sx={{
           ':hover': {
-            bgcolor: "#F0E7F5", // theme.palette.primary.main
-            color: '#9B59B6',
-            border: '#ffd796'
+            //bgcolor: "#F0E7F5", // theme.palette.primary.main
+            color: 'white',
+            border: '#007AFF'
           },
           ':active': {
-            bgcolor: "#F0E7F5",
-            color: "#9B59B6"
+            bgcolor: "#007AFF",
+            color: "white"
           },
-          bgcolor: '#F0E7F5',
-          color: "#9B59B6",
+          bgcolor: '#007AFF',
+          color: "white",
           border: 'none'
         }} >
   
   
-          <span style={{ fontSize: "2rem" }}>+</span>
+          <span >Add Category</span>
         </Button>
+  
+  
+         
         <InactiveProfile ref={childComponentRef}></InactiveProfile>
             
         </Dialog>

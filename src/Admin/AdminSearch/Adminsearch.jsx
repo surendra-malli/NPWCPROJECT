@@ -392,7 +392,7 @@ objectData.userStatus='all'
 
             </Container>
             <Grid display='flex' justifyContent='center' alignItems='center'>
-            {message==='no such user' && <Typography>No Users Found</Typography>}
+            {message==='no such user' && <Typography>No User Found</Typography>}
             </Grid>
            
           <Box py={3} display="flex" justifyContent="center">

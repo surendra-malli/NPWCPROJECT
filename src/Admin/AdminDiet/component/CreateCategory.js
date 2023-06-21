@@ -73,6 +73,7 @@ const deleteHit=async=>{
   
       })
       const [action,setAction]=useState("");
+      const [categoryDataApi,setCategoryDataApi]=useState([]);
   
     //   useEffect(() => {
           
@@ -86,7 +87,7 @@ const deleteHit=async=>{
         }else if(action==='create'){
             addCategory();
         }
-        setOpen(false);
+        //setOpen(false);
         message='category Renamed Sucessfully'
         //childcomrefAlert.current.handleClickOpenAlert('category Renamed Sucessfully');
     }
@@ -141,13 +142,52 @@ const deleteHit=async=>{
   
       }
   
+      const categoryhit = async => {
+        let config = {
+            method: 'GET',
+            maxBodyLength: Infinity,
+            url: 'https://aipse.in/api/getAllCategories?type=food',
+            headers: { 'Content-Type': 'application/json' },
+        };
+        axios(config)
+            .then((response) => {
+                setCategoryDataApi(response?.data?.data)
+                 console.log(response?.data?.data, "<------------------------111setCategoryDatasetCategoryData");
+                //childcomrefAlert.current.handleClickOpenAlert();
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
+
+    }
   
   
+      const alreadyPresent=(str)=>{
+        
+         
+           for(let i=0;i<categoryDataApi?.length;i++){
+            if(categoryDataApi[0]?.category_name===str){
+              return false;
+            }
+           }       
+           return true;
+                 
+             
+
+              
   
   
+      
+      }
   
   
       const RenameHit = async => {
+          if(alreadyPresent(createData?.category_name)){
+            childcomrefAlert.current.handleClickOpenAlert('Category Already Exist');
+          }
+
+        else{
   
           let data = JSON.stringify({
               "category_id":createData?.category_id,
@@ -177,12 +217,15 @@ const deleteHit=async=>{
                   console.log(response.data.data, "<-----------------setDelete Dataset DeleteData");
                   childcomrefAlert.current.handleClickOpenAlert('Category Renamed Sucessfully');
                   props.categoryhit(2)
+                  setOpen(false)
               })
               .catch((error) => {
                   console.log(error);
               });
+            }
             
       }
+    
   
   
   
@@ -253,8 +296,7 @@ const deleteHit=async=>{
                   {
                       float: 'right',
                       marginLeft: '1rem',
-                      borderRadius: '50%',
-                      padding: '0.2rem',
+                      padding: '0.3rem',
                       marginTop: '-0.5rem',
                       position: 'fixed',
                       zIndex: '1',
@@ -266,22 +308,22 @@ const deleteHit=async=>{
               sx = {
                   {
                       ':hover': {
-                          bgcolor: "#F0E7F5", // theme.palette.primary.main
-                          color: '#9B59B6',
+                          // theme.palette.primary.main
+                          color: 'white',
                           border: '#ffd796'
                       },
                       ':active': {
-                          bgcolor: "#F0E7F5",
+                          bgcolor: "#007AFF",
                           color: "#9B59B6"
                       },
-                      bgcolor: '#F0E7F5',
-                      color: "#9B59B6",
+                      bgcolor: '#007AFF',
+                      color: "white",
                       border: 'none'
                   }
               }
               title = "" >
-                <Tooltip title="Create Diet Item">
-              <span style = {   { fontSize: '2rem' } } > + </span> 
+                <Tooltip title="Create Diet Category">
+              <span  > Create Diet Category </span> 
               </Tooltip>
               </Button >
   
@@ -292,31 +334,32 @@ const deleteHit=async=>{
               keepMounted onClose = { handleClose }
               aria-describedby = "alert-dialog-slide-description" >
               < AppBar sx = {
-                  { position: 'relative', backgroundColor: "purple" }
+                  { position: 'relative', backgroundColor: "#007AFF" }
                   
               }  >
-              < Toolbar display='flex' justifyContent='space-between'>
+              < Toolbar >
                 <Grid container justifyContent='space-between'>
-                  <Grid item>
-             { createData?.category_name && (
-             
+               
+             { action==='edit' && (
+             <Grid item>
              <Tooltip title='Rename Diet Item'>
              
-             <Typography sx = {{ cursor:'pointer' } }
-              variant = "h6"
+             <Typography sx = {{ cursor:'pointer',color:'white' } }
+              
               component = "div" onClick={handleRename}> Rename</Typography>
               </Tooltip>
-              
-              )
-              }
               </Grid>
+              )
+              
+              }
+             
 
               <Grid item>
   
               < Typography sx = {
-                  { ml: 2, flex: 1 }
+                  { ml: 2, flex: 1,color:'white'}
               }
-              variant = "h6"
+              
               component = "div" >
               Category </Typography> 
 
@@ -325,9 +368,9 @@ const deleteHit=async=>{
                 <Tooltip title='Close'>
               <Typography onClick = { handleClose }
               sx = {
-                  { ml: 2, flex: 1 ,cursor:'pointer'}
+                  { ml: 2, flex: 1 ,cursor:'pointer',color:'white'}
               }
-              variant = "h6"
+              
               component = "div" >
               Close </Typography>
               </Tooltip>
@@ -362,10 +405,10 @@ const deleteHit=async=>{
           </DialogContent > 
           <DialogActions >
             <Tooltip title='Save'>
-          <Button onClick = { handleSave } > Save </Button> 
+          <Button sx={{color:'lightgreen'}} onClick = { handleSave } > Save </Button> 
           </Tooltip>
   
-  {  createData?.category_name &&
+  {  action==='edit' &&
   <Tooltip title='Delete'>
       <Button onClick = { handleCloseDelete } > Delete </Button> 
       </Tooltip> }
