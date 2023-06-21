@@ -1,0 +1,40 @@
+                     /* @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap'); */
+                     
+                     @font-face {
+                         font-family: 'Inter-Regular';
+                         src: url('../fonts/Inter-Regular.otf') format('truetype');
+                         font-weight: normal;
+                         font-style: normal;
+                     }
+                     
+                     @font-face {
+                         font-family: 'Inter-SemiBold';
+                         src: url('../fonts/Inter-SemiBold.otf') format('truetype');
+                         font-weight: normal;
+                         font-style: normal;
+                     }
+                     
+                     @font-face {
+                         font-family: 'Inter-Bold';
+                         src: url('../fonts/Inter-Bold.otf') format('truetype');
+                         font-weight: normal;
+                         font-style: normal;
+                     }
+                     
+                     .maintitlecss {
+                         /* font-family: 'sure'; */
+                         color: brown;
+                     }
+                     /* Media query for small devices */
+                     
+                     @media only screen and (max-width: 300px) {
+                         .proteinstyle {
+                             /* Reduce font size and line height for small devices */
+                             font-size: 14px;
+                             line-height: 1.2;
+                             /* Set text overflow to ellipsis */
+                             text-overflow: ellipsis;
+                             white-space: nowrap;
+                             overflow: hidden;
+                         }
+                     }
