@@ -48,7 +48,7 @@ const maintext = {
 const textparaStyle = {
   fontFamily: 'Inter-Regular',
   padding: "30px",
-  color: "#9B54BF"
+  color: "black"
  
 };
 

@@ -17,6 +17,8 @@ import Searchbar from 'src/layouts/dashboard/Searchbar';
 import {Pagination} from '@mui/material';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Avatar from "src/assets/Frame.png"
+
 
 
 
@@ -41,7 +43,6 @@ const pageheading={
     fontFamily:"Inter-Regular",
     fontWeight: "bold",
   }
-
  const Adminuserlist=forwardRef((props, ref) =>{
 
     const navigate =useNavigate();
@@ -289,30 +290,30 @@ objectData.userStatus='all'
              </Grid>
              
              <Grid container  display='flex' flexDirection='row' alignItems='center' justifyContent='space-between'>
+                  <Grid item style={{marginLeft:'13px'}}>
+                <Grid container spacing={1}  >
                   <Grid item>
-                <Grid container spacing={1} ml={2} >
-                  <Grid item>
-                 <Chip label="All Users " value='All Users' 
+                 <Chip label="Total Users " value='All Users' 
                   sx={chips} 
                  style={{
-                  backgroundColor: status==='all' ? 'purple' : '',
-                  color: status==='all'? 'white' : '',
+                  backgroundColor: status==='all' ? '#007AFF' : '',
+                  color: status==='all'? 'white' : '',marginLeft:'15px'
                 }} 
                 onClick={()=>{setStatus('all');setDisplayUser('Total Users')}}
                  />
                  </Grid>
                  <Grid item>
                   <Chip label="Active " value='Active' sx={chips}  style={{
-                  backgroundColor: status==='active' ? 'purple' : '',
-                  color: status==='active'? 'white' : '',
+                  backgroundColor: status==='active' ? '#007AFF' : '',
+                  color: status==='active'? 'white' : '',marginLeft:'15px'
                 }}  onClick={()=>{setStatus('active');setDisplayUser('Total Active')  }}/>
                 </Grid>
                 <Grid item>
                   <Chip label="Inactive" value='Inactive' sx={chips} 
                   
                   style={{
-                    backgroundColor: status==='inactive' ? 'purple' : '',
-                    color: status==='inactive'? 'white' : '',
+                    backgroundColor: status==='inactive' ? '#007AFF' : '',
+                    color: status==='inactive'? 'white' : '',marginLeft:'15px'
                   }}
                   
                   onClick={()=>{setStatus('inactive');setDisplayUser('Total In Active')}}   />
@@ -321,7 +322,7 @@ objectData.userStatus='all'
                 </Grid>
                 </Grid>
                 <Grid item >
-                 {displayNumber>0 && <Typography variant="h6" sx={{marginRight:'2rem'}} style={pageWords} component="h2">{displayUser} : {displayNumber}</Typography>}
+                  <Typography variant="h6" sx={{marginRight:'2rem'}} style={pageWords} component="h2">{displayUser} : {displayNumber}</Typography>
                 </Grid>
 
              </Grid>
@@ -356,15 +357,15 @@ objectData.userStatus='all'
 
                            
                             <Card onClick={e=>{selectedProfileCalled(item)}} sx={{ minWidth: 275 }} style={{margin:"20px",cursor:'pointer'}} key={item.id}>
-                                    <CardContent>
+                                    <CardContent style={{backgroundColor:'#EBF5FF'}}>
                                     <Grid container  flexDirection="row"  sx={{textDecoration:'none'}} >
                                         
                                         <div>
-                                        <img src={Userfig} alt="diet logo" style={{height: "auto",borderRadius:"40px", width: "auto"}}/>
+                                        <img src={Avatar} alt="diet logo" style={{height: "75px",borderRadius:"10px", width: "auto"}}/>
                                         </div>
                                         <div>
-                                        <span style={{ fontSize:"25px" ,color:"black",fontWeight:"20px",marginLeft:"10px"}}>{changeName(item.user_name)}</span>
-                                        <Typography style={{ fontSize:"15px" ,color:"#112866",marginLeft:"10px"}} >
+                                        <span style={{ fontSize:"25px" ,color:"black",fontWeight:"20px",marginLeft:"20px",marginTop:'45px'}}>{changeName(item.user_name)}</span>
+                                        <Typography style={{ fontSize:"15px" ,color:"#112866",marginLeft:"22px",marginTop:'3px'}} >
                                         {item.user_name}
                                         </Typography>
                                         </div>

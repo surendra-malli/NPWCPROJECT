@@ -597,7 +597,7 @@ const currencies = [
           onClose={handleClose}
           TransitionComponent={Transition}
         >
-          <AppBar color="nutrition" sx={{ position: 'relative'}}>
+          <AppBar backgroundColor='#007AFF' sx={{ position: 'relative'}}>
             <Toolbar>
               <IconButton
                 edge="start"
@@ -893,27 +893,27 @@ const currencies = [
               
   
         <Button variant="contained" onClick={addButton} style={{
-          float: "right", marginLeft: "1rem", borderRadius: "50%", padding: "0.2rem", marginTop: "-0.5rem",
+          float: "right", marginLeft: "1rem",  padding: "0.3rem", marginTop: "-0.5rem",
           position: 'fixed', zIndex: '1', bottom: 40, right: 40
         }}
     
-        sx={{
+        sx={  {
           ':hover': {
-            bgcolor: "#F0E7F5", // theme.palette.primary.main
-            color: '#9B59B6',
-            border: '#ffd796'
+              bgcolor: "#007AFF", // theme.palette.primary.main
+              color: 'white',
+              border: '#ffd796'
           },
           ':active': {
-            bgcolor: "#F0E7F5",
-            color: "#9B59B6"
+              bgcolor: "#007AFF",
+              color: "white"
           },
-          bgcolor: '#F0E7F5',
-          color: "#9B59B6",
+          bgcolor: '#007AFF',
+          color: "white",
           border: 'none'
-        }} >
+      }} >
   
   
-          <span style={{ fontSize: "2rem" }}>+</span>
+          <span style={{ fontSize: "1rem" }}>+Add Category</span>
         </Button>
             
         </Dialog>

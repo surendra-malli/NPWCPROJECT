@@ -306,24 +306,24 @@ const deleteHit=async=>{
               }
   
               sx = {
-                  {
-                      ':hover': {
-                          // theme.palette.primary.main
-                          color: 'white',
-                          border: '#ffd796'
-                      },
-                      ':active': {
-                          bgcolor: "#007AFF",
-                          color: "#9B59B6"
-                      },
-                      bgcolor: '#007AFF',
-                      color: "white",
-                      border: 'none'
-                  }
+                {
+                  ':hover': {
+                      bgcolor: "#007AFF", // theme.palette.primary.main
+                      color: 'white',
+                      border: '#ffd796'
+                  },
+                  ':active': {
+                      bgcolor: "#007AFF",
+                      color: "#9B59B6"
+                  },
+                  bgcolor: '#EBF5FF',
+                  color: "#007AFF",
+                  border: 'none'
+              }
               }
               title = "" >
-                <Tooltip title="Create Diet Category">
-              <span  > Create Diet Category </span> 
+                <Tooltip title="Create Diet Item">
+              <span style = {   { fontSize: '1rem' } } > Create Diet Category </span> 
               </Tooltip>
               </Button >
   

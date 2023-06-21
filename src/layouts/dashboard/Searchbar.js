@@ -145,11 +145,11 @@ export default function Searchbar({searchHandler}) {
                   handleClose()
                 }} sx={{
                   '&:hover': {
-                    backgroundColor: '#C39BD3',
-                    color: '#7D3C98'
+                    backgroundColor: '#007AFF',
+                    color: 'white'
 
                   },
-                  color: 'white', backgroundColor: '#7D3C98'
+                  color: 'white', backgroundColor: '#007AFF'
                 }}>
                   Search
                 </Button>

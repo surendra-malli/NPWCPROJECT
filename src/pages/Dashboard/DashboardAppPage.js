@@ -175,10 +175,7 @@ console.log(objectData,'[[[[[[')
     await listDietPlan(uid);
   }
 
-  // const formatDate = (date) => {
-  //   let splitDate = date.split("-")
-  //   return splitDate[1]+'-'+splitDate[0]+'-'+splitDate[2]
-  // }
+
   const formatDate = (date) => {
     if (date && typeof date === 'string') {
       let splitDate = date.split("-");
@@ -203,10 +200,7 @@ console.log(objectData,'[[[[[[')
       .then(function (response) {
         if (response?.data?.data == 'Data not found') {
           setLoading(false)
-          localStorage.removeItem('exercisestartDate')
-          localStorage.removeItem('exerciseendDate')
-          localStorage.removeItem('dietstartDate')
-          localStorage.removeItem('dietendDate')
+         
         }
         else {
           let prev = response?.data?.data?.filter(e => e.status == 'previous')
@@ -217,13 +211,7 @@ console.log(objectData,'[[[[[[')
           if (ongoing?.length > 0) {
             getAllDietPlan(0, 0, 0, uid)
           }
-        //   else {
-        //     localStorage.removeItem('exercisestartDate')
-        //     localStorage.removeItem('exerciseendDate')
-        //     localStorage.removeItem('dietstartDate')
-        //     localStorage.removeItem('dietendDate')
-        //     setLoading(false)
-        //   }
+       
         }
       })
       .catch(function (error) {
@@ -244,16 +232,13 @@ console.log(objectData,'[[[[[[')
         exerciseurl = `https://aipse.in/api/getAllDietPlan?userid=${uid}&startdate=${exercise?.StartDate}&enddate=${exercise?.EndDate}&type=exercise&status=${interval[value]}`
       }
     }
-    // console.log(dieturl, exerciseurl)
+    
     let days;
     value == '0' ? days = 1 : value == '1' ? days = 7 : value == '2' ? days = 30 : days = 90
 
     axios.get(dieturl)
       .then(function (response) {
-        // 
-        // console.log(response.data, "foodddd")
-        // setOngoingDietPlan({ servingsLeft: 0, TotalServings: 0 })
-        // setOngoingExercisePlan({ servingsLeft: 0, TotalServings: 0 })
+       
         if (diet) {
 
 
@@ -272,8 +257,8 @@ console.log(objectData,'[[[[[[')
         response.data.data.servingsLeft = parseInt
           (response?.data?.data.TotalServings - response?.data?.data.CosumedServings)
 
-        // localStorage.setItem('dietstartDate', response?.data?.data?.StartDate)
-        // localStorage.setItem('dietendDate', response?.data?.data?.EndDate)
+        
+        
         setOngoingDietPlan(response?.data?.data)
         axios.get(exerciseurl)
           .then(function (response) {
@@ -291,8 +276,7 @@ console.log(objectData,'[[[[[[')
 
               response.data.data.servingsLeft = parseInt
                 (response?.data?.data.TotalServings - response?.data?.data.CosumedServings)
-            //   localStorage.setItem('exercisestartDate', response?.data?.data?.StartDate)
-            //   localStorage.setItem('exerciseendDate', response?.data?.data?.EndDate)
+            
 
               setOngoingExercisePlan(response?.data?.data)
             }
@@ -346,8 +330,7 @@ console.log(objectData,'[[[[[[')
     objectData.pathnamePrevious.push(location.pathname)
     
     objectData.pathnameCurrent[0]=location.pathname
-    //const encodedData = encodeURIComponent(JSON.stringify(objectData));
-    //navigate(`/dashboardadmin/alldietplan?data=${encodedData}`);
+    
     navigate(`/dashboardadmin/alldietplan`,{state:objectData})
 
   }
@@ -367,12 +350,10 @@ console.log(objectData,'[[[[[[')
 
   const handlegoback=()=>{
     console.log(userData,'userdataaa')
-    userData.pathnameCurrent[1]===0?1:userData?.pathnamePrevious.pop();
-    userData.pathnameCurrent[1]=1;
+    
     
     const encodedData = encodeURIComponent(JSON.stringify(userData));
-    //navigate(`${userData?.pathnamePrevious[userData?.pathnamePrevious.length-1]}?data=${encodedData}`);
-   // navigate(`${userData?.pathnamePrevious[userData?.pathnamePrevious.length-1]}`,{state:objectData});
+    
    navigate(-1,{state:objectData})
     
     //navigate(`${userData.pathname}?data=${encodedData}`,{ from: location.pathname });
@@ -442,18 +423,23 @@ console.log(upcoming,"----upcoming----")
             </IconButton>
 
          </Grid>
-    <Grid item>
+         <Grid>
+      <Typography variant="h3" style={hello} ml={'10px'}>{objectData?.user_name
+} Dashboard</Typography>
+    </Grid>
+    {/* <Grid item>
     <img src={Logo} alt="nova logo" style={{height: "auto", width: "250px", marginLeft: "30px"}}/>
+    </Grid> */}
     </Grid>
-    </Grid>
-   <Stack margin="10px">
+    
+   {/* <Stack margin="10px">
     <Typography variant='h5' style={hello}>  Hello, {username} </Typography>     
-    </Stack>
+    </Stack> */}
     <Card style={{margin:"10px"}}>
     
-      <Card  style={{ backgroundColor:"#D1A6E7"}}>
+      <Card  style={{ backgroundColor:"#EBF5FF"}}>
         <CardContent >
-          <Card style={{backgroundColor:"#D1A6E7"}}>
+          <Card style={{backgroundColor:"#EBF5FF"}}>
             <Grid container   style={{display:'flex',flexDirection:"row",position:'relative',marginBottom:'1rem'}}>
                <Grid item xs={8}>
                {/* <CardContent > */}
@@ -500,27 +486,16 @@ console.log(upcoming,"----upcoming----")
 
           </Card>
           
-        { (ongoingDietPlan?.Type)?(<Card style={{ backgroundColor:"#D1A6E7"}}>
+        { (ongoingDietPlan?.Type)?(<Card style={{ backgroundColor:"#EBF5FF"}}>
 
           <Grid sx={12} margin={"10px"} >
   <Typography variant='h5' style={hello}>Diet</Typography>
 </Grid>
         
-        <Card  style={{backgroundColor:"#8D25C1",marginTop:"10px" }}>
+        <Card  style={{backgroundColor:"",marginTop:"10px" }}>
         
           
-            {/* <Grid style={{display:'flex',alignContent:'center',justifyContent:'center',alignItems:"center",margin: "10px"}}>
-              <Typography variant='h4' style={{color:"black" , textAlign:"center" }}>
-              
-              {formatDate(ongoingDietPlan?.StartDate)}
-              </Typography > 
-              <Typography sx={{color:"white",fontFamily:"Inter-regular",textAlign:"center",marginLeft:"1px",marginRight:"1px"}}>to</Typography>
-              <Typography variant='h4'  style={{color:"black" ,textAlign:"center"}}>
-           
-              {formatDate(ongoingDietPlan?.EndDate)}
-              </Typography>
-              
-            </Grid> */}
+
              <Grid container item alignContent={"center"} minHeight="80px" >
           <Grid item xs={5.5} >
           <Typography variant='h4' style={{color:"black" ,textAlign:"center" }}>
@@ -591,13 +566,13 @@ console.log(upcoming,"----upcoming----")
               </Card>)}
         
 
-        {(ongoingExercisePlan?.Type)?(<Card style={{ backgroundColor:"#D1A6E7"}}>
+        {(ongoingExercisePlan?.Type)?(<Card style={{ backgroundColor:"#EBF5FF"}}>
 
 <Grid sx={12} margin={"10px"} >
   <Typography variant='h5' style={hello}>Exercise</Typography>
 </Grid>
 
-<Card  style={{backgroundColor:"#8D25C1",marginTop:"10px" }}>
+<Card  style={{backgroundColor:"white",marginTop:"10px" }}>
 
 <Grid container item alignContent={"center"} minHeight="80px" >
 <Grid item xs={5.5} >
@@ -719,7 +694,7 @@ console.log(upcoming,"----upcoming----")
                               <Typography style={{ color: "white" }}> No data found in diet plan</Typography>
                             </CardContent>
                           ) : (
-                            <Card  style={{backgroundColor:"#2c2b2b", margin:"10px"}}  >
+                            <Card  style={{backgroundColor:"white", margin:"10px"}}  >
                             
                          
                                 <CardContent >
@@ -832,7 +807,7 @@ console.log(upcoming,"----upcoming----")
     
  
       {upcoming.length > 0 && (
-        <Card sx={{margin:"10px"}} style={{backgroundColor:"#D1A6E7"}} >
+        <Card sx={{margin:"10px"}} style={{backgroundColor:"#EBF5FF"}} >
           {/* <Typography variant='h5' style={hello}  >Upcoming Plans</Typography> */}
           <Grid  sx={12} marginLeft={"30px"}  marginTop={"10px"}>
           <Typography variant='h5' style={hello} >Upcoming Plans</Typography>
@@ -841,7 +816,7 @@ console.log(upcoming,"----upcoming----")
           
            
               {upcoming.map((item, index) => (
-                <Card key={index} sx={{margin:"20px",backgroundColor:"#D1A6E7"}} >
+                <Card key={index} sx={{margin:"20px",backgroundColor:"#EBF5FF"}} >
                   
                     
                       {item?.type === 'food' ? (
@@ -934,7 +909,7 @@ console.log(upcoming,"----upcoming----")
                         
                       )}
                       <Card sx={{marginTop:"5px"}}>
-                     < Grid container item alignContent={"center"} minHeight="80px" sx={{backgroundColor:"#8D25C1", }} >
+                     < Grid container item alignContent={"center"} minHeight="80px" sx={{backgroundColor:"#EBF5FF", }} >
             <Grid item xs={5}  >
             <Typography variant='h4' style={{color:"black" ,textAlign:"center", }}>
             {formatDate(item.startdate)}
@@ -965,11 +940,11 @@ console.log(upcoming,"----upcoming----")
       )}
     
       
-    <Stack mt={10}><Card  onClick={handleListAllDietPlan}  sx={{textDecoration:'none',cursor:'pointer'}} style={{backgroundColor:"purple", margin:"10px", alignItems:"center"}}><Stack mb={2}> <Typography sx={{ fontSize: 20, fontWeight: 'bold', textAlign:'left', color:'white', fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:'10px'}} gutterBottom variant="h5" component="div" mt={3}  >
+    <Stack mt={10}><Card  onClick={handleListAllDietPlan}  sx={{textDecoration:'none',cursor:'pointer'}} style={{backgroundColor:"#EBF5FF", margin:"10px", alignItems:"center"}}><Stack mb={2}> <Typography sx={{ fontSize: 20, fontWeight: 'bold', textAlign:'left', color:'black', fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:'10px'}} gutterBottom variant="h5" component="div" mt={3}  >
                    List All Diet Plan
                   </Typography></Stack></Card></Stack>
 
-                  <Stack mt={5}><Card  onClick={handleListAllExercisePlan}  sx={{textDecoration:'none',cursor:'pointer'}} style={{backgroundColor:"purple", margin:"10px", alignItems:"center"}}><Stack mb={2}> <Typography sx={{ fontSize: 20, fontWeight: 'bold', textAlign:'left', color:'white', fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:'10px'}} gutterBottom variant="h5" component="div" mt={3}  >
+                  <Stack mt={5}><Card  onClick={handleListAllExercisePlan}  sx={{textDecoration:'none',cursor:'pointer'}} style={{backgroundColor:"#EBF5FF", margin:"10px", alignItems:"center"}}><Stack mb={2}> <Typography sx={{ fontSize: 20, fontWeight: 'bold', textAlign:'left', color:'black', fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:'10px'}} gutterBottom variant="h5" component="div" mt={3}  >
                    List All Exercise Plan
                   </Typography></Stack></Card></Stack>
 

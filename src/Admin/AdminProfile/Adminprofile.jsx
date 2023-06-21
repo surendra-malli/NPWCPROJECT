@@ -25,6 +25,8 @@ import BarGraph from '../AdminDashboard/BarGraph';
 import CreateDietPlan from '../AdminDiet/components/CreateDietPlanNut';
 import CreateExercisePlan from '../AdminDiet/components/CreateExercisePlan';
 // import Page from '../../components/Page';
+import Avatar2 from "src/assets/Frame.png"
+
 
 
 
@@ -379,29 +381,44 @@ console.log(objectData?.id,'objectDataobjectData')
     <Typography style={pageheading}>Profile</Typography>
     </Grid>
  </Grid>
-            <Grid container spacing={3} style={{ display:'flex', justifyContent:'center' }}>
+ <Grid container spacing={3} style={{ display:'flex', justifyContent:'left', marginTop:'0px' }}>
         {/* {users.map((product) => ( */}
         
           <Grid item   >
             {/* <Button> */}
 
-            <Card >
+            <Card style={{backgroundColor:'#EBF5FF'}}>
               <CardContent>
                 {/* {console.log("profilesssss--->",itm.profile_pic,itm?.first_name)} */}
-                <Grid container display="flex" flexDirection="column" alignItems="center" justifyContent="center">
+                <Grid container display="row" flexDirection="row" alignItems="center" justifyContent="center">
                   <Grid style={{ display: "flex", alignItems: "center", justifyContent: "center" }} item>
                    
-                    <img style={{ borderRadius: 50 ,height:50,width:50}} src={fish} />
+                    <img style={{ borderRadius: 50 ,height:100,width:100,alignItems: "left",}} src={Avatar2} />
+
+
+                    <Grid style={{ marginLeft:'1rem'}} item>
+                 <div style={{  fontSize: 30,color:"black", fontWeight:'bold',  fontFamily: 'Inter-SemiBold',}}> {data?.user_name}</div>
+
+                  <div sx={{ fontSize: 20, fontWeight: 'normal',  fontFamily: 'Inter-Regular', lineHeight: "38px" }} mt={3} >{data?.email_id}</div>
                   </Grid>
-                 <Grid item>
-                  <Typography sx={{ fontSize: 30, fontWeight: 'bold',  fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:"10px"  }} mt={3} textAlign={'center'} >
+                 
+                {/* <Grid item>
+                  <Typography sx={{ fontSize: 20, fontWeight: 'normal',  fontFamily: 'Inter-Regular', lineHeight: "38px" }} mt={3}  >
+                  {data?.email_id}
+                  
+                  </Typography>
+                  </Grid> */}
+
+
+
+                  </Grid>
+                  {/* <Grid item>
+                  <Typography sx={{ fontSize: 30, fontWeight: 'bold',  fontFamily: 'Inter-SemiBold', lineHeight: "50px" ,  }} mt={3} textAlign={'left'} >
                   {data?.user_name}
                   
                   </Typography>
-                  </Grid>
-                  <Grid style={{ textAlign: "center", fontSize: 20,color:"black", fontWeight:'normal',  fontFamily: 'Inter-Regular', lineHeight: "50px", marginLeft:"10px" }} item>
-                  {data?.email_id}
-                  </Grid>
+                  </Grid> */}
+                  
                 </Grid>
               </CardContent>
             </Card>
@@ -419,7 +436,7 @@ console.log(objectData?.id,'objectDataobjectData')
       </Snackbar>
       
     
-      <Typography sx={{ fontSize: 20,   fontFamily: 'Inter-SemiBold', lineHeight: "50px", marginLeft:"5px"  }} mt={3}  > 
+      <Typography sx={{ fontSize: 20,   fontFamily: 'Inter-SemiBold', lineHeight: "50px", marginLeft:"12px"  }} mt={3}  > 
                    For {actionMessage} Use Toogle
                    <Switch
       checked={checked}
@@ -440,7 +457,7 @@ console.log(objectData?.id,'objectDataobjectData')
                 
                 
 <Stack mt={4}> 
-        <Card  onClick={handleDashboardStats}  sx={{textDecoration:'none',cursor:'pointer'}} justifyContent="space-between" alignItems="center"  style={{backgroundColor:"#F0E7F5"}}>
+        <Card  onClick={handleDashboardStats}  sx={{textDecoration:'none',cursor:'pointer'}} justifyContent="space-between" alignItems="center"  style={{backgroundColor:"#EBF5FF"}}>
            
            {(checked===true &&(objectData?.dietcreated===1 || objectData?.exercisecreated===1)) &&( <Grid container  sx={{textDecoration:'none'}} justifyContent="space-between" alignItems="center" >
                 <Grid item >
@@ -482,7 +499,7 @@ console.log(objectData?.id,'objectDataobjectData')
       const sendData={...intialValues,...objectData}
       sendData.action='Create'
       childComponentRef.current.editClick(sendData)
-        }}  sx={{textDecoration:'none',cursor:'pointer'}} justifyContent="space-between" alignItems="center"  style={{backgroundColor:"#F0E7F5"}}>
+        }}  sx={{textDecoration:'none',cursor:'pointer'}} justifyContent="space-between" alignItems="center"  style={{backgroundColor:"#EBF5FF"}}>
            
            {checked===true &&( <Grid container  sx={{textDecoration:'none'}} justifyContent="space-between" alignItems="center" >
                 <Grid item >
@@ -525,7 +542,7 @@ console.log(objectData?.id,'objectDataobjectData')
       const sendData={...intialValues,...objectData}
       sendData.action='Create'
       childComponentRefExercise.current.editClick(sendData)
-        }}  sx={{textDecoration:'none',cursor:'pointer'}} justifyContent="space-between" alignItems="center"  style={{backgroundColor:"#F0E7F5"}}>
+        }}  sx={{textDecoration:'none',cursor:'pointer'}} justifyContent="space-between" alignItems="center"  style={{backgroundColor:"#EBF5FF"}}>
            
            {checked===true &&( <Grid container  sx={{textDecoration:'none',pointer:'cursor'}} justifyContent="space-between" alignItems="center" >
                 <Grid item >
@@ -547,7 +564,7 @@ console.log(objectData?.id,'objectDataobjectData')
  </Stack>
 
                   <Stack  mt={10}>
-                    <Card onClick={handleDelete} style={{cursor:'pointer',backgroundColor:"purple", margin:"10px", alignItems:"center"}}>
+                    <Card onClick={handleDelete} style={{cursor:'pointer',backgroundColor:"#2065D1", margin:"10px", alignItems:"center"}}>
                       <Stack  mb={2}> 
                     <Typography sx={{ fontSize: 20, fontWeight: 'bold', textAlign:'center', color:'white',  fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:"10px" }} mt={3}  >
                      Delete Account
@@ -556,7 +573,7 @@ console.log(objectData?.id,'objectDataobjectData')
 
       </CardContent>
       </Card>
-      <AlertDialog gobackk={goBackk} Message="Created Sucessfully" ref={childcomrefAlert}/>
+      <AlertDialog Message="Created Sucessfully" ref={childcomrefAlert}/>
       {/* <BarGraph></BarGraph> */}
       
     </>

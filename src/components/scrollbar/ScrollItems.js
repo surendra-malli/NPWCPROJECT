@@ -7,18 +7,46 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import { Grid } from '@mui/material';
  // import Typography from 'src/theme/overrides/Typography';
-
+// import Yellowdot from 'src/assets/yellowdot.svg'
 import Typography  from '@mui/material/Typography';
 
 
 const cardstyle={
   fontFamily: 'Inter-Regular',
-  color:"white",
+  color:"#112866",
   fontSize:"12px",
+  marginRight:'20px',
   
  
   
 };
+const dot ={
+  color:'yellow',
+  width: '10px' ,
+  height:'10px',
+  borderRadius: '100%',
+  backgroundColor:'yellow',
+  marginRight:'10px'
+
+};
+const dot1 ={
+  color:'yellow',
+  width: '10px' ,
+  height:'10px',
+  borderRadius: '100%',
+  backgroundColor:'green',
+  marginRight:'10px'
+
+};
+const dot2 ={
+  color:'yellow',
+  width: '10px' ,
+  height:'10px',
+  borderRadius: '100%',
+  backgroundColor:'red',
+  marginRight:'10px'
+  
+}
 
 
 
@@ -37,7 +65,7 @@ export default function ScrollableTabsButtonPrevent(props) {
   };
 
   return (
-    <Box sx={{ width:"100%" ,  }}>
+    <Box sx={{ width:"100%" , }}>
       <Tabs
       
         // value={value}
@@ -54,16 +82,16 @@ export default function ScrollableTabsButtonPrevent(props) {
           
         return (
           
-          <Card sx={{ minWidth: 200, m: 1,p:2,  backgroundColor:'purple' , color:"white"}} >
-        <Grid container display="flex" flexDirection="column">
-          <Grid item>
-          <Typography style={cardstyle} mt={0.3} >Category: {item.Category}</Typography>
+          <Card sx={{ minWidth: 200, m: 1,p:2,  backgroundColor:'white' , color:"#EBF5FF"}} >
+        <Grid container  flexDirection="column">
+          <Grid item >
+          <Typography style={cardstyle}  sx={{ display: 'flex', alignItems: 'center', mt: 0.3, }} ><div style={dot}></div>  Ctegory: {item.Category}</Typography>
           </Grid>
           <Grid item>
-          <Typography style={cardstyle} mt={0.3} >Recommended Servings: {item.recommended_servings}</Typography>
+          <Typography style={cardstyle} sx={{ display: 'flex', alignItems: 'center', mt: 0.3, }} ><div style={dot1}></div>Recommended Servings: {item.recommended_servings}</Typography>
           </Grid>
           <Grid item>
-          <Typography style={cardstyle} mt={0.3} >Total Servings: {item.total_servings}</Typography>
+          <Typography style={cardstyle} sx={{ display: 'flex', alignItems: 'center', mt: 0.3, }} ><div style={dot2}></div>Total Servings: {item.total_servings}</Typography>
           </Grid>
         </Grid>
         </Card>

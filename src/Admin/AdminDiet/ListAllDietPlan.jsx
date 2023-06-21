@@ -33,6 +33,7 @@ import ScrollableTabsButtonPrevent from "../../components/scrollbar/ScrollItems"
 const text ={
   fontFamily: 'Inter-Regular',
   color:"#112866",
+  marginLeft:'12px'
   
 };
 
@@ -54,7 +55,9 @@ const Transition = React.forwardRef(function Transition(props, ref) {
     fontWeight: "bold",
     fontSize: "20px",
     lineHeight: "30px",
-    color: "#112866"
+    color: "#112866",
+  marginLeft:'12px'
+
   };
 export default function ListAllDietPlan(props){
   let  navigate = useNavigate();
@@ -183,7 +186,7 @@ useEffect(()=>{
          {
           dataFromApi?.map(item=>{
             return (
-              <Card  sx={{ margin: '10px', marginTop: '40px'}} >
+              <Card  sx={{ margin: '10px', marginTop: '40px',backgroundColor:'#EBF5FF'}} >
               <CardContent>
               <Grid container flexDirection={"column"} >
     
@@ -255,20 +258,20 @@ useEffect(()=>{
           position: 'fixed', zIndex: '1', bottom: 40, right: 40
         }}
     
-        sx={{
+        sx={ {
           ':hover': {
-            bgcolor: "#F0E7F5", // theme.palette.primary.main
-            color: '#9B59B6',
-            border: '#ffd796'
+              bgcolor: "#007AFF", // theme.palette.primary.main
+              color: 'white',
+              border: '#ffd796'
           },
           ':active': {
-            bgcolor: "#F0E7F5",
-            color: "#9B59B6"
+              bgcolor: "#007AFF",
+              color: "#white"
           },
-          bgcolor: '#F0E7F5',
-          color: "#9B59B6",
+          bgcolor: '#007AFF',
+          color: "white",
           border: 'none'
-        }} >
+      }} >
   
   
           <span >Create Diet Plan</span>

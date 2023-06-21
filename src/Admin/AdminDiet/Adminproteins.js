@@ -41,7 +41,7 @@ const buttonStyle = {
 }
 
 const cardStyle = {
-    backgroundColor: "#F0E7F5",
+    backgroundColor: "#EBF5FF",
     margin: '1rem',
     boxShadow: '#c4c4c4'
 
@@ -50,7 +50,7 @@ const cardStyle = {
 const textparaStyle = {
     fontFamily: 'Inter-Regular',
     padding: "30px",
-    color: "#9B54BF"
+    color: "black"
 }
 
 const maintitle = {

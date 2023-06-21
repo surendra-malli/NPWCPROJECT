@@ -411,22 +411,22 @@ const apiHitEdit=async()=>{
           }}
           sx={{
             ':hover': {
-              //bgcolor: "#F0E7F5", // theme.palette.primary.main
-              color: 'white',
-              border: '#ffd796'
+                bgcolor: "#007AFF", // theme.palette.primary.main
+                color: 'white',
+                border: '#ffd796'
             },
             ':active': {
-              bgcolor: "#007AFF",
-              color: "white"
+                bgcolor: "#007AFF",
+                color: "#9B59B6"
             },
-            bgcolor: '#007AFF',
-            color: "white",
+            bgcolor: '#EBF5FF',
+            color: "#007AFF",
             border: 'none'
-          }} 
-          title=""
+        }} 
+          title="Create POA"
         >
           {/* style={{ float: "right", marginLeft:100, borderRadius: "50%", padding: "0.2rem", position:'relative', zIndex: '-1',marginRight:10,marginTop:15}} */}
-          <span style={{ fontSize: '2rem' }}>Create Diet Item</span>
+          <span style={{ fontSize: '1rem' }}>Create Diet Item</span>
         </Button>
      
       {/* <Button variant="outlined" onClick={handleClickOpen}>
@@ -480,7 +480,7 @@ const apiHitEdit=async()=>{
             
                 <CardContent>
                     <Grid container flexDirection="column" spacing={1}>
-                        <Grid xs={12}   mb={2}  sx={{borderColor:"purple"}} Item>
+                        <Grid xs={12}   mb={2}  sx={{borderColor:"#007AFF"}} Item>
                             <TextField onChange={(e)=>setDiet({...diet,item_name:e?.target?.value})} value={diet.item_name} label="Name" sx={{borderColor:"purple"}} variant='outlined' fullWidth/>
                         </Grid>
 
