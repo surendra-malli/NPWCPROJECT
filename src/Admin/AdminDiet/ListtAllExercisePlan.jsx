@@ -176,7 +176,7 @@ useEffect(()=>{
 
 
 
-         {
+         { dataFromApi ?
           dataFromApi?.map(item=>{
             return (
               <Card  sx={{ margin: '10px', marginTop: '40px',backgroundColor:'#EBF5FF'}} >
@@ -212,9 +212,14 @@ useEffect(()=>{
              </Card>
 
             );
-          })
+          }):
+          <div style={{ display: "flex", justifyContent: "center", flexDirection:"column", alignItems: "center" , height:"45vh" }}  >
+           
+          <Typography   align="center" variant='h4'  >No Exercise Plans Found</Typography>
+          
+          </div>
          }
-         {dataFromApi?.length===undefined && <Grid display="flex" justifyContent='center' alignItems='center'>No Exercise Items Created</Grid>}
+        
 
         
 

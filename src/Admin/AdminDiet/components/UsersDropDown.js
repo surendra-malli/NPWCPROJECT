@@ -24,6 +24,7 @@ const Dropdown =React.forwardRef(({onDataChangeuserId,valuesD}, ref,props) => {
    const navigate=useNavigate();
     const [dropvalue,setDropValue]= useState([])
     const [selectedUser,setSelectedUser]=useState(valuesD?.selectedUser)
+    console.log(valuesD?.selectedUser,'valuesD?.selectedUser')
     const childComponentRef = useRef(null);
     const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;

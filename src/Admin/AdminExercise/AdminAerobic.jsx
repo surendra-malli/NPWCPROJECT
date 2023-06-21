@@ -160,8 +160,8 @@ const Aerobic = forwardRef((props, ref) => {
   return (
     <div>
      
-      {/* <Grid>
-    <img src={Logo} alt="nova logo" style={{height: "auto", width: "250px", marginLeft: "30px"}}/></Grid> */}
+     <Grid>
+    <img src={Logo} alt="nova logo" style={{height: "auto", width: "250px", marginLeft: "30px"}}/></Grid>
    
      
        

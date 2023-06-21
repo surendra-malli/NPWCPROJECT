@@ -183,7 +183,7 @@ useEffect(()=>{
 
 
 
-         {
+         { dataFromApi?
           dataFromApi?.map(item=>{
             return (
               <Card  sx={{ margin: '10px', marginTop: '40px',backgroundColor:'#EBF5FF'}} >
@@ -219,9 +219,14 @@ useEffect(()=>{
              </Card>
 
             );
-          })
+          }):
+          <div style={{ display: "flex", justifyContent: "center", flexDirection:"column", alignItems: "center" , height:"45vh" }}  >
+           
+<Typography   align="center" variant='h4'  >No Diet Plans Found</Typography>
+
+</div>
          }
-         {dataFromApi?.length===undefined && <h1>No Diet Plans Created</h1>}
+        
 
         
 

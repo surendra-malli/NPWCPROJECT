@@ -213,7 +213,7 @@ const count = async => {
       {/* <CreateDietPlan/> */}
       <Card
         sx={{ minWidth: 275 }}
-        style={{ backgroundColor: "#212121", margin: "10px" , marginTop:'35px'}}
+        style={{ backgroundColor: "#212121", margin: "10px" , marginTop:'42px'}}
       >
         <CardContent>
           <Grid

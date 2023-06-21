@@ -419,8 +419,8 @@ const apiHitEdit=async()=>{
                 bgcolor: "#007AFF",
                 color: "#9B59B6"
             },
-            bgcolor: '#EBF5FF',
-            color: "#007AFF",
+            bgcolor: '#007AFF',
+            color: "white",
             border: 'none'
         }} 
           title="Create POA"

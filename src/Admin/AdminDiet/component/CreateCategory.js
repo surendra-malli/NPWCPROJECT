@@ -316,13 +316,13 @@ const deleteHit=async=>{
                       bgcolor: "#007AFF",
                       color: "#9B59B6"
                   },
-                  bgcolor: '#EBF5FF',
-                  color: "#007AFF",
+                  bgcolor: '#007AFF',
+                  color: "white",
                   border: 'none'
               }
               }
               title = "" >
-                <Tooltip title="Create Diet Item">
+                <Tooltip >
               <span style = {   { fontSize: '1rem' } } > Create Diet Category </span> 
               </Tooltip>
               </Button >

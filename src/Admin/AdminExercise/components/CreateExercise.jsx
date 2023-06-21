@@ -289,7 +289,7 @@ const DeleteDietPlan=()=>{
   .then((response) => {
     console.log(JSON.stringify(response.data));
     //alert('Diet plan deleted sucessfully');
-    childrefAlert.current.handleClickOpenAlert('Exercise plan deleted sucessfully');
+    childrefAlert.current.handleClickOpenAlert('Exercise Item Deleted Sucessfully');
     props.dataHitParent();
   })
   .catch((error) => {
@@ -543,7 +543,7 @@ setAction("Create")
                             </Grid> */}
 
                                
-<Typography variant="body2" gutterBottom>Choose Diet Image</Typography>
+<Typography variant="body2" gutterBottom>Choose Exercise Image</Typography>
 <div id="project-input-tag-div" style={{ display: 'flex' ,marginTop:"10px" , marginBottom:"10px"}}>
                   <label id="input-tag-project-multi-drawer" for="inputTag" style={{ cursor: 'pointer', display: 'flex' }}>
                     <Iconify id="camera-icon" icon={'mdi:camera'} sx={{ width: 25, height: 25, ml: 2, color: '#007AFF' }} />

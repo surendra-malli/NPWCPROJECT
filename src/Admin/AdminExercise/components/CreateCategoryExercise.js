@@ -51,7 +51,7 @@ const deleteHit=async=>{
       .then((response) => {
         console.log(JSON.stringify(response.data));
         props.categoryHit(0)
-        childcomreffAlert.current.handleClickOpenAlert('Category Delete Sucessfully');
+        childcomreffAlert.current.handleClickOpenAlert('Category Deleted Sucessfully');
       })
       .catch((error) => {
         console.log(error);

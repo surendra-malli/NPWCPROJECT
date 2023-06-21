@@ -12,14 +12,10 @@ import useResponsive from '../../hooks/useResponsive';
 
 
 
-export default function Searchbar({searchHandler}) {
-  // const searchHandler = props;
+export default function Searchbar({ getSearch }) {
   const [isOpen, setOpen] = useState(false);
-  const[searchData,setSearchData]= useState("");
-
+  var searchData = ''
   const handleOpen = () => {
-    console.log('oppened')
-   // searchHandler
     setOpen((prev) => !prev);
     console.log("handle open fuunction")
   };
@@ -27,14 +23,11 @@ export default function Searchbar({searchHandler}) {
 
   const handleClose = () => {
     setOpen(false);
+    console.log
     console.log("handle close fuunction")
 
   };
-  
-  useEffect(()=>{
-    console.log("search data is ",searchData)
-   searchHandler(searchData);
-  },[searchData])
+
 
 
 
@@ -85,20 +78,10 @@ export default function Searchbar({searchHandler}) {
   }));
 
   const changeText = (e) => {
-   
-  
-    console.log(e?.target?.value,'----searchDataforme-----');
-   
-      setSearchData(e?.target?.value)
-      console.log(searchData,'----searchDatafromuse-----');
-     // searchHandler(searchData)
-
-    
+    searchData = e?.target?.value
   }
 
-
-
-  
+ 
   // ----------------------------------------------------------------------
   return (
     <RootStyle>
@@ -106,12 +89,10 @@ export default function Searchbar({searchHandler}) {
         <ClickAwayListener onClickAway={handleClose}>
           <div>
             {!isOpen && (
-              
+             
                <Input id="outlined-basic" color="common" disabled
                  placeholder='Search...'
                  onClick={handleOpen}
-                //  value={searchData}
-                //  onChange={searchHandler}
                  sx={{ m: 2, fontWeight: 'fontWeightBold',width:'70vw'}}
                  startAdornment= {
                    <InputAdornment position="start">
@@ -128,11 +109,9 @@ export default function Searchbar({searchHandler}) {
                 <Input
                   autoFocus
                   fullWidth
-                  onChange={(e) => { setSearchData(e.target.value) }}
-                 
+                  onChange={(e) => { changeText(e) }}
                   disableUnderline
                   placeholder="Search…"
-                  defaultValue={searchData}
                   startAdornment={
                     <InputAdornment position="start">
                       <Iconify icon="eva:search-fill" sx={{ color: 'text.disabled', width: 20, height: 20 }} />
@@ -140,13 +119,13 @@ export default function Searchbar({searchHandler}) {
                   }
                   sx={{ margin:5, fontWeight: 'fontWeightBold',width:'70vw'}}
                 />
-                <Button onClick={(e) => {
-                  console.log(e.target.value,'search value');
+                <Button onClick={() => {
+                  getSearch(searchData)
                   handleClose()
                 }} sx={{
                   '&:hover': {
                     backgroundColor: '#007AFF',
-                    color: 'white'
+                    color: '#ff7424'
 
                   },
                   color: 'white', backgroundColor: '#007AFF'

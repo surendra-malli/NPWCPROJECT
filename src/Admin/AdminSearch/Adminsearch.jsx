@@ -110,7 +110,7 @@ const pageheading={
       window.scrollTo(0, 0);
       
        apiHit()
-    },[currentPage,searchTitle]);
+    },[currentPage]);
 
     useEffect(()=>{
       
@@ -264,7 +264,7 @@ objectData.userStatus='all'
         
             <Page  title="Dashboard: Admin">
 
-            <Searchbar  searchHandler={searchHandler} id="search-bar" sx={{height:"100px"}}/>
+            <Searchbar getSearch={(e)=>searchHandler(e)}  id="search-bar" sx={{height:"100px"}}/>
             
 
             <Container>
