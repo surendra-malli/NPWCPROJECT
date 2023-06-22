@@ -380,13 +380,19 @@ console.log(objectData?.id,'objectDataobjectData')
  <Grid item>
  <Typography style={pageheading}>Profile</Typography>
  </Grid>
+
+
+
+
+
+ 
  </Grid>
- <Grid container spacing={3} style={{ display:'flex', justifyContent:'left', marginTop:'0px' }}>
+ <Grid container spacing={3} style={{  marginTop:'0px' }}>
  {/* {users.map((product) => ( */}
  
  <Grid item >
  {/* <Button> */}
- <Button
+ {/* <Button
  variant="contained"
  color="success"
  sx={{
@@ -395,24 +401,35 @@ console.log(objectData?.id,'objectDataobjectData')
  }}
  >
  Active Green Button
- </Button>
+ </Button> */}
 
- <Card style={{backgroundColor:'#EBF5FF'}}>
+
+ {/* </Button> */}
+ {/* <ShopProductCard product={product} /> */}
+ </Grid>
+ 
+
+ </Grid>
+
+ <Stack> 
+ <Card onClick={handleDashboardStats} sx={{textDecoration:'none',cursor:'pointer'}} justifyContent="space-between" alignItems="center" style={{backgroundColor:"#EBF5FF"}}>
+ 
+ <Card style={{backgroundColor:'#EBF5FF',justifyContent:"space-between"}} fullWidth >
  
  <CardContent>
 
 
  {/* {console.log("profilesssss--->",itm.profile_pic,itm?.first_name)} */}
- <Grid container display="row" flexDirection="row" alignItems="center" justifyContent="center">
+ <Grid container display="row" flexDirection="row" >
  <Grid style={{ display: "flex", alignItems: "center", justifyContent: "center" }} item>
  
  <img style={{ borderRadius: 50 ,height:100,width:100,alignItems: "left",}} src={Avatar2} />
 
 
  <Grid style={{ marginLeft:'1rem'}} item>
- <div style={{ fontSize: 30,color:"black", fontWeight:'bold', fontFamily: 'Inter-SemiBold',}}> {data?.user_name}</div>
+ <div style={{ fontSize: 25,color:"black", fontWeight:'bold', fontFamily: 'Inter-SemiBold',}}> {data?.user_name}</div>
 
- <div sx={{ fontSize: 20, fontWeight: 'normal', fontFamily: 'Inter-Regular', lineHeight: "38px" }} mt={3} >{data?.email_id}</div>
+ <div sx={{ fontSize: 15, fontWeight: 'normal', fontFamily: 'Inter-Regular', lineHeight: "38px" }} mt={3} >{data?.email_id}</div>
  </Grid>
  
  {/* <Grid item>
@@ -435,12 +452,10 @@ console.log(objectData?.id,'objectDataobjectData')
  </Grid>
  </CardContent>
  </Card>
- {/* </Button> */}
- {/* <ShopProductCard product={product} /> */}
- </Grid>
  
+ </Card>
+ </Stack>
 
- </Grid>
  <Stack mt={4}>
  <Snackbar open={openAlert} autoHideDuration={3000} onClose={handleCloseAlert}>
  <MuiAlert onClose={handleCloseAlert} severity="success" variant="filled">

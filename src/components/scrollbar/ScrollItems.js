@@ -25,7 +25,7 @@ const dot ={
   width: '10px' ,
   height:'10px',
   borderRadius: '100%',
-  backgroundColor:'yellow',
+  backgroundColor:'#FFD338',
   marginRight:'10px'
 
 };
@@ -34,7 +34,7 @@ const dot1 ={
   width: '10px' ,
   height:'10px',
   borderRadius: '100%',
-  backgroundColor:'green',
+  backgroundColor:'#9DD030',
   marginRight:'10px'
 
 };
@@ -85,7 +85,7 @@ export default function ScrollableTabsButtonPrevent(props) {
           <Card sx={{ minWidth: 200, m: 1,p:2,  backgroundColor:'white' , color:"#EBF5FF"}} >
         <Grid container  flexDirection="column">
           <Grid item >
-          <Typography style={cardstyle}  sx={{ display: 'flex', alignItems: 'center', mt: 0.3, }} ><div style={dot}></div>  Ctegory: {item.Category}</Typography>
+          <Typography style={cardstyle}  sx={{ display: 'flex', alignItems: 'center', mt: 0.3, }} ><div style={dot}></div>  Category: {item.Category}</Typography>
           </Grid>
           <Grid item>
           <Typography style={cardstyle} sx={{ display: 'flex', alignItems: 'center', mt: 0.3, }} ><div style={dot1}></div>Recommended Servings: {item.recommended_servings}</Typography>

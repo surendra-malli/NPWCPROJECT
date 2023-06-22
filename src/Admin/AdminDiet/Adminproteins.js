@@ -216,6 +216,11 @@ export default function Protein(props) {
     return ( 
         <div>
   
+  
+  
+
+
+  <Grid container  flexDirection='column' spacing={2}>
   {
     <img
       src={Logo}
@@ -223,10 +228,6 @@ export default function Protein(props) {
       style={{ height: "auto", width: "250px", marginLeft: "30px" }}
     />
   }
-  
-
-
-  <Grid container spacing={2}>
     <Grid item xs={6}>
      
       <Grid container  flexDirection="row">

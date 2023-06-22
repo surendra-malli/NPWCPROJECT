@@ -168,10 +168,11 @@ const deleteHit=async=>{
          
            for(let i=0;i<categoryDataApi?.length;i++){
             if(categoryDataApi[0]?.category_name===str){
-              return false;
+              console.log(str)
+              return true;
             }
            }       
-           return true;
+           return false;
                  
              
 
@@ -265,6 +266,7 @@ const deleteHit=async=>{
 
       const handleRename=()=>{
         setEditing(true);
+        console.log(editing,'editin')
     //    RenameHit();
     //     console.log('rename',createData);
     //     setOpen(false);
@@ -278,7 +280,7 @@ const deleteHit=async=>{
   
   
       const handleTextFieldBlur = () => {
-        setEditing(false);
+        //setEditing(false);
       };
     //   const handleButtonClick = () => {
     //     setEditing(true);
@@ -363,8 +365,10 @@ const deleteHit=async=>{
               component = "div" >
               Category </Typography> 
 
-              </Grid>
-              <Grid item>
+              </Grid> 
+
+              
+               <Grid item>
                 <Tooltip title='Close'>
               <Typography onClick = { handleClose }
               sx = {
@@ -375,10 +379,11 @@ const deleteHit=async=>{
               Close </Typography>
               </Tooltip>
               
-              </Grid> {
-              /* <Button sx={{marginTop:"5px",ml:2, fontSize:"17px"}} autoFocus color="inherit" onClick={handleClose}>
-                            close
-                          </Button> */
+              </Grid> 
+              {
+              // <Button sx={{marginTop:"5px",ml:2, fontSize:"17px"}} autoFocus color="inherit" onClick={handleClose}>
+              //               close
+              //             </Button> 
           } 
           </Grid>
           </Toolbar> 
@@ -390,17 +395,28 @@ const deleteHit=async=>{
 
           </TextField>  */}
 
-          <TextField
+          {/* <TextField
           onChange = {(e) => setCreateData({...createData, category_name:e.target.value }) }
           value = { createData?.category_name }
           fullWidth
-        disabled={!editing}
+       // disabled={!editing}
         InputProps={{
           readOnly: !editing,
           onBlur: handleTextFieldBlur,
           
         }}
-      />
+      /> */}
+
+      <TextField onChange = {(e) => setCreateData({...createData, category_name:e.target.value }) }  
+          fullWidth
+          value = { createData?.category_name } 
+          InputProps={{
+            readOnly: !editing,
+            
+            
+          }}
+         
+      ></TextField>
       {/* <Button onClick={handleButtonClick} disabled={editing}>edit</Button> */}
           </DialogContent > 
           <DialogActions >

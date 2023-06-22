@@ -142,16 +142,12 @@ export default function AdminDietCategory(props) {
     return (
         <Page title=" Diet Category " >
         {/* <CreateInstantDietPlan ref={childComponentRef} ></CreateInstantDietPlan> */}
-            {<img src={Logo} alt="nova logo" style={{ height: "auto", width: "250px", marginTop:'20px'}} />}
-            <Grid container spacing={2}>
-                <Grid p={3}  xs={12} spacing={2} container display="flex" justifyContent="space-between">
-                    <Grid  item>
-                        <Typography style={title} variant='h3'>
-                            Diet Categories {categoryData?.length>0?'('+categoryData?.length+')':""}
-                        </Typography>
-                        
-                    </Grid>
-                    <Grid item>
+            <Grid container justifyContent='space-between' alignItems='center'>
+                <Grid item>
+            {<img src={Logo} alt="nova logo" style={{ height: "auto", width: "250px", marginTop:'20px',marginBottom:'10px'}} />}
+
+                </Grid>
+                <Grid item>
                         <Button  onClick={() => {
                            
                             //childComponentRef.current.handleClickOpen()
@@ -177,6 +173,16 @@ export default function AdminDietCategory(props) {
 
                             }>Create Instant Diet Plan</Button>
                     </Grid>
+            </Grid>
+            <Grid container spacing={2}>
+                <Grid p={3}  xs={12} spacing={2} container display="flex" justifyContent="space-between">
+                    <Grid  item>
+                        <Typography style={title} variant='h3'>
+                            Diet Categories {categoryData?.length>0?'('+categoryData?.length+')':""}
+                        </Typography>
+                        
+                    </Grid>
+                    
                     
                 </Grid>
             </Grid>

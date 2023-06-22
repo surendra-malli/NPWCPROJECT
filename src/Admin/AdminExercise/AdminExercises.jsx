@@ -148,16 +148,15 @@ export default function AdminExerciseCategory(props) {
     return (
         <Page Title="  Exercise Categories" >
         {/* <CreateInstantDietPlan ref={childComponentRef} ></CreateInstantDietPlan> */}
-            {<img src={Logo} alt="nova logo" style={{ height: "auto", width: "250px",marginTop:'20px' }} />}
-            <Grid container spacing={2}>
-                <Grid p={3}  xs={12} spacing={2} container display="flex" justifyContent="space-between">
-                    <Grid  item>
-                        <Typography style={title} variant='h1'>
-                            Exercise Categories {categoryData?.length>0?'('+categoryData?.length+')':""}
-                        </Typography>
-                        
-                    </Grid>
-                    <Grid item>
+            
+            <Grid container justifyContent='space-between' alignItems='center'>
+                <Grid item>
+            {<img src={Logo} alt="nova logo" style={{ height: "auto", width: "250px",marginTop:'20px',marginLeft: "10px"  }} />}
+
+                </Grid>
+               
+
+               <Grid item>
                         <Button  onClick={() => {
                            
                             //childComponentRef.current.handleClickOpen()
@@ -185,6 +184,17 @@ export default function AdminExerciseCategory(props) {
 
                             }>Create Instant Exercise Plan</Button>
                     </Grid>
+
+            </Grid>
+            <Grid container  flexDirection="column" spacing={2}>
+                <Grid p={3}  xs={12} spacing={2} container display="flex" justifyContent="space-between">
+                    <Grid  item>
+                        <Typography style={title} variant='h1'>
+                            Exercise Categories {categoryData?.length>0?'('+categoryData?.length+')':""}
+                        </Typography>
+                        
+                    </Grid>
+                    
                     
                 </Grid>
             </Grid>

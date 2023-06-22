@@ -123,13 +123,22 @@ export default function LoginPage() {
     <title> Login | NPWC </title>
   </Helmet>
   <StyledRoot>
-    <Logo
+    {/* <Logo
       sx={{
         position: "fixed",
         top: { xs: 16, sm: 24, md: 40 },
         left: { xs: 16, sm: 24, md: 40 },
       }}
-    />
+    /> */}
+
+    <Grid  sx={{margin:'30px'}}item>
+            <img
+              src={Nova}
+              alt="nova logo"
+              style={{ height: "auto", width: "auto" }}
+            />
+          </Grid>
+    
     <Container maxWidth="sm">
       <StyledContent>
         <Grid
@@ -139,16 +148,12 @@ export default function LoginPage() {
           justifyContent="center"
           spacing={2}
         >
-          <Grid item variant="h2">
-            Hi, Welcome Back
+          <Grid item >
+            <Typography variant='h6'>
+            Hi, Welcome Backk
+            </Typography>
           </Grid>
-          <Grid item>
-            <img
-              src={Nova}
-              alt="nova logo"
-              style={{ height: "auto", width: "auto" }}
-            />
-          </Grid>
+          
         </Grid>
 
         <Typography variant="h4" gutterBottom>

@@ -345,10 +345,10 @@ const deleteHit=async=>{
           onChange = {(e) => setCreateData({...createData, category_name:e.target.value }) }
           value = { createData?.category_name }
           fullWidth
-        disabled={!editing}
+        
         InputProps={{
           readOnly: !editing,
-          onBlur: handleTextFieldBlur,
+          
           
         }}
       />
