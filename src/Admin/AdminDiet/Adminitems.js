@@ -209,7 +209,7 @@ export default function AdminDietCategory(props) {
   
         
         <Grid xs={1} alignSelf='end' item>
-            <Tooltip title='Edit Diet Item'>
+            <Tooltip title='Edit Diet Category'>
              <Button onClick={e=>{handleClickEdit(e,item?.category_name,item?.category_id)}}>Edit</Button>
              </Tooltip>
              

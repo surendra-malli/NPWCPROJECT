@@ -258,7 +258,7 @@ const currencies = [
 
     const addItems = () => {
       if(valuesD?.interval===0){
-        let msg='Please fill all fields'
+        let msg='Please Fill All Fields'
         //console.log(backData,'before back')
         childcomrefAlert.current.handleClickOpenAlert(msg);
       }
@@ -323,7 +323,7 @@ const currencies = [
       axios
         .request(config)
         .then(response => {
-         let msg='Exercise Plan Created Successfully'
+         let msg='Exercise Item Created Successfully'
           childcomrefAlert.current.handleClickOpenAlert(msg);
           // console.log(JSON.stringify(response.data));
           //navigate('/dashboardadmin/listallexerciseplan',{state:backData})
@@ -407,7 +407,7 @@ const currencies = [
         axios(config)
           .then(function (response) {
            // alert('Diet Plan Updated SuccessFully');
-            childcomrefAlert.current.handleClickOpenAlert('Exercise Plan Updated Successfully');
+            childcomrefAlert.current.handleClickOpenAlert('Exercise Item Updated Successfully');
            
             console.log(response.data,"<------editDietPlanAssignededitDietPlanAssigned");
             props.apiHitParent();
@@ -441,7 +441,7 @@ const currencies = [
         axios(config)
         .then(function (response) {
           
-         let msg='Exercise Plan Deleted Successfully'
+         let msg='Exercise Item Deleted Successfully'
           childcomrefAlert.current.handleClickOpenAlert(msg);
           props.apiHitParent();
           console.log(JSON.stringify(response.data));

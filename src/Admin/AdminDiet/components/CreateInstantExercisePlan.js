@@ -257,7 +257,7 @@ function setStatusOfUser(users){
     // console.log(itm,"<--qwewqeqw")
     if(itm?.id===valuesD?.id){
       if(itm?.status==='inactive'){
-        childcomrefAlert.current.handleClickOpenAlert('Diet Plan cannot be created on In active Users');
+        childcomrefAlert.current.handleClickOpenAlert('To Create Exercise Plan Activate The User');
 
         //alert('Diet Plan cannot be created on In active Users');
         const newObj={...itm,email:itm.email_id};

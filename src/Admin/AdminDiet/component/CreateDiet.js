@@ -275,7 +275,7 @@ const DeleteDietPlan=()=>{
   .then((response) => {
     console.log(JSON.stringify(response.data));
     //alert('Diet plan deleted sucessfully');
-    childcomrefAlert.current.handleClickOpenAlert('Diet plan deleted sucessfully');
+    childcomrefAlert.current.handleClickOpenAlert('Diet Item Deleted Sucessfully');
     props.dataHitParent();
   })
   .catch((error) => {
@@ -288,7 +288,7 @@ const DeleteDietPlan=()=>{
 const apiHit=async=>{
 
   if(diet?.calories==='' || diet?.item_name==='' || diet?.item_name===undefined || diet?.calories===undefined){
-    childcomrefAlert.current.handleClickOpenAlert('Please fill All Fields');
+    childcomrefAlert.current.handleClickOpenAlert('Please Fill All Fields');
   }
   else{
    
@@ -322,7 +322,7 @@ const apiHit=async=>{
   .then((response) => {
     console.log(JSON.stringify(response.data));
     //alert('Diet plan created sucessfully');
-    childcomrefAlert.current.handleClickOpenAlert('Diet plan created sucessfully');
+    childcomrefAlert.current.handleClickOpenAlert('Diet Item Created Sucessfully');
     setDiet({})
   setAction("Create")
   deleteImage(0);
@@ -339,7 +339,7 @@ const apiHit=async=>{
 
 const apiHitEdit=async()=>{
   if(diet?.calories==='' || diet?.item_name==='' || diet?.item_name===undefined || diet?.calories===undefined){
-    childcomrefAlert.current.handleClickOpenAlert('Please fill All Fields');
+    childcomrefAlert.current.handleClickOpenAlert('Please Fill All Fields');
   }
   else{
   let data = JSON.stringify({
@@ -371,7 +371,7 @@ const apiHitEdit=async()=>{
   .then((response) => {
     console.log(JSON.stringify(response.data),'------edit response');
     //alert('Diet plan updated sucessfully');
-    childcomrefAlert.current.handleClickOpenAlert('Diet plan updated sucessfully');
+    childcomrefAlert.current.handleClickOpenAlert('Diet Item Updated Sucessfully');
     setDiet({})
     setAction("Create")
     deleteImage(0);
@@ -423,7 +423,7 @@ const apiHitEdit=async()=>{
             color: "white",
             border: 'none'
         }} 
-          title="Create POA"
+          title=""
         >
           {/* style={{ float: "right", marginLeft:100, borderRadius: "50%", padding: "0.2rem", position:'relative', zIndex: '-1',marginRight:10,marginTop:15}} */}
           <span style={{ fontSize: '1rem' }}>Create Diet Item</span>

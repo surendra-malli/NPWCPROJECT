@@ -940,11 +940,11 @@ console.log(upcoming,"----upcoming----")
       )}
     
       
-    <Stack mt={10}><Card  onClick={handleListAllDietPlan}  sx={{textDecoration:'none',cursor:'pointer'}} style={{backgroundColor:"#EBF5FF", margin:"10px", alignItems:"center"}}><Stack mb={2}> <Typography sx={{ fontSize: 20, fontWeight: 'bold', textAlign:'left', color:'black', fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:'10px'}} gutterBottom variant="h5" component="div" mt={3}  >
+    <Stack mt={1}><Card  onClick={handleListAllDietPlan}  sx={{textDecoration:'none',cursor:'pointer'}} style={{backgroundColor:"#EBF5FF", margin:"10px", alignItems:"center"}}><Stack mb={2}> <Typography sx={{ fontSize: 20, fontWeight: 'bold', textAlign:'left', color:'black', fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:'10px'}} gutterBottom variant="h5" component="div" mt={3}  >
                    List All Diet Plan
                   </Typography></Stack></Card></Stack>
 
-                  <Stack mt={5}><Card  onClick={handleListAllExercisePlan}  sx={{textDecoration:'none',cursor:'pointer'}} style={{backgroundColor:"#EBF5FF", margin:"10px", alignItems:"center"}}><Stack mb={2}> <Typography sx={{ fontSize: 20, fontWeight: 'bold', textAlign:'left', color:'black', fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:'10px'}} gutterBottom variant="h5" component="div" mt={3}  >
+                  <Stack mt={1}><Card  onClick={handleListAllExercisePlan}  sx={{textDecoration:'none',cursor:'pointer'}} style={{backgroundColor:"#EBF5FF", margin:"10px", alignItems:"center"}}><Stack mb={2}> <Typography sx={{ fontSize: 20, fontWeight: 'bold', textAlign:'left', color:'black', fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:'10px'}} gutterBottom variant="h5" component="div" mt={3}  >
                    List All Exercise Plan
                   </Typography></Stack></Card></Stack>
 
