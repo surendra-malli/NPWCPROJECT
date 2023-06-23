@@ -439,7 +439,7 @@ console.log(upcoming,"----upcoming----")
     
       <Card  style={{ backgroundColor:"#EBF5FF"}}>
         <CardContent >
-          <Card style={{backgroundColor:"#EBF5FF"}}>
+          {/* <Card style={{backgroundColor:"#EBF5FF"}}> */}
             <Grid container   style={{display:'flex',flexDirection:"row",position:'relative',marginBottom:'1rem'}}>
                <Grid item xs={8}>
                {/* <CardContent > */}
@@ -484,9 +484,10 @@ console.log(upcoming,"----upcoming----")
 
           </Grid>
 
-          </Card>
+          {/* </Card> */}
           
-        { (ongoingDietPlan?.Type)?(<Card style={{ backgroundColor:"#EBF5FF"}}>
+        { (ongoingDietPlan?.Type)?(
+        <Stack style={{ backgroundColor:"#EBF5FF"}}>
 
           <Grid sx={12} margin={"10px"} >
   <Typography variant='h5' style={hello}>Diet</Typography>
@@ -559,14 +560,15 @@ console.log(upcoming,"----upcoming----")
                       </Grid>
                   </CardContent>
           </Card>
-          </Card>):(<Card sx={{backgroundColor:"#8D25C1", marginTop:"10px" ,maxHeight:"800px"}}>
+          </Stack>):(<Card sx={{backgroundColor:"#8D25C1", marginTop:"10px" ,maxHeight:"800px"}}>
               <CardContent>
               <Typography  align="center"   style={calories}> No Diet Plans Are Created </Typography>
               </CardContent>
               </Card>)}
         
 
-        {(ongoingExercisePlan?.Type)?(<Card style={{ backgroundColor:"#EBF5FF"}}>
+        {(ongoingExercisePlan?.Type)?(
+        <Stack style={{ backgroundColor:"#EBF5FF",marginTop:"10px"}}>
 
 <Grid sx={12} margin={"10px"} >
   <Typography variant='h5' style={hello}>Exercise</Typography>
@@ -634,7 +636,7 @@ console.log(upcoming,"----upcoming----")
             </Grid>
         </CardContent>
 </Card>
-</Card>):(<Card sx={{backgroundColor:"#8D25C1", marginTop:"10px" ,maxHeight:"800px"}}>
+</Stack>):(<Card sx={{backgroundColor:"#8D25C1", marginTop:"10px" ,maxHeight:"800px"}}>
               <CardContent>
               <Typography  align="center"   style={calories}> No Exercise Plans Are Created</Typography>
               </CardContent>

@@ -151,7 +151,7 @@ export default function AdminExerciseCategory(props) {
             
             <Grid container justifyContent='space-between' alignItems='center'>
                 <Grid item>
-            {<img src={Logo} alt="nova logo" style={{ height: "auto", width: "250px",marginTop:'20px',marginLeft: "10px"  }} />}
+            {<img src={Logo} alt="nova logo" style={{ height: "auto", width: "250px",marginLeft: "10px"  }} />}
 
                 </Grid>
                

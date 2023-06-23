@@ -20,6 +20,8 @@ const users = [
 
 
 const Dropdown =React.forwardRef(({onDataChangeuserId,valuesD}, ref,props) => {
+  const[selectedValue,setSelectedValue]=useState({label:valuesD?.selectedUser,status:valuesD?.status})
+
    const location=useLocation();
    const navigate=useNavigate();
     const [dropvalue,setDropValue]= useState([])
@@ -66,13 +68,63 @@ const MenuProps = {
 
       //console.log(dropvalue,'dropvalues')
 
-      const handleChange=(e)=>{
+      // const handleChange=(str)=>{
+      //   console.log(valuesD,'0000')
+      //   console.log(location.pathname)
+      //   const selectedValue=estr?.id;
+
+      //   const selectedUser1=dropvalue.find((option) => option.id === selectedValue);
+      //       setSelectedUser(selectedUser1.label)
+      //       setSelectedValue(str)
+      //       console.log(selectedUser1,'[[[[[')
+      //       valuesD.selectedUser=selectedUser1.label
+            
+      //   if(selectedUser1.status==='inactive'){
+      //     const objectData =valuesD;
+      //     objectData.email_id=selectedUser1.email;
+      //     objectData.user_name=selectedUser1.value
+      //     objectData.id=selectedUser1.id;
+      //     valuesD.id=selectedUser1.id
+
+      //     objectData.pathnamePrevious=[location.pathname]
+          
+      //     objectData.pathnameCurrent=[location.pathname,0]
+      //     const encodedData = encodeURIComponent(JSON.stringify(objectData));
+      //     navigate('/dashboardadmin/adminprofile',{state:objectData});
+
+      //       console.log(selectedUser1,'selectedUser1')
+      //       onDataChangeuserId(selectedUser1);
+      //   }
+      //   else{
+      //     const objectData =valuesD;
+      //     objectData.email_id=selectedUser1.email;
+      //     objectData.user_name=selectedUser1.value
+      //     objectData.id=selectedUser1.id;
+      //     valuesD.id=selectedUser1.id
+
+      //     objectData.pathnamePrevious=[location.pathname]
+          
+      //     objectData.pathnameCurrent=[location.pathname,0]
+      //     const encodedData = encodeURIComponent(JSON.stringify(objectData));
+      //     navigate('/dashboardadmin/createinstantexerciseplan',{state:objectData});
+
+      //     onDataChangeuserId(selectedUser1);
+      //   }
+      //   console.log(selectedUser1,'selectedUser1')
+
+      // }
+
+
+      const handleChange=(str)=>{
         console.log(valuesD,'0000')
         console.log(location.pathname)
-        const selectedValue=e?.target?.value;
+        console.log(str,'lll');
+        const selectedValue=str?.id;
+       
 
         const selectedUser1=dropvalue.find((option) => option.id === selectedValue);
-            setSelectedUser(selectedUser1.label)
+            setSelectedUser(selectedUser1?.label)
+            setSelectedValue(str)
             console.log(selectedUser1,'[[[[[')
             valuesD.selectedUser=selectedUser1.label
             
@@ -110,7 +162,6 @@ const MenuProps = {
         console.log(selectedUser1,'selectedUser1')
 
       }
-
   
 
 
@@ -120,7 +171,7 @@ const MenuProps = {
   return (
     <>
     
-     <FormControl fullwidth>
+     {/* <FormControl fullwidth>
       <InputLabel id="select-label">Select User</InputLabel>
       <Select MenuProps={MenuProps}
         
@@ -162,8 +213,45 @@ const MenuProps = {
             )}
        
       </Select>
-    </FormControl>
+    </FormControl> */}
     {/* <InactiveProfile ref={childComponentRef}></InactiveProfile> */}
+
+    <Autocomplete
+        // {...defaultProps}
+        options={dropvalue}
+        value={
+          selectedValue.label === ""
+            ? { label: "" }
+            : { label: selectedValue.label  }
+        }
+        //id="disable-clearable"
+        // getOptionLabel={(option) =>
+        //   option.label 
+        // }
+        label='Select User'
+        disableClearable
+        //sx={{ width: 300 }}
+        onChange={(e,data)=>{
+            console.log(data)
+            setSelectedUser(data)
+            handleChange(data)
+        }}
+        fullWidth
+        renderOption={(props, option) => (
+          <Grid  {...props}   >
+
+            <Grid item >
+            <Typography style={{color: option?.status==='active'?'green':'red'}}>{option.label}</Typography>
+            </Grid>
+            {/* <Grid  >
+            <Typography style={{color: option?.status==='active'?'green':'red'}} >  { option?.status}</Typography>
+            </Grid> */}
+          </Grid>
+        )}
+        renderInput={(params) => (
+          <TextField {...params} label="Select User" />
+        )}
+      />
 
 
     </>

@@ -144,7 +144,7 @@ export default function AdminDietCategory(props) {
         {/* <CreateInstantDietPlan ref={childComponentRef} ></CreateInstantDietPlan> */}
             <Grid container justifyContent='space-between' alignItems='center'>
                 <Grid item>
-            {<img src={Logo} alt="nova logo" style={{ height: "auto", width: "250px", marginTop:'20px',marginBottom:'10px'}} />}
+            {<img src={Logo} alt="nova logo" style={{ height: "auto", width: "250px", marginBottom:'10px'}} />}
 
                 </Grid>
                 <Grid item>
