@@ -582,9 +582,9 @@ const checkDuplicateCategory=(data,dup)=>{
             </Toolbar>
           </AppBar>
           {/* <Card style={{padding:"20px 5px", margin:"0px"}}><CardContent> */}
-          <Stack m={3}>
+          {/* <Stack m={3}>
             <Typography  style={{display: 'inline-block',marginRight:"30", fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:'10px'}} variant='h5' gutterLeft >Select Interval </Typography>
-            </Stack>
+            </Stack> */}
   
   
           {/* <Stack marginLeft={3}> 

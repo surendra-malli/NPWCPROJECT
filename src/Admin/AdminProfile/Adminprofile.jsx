@@ -81,8 +81,12 @@ console.log(objectData,'objectData admin profile')
  },[checked])
 
  useEffect(()=>{
- if(objectData?.pathnameCurrent[0]==='/dashboardadmin/createinstandietplan' || objectData?.pathnameCurrent[0]==='/dashboardadmin/createinstantexerciseplan' ){
- childcomrefAlert.current.handleClickOpenAlert('On Inactive User Diet Plan Cannot Be Created');
+ if(objectData?.pathnameCurrent[0]==='/dashboardadmin/createinstandietplan' ){
+ childcomrefAlert.current.handleClickOpenAlert('Before Creating Diet Plan Activate Respective User ');
+ }
+ else if(objectData?.pathnameCurrent[0]==='/dashboardadmin/createinstantexerciseplan'){
+ childcomrefAlert.current.handleClickOpenAlert('Before Creating Exercise Plan Activate Respective User ');
+    
  }
  },[objectData])
 
@@ -346,6 +350,7 @@ console.log(objectData?.id,'objectDataobjectData')
  const handleDashboardStats=()=>{
  const objectData = data;
  objectData.pathnamePrevious.push(location.pathname)
+ objectData.status='active';
  
  objectData.pathnameCurrent[0]=location.pathname
  const encodedData = encodeURIComponent(JSON.stringify(objectData));
@@ -524,6 +529,8 @@ console.log(objectData?.id,'objectDataobjectData')
  
  objectData.pathnamePrevious.push(location.pathname)
  objectData.pathnameCurrent[0]=location.pathname
+ objectData.status='active';
+
  const sendData={...intialValues,...objectData}
  sendData.action='Create'
  childComponentRef.current.editClick(sendData)
@@ -567,6 +574,8 @@ console.log(objectData?.id,'objectDataobjectData')
  
  objectData.pathnamePrevious.push(location.pathname)
  objectData.pathnameCurrent[0]=location.pathname
+ objectData.status='active';
+
  const sendData={...intialValues,...objectData}
  sendData.action='Create'
  childComponentRefExercise.current.editClick(sendData)

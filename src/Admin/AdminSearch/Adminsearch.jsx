@@ -18,6 +18,7 @@ import {Pagination} from '@mui/material';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Avatar from "src/assets/Frame.png"
+import Logo from 'src/assets/nova.svg'
 
 
 
@@ -265,11 +266,16 @@ objectData.userStatus='all'
             <Page  title="Dashboard: Admin">
 
             <Searchbar getSearch={(e)=>searchHandler(e)}  id="search-bar" sx={{height:"100px"}}/>
-            
+            <img
+          src={Logo}
+          alt="nova logo"
+          style={{ height: "auto", width: "250px", marginLeft: "30px" }}
+        />
+      
 
             <Container>
              
-             <Grid mt={10} mb={2} container flexDirection="row">
+             <Grid mt={3} mb={2} container flexDirection="row">
                 <Grid onClick={goBack} item >
 
                 <IconButton>
