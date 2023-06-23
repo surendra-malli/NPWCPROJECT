@@ -5,6 +5,7 @@ import {useState,useEffect,useRef} from 'react';
 import moment from 'moment';
 import { useLocation } from "react-router-dom";
 import { Card, CardContent, Grid, Typography, Avatar, Badge, Button, Stack, Container } from '@mui/material';
+
 import Backbutton from "../../assets/Backbutton.svg";
 import { Link as RouterLink } from 'react-router-dom';
 import Dialog from '@mui/material/Dialog';
@@ -24,6 +25,7 @@ import CreateDietPlan from './components/CreateDietPlanNut';
 import { useNavigate} from 'react-router-dom';
 import AlertDialog from '../UserStats/AlertDialog';
 import axios from 'axios';
+import { Create as CreateIcon } from '@mui/icons-material';
 // import EditCreateDietPlan from './components/EditCreateDietPlan';
 
 // import ScrollItems from './components/ScrollItems';
@@ -59,6 +61,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   marginLeft:'12px'
 
   };
+ 
 export default function ListAllDietPlan(props){
   let  navigate = useNavigate();
   const location = useLocation();
@@ -67,13 +70,41 @@ export default function ListAllDietPlan(props){
 
   const childcomrefAlert=useRef();
 
+ 
   const [open, setOpen] = React.useState(false);
   const [dataFromApi,setDataFromApi]=useState([])
   const childComponentRef = useRef(null);
   console.log(objectData,'opop')
   const[userData,setUserData]=useState(objectData);
+  const [scrolled, setScrolled] = useState(false);
   
   const [userId,setUserId]=useState("");
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     if (window.scrollY > 0) {
+  //       setScrolled(true);
+  //     } else {
+  //       setScrolled(false);
+  //     }
+  //   };
+
+  //   window.addEventListener('scroll', handleScroll);
+
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScroll);
+  //   };
+  // }, []);
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   useEffect(()=>{
     if(objectData.pathnameCurrent[0]==='/dashboardadmin/adminprofile' || objectData.pathnameCurrent[0]==='/dashboardadmin/createinstantexerciseplan' ){
@@ -241,7 +272,29 @@ useEffect(()=>{
                       
               </Page>
 
-              <Button variant="contained" onClick={(e)=>{
+               <Button
+      style={{
+        float: "right",
+        position: 'fixed',
+        bottom: '20px',
+        right: '20px',
+        zIndex: 9999,
+        // opacity: scrolled ? '0' : '1',
+        pointerEvents: scrolled ? 'none' : 'auto',
+        transition: 'opacity 0.3s',
+        display: 'flex',
+        alignItems: 'center',
+
+       width: scrolled? '0px' : '200px',
+       height: '30px',
+       minWidth:'0px',
+      
+       
+      }}
+      variant="contained"
+      color="primary"
+      startIcon={<CreateIcon sx={{padding: '0px'}}/>}
+       onClick={(e)=>{
                       const today = new Date();
                       const Obj1 = {
                         category: '',
@@ -258,28 +311,31 @@ useEffect(()=>{
                   const sendData={...intialValues,...objectData}
                   sendData.action='Create'
                   childComponentRef.current.editClick(sendData)
-              }} style={{
-          float: "right", marginLeft: "1rem",  padding: "0.2rem", marginTop: "-0.5rem",
-          position: 'fixed', zIndex: '1', bottom: 40, right: 40
-        }}
+              }} 
+        //       style={{
+        //   float: "right", marginLeft: "1rem",  padding: "0.2rem", marginTop: "-0.5rem",
+        //   position: 'fixed', zIndex: '1', bottom: 40, right: 40
+        // }}
     
-        sx={ {
-          ':hover': {
-              bgcolor: "#007AFF", // theme.palette.primary.main
-              color: 'white',
-              border: '#ffd796'
-          },
-          ':active': {
-              bgcolor: "#007AFF",
-              color: "#white"
-          },
-          bgcolor: '#007AFF',
-          color: "white",
-          border: 'none'
-      }} >
+      //   sx={ {
+      //     ':hover': {
+      //         bgcolor: "#007AFF", // theme.palette.primary.main
+      //         color: 'white',
+      //         border: '#ffd796'
+      //     },
+      //     ':active': {
+      //         bgcolor: "#007AFF",
+      //         color: "#white"
+      //     },
+      //     bgcolor: '#007AFF',
+      //     color: "white",
+      //     border: 'none'
+  
+      // }} 
+      >
   
   
-          <span >Create Diet Plan</span>
+          <span style={{ display: scrolled ? 'none' : 'block' }}>Create Diet Plan</span>
              </Button>
              <AlertDialog Message="Created Sucessfully" ref={childcomrefAlert}/>
                   </div>
