@@ -769,13 +769,13 @@ const currencies = [
             <Stack marginLeft={3}   marginRight={2}>
             <Grid mb={4}   Item>
               <Card> <CardContent>
-                <Grid container flexDirection="row" justifyContent="space-between" >
+                <Grid container flexDirection="row"  fullWidth justifyContent={'space-between'} >
                     
- <Grid item xs={4}  md={5} lg={5}> 
+ <Grid item  xs={ index===0?5.5:5}  xl={index===0?6:5} fullWidth> 
                                    
        <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Category</InputLabel>
-        <Select
+        <Select fullWidth
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={item.category}
@@ -808,7 +808,7 @@ const currencies = [
            </FormControl>
               </Grid>
                                               
-            <Grid xs={5}  md={5} lg={5} marginRight={1} item>
+            <Grid sm={ index===0?5.5:5}  xl={index===0?6:5}  marginRight={1} item fullWidth>
                                                   
                                               
                 <TextField label="Calories" 

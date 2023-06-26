@@ -1,7 +1,7 @@
 {
   "projects": {
-    "default": "npwc-adminapp",
-    "build": "npwc-adminapp"
+    "default": "npwcapp-adm",
+    "build": "npwcapp-adm"
   },
   "targets": {},
   "etags": {}
