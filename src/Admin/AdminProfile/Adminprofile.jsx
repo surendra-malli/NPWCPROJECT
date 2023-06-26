@@ -116,10 +116,10 @@ console.log(objectData,'objectData admin profile')
  console.log(usersData, "data from hit");
  let msg='';
  if(con){
- msg='User Activated Sucessfully';
+ msg='User Activated Successfully';
  }
  else{
- msg='User De Activated Sucessfully';
+ msg='User De Activated Successfully';
  }
  childcomrefAlert.current.handleClickOpenAlert(msg);
  })
@@ -143,7 +143,7 @@ console.log(objectData,'objectData admin profile')
  
  }
  else{
- setMessageOfUserStatus('User De Activated');
+ setMessageOfUserStatus('User Deactivated');
  setCondition(0);
  setActionMessage('Activation')
  con=0
@@ -159,10 +159,10 @@ console.log(objectData,'objectData admin profile')
  apiHit();
  // let msg='';
  // if(con){
- // msg='User Activated Sucessfully';
+ // msg='User Activated Successfully';
  // }
  // else{
- // msg='User In Activated Sucessfully';
+ // msg='User In Activated Successfully';
  // }
  // childcomrefAlert.current.handleClickOpenAlert(msg);
  console.log(condition,con,'for api hit')
@@ -211,7 +211,7 @@ console.log(objectData,'objectData admin profile')
  .then(function (response) {
 
  
- childcomrefAlert.current.handleClickOpenAlert('Memeber Id Added Sucessfully')
+ childcomrefAlert.current.handleClickOpenAlert('Memeber Id Added Successfully')
 
  //setAddMember(response.data)
 
@@ -610,7 +610,7 @@ console.log(objectData?.id,'objectDataobjectData')
 
  </CardContent>
  </Card>
- <AlertDialog gobackk={goBackk}   Message="Created Sucessfully" ref={childcomrefAlert}/>
+ <AlertDialog gobackk={goBackk}   Message="Created Successfully" ref={childcomrefAlert}/>
  {/* <BarGraph></BarGraph> */}
  
  </>

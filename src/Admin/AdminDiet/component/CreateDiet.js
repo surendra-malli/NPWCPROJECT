@@ -274,8 +274,8 @@ const DeleteDietPlan=()=>{
   axios.request(config)
   .then((response) => {
     console.log(JSON.stringify(response.data));
-    //alert('Diet plan deleted sucessfully');
-    childcomrefAlert.current.handleClickOpenAlert('Diet Item Deleted Sucessfully');
+    //alert('Diet plan deleted Successfully');
+    childcomrefAlert.current.handleClickOpenAlert('Diet Item Deleted Successfully');
     props.dataHitParent();
   })
   .catch((error) => {
@@ -288,7 +288,7 @@ const DeleteDietPlan=()=>{
 const apiHit=async=>{
 
   if(diet?.calories==='' || diet?.item_name==='' || diet?.item_name===undefined || diet?.calories===undefined){
-    childcomrefAlert.current.handleClickOpenAlert('Please Fill All Fields');
+    childcomrefAlert.current.handleClickOpenAlert('Please fill all fields');
   }
   else{
    
@@ -321,8 +321,8 @@ const apiHit=async=>{
   axios.request(config)
   .then((response) => {
     console.log(JSON.stringify(response.data));
-    //alert('Diet plan created sucessfully');
-    childcomrefAlert.current.handleClickOpenAlert('Diet Item Created Sucessfully');
+    //alert('Diet plan created Successfully');
+    childcomrefAlert.current.handleClickOpenAlert('Diet Item Created Successfully');
     setDiet({})
   setAction("Create")
   deleteImage(0);
@@ -370,8 +370,8 @@ const apiHitEdit=async()=>{
  await axios.request(config)
   .then((response) => {
     console.log(JSON.stringify(response.data),'------edit response');
-    //alert('Diet plan updated sucessfully');
-    childcomrefAlert.current.handleClickOpenAlert('Diet Item Updated Sucessfully');
+    //alert('Diet plan updated Successfully');
+    childcomrefAlert.current.handleClickOpenAlert('Diet Item Updated Successfully');
     setDiet({})
     setAction("Create")
     deleteImage(0);
@@ -574,7 +574,11 @@ const apiHitEdit=async()=>{
                         
                         <Grid xs={12}   mb={2}  
                          Item>
-                            <TextField type="number" value={diet?.calories} onChange={(e)=>setDiet({...diet,calories:e?.target?.value})} label="Calories" variant='outlined' fullWidth/>
+                            <TextField type="number" value={diet?.calories} onChange={(e)=>{
+                              if(e?.target?.value>0 || e?.target?.value==='')
+                              setDiet({...diet,calories:e?.target?.value})
+                              
+                              }} label="Calories" variant='outlined' fullWidth/>
                         </Grid>
                         {/* <Grid mb={2} xs={12}     Item>
                                       
@@ -625,7 +629,7 @@ const apiHitEdit=async()=>{
         
        
       </Dialog>
-      <AlertDialog Message="Created Sucessfully" ref={childcomrefAlert}/>
+      <AlertDialog Message="Created Successfully" ref={childcomrefAlert}/>
     </div>
   );
 })

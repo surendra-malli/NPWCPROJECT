@@ -356,7 +356,7 @@ const addItems = () => {
         ? 'week'
         : valuesD?.interval == 30
         ? 'month'
-        : '2 month',
+        : '3 month',
     category: newss,
     total_servings: alldata,
  
@@ -510,7 +510,7 @@ const checkDuplicateCategory=(data,dup)=>{
   
     return (
       <div>
-        <AlertDialog Message="Created Sucessfully" ref={childcomrefAlert}/>
+        <AlertDialog Message="Created Successfully" ref={childcomrefAlert}/>
           
       
       

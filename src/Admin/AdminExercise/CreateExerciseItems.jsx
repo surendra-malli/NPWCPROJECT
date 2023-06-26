@@ -45,7 +45,7 @@ const CreateExerciseItems = forwardRef((props, ref) => {
                                     <Grid md={5} lg={5} xs={5} style={{backgroundColor:"#F7EEFC"}}  item > 
                                     <FormControl variant="outlined" >
                                             <InputLabel variant="ourtlined" >
-                                                Sets12
+                                                Sets
                                             </InputLabel>
                                             <NativeSelect
                                              variant='outlined'

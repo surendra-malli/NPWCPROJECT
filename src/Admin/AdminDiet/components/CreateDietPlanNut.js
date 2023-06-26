@@ -302,7 +302,7 @@ const currencies = [
             ? 'week'
             : valuesD?.interval == 30
             ? 'month'
-            : '2 month',
+            : '3 month',
         category: newss,
         total_servings: alldata,
      
@@ -575,7 +575,7 @@ const currencies = [
   
     return (
       <div>
-        <AlertDialog Message="Created Sucessfully" ref={childcomrefAlert}/>
+        <AlertDialog Message="Created Successfully" ref={childcomrefAlert}/>
           
       
         {/* <Button variant="contained" style={{
@@ -767,7 +767,8 @@ const currencies = [
           return (
 
             <Stack marginLeft={3}   marginRight={2}>
-            <Grid mb={4}   Item><Card> <CardContent>
+            <Grid mb={4}   Item>
+              <Card> <CardContent>
                 <Grid container flexDirection="row" justifyContent="space-between" >
                     
  <Grid item xs={4}  md={5} lg={5}> 
@@ -814,15 +815,15 @@ const currencies = [
                 type='number'
                   onChange={e => {
 
-                    if(e?.target?.value.length===1 && e?.target?.value.startsWith(0)){
+                    if( parseInt(e?.target?.value)>0 || e?.target?.value==='') {
 
-                    }
-
-                    else{
+                    
+                      console.log(typeof e?.target?.value,'e?.target?.value')
                     const data = [...valuesD?.items];
                     data[index] = {...data[index], value: e?.target?.value};
                     setValuesD({...valuesD, items: data});
                     }
+                    console.log( e?.target?.value,'e?.target?.value')
                 
                 }}
                 
@@ -830,9 +831,9 @@ const currencies = [
                                   
           </Grid>
     
-                    <Grid xs={2} md={1} lg={1}  item> 
+                   
                     {index!==0 && (
-                    
+                     <Grid xs={2} md={1} lg={1}  item> 
                      <IconButton
               
                 >
@@ -844,8 +845,8 @@ const currencies = [
                   }}
                   
                   />
-                </IconButton>)
-        }</Grid>
+                </IconButton> </Grid>)
+                     }
                                   
                     </Grid></CardContent> </Card>   </Grid>
                 </Stack>

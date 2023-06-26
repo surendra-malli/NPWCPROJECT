@@ -19,6 +19,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Avatar from "src/assets/Frame.png"
 import Logo from 'src/assets/nova.svg'
+import SearchUser from 'src/layouts/dashboard/nav/SearchUser';
 
 
 
@@ -265,7 +266,9 @@ objectData.userStatus='all'
         
             <Page  title="Dashboard: Admin">
 
-            <Searchbar getSearch={(e)=>searchHandler(e)}  id="search-bar" sx={{height:"100px"}}/>
+            <Searchbar getSearch={(e)=>{searchHandler(e);
+            }}  id="search-bar" sx={{height:"100px"}}/>
+
             <img
           src={Logo}
           alt="nova logo"
@@ -274,6 +277,8 @@ objectData.userStatus='all'
       
 
             <Container>
+              {/* <SearchUser getSearch={(e)=>{searchHandler(e);
+            }}></SearchUser> */}
              
              <Grid mt={3} mb={2} container flexDirection="row">
                 <Grid onClick={goBack} item >
@@ -285,7 +290,7 @@ objectData.userStatus='all'
                 </Grid>
                
                 <Grid item>
-                <Typography  style={pageheading}>User Sheema</Typography>
+                <Typography  style={pageheading}>Users</Typography>
                 </Grid>
                 
             

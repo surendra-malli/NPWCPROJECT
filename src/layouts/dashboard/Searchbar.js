@@ -125,12 +125,12 @@ export default function Searchbar({ getSearch }) {
                 }} sx={{
                   '&:hover': {
                     backgroundColor: '#007AFF',
-                    color: '#ff7424'
+                    color: '#white'
 
                   },
                   color: 'white', backgroundColor: '#007AFF'
                 }}>
-                  Search
+                  Search..
                 </Button>
               </SearchbarStyle>
             </Slide>

@@ -302,7 +302,7 @@ const currencies = [
             ? 'week'
             : valuesD?.interval == 30
             ? 'month'
-            : '2 month',
+            : '3 month',
         category: newss,
         total_servings: alldata,
      
@@ -565,7 +565,7 @@ const currencies = [
   
     return (
       <div>
-        <AlertDialog Message="Created Sucessfully" ref={childcomrefAlert}/>
+        <AlertDialog Message="Created Successfully" ref={childcomrefAlert}/>
           
       
         {/* <Button variant="contained" style={{
@@ -846,10 +846,12 @@ const currencies = [
                   onChange={e => {
 
           
-            
+                    if(e?.target?.value>0 || e?.target?.value===''){
                     const data = [...valuesD?.items];
                     data[index] = {...data[index], value: e?.target?.value};
                     setValuesD({...valuesD, items: data});
+                    }
+                   
                 
                 }}
                 

@@ -288,8 +288,8 @@ const DeleteDietPlan=()=>{
   axios.request(config)
   .then((response) => {
     console.log(JSON.stringify(response.data));
-    //alert('Diet plan deleted sucessfully');
-    childrefAlert.current.handleClickOpenAlert('Exercise Item Deleted Sucessfully');
+    //alert('Diet plan deleted Successfully');
+    childrefAlert.current.handleClickOpenAlert('Exercise Item Deleted Successfully');
     props.dataHitParent();
   })
   .catch((error) => {
@@ -299,11 +299,11 @@ const DeleteDietPlan=()=>{
 
 
 const apiHit=async=>{
-  if(exercise?.item_name==='' || exercise?.item_name===undefined){
+  if(exercise?.item_name==='' || exercise?.item_name===undefined || exercise?.sets===0 || exercise?.sets===undefined){
     childrefAlert.current.handleClickOpenAlert('Please fill All Fields');
   }
   else{
-    console.log('00000000000')
+    console.log(exercise?.sets,'exercise?.sets')
 
   let data = JSON.stringify({
     "item_name": exercise?.item_name,
@@ -332,7 +332,7 @@ const apiHit=async=>{
   axios.request(config)
   .then((response) => {
     console.log(JSON.stringify(response.data));
-    childrefAlert.current.handleClickOpenAlert('Exercise plan created sucessfully');
+    childrefAlert.current.handleClickOpenAlert('Exercise plan created Successfully');
     setExercise({})
     setImages([])
     
@@ -356,10 +356,12 @@ const apiHit=async=>{
 }
 
 const apiHitEdit=async()=>{
-  if(exercise?.item_name==='' || exercise?.item_name===undefined){
+  if(exercise?.item_name==='' || exercise?.item_name===undefined || exercise?.sets===undefined || exercise?.sets==='0'){
     childrefAlert.current.handleClickOpenAlert('Please fill All Fields');
   }
   else{
+    console.log(exercise?.sets,'exercise?.sets')
+
 
   let data = JSON.stringify({
     "item_name": exercise?.item_name,
@@ -391,7 +393,7 @@ const apiHitEdit=async()=>{
   .then((response) => {
     
     console.log(JSON.stringify(response.data),'------edit response');
-    childrefAlert.current.handleClickOpenAlert('Exercise plan updated sucessfully');
+    childrefAlert.current.handleClickOpenAlert('Exercise plan updated Successfully');
     setExercise({})
 setImages([])
 
@@ -597,11 +599,30 @@ setAction("Create")
                        
                         <Grid xs={12}   mb={2}  
                          Item>
-                            <TextField value={exercise.counts} onChange={(e)=>setExercise({...exercise,counts:e?.target?.value})} label="Counts" variant='outlined' fullWidth/>
+                            <TextField value={exercise.counts} onChange={(e)=>{
+                              
+                              if(parseInt(e?.target?.value)>0 || e?.target?.value==='' ){
+                              
+                                console.log(e?.target?.value,'e?.target?.value')
+                                setExercise({...exercise,counts:e?.target?.value})
+                            }
+                              }}
+                              
+                              
+                              
+                              label="Counts" variant='outlined' fullWidth/>
                         </Grid>
                         <Grid xs={12}   mb={2}  
                          Item>
-                            <TextField value={exercise.sets} onChange={(e)=>setExercise({...exercise,sets:e?.target?.value})} label="Sets" variant='outlined' fullWidth/>
+                            <TextField value={exercise.sets} onChange={(e)=>{
+                              if(e?.target?.value===' ' || parseInt(e?.target?.value)>0){
+
+
+                            
+                              
+                              setExercise({...exercise,sets:e?.target?.value})}
+                            }
+                              } type='number' label="Sets" variant='outlined' fullWidth/>
                         </Grid>
                         <Grid mb={2} xs={12}     Item>
                         <Grid xs={12}   mb={2}  style={{ borderRadius:"10px"}}
@@ -639,7 +660,7 @@ setAction("Create")
        
        
       </Dialog>
-      <AlertDialog Message="Created Sucessfully" ref={childrefAlert}/>
+      <AlertDialog Message="Created Successfully" ref={childrefAlert}/>
 
     </div>
   );
