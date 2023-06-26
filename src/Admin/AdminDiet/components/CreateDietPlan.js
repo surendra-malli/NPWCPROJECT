@@ -143,8 +143,8 @@ export default function FullScreenDialog() {
   };
 
   const handleClose = () => {
-    alert("form saved sucessfully");
-    console.log("form saved sucessfully");
+    alert("form saved Successfully");
+    console.log("form saved Successfully");
     setOpen(false);
   };
   const handleChange = (event) => {

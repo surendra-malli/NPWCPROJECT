@@ -77,7 +77,7 @@ export default function ListAllDietPlan(props){
 
   useEffect(()=>{
     if(objectData.pathnameCurrent[0]==='/dashboardadmin/adminprofile' || objectData.pathnameCurrent[0]==='/dashboardadmin/createinstantexerciseplan' ){
-      childcomrefAlert.current.handleClickOpenAlert('Diet Plan Created Sucessfully');
+      childcomrefAlert.current.handleClickOpenAlert('Diet Plan Created Successfully');
     }
     console.log(objectData,'////////')
   },[objectData])
@@ -177,7 +177,7 @@ useEffect(()=>{
             </Grid>
            
             <Grid  item>
-            <Typography style={pageheading}>List All Diet Plan {userData?.user_name}{userData?.value}</Typography>
+            <Typography style={pageheading}>List All Diet Plans {userData?.user_name}{userData?.value}</Typography>
             </Grid>
          </Grid>
 
@@ -281,7 +281,7 @@ useEffect(()=>{
   
           <span >Create Diet Plan</span>
              </Button>
-             <AlertDialog Message="Created Sucessfully" ref={childcomrefAlert}/>
+             <AlertDialog Message="Created Successfully" ref={childcomrefAlert}/>
                   </div>
                   
     );

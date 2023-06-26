@@ -52,7 +52,7 @@ const deleteHit=async=>{
       .then((response) => {
         console.log(JSON.stringify(response.data));
         props.categoryhit(0)
-        childcomrefAlert.current.handleClickOpenAlert('Category Deleted Sucessfully');
+        childcomrefAlert.current.handleClickOpenAlert('Category Deleted Successfully');
       })
       .catch((error) => {
         console.log(error);
@@ -88,13 +88,13 @@ const deleteHit=async=>{
             addCategory();
         }
         //setOpen(false);
-        message='category Renamed Sucessfully'
-        //childcomrefAlert.current.handleClickOpenAlert('category Renamed Sucessfully');
+        message='category Renamed Successfully'
+        //childcomrefAlert.current.handleClickOpenAlert('category Renamed Successfully');
     }
   
       const addCategory = async() => {
         if(createData?.category_name===''){
-            childcomrefAlert.current.handleClickOpenAlert('Please fill All Fields');
+            childcomrefAlert.current.handleClickOpenAlert('Please fill all fields');
         }
 
         else{
@@ -128,7 +128,7 @@ const deleteHit=async=>{
                   }
                   props.categoryhit(1)
                       //  < alert/>
-                      childcomrefAlert.current.handleClickOpenAlert('Category Added Sucessfully');
+                      childcomrefAlert.current.handleClickOpenAlert('Category Added Successfully');
                   console.log((response.data.data, "-----create dataikiii"));
   
                   setOpen(false);
@@ -216,7 +216,7 @@ const deleteHit=async=>{
               .then((response) => {
                   setRenameData(response?.data?.data)
                   console.log(response.data.data, "<-----------------setDelete Dataset DeleteData");
-                  childcomrefAlert.current.handleClickOpenAlert('Category Renamed Sucessfully');
+                  childcomrefAlert.current.handleClickOpenAlert('Category Renamed Successfully');
                   props.categoryhit(2)
                   setOpen(false)
               })
@@ -251,6 +251,8 @@ const deleteHit=async=>{
         setEditing(true);
           setOpen(true);
           setAction('create');
+          createData.category_name="";
+
       };
   
       const handleClose = (e) => {

@@ -379,7 +379,7 @@ console.log(upcoming,"----upcoming----")
         onClose={() => handleAlertClose(1)}
         autoHideDuration={1000}
         >
-         <Alert severity="success">Over all plan is open!</Alert>
+         <Alert severity="success">Overall plan is open!</Alert>
         </Snackbar>
       <Snackbar
         open={alert2Open}
@@ -387,7 +387,7 @@ console.log(upcoming,"----upcoming----")
         message="Today plan is open"
         autoHideDuration={1000}
         >
-       <Alert severity="success">Today plan is open!</Alert>  
+       <Alert severity="success">Today's plan is open!</Alert>  
         </Snackbar>
       <Snackbar
         open={alert3Open}
@@ -403,7 +403,7 @@ console.log(upcoming,"----upcoming----")
         // message="1 Month plan is open"
         autoHideDuration={1000}
         >
-        <Alert severity="success"> 1 Month plan is open!</Alert>  
+        <Alert severity="success"> Month plan is open!</Alert>  
          </Snackbar>
       <Snackbar
         open={alert5Open}
@@ -412,7 +412,7 @@ console.log(upcoming,"----upcoming----")
         autoHideDuration={1000}
         // severity="success"
         >
-        <Alert severity="success">3 Month plan is open!</Alert>  
+        <Alert severity="success">3 Months plan is open!</Alert>  
          </Snackbar>
 
          <Grid container display="flex" alignItems='center'>
@@ -464,14 +464,14 @@ console.log(upcoming,"----upcoming----")
                 onIntervalChange(item.target.value)
             }} 
             sx={{backgroundColor:"white"}}  defaultValue="-1" >
-                     <MenuItem value="-1"  onClick={handleAlert1Click}>Over All</MenuItem>
+                     <MenuItem value="-1"  onClick={handleAlert1Click}>Overall</MenuItem>
                     
                     
                      <MenuItem value="0"onClick={handleAlert2Click} >Today</MenuItem>
                     
                      <MenuItem value="1"onClick={handleAlert3Click}>Week</MenuItem>
                     
-                     <MenuItem value="2" onClick={handleAlert4Click}>1 Month</MenuItem>
+                     <MenuItem value="2" onClick={handleAlert4Click}>Month</MenuItem>
                      <MenuItem value="3" onClick={handleAlert5Click}>3 Months</MenuItem>
                      </Select>
                      </FormControl>
@@ -943,11 +943,11 @@ console.log(upcoming,"----upcoming----")
     
       
     <Stack mt={1}><Card  onClick={handleListAllDietPlan}  sx={{textDecoration:'none',cursor:'pointer'}} style={{backgroundColor:"#EBF5FF", margin:"10px", alignItems:"center"}}><Stack mb={2}> <Typography sx={{ fontSize: 20, fontWeight: 'bold', textAlign:'left', color:'black', fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:'10px'}} gutterBottom variant="h5" component="div" mt={3}  >
-                   List All Diet Plan
+                   List All Diet Plans
                   </Typography></Stack></Card></Stack>
 
                   <Stack mt={1}><Card  onClick={handleListAllExercisePlan}  sx={{textDecoration:'none',cursor:'pointer'}} style={{backgroundColor:"#EBF5FF", margin:"10px", alignItems:"center"}}><Stack mb={2}> <Typography sx={{ fontSize: 20, fontWeight: 'bold', textAlign:'left', color:'black', fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:'10px'}} gutterBottom variant="h5" component="div" mt={3}  >
-                   List All Exercise Plan
+                   List All Exercise Plans
                   </Typography></Stack></Card></Stack>
 
 

@@ -51,7 +51,7 @@ const deleteHit=async=>{
       .then((response) => {
         console.log(JSON.stringify(response.data));
         props.categoryHit(0)
-        childcomreffAlert.current.handleClickOpenAlert('Category Deleted Sucessfully');
+        childcomreffAlert.current.handleClickOpenAlert('Category Deleted Successfully');
       })
       .catch((error) => {
         console.log(error);
@@ -86,13 +86,13 @@ const deleteHit=async=>{
             addCategory();
         }
         setOpen(false);
-        message='Category Renamed Sucessfully'
-        //childcomreffAlert.current.handleClickOpenAlert('category Renamed Sucessfully');
+        message='Category Renamed Successfully'
+        //childcomreffAlert.current.handleClickOpenAlert('category Renamed Successfully');
     }
   
     const addCategory = async() => {
       if(createData?.category_name===''){
-          childcomreffAlert.current.handleClickOpenAlert('Please Fill All Fields');
+          childcomreffAlert.current.handleClickOpenAlert('Please fill all fields');
           
       }
 
@@ -127,7 +127,7 @@ const deleteHit=async=>{
                 }
                 props.categoryHit(1)
                     //  < alert/>
-                    childcomreffAlert.current.handleClickOpenAlert('Category Added Sucessfully');
+                    childcomreffAlert.current.handleClickOpenAlert('Category Added Successfully');
                 console.log((response.data.data, "-----create dataikiii"));
                 // props.categoryHit(1)
 
@@ -176,7 +176,7 @@ const deleteHit=async=>{
               .then((response) => {
                   setRenameData(response?.data?.data)
                   console.log(response.data.data, "<-----------------setDelete Dataset DeleteData");
-                  childcomreffAlert.current.handleClickOpenAlert('Category Renamed Sucessfully');
+                  childcomreffAlert.current.handleClickOpenAlert('Category Renamed Successfully');
                   props.categoryHit(2)
               })
               .catch((error) => {
@@ -208,6 +208,7 @@ const deleteHit=async=>{
         setEditing(true);
           setOpen(true);
           setAction('create');
+          createData.category_name="";
       };
   
       const handleClose = (e) => {

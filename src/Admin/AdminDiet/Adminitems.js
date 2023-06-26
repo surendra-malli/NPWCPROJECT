@@ -243,7 +243,7 @@ export default function AdminDietCategory(props) {
             }}  />
             {console.log(categoryData,"<--------bjuhjuhjnjhnjhn")}
             {/* <useLongPressCount/>  state={{ categoryData:categoryData  }} */}
-            <AlertDialog Message="Created Sucessfully" ref={childcomrefAlert}/>
+            <AlertDialog Message="Created Successfully" ref={childcomrefAlert}/>
             
         </Page>
     );

@@ -146,7 +146,7 @@ export default function AdminExerciseCategory(props) {
   };
 
     return (
-        <Page Title="  Exercise Categories" >
+        <Page Title="" >
         {/* <CreateInstantDietPlan ref={childComponentRef} ></CreateInstantDietPlan> */}
             
             <Grid container justifyContent='space-between' alignItems='center'>
@@ -249,7 +249,7 @@ export default function AdminExerciseCategory(props) {
             }}  />
             {console.log(categoryData,"<--------bjuhjuhjnjhnjhn")}
             {/* <useLongPressCount/>  state={{ categoryData:categoryData  }} */}
-            <AlertDialog Message="Created Sucessfully" ref={childcomreffAlert}/>
+            <AlertDialog Message="Created Successfully" ref={childcomreffAlert}/>
         
         </Page>
     );

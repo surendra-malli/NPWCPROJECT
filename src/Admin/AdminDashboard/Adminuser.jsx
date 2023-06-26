@@ -97,7 +97,7 @@ useEffect(()=>{
       type: "pie"
     },
     title: {
-      text: '',
+      text: 'Users',
       margin: 0
     },
     credits: {
@@ -207,7 +207,7 @@ const count = async => {
         <img
           src={Logo}
           alt="nova logo"
-          style={{ height: "auto", width: "250px", marginLeft: "30px" }}
+          style={{ height: "auto", width: "250px", marginLeft: "10px" }}
         />
       }
       {/* <CreateDietPlan/> */}
