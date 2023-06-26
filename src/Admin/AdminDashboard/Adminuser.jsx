@@ -89,6 +89,16 @@ export default function Adminuser() {
 }
 
 const [optionsGraph,setOptions]=useState({})
+const [isLoading, setIsLoading] = useState(true);
+useEffect(() => {
+  // Simulate chart loading time
+  const delay = setTimeout(() => {
+    setIsLoading(false);
+  }, 2000);
+
+  // Clean up the timeout on component unmount
+  return () => clearTimeout(delay);
+}, []);
 
 useEffect(()=>{
   if(barGraphData){
@@ -97,7 +107,7 @@ useEffect(()=>{
       type: "pie"
     },
     title: {
-      text: 'Users',
+      text: '',
       margin: 0
     },
     credits: {
@@ -350,7 +360,7 @@ const count = async => {
       
      
               
-              <PieChart highcharts={Highcharts} options={optionsGraph} />
+            {!isLoading &&  <PieChart highcharts={Highcharts} options={optionsGraph} />}
              
         
      

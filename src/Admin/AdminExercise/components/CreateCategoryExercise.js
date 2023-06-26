@@ -99,7 +99,7 @@ const deleteHit=async=>{
       else{
 
         let data = JSON.stringify({
-            "category_name": createData?.category_name,
+            "category_name": createData?.category_name.trim(),
             "type": "exercise"
         });
 
@@ -153,7 +153,7 @@ const deleteHit=async=>{
           let data = JSON.stringify({
               "category_id":createData?.category_id,
               //  "category_name": createData?.category_name,
-              "category_name": createData?.category_name,
+              "category_name": createData?.category_name.trim(),
   
               "type": "exercise"
           });

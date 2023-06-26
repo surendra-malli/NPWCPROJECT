@@ -526,7 +526,7 @@ console.log(upcoming,"----upcoming----")
 
 
         <Card   style={{backgroundColor:"#2c2b2b",marginTop:"10px"}}  >
-                  <CardContent  state={{item:ongoingDietPlan}}  to="/dashboard/dietplan" component={RouterLink} sx={{textDecoration:'none'}}>
+                  <CardContent  state={{item:ongoingDietPlan}}   sx={{textDecoration:'none'}}>
                   <Grid container flexDirection="row" spacing="1" alignItems="center" justifyContent="center" >
                       <Grid item xs={4} alignItems="center" sx={{textAlign:'center'}} justifyContent="center">
                              
@@ -600,7 +600,7 @@ console.log(upcoming,"----upcoming----")
 
 </Card>
 <Card   style={{backgroundColor:"#2c2b2b",marginTop:"10px"}}>
-        <CardContent   to="/dashboard/Exercise" component={RouterLink} sx={{textDecoration:'none'}}>
+        <CardContent    sx={{textDecoration:'none'}}>
         <Grid container flexDirection="row" spacing="1" alignItems="center" justifyContent="center" >
             
             <Grid item xs={4} alignItems="center"  sx={{textAlign:'center'}} alignSelf={"center"} justifyContent="center">
@@ -665,7 +665,10 @@ console.log(upcoming,"----upcoming----")
                 <CardContent key={index} > 
         
                 
-                    <Card  onClick={() => { index == viewOneDietPlan.previous ? setViewOneDietPlan(-1) : getOneDiet(item, index) }} style={{backgroundColor:"white", boxShadow:10, borderRadius: 10,cursor:'pointer' }} >
+                    <Card 
+                    //  onClick={() => { index == viewOneDietPlan.previous ? setViewOneDietPlan(-1) : getOneDiet(item, index) }} 
+                    
+                    style={{backgroundColor:"white", boxShadow:10, borderRadius: 10,cursor:'pointer' }} >
 
 <Grid container item alignContent={"center"} minHeight="80px" >
 <Grid item xs={5.5} >
