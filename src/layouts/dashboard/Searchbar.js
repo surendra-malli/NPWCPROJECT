@@ -2,10 +2,13 @@ import { useState, useEffect } from 'react';
 // material
 import { styled, alpha } from '@mui/material/styles';
 import { Input, Slide, Button, IconButton, InputAdornment, ClickAwayListener,TextField } from '@mui/material';
-import { Box, Stack, AppBar, Toolbar, } from '@mui/material';
+//import IconButton from '@mui/material/IconButton';
+import SearchIcon from '@mui/icons-material/Search';
+import { Box, Stack, AppBar, Toolbar,Grid } from '@mui/material';
 // component
 import Iconify from 'src/components/iconify/Iconify';
 import useResponsive from '../../hooks/useResponsive';
+import SearchUser from './nav/SearchUser';
 
 
 // ----------------------------------------------------------------------
@@ -13,8 +16,9 @@ import useResponsive from '../../hooks/useResponsive';
 
 
 export default function Searchbar({ getSearch }) {
-  const [isOpen, setOpen] = useState(false);
+  const [isOpenn, setOpen] = useState(false);
   var searchData = ''
+  const [serachUserTyped,setSearchUser]=useState("")
   const handleOpen = () => {
     setOpen((prev) => !prev);
     console.log("handle open fuunction")
@@ -80,14 +84,19 @@ export default function Searchbar({ getSearch }) {
   const changeText = (e) => {
     searchData = e?.target?.value
   }
+  const [isOpen, setIsOpen] = useState(false);
 
+  const handleIconClick = () => {
+    setIsOpen(!isOpen);
+  };
  
   // ----------------------------------------------------------------------
   return (
-    <RootStyle>
-      <ToolbarStyle>
-        <ClickAwayListener onClickAway={handleClose}>
-          <div>
+    <>
+     <RootStyle>
+    <ToolbarStyle> 
+        <ClickAwayListener > 
+          {/* <div>
             {!isOpen && (
              
                <Input id="outlined-basic" color="common" disabled
@@ -104,7 +113,7 @@ export default function Searchbar({ getSearch }) {
              />
             )}
 
-            <Slide direction="down" in={isOpen} mountOnEnter unmountOnExit>
+            <Slide direction="down" in={isOpenn} mountOnEnter unmountOnExit>
               <SearchbarStyle>
                 <Input
                   autoFocus
@@ -134,9 +143,42 @@ export default function Searchbar({ getSearch }) {
                 </Button>
               </SearchbarStyle>
             </Slide>
-          </div>
+          </div> */}
+
+          <Grid container alignItems='center'>
+        <Grid  item>
+      <IconButton onClick={handleIconClick}>
+        <SearchIcon />
+      </IconButton>
+     
+      </Grid>
+      <Grid xs={11} item fullWidth>
+      {isOpen && (
+        <TextField
+        onChange={(e)=>{
+            //console.log(e?.target?.value,'user search 1')
+            getSearch(e?.target?.value);
+            console.log(serachUserTyped)
+            setSearchUser(e?.target?.value)
+        }}
+        
+          variant="outlined"
+          placeholder="Search.."
+          fullWidth
+          disableUnderline
+          value={serachUserTyped}
+          sx={{
+            "& fieldset": { border: 'none' },
+          }}
+          
+          // Add any additional props or styling as needed
+        />
+      )}
+      </Grid>
+      </Grid>
         </ClickAwayListener>
       </ToolbarStyle>
-    </RootStyle>
+    </RootStyle>  
+    </>
   );
 }

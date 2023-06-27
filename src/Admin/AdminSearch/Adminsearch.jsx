@@ -112,7 +112,7 @@ const pageheading={
       window.scrollTo(0, 0);
       
        apiHit()
-    },[currentPage]);
+    },[currentPage,searchTitle]);
 
     useEffect(()=>{
       
@@ -269,16 +269,21 @@ objectData.userStatus='all'
             <Searchbar getSearch={(e)=>{searchHandler(e);
             }}  id="search-bar" sx={{height:"100px"}}/>
 
+          <Grid container justifyContent='space-between'>
+            <Grid item>
             <img
           src={Logo}
           alt="nova logo"
           style={{ height: "auto", width: "250px", marginLeft: "30px" }}
-        />
+        /></Grid>
+        <Grid>
+         <SearchUser getSearch={(e)=>{searchHandler(e);
+            }}></SearchUser></Grid>
+            </Grid>
       
 
             <Container>
-              {/* <SearchUser getSearch={(e)=>{searchHandler(e);
-            }}></SearchUser> */}
+             
              
              <Grid mt={3} mb={2} container flexDirection="row">
                 <Grid onClick={goBack} item >

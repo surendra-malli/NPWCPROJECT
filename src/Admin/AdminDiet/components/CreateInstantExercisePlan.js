@@ -755,10 +755,11 @@ onChange={date => {
                   onChange={e => {
 
           
-            
+                    if(parseInt(e?.target?.value)>0 || e?.target?.value===''){
                     const data = [...valuesD?.items];
                     data[index] = {...data[index], value: e?.target?.value};
                     setValuesD({...valuesD, items: data});
+                    }
                 
                 }}
                 

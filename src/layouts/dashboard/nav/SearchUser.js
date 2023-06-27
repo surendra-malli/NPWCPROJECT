@@ -14,14 +14,9 @@ const SearchUser = ({getSearch}) => {
   return (
     <>
     <Grid container alignItems='center'>
-        <Grid  item>
-      <IconButton onClick={handleIconClick}>
-        <SearchIcon />
-      </IconButton>
-     
-      </Grid>
+        
       <Grid xs={11} item fullWidth>
-      {isOpen && (
+      
         <TextField
         onChange={(e)=>{
             console.log(e?.target?.value,'user search 1')
@@ -37,8 +32,14 @@ const SearchUser = ({getSearch}) => {
           
           // Add any additional props or styling as needed
         />
-      )}
+      
       </Grid>
+      {/* <Grid  item>
+      <IconButton onClick={handleIconClick}>
+        <SearchIcon />
+      </IconButton>
+     
+      </Grid> */}
       </Grid>
     </>
   );

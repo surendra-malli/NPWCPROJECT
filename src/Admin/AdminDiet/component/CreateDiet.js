@@ -575,7 +575,7 @@ const apiHitEdit=async()=>{
                         <Grid xs={12}   mb={2}  
                          Item>
                             <TextField type="number" value={diet?.calories} onChange={(e)=>{
-                              if(e?.target?.value>0 || e?.target?.value==='')
+                              if(parseInt(e?.target?.value)>0 || e?.target?.value==='')
                               setDiet({...diet,calories:e?.target?.value})
                               
                               }} label="Calories" variant='outlined' fullWidth/>
