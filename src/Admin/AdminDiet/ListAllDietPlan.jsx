@@ -161,7 +161,7 @@ useEffect(()=>{
         let config = {
           method: 'POST',
           maxBodyLength: Infinity,
-          url: `https://aipse.in/api/listalldietplans?user_id=${userId}&type=food`,
+          url: `http://44.212.136.151:8081/api/listalldietplans?user_id=${userId}&type=food`,
           headers: { },
           data : data
         };

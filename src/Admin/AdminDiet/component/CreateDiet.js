@@ -264,7 +264,7 @@ const DeleteDietPlan=()=>{
   let config = {
     method: 'PUT',
     maxBodyLength: Infinity,
-    url: 'https://aipse.in/api/deleteItem',
+    url: 'http://44.212.136.151:8081/api/deleteItem',
     headers: { 
       'Content-Type': 'application/json'
     },
@@ -311,7 +311,7 @@ const apiHit=async=>{
   let config = {
     method: 'POST',
     maxBodyLength: Infinity,
-    url: 'https://aipse.in/api/postOverAllDietPlan',
+    url: 'http://44.212.136.151:8081/api/postOverAllDietPlan',
     headers: {
       'Content-Type': 'application/json'
     },
@@ -360,7 +360,7 @@ const apiHitEdit=async()=>{
   let config = {
     method: 'PUT',
     maxBodyLength: Infinity,
-    url: 'https://aipse.in/api/EditItemExerciseHandler',
+    url: 'http://44.212.136.151:8081/api/EditItemExerciseHandler',
     headers: { 
       'Content-Type': 'application/json'
     },
@@ -575,7 +575,7 @@ const apiHitEdit=async()=>{
                         <Grid xs={12}   mb={2}  
                          Item>
                             <TextField type="number" value={diet?.calories} onChange={(e)=>{
-                              if(e?.target?.value>0 || e?.target?.value==='')
+                              if(parseInt(e?.target?.value)>0 || e?.target?.value==='')
                               setDiet({...diet,calories:e?.target?.value})
                               
                               }} label="Calories" variant='outlined' fullWidth/>

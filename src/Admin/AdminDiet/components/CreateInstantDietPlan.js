@@ -194,7 +194,7 @@ const objectData = location?.state;
     var config = {
       method: 'PUT',
     maxBodyLength: Infinity,
-      url: 'https://aipse.in/api/deleteDiet',
+      url: 'http://44.212.136.151:8081/api/deleteDiet',
       headers: { 
         'Content-Type': 'application/json'
       },
@@ -231,7 +231,7 @@ const objectData = location?.state;
       let config = {
         method: 'GET',
         maxBodyLength: Infinity,
-        url: 'https://aipse.in/api/listallusers',
+        url: 'http://44.212.136.151:8081/api/listallusers',
         headers: { }
       };
       
@@ -366,7 +366,7 @@ const addItems = () => {
     method: 'POST',
     maxBodyLength: Infinity,
   //  url: baseUrl + '/assignDietPlanForPatient',
-   url: `https://aipse.in/api/assignDietPlanForPatient`,
+   url: `http://44.212.136.151:8081/api/assignDietPlanForPatient`,
 
     headers: {
       'Content-Type': 'application/json',
@@ -489,7 +489,7 @@ const checkDuplicateCategory=(data,dup)=>{
       let config = {
           method: 'GET',
           maxBodyLength: Infinity,
-          url: 'https://aipse.in/api/getAllCategories?type=food',
+          url: 'http://44.212.136.151:8081/api/getAllCategories?type=food',
           headers: { 'Content-Type': 'application/json' },
       };
       axios(config)
@@ -719,10 +719,10 @@ const checkDuplicateCategory=(data,dup)=>{
                   onChange={e => {
 
           
-            
+                    if(parseInt(e?.target?.value)>0 || e?.target?.value===''){
                     const data = [...valuesD?.items];
                     data[index] = {...data[index], value: e?.target?.value};
-                    setValuesD({...valuesD, items: data});
+                    setValuesD({...valuesD, items: data});}
                 
                 }}
                 

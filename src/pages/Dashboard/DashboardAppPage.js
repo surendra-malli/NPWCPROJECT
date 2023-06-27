@@ -195,8 +195,8 @@ console.log(objectData,'[[[[[[')
 
   const listDietPlan = async (uid) => {
 
-    // console.log(`https://aipse.in/api/getlistsdietplans?userid=${uid}`)
-    await axios.get(`https://aipse.in/api/getlistsdietplans?userid=${uid}`)
+    // console.log(`http://44.212.136.151:8081/api/getlistsdietplans?userid=${uid}`)
+    await axios.get(`http://44.212.136.151:8081/api/getlistsdietplans?userid=${uid}`)
       .then(function (response) {
         if (response?.data?.data == 'Data not found') {
           setLoading(false)
@@ -224,12 +224,12 @@ console.log(objectData,'[[[[[[')
 
   const getAllDietPlan = (diet, exercise, value, uid) => {
     // console.log("getAlldeiteplan")
-    let dieturl = `https://aipse.in/api/getAllDietPlan?userid=${uid}&type=food&status=ongoing`,
-      exerciseurl = `https://aipse.in/api/getAllDietPlan?userid=${uid}&type=exercise&status=ongoing`
+    let dieturl = `http://44.212.136.151:8081/api/getAllDietPlan?userid=${uid}&type=food&status=ongoing`,
+      exerciseurl = `http://44.212.136.151:8081/api/getAllDietPlan?userid=${uid}&type=exercise&status=ongoing`
     if (diet) {
-      dieturl = `https://aipse.in/api/getAllDietPlan?userid=${uid}&startdate=${diet?.StartDate}&enddate=${diet?.EndDate}&type=food&status=${interval[value]}`
+      dieturl = `http://44.212.136.151:8081/api/getAllDietPlan?userid=${uid}&startdate=${diet?.StartDate}&enddate=${diet?.EndDate}&type=food&status=${interval[value]}`
       if (exercise?.StartDate) {
-        exerciseurl = `https://aipse.in/api/getAllDietPlan?userid=${uid}&startdate=${exercise?.StartDate}&enddate=${exercise?.EndDate}&type=exercise&status=${interval[value]}`
+        exerciseurl = `http://44.212.136.151:8081/api/getAllDietPlan?userid=${uid}&startdate=${exercise?.StartDate}&enddate=${exercise?.EndDate}&type=exercise&status=${interval[value]}`
       }
     }
     
@@ -300,13 +300,13 @@ console.log(objectData,'[[[[[[')
   const getOneDiet = (item, index) => {
 
     console.log(item.status, "itemmmm statusss .....  ")
-    axios.get(`https://aipse.in/api/getAllDietPlan?userid=${userId}&startdate=${item.startdate}&enddate=${item.enddate}&type=food&status=${item.status}`)
+    axios.get(`http://44.212.136.151:8081/api/getAllDietPlan?userid=${userId}&startdate=${item.startdate}&enddate=${item.enddate}&type=food&status=${item.status}`)
       .then(function (response) {
         response.data.data.servingsLeft = parseInt
           (response?.data?.data.TotalServings - response?.data?.data.CosumedServings)
         setViewOneDietPlan({ ...viewOneDietPlan, previous: index })
         setoneDietplanData(response?.data?.data)
-        axios.get(`https://aipse.in/api/getAllDietPlan?userid=${userId}&startdate=${item.startdate}&enddate=${item.enddate}&type=exercise&status=${item.status}`)
+        axios.get(`http://44.212.136.151:8081/api/getAllDietPlan?userid=${userId}&startdate=${item.startdate}&enddate=${item.enddate}&type=exercise&status=${item.status}`)
           .then(function (response) {
             response.data.data.servingsLeft = parseInt
               (response?.data?.data.TotalServings - response?.data?.data.CosumedServings)
