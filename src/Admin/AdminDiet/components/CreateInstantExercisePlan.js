@@ -710,7 +710,7 @@ onChange={date => {
             <Grid mb={4}   Item><Card> <CardContent>
                 <Grid container flexDirection="row" justifyContent="space-between" >
                     
-                    <Grid item  xs={ index===0?5.5:5}  xl={index===0?6:5} fullWidth> 
+                    <Grid  item  xs={ index===0?5.5:4}  md={index===0?5.5:5} xl={index===0?5:5} fullWidth> 
                                    
        <FormControl fullWidth>
         <InputLabel >Category</InputLabel>
@@ -747,7 +747,7 @@ onChange={date => {
            </FormControl>
               </Grid>
                                               
-            <Grid sm={ index===0?5.5:5}  xl={index===0?6:5}  marginRight={1} item fullWidth>
+            <Grid xs={ index===0?5.5:4.5}  md={index===0?5.5:5} xl={index===0?5.5:5}  marginRight={1} item fullWidth>
                                                   
                                               
                 <TextField label="Sets" 
