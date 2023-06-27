@@ -45,7 +45,7 @@ export default function Searchbar() {
   };
 
   return (
-    <ClickAwayListener onClickAway={handleClose}>
+    <ClickAwayListener onClickAway={handleClose} >
       <div>
         {!open && (
           <IconButton onClick={handleOpen}>

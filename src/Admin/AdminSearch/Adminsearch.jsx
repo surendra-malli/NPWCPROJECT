@@ -266,17 +266,17 @@ objectData.userStatus='all'
         
             <Page  title="Dashboard: Admin">
 
-            <Searchbar getSearch={(e)=>{searchHandler(e);
-            }}  id="search-bar" sx={{height:"100px"}}/>
+            {/* <Searchbar getSearch={(e)=>{searchHandler(e);
+            }}  id="search-bar" sx={{height:"100px"}}/> */}
 
           <Grid container justifyContent='space-between'>
-            <Grid item>
+            <Grid item xs={5} lg={7} md={6} sm={5}>
             <img
           src={Logo}
           alt="nova logo"
           style={{ height: "auto", width: "250px", marginLeft: "30px" }}
         /></Grid>
-        <Grid>
+        <Grid item xs={5} lg={4} md={4} mr={1} sm={4} >
          <SearchUser getSearch={(e)=>{searchHandler(e);
             }}></SearchUser></Grid>
             </Grid>

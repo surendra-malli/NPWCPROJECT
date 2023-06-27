@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
+import InputAdornment from '@mui/material/InputAdornment';
+import Iconify from '../../../components/iconify';
 import SearchIcon from '@mui/icons-material/Search';
 import { Grid } from '@mui/material';
+
+
 
 const SearchUser = ({getSearch}) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +19,7 @@ const SearchUser = ({getSearch}) => {
     <>
     <Grid container alignItems='center'>
         
-      <Grid xs={11} item fullWidth>
+      <Grid  item fullWidth>
       
         <TextField
         onChange={(e)=>{
@@ -24,11 +28,19 @@ const SearchUser = ({getSearch}) => {
         }}
           variant="outlined"
           placeholder="Search.."
-          fullWidth
-          disableUnderline
-          sx={{
-            "& fieldset": { border: 'none' },
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                 <SearchIcon />
+              </InputAdornment>
+            ),
           }}
+          
+         fullWidth
+          
+          // sx={{
+          //   "& fieldset": { border: 'none' },
+          // }}
           
           // Add any additional props or styling as needed
         />
