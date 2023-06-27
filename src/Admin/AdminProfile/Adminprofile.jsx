@@ -107,7 +107,7 @@ console.log(objectData,'objectData admin profile')
  let config = {
  method: 'GET',
  maxBodyLength: Infinity,
- url: `https://aipse.in/api/userActivation?email=${email}&condition=${con}`,
+ url: `http://44.212.136.151:8081/api/userActivation?email=${email}&condition=${con}`,
  headers: { 'Content-Type': 'application/json' },
  };
  axios(config)
@@ -192,7 +192,7 @@ console.log(objectData,'objectData admin profile')
 
  method: 'PUT',
 
- url: 'https://aipse.in/api/member_id',
+ url: 'http://44.212.136.151:8081/api/member_id',
 
  headers: {
 
@@ -231,7 +231,7 @@ console.log(objectData,'objectData admin profile')
  var config = {
  method: 'PUT',
  maxBodyLength: Infinity,
- url: 'https://aipse.in/api/count',
+ url: 'http://44.212.136.151:8081/api/count',
  headers: { } 
  };
  
@@ -288,7 +288,7 @@ console.log(objectData?.id,'objectDataobjectData')
  let config = {
  method: 'put',
  maxBodyLength: Infinity,
- url: 'https://aipse.in/api/deleteUser',
+ url: 'http://44.212.136.151:8081/api/deleteUser',
  headers: { 
  'Content-Type': 'application/json'
  },

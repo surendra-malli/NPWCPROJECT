@@ -37,7 +37,7 @@ export default function Adminuser() {
     var config = {
         method: 'GET',
         maxBodyLength: Infinity,
-        url: 'https://aipse.in/api/count',
+        url: 'http://44.212.136.151:8081/api/count',
         headers: { } 
       };
       
@@ -160,7 +160,7 @@ const count = async => {
     var config = {
         method: 'Get',
       maxBodyLength: Infinity,
-        url: 'https://aipse.in/api/count',
+        url: 'http://44.212.136.151:8081/api/count',
         headers: { }
       };
       
@@ -182,7 +182,7 @@ const count = async => {
     let config = {
         method: 'GET',
         maxBodyLength: Infinity,
-        url:'https://aipse.in/api/searchUser?name=&page=1&count=100',
+        url:'http://44.212.136.151:8081/api/searchUser?name=&page=1&count=100',
         headers: {'Content-Type': 'application/json' }
       };
       

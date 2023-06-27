@@ -84,7 +84,7 @@ export default function AdminDietCategory(props) {
         let config = {
             method: 'GET',
             maxBodyLength: Infinity,
-            url: 'https://aipse.in/api/getAllCategories?type=food',
+            url: 'http://44.212.136.151:8081/api/getAllCategories?type=food',
             headers: { 'Content-Type': 'application/json' },
         };
         axios(config)

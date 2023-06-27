@@ -181,16 +181,16 @@ objectData.userStatus='all'
 
     
     
-      //https://aipse.in/api/searchUser?name=&page=1&count=100
-      //`https://aipse.in/api/searchUser?name=${searchTitle}&page=${page}&count=6`,
+      //http://44.212.136.151:8081/api/searchUser?name=&page=1&count=100
+      //`http://44.212.136.151:8081/api/searchUser?name=${searchTitle}&page=${page}&count=6`,
 
     const apiHit=async()=>{
         
-        console.log(`https://aipse.in/api/searchUser?name=${searchTitle}&page=${currentPage}&count=10&status=${status}`);
+        console.log(`http://44.212.136.151:8081/api/searchUser?name=${searchTitle}&page=${currentPage}&count=10&status=${status}`);
        let config = {
             method: 'GET',
             maxBodyLength: Infinity,
-            url:`https://aipse.in/api/searchUser?name=${searchTitle}&page=${currentPage}&count=10&status=${status}`,
+            url:`http://44.212.136.151:8081/api/searchUser?name=${searchTitle}&page=${currentPage}&count=10&status=${status}`,
             headers: {'Content-Type': 'application/json' }
           };
           
