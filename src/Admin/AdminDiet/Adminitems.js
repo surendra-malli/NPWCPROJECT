@@ -84,7 +84,7 @@ export default function AdminDietCategory(props) {
         let config = {
             method: 'GET',
             maxBodyLength: Infinity,
-            url: 'https://aipse.in/api/getAllCategories?type=food',
+            url: 'http://44.212.136.151:8081/api/getAllCategories?type=food',
             headers: { 'Content-Type': 'application/json' },
         };
         axios(config)
@@ -144,7 +144,7 @@ export default function AdminDietCategory(props) {
         {/* <CreateInstantDietPlan ref={childComponentRef} ></CreateInstantDietPlan> */}
             <Grid container justifyContent='space-between' alignItems='center'>
                 <Grid item>
-            {<img src={Logo} alt="nova logo" style={{ height: "auto", width: "250px", marginBottom:'10px'}} />}
+            {<img src={Logo} alt="nova logo" style={{ height: "auto", width: "250px", marginBottom:'10px',marginLeft:'10px'}} />}
 
                 </Grid>
                 <Grid item>

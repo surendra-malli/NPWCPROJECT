@@ -225,7 +225,7 @@ const currencies = [
       var config = {
         method: 'PUT',
       maxBodyLength: Infinity,
-        url: 'https://aipse.in/api/deleteDiet',
+        url: 'http://44.212.136.151:8081/api/deleteDiet',
         headers: { 
           'Content-Type': 'application/json'
         },
@@ -312,7 +312,7 @@ const currencies = [
         method: 'POST',
         maxBodyLength: Infinity,
       //  url: baseUrl + '/assignDietPlanForPatient',
-       url: `https://aipse.in/api/assignDietPlanForPatient`,
+       url: `http://44.212.136.151:8081/api/assignDietPlanForPatient`,
   
         headers: {
           'Content-Type': 'application/json',
@@ -397,7 +397,7 @@ const currencies = [
         var config = {
           method: 'PUT',
           maxBodyLength: Infinity,
-          url: 'https://aipse.in/api/editDietPlanAssigned',
+          url: 'http://44.212.136.151:8081/api/editDietPlanAssigned',
           headers: {
             'Content-Type': 'application/json',
           },
@@ -431,7 +431,7 @@ const currencies = [
         var config = {
           method: 'PUT',
         maxBodyLength: Infinity,
-          url: 'https://aipse.in/api/deleteDietOnPlanid',
+          url: 'http://44.212.136.151:8081/api/deleteDietOnPlanid',
           headers: { 
             'Content-Type': 'application/json'
           },
@@ -538,7 +538,7 @@ const currencies = [
       let config = {
           method: 'GET',
           maxBodyLength: Infinity,
-          url: 'https://aipse.in/api/getAllCategories?type=exercise',
+          url: 'http://44.212.136.151:8081/api/getAllCategories?type=exercise',
           headers: { 'Content-Type': 'application/json' },
       };
       axios(config)
@@ -801,7 +801,7 @@ const currencies = [
             <Grid mb={4}   Item><Card> <CardContent>
                 <Grid container flexDirection="row" justifyContent="space-between" >
                     
- <Grid item  xs={ index===0?5.5:5}  xl={index===0?6:5} fullWidth> 
+                    <Grid item xs={4}  md={5} lg={5}> 
                                    
        <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Category</InputLabel>
@@ -814,52 +814,51 @@ const currencies = [
 
           
             
-              const data = [...valuesD?.items];
-              let flag=checkDuplicateCategory(data, e?.target?.value)
-              if(flag){
-                let msg=`Category ${e?.target?.value} Already Selected`
-              childcomrefAlert.current.handleClickOpenAlert(msg);
-              }else{
-              data[index] = {...data[index], category: e?.target?.value};
-              setValuesD({...valuesD, items: data});
-              }
+            const data = [...valuesD?.items];
+            let flag=checkDuplicateCategory(data, e?.target?.value)
+            if(flag){
+              let msg=`Category ${e?.target?.value} Already Selected`
+            childcomrefAlert.current.handleClickOpenAlert(msg);
+            }else{
+            data[index] = {...data[index], category: e?.target?.value};
+            setValuesD({...valuesD, items: data});
+            }
+          
           }}
           
         >
          
          {categoryData?.map((option,index) => (
-        <MenuItem key={option.category_name} value={option.category_name}>
-          {option.category_name}
+        <MenuItem key={option?.category_name} value={option?.category_name}>
+          {option?.category_name}
         </MenuItem>
            ))}
          
-          
+            
         </Select>
            </FormControl>
               </Grid>
                                               
-            <Grid sm={ index===0?5.5:5}  xl={index===0?6:5}  marginRight={1} item fullWidth>
+            <Grid xs={5}  md={5} lg={5} marginRight={1} item>
                                                   
                                               
-                <TextField label="Sets" 
+                <TextField label="Calories" 
                 type='number'
                   onChange={e => {
 
           
-                    if(e?.target?.value>0 || e?.target?.value===''){
+            
                     const data = [...valuesD?.items];
                     data[index] = {...data[index], value: e?.target?.value};
                     setValuesD({...valuesD, items: data});
-                    }
-                   
                 
                 }}
                 
                 variant='outlined' value={item.value} fullWidth/>
                                   
-          </Grid>
+                                      </Grid>
     
-                    <Grid xs={2} md={1} lg={1}  item> 
+                                      <Grid xs={2} md={1} lg={1}  item> 
                     {index!==0 && (
                     
                      <IconButton

@@ -194,7 +194,7 @@ const objectData = location?.state;
     var config = {
       method: 'PUT',
     maxBodyLength: Infinity,
-      url: 'https://aipse.in/api/deleteDiet',
+      url: 'http://44.212.136.151:8081/api/deleteDiet',
       headers: { 
         'Content-Type': 'application/json'
       },
@@ -231,7 +231,7 @@ const objectData = location?.state;
       let config = {
         method: 'GET',
         maxBodyLength: Infinity,
-        url: 'https://aipse.in/api/listallusers',
+        url: 'http://44.212.136.151:8081/api/listallusers',
         headers: { }
       };
       
@@ -366,7 +366,7 @@ const addItems = () => {
     method: 'POST',
     maxBodyLength: Infinity,
   //  url: baseUrl + '/assignDietPlanForPatient',
-   url: `https://aipse.in/api/assignDietPlanForPatient`,
+   url: `http://44.212.136.151:8081/api/assignDietPlanForPatient`,
 
     headers: {
       'Content-Type': 'application/json',
@@ -489,7 +489,7 @@ const checkDuplicateCategory=(data,dup)=>{
       let config = {
           method: 'GET',
           maxBodyLength: Infinity,
-          url: 'https://aipse.in/api/getAllCategories?type=food',
+          url: 'http://44.212.136.151:8081/api/getAllCategories?type=food',
           headers: { 'Content-Type': 'application/json' },
       };
       axios(config)
@@ -674,14 +674,15 @@ const checkDuplicateCategory=(data,dup)=>{
             <Grid mb={4}   Item><Card> <CardContent>
                 <Grid container flexDirection="row" justifyContent="space-between" >
                     
-                    <Grid item  xs={ index===0?5.5:5}  xl={index===0?6:5} fullWidth> 
+                    <Grid item xs={4}  md={5} lg={5}> 
                                    
        <FormControl fullWidth>
-        <InputLabel >Category</InputLabel>
+        <InputLabel id="demo-simple-select-label">Category</InputLabel>
         <Select
-          l
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
           value={item.category}
-          label="Category"
+          label="Select Your Category"
           onChange={e => {
 
           
@@ -711,7 +712,7 @@ const checkDuplicateCategory=(data,dup)=>{
            </FormControl>
               </Grid>
                                               
-            <Grid sm={ index===0?5.5:5}  xl={index===0?6:5}  marginRight={1} item fullWidth>
+            <Grid xs={5}  md={5} lg={5} marginRight={1} item>
                                                   
                                               
                 <TextField label="Calories" 
@@ -730,7 +731,7 @@ const checkDuplicateCategory=(data,dup)=>{
                                   
                                       </Grid>
     
-                <Grid xs={2} md={1} lg={1}  item> 
+                                      <Grid xs={2} md={1} lg={1}  item> 
                     {index!==0 && (
                     
                      <IconButton

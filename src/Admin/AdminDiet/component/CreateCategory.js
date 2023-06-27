@@ -41,7 +41,7 @@ const deleteHit=async=>{
       let config = {
         method: 'PUT',
         maxBodyLength: Infinity,
-        url: 'https://aipse.in/api/deletecategory',
+        url: 'http://44.212.136.151:8081/api/deletecategory',
         headers: { 
           'Content-Type': 'application/json'
         },
@@ -107,7 +107,7 @@ const deleteHit=async=>{
           let config = {
               method: 'post',
               maxBodyLength: Infinity,
-              url: 'https://aipse.in/api/AddCategories',
+              url: 'http://44.212.136.151:8081/api/AddCategories',
               headers: {
                   'Content-Type': 'text/plain'
               },
@@ -146,7 +146,7 @@ const deleteHit=async=>{
         let config = {
             method: 'GET',
             maxBodyLength: Infinity,
-            url: 'https://aipse.in/api/getAllCategories?type=food',
+            url: 'http://44.212.136.151:8081/api/getAllCategories?type=food',
             headers: { 'Content-Type': 'application/json' },
         };
         axios(config)
@@ -204,7 +204,7 @@ const deleteHit=async=>{
               method: 'PUT',
               maxBodyLength: Infinity,
               // url: baseUrl+'updatecategory',
-              url: "https://aipse.in/api/updatecategory",
+              url: "http://44.212.136.151:8081/api/updatecategory",
               headers: {
                   'Content-Type': 'application/json'
               },

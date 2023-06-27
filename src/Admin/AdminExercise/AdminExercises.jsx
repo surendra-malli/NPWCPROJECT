@@ -90,7 +90,7 @@ export default function AdminExerciseCategory(props) {
         let config = {
             method: 'GET',
             maxBodyLength: Infinity,
-            url: 'https://aipse.in/api/getAllCategories?type=exercise',
+            url: 'http://44.212.136.151:8081/api/getAllCategories?type=exercise',
             headers: { 'Content-Type': 'application/json' },
         };
         axios(config)
@@ -151,7 +151,7 @@ export default function AdminExerciseCategory(props) {
             
             <Grid container justifyContent='space-between' alignItems='center'>
                 <Grid item>
-            {<img src={Logo} alt="nova logo" style={{ height: "auto", width: "250px",marginLeft: "10px"  }} />}
+            {<img src={Logo} alt="nova logo" style={{ height: "auto", width: "250px",marginLeft: "10px" ,marginBottom:'10px' }} />}
 
                 </Grid>
                

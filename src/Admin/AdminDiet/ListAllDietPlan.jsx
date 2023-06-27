@@ -107,7 +107,7 @@ export default function ListAllDietPlan(props){
   }, []);
 
   useEffect(()=>{
-    if(objectData.pathnameCurrent[0]==='/dashboardadmin/adminprofile' || objectData.pathnameCurrent[0]==='/dashboardadmin/createinstantexerciseplan' ){
+    if(objectData.pathnameCurrent[0]==='/dashboardadmin/adminprofile' || objectData.pathnameCurrent[0]==='/dashboardadmin/createinstantdietplan' ){
       childcomrefAlert.current.handleClickOpenAlert('Diet Plan Created Successfully');
     }
     console.log(objectData,'////////')
@@ -161,7 +161,7 @@ useEffect(()=>{
         let config = {
           method: 'POST',
           maxBodyLength: Infinity,
-          url: `https://aipse.in/api/listalldietplans?user_id=${userId}&type=food`,
+          url: `http://44.212.136.151:8081/api/listalldietplans?user_id=${userId}&type=food`,
           headers: { },
           data : data
         };
@@ -273,27 +273,9 @@ useEffect(()=>{
               </Page>
 
                <Button
-      style={{
-        float: "right",
-        position: 'fixed',
-        bottom: '20px',
-        right: '20px',
-        zIndex: 9999,
-        // opacity: scrolled ? '0' : '1',
-        pointerEvents: scrolled ? 'none' : 'auto',
-        transition: 'opacity 0.3s',
-        display: 'flex',
-        alignItems: 'center',
-
-       width: scrolled? '0px' : '200px',
-       height: '30px',
-       minWidth:'0px',
       
-       
-      }}
       variant="contained"
-      color="primary"
-      startIcon={<CreateIcon sx={{padding: '0px'}}/>}
+     
        onClick={(e)=>{
                       const today = new Date();
                       const Obj1 = {
@@ -311,31 +293,30 @@ useEffect(()=>{
                   const sendData={...intialValues,...objectData}
                   sendData.action='Create'
                   childComponentRef.current.editClick(sendData)
-              }} 
-        //       style={{
-        //   float: "right", marginLeft: "1rem",  padding: "0.2rem", marginTop: "-0.5rem",
-        //   position: 'fixed', zIndex: '1', bottom: 40, right: 40
-        // }}
+              }} style={{
+          float: "right", marginLeft: "1rem",  padding: "0.2rem", marginTop: "-0.5rem",
+          position: 'fixed', zIndex: '1', bottom: 40, right: 40
+        }}
     
-      //   sx={ {
-      //     ':hover': {
-      //         bgcolor: "#007AFF", // theme.palette.primary.main
-      //         color: 'white',
-      //         border: '#ffd796'
-      //     },
-      //     ':active': {
-      //         bgcolor: "#007AFF",
-      //         color: "#white"
-      //     },
-      //     bgcolor: '#007AFF',
-      //     color: "white",
-      //     border: 'none'
+        sx={ {
+          ':hover': {
+              bgcolor: "#007AFF", // theme.palette.primary.main
+              color: 'white',
+              border: '#ffd796'
+          },
+          ':active': {
+              bgcolor: "#007AFF",
+              color: "#white"
+          },
+          bgcolor: '#007AFF',
+          color: "white",
+          border: 'none'
   
-      // }} 
+      }} 
       >
   
   
-          <span style={{ display: scrolled ? 'none' : 'block' }}>Create Diet Plan</span>
+          <span >Create Diet Plan</span>
              </Button>
              <AlertDialog Message="Created Successfully" ref={childcomrefAlert}/>
                   </div>

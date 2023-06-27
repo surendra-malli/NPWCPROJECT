@@ -93,7 +93,7 @@ export default function LoginPage() {
     setTimeout(() => {
       setIsLoading(false);
     }, 3500);
-    axios.post(`https://aipse.in/api/login`, formValue)
+    axios.post(`http://44.212.136.151:8081/api/login`, formValue)
       .then(function (response) {
         console.log(response?.data, "responseeeeeee------")
         console.log(formValue,"---form value checking--");

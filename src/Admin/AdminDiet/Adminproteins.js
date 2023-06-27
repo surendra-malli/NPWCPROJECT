@@ -119,7 +119,7 @@ export default function Protein(props) {
       let config = {
         method: 'GET',
         maxBodyLength: Infinity,
-        url: `https://aipse.in/api/getItemsOfCategory?category_id=${category_id}&type=food`,
+        url: `http://44.212.136.151:8081/api/getItemsOfCategory?category_id=${category_id}&type=food`,
         headers: { 
           'Content-Type': 'application/json'
         },

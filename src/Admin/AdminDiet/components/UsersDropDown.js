@@ -49,7 +49,7 @@ const MenuProps = {
         let config = {
           method: 'GET',
           maxBodyLength: Infinity,
-          url: 'https://aipse.in/api/listallusers',
+          url: 'http://44.212.136.151:8081/api/listallusers',
           headers: { }
         };
         
