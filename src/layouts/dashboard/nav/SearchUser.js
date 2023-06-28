@@ -19,15 +19,17 @@ const SearchUser = ({getSearch}) => {
     <>
     <Grid container alignItems='center'>
         
-      <Grid  item fullWidth>
+      
       
         <TextField
+        fullWidth
+        
         onChange={(e)=>{
             console.log(e?.target?.value,'user search 1')
             getSearch(e?.target?.value);
         }}
           variant="outlined"
-          placeholder="Search.."
+          placeholder="Search..."
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -36,7 +38,7 @@ const SearchUser = ({getSearch}) => {
             ),
           }}
           
-         fullWidth
+         
           
           // sx={{
           //   "& fieldset": { border: 'none' },
@@ -45,7 +47,7 @@ const SearchUser = ({getSearch}) => {
           // Add any additional props or styling as needed
         />
       
-      </Grid>
+      
       {/* <Grid  item>
       <IconButton onClick={handleIconClick}>
         <SearchIcon />

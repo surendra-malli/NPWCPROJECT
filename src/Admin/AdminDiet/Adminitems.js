@@ -84,7 +84,7 @@ export default function AdminDietCategory(props) {
         let config = {
             method: 'GET',
             maxBodyLength: Infinity,
-            url: 'http://44.212.136.151:8081/api/getAllCategories?type=food',
+            url: 'https://novapwc.com/api/getAllCategories?type=food',
             headers: { 'Content-Type': 'application/json' },
         };
         axios(config)

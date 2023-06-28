@@ -48,7 +48,7 @@ const MenuProps = {
         let config = {
           method: 'GET',
           maxBodyLength: Infinity,
-          url: 'http://44.212.136.151:8081/api/listallusers',
+          url: 'https://novapwc.com/api/listallusers',
           headers: { }
         };
         

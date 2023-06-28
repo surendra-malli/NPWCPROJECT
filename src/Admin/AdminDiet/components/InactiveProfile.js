@@ -96,11 +96,11 @@ const InactiveProfile =  React.forwardRef((props, ref) =>  {
       };
 
       const apiHit = async => {
-        console.log(`http://44.212.136.151:8081/api/userActivation?email=${usersData?.email}&condition=${condition}`)
+        console.log(`https://novapwc.com/api/userActivation?email=${usersData?.email}&condition=${condition}`)
         let config = {
             method: 'GET',
             maxBodyLength: Infinity,
-            url: `http://44.212.136.151:8081/api/userActivation?email=${usersData?.email}&condition=${condition}`,
+            url: `https://novapwc.com/api/userActivation?email=${usersData?.email}&condition=${condition}`,
             headers: { 'Content-Type': 'application/json' },
         };
         axios(config)

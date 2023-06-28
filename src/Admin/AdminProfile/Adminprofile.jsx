@@ -72,9 +72,9 @@ console.log(objectData,'objectData admin profile')
  useEffect(()=>{
  console.log(checked,'backkk');
  if(checked){
- setActionMessage('Inactivation');
+ setActionMessage('Deactivate');
  }else{
- setActionMessage('Activation');
+ setActionMessage('Activate');
  }
 
 
@@ -107,7 +107,7 @@ console.log(objectData,'objectData admin profile')
  let config = {
  method: 'GET',
  maxBodyLength: Infinity,
- url: `http://44.212.136.151:8081/api/userActivation?email=${email}&condition=${con}`,
+ url: `https://novapwc.com/api/userActivation?email=${email}&condition=${con}`,
  headers: { 'Content-Type': 'application/json' },
  };
  axios(config)
@@ -119,7 +119,7 @@ console.log(objectData,'objectData admin profile')
  msg='User Activated Successfully';
  }
  else{
- msg='User De Activated Successfully';
+ msg='User Deactivated Successfully';
  }
  childcomrefAlert.current.handleClickOpenAlert(msg);
  })
@@ -143,7 +143,7 @@ console.log(objectData,'objectData admin profile')
  
  }
  else{
- setMessageOfUserStatus('User Deactivated');
+ setMessageOfUserStatus('User Inactivated');
  setCondition(0);
  setActionMessage('Activation')
  con=0
@@ -192,7 +192,7 @@ console.log(objectData,'objectData admin profile')
 
  method: 'PUT',
 
- url: 'http://44.212.136.151:8081/api/member_id',
+ url: 'https://novapwc.com/api/member_id',
 
  headers: {
 
@@ -231,7 +231,7 @@ console.log(objectData,'objectData admin profile')
  var config = {
  method: 'PUT',
  maxBodyLength: Infinity,
- url: 'http://44.212.136.151:8081/api/count',
+ url: 'https://novapwc.com/api/count',
  headers: { } 
  };
  
@@ -288,7 +288,7 @@ console.log(objectData?.id,'objectDataobjectData')
  let config = {
  method: 'put',
  maxBodyLength: Infinity,
- url: 'http://44.212.136.151:8081/api/deleteUser',
+ url: 'https://novapwc.com/api/deleteUser',
  headers: { 
  'Content-Type': 'application/json'
  },
@@ -417,10 +417,10 @@ console.log(objectData?.id,'objectDataobjectData')
  </Grid>
 
  <Stack> 
- <Card onClick={handleDashboardStats} sx={{textDecoration:'none',cursor:'pointer'}} justifyContent="space-between" alignItems="center" style={{backgroundColor:"#EBF5FF"}}>
- 
- <Card style={{backgroundColor:'#EBF5FF',justifyContent:"space-between"}} fullWidth >
- 
+ <Card  sx={{textDecoration:'none',cursor:'pointer'}} justifyContent="space-between" alignItems="center" style={{backgroundColor:"#EBF5FF"}}>
+
+ <Card style={{backgroundColor:'#EBF5FF',justifyContent:"space-between"}}  >
+ <Grid container alignItems='center' justifyContent='space-between'>
  <CardContent>
 
 
@@ -456,7 +456,11 @@ console.log(objectData?.id,'objectDataobjectData')
  
  </Grid>
  </CardContent>
+
+ <Button sx={{height:'20px',marginRight:'5px',backgroundColor:actionMessage==='Deactivate'?'lightgreen':'red'}}variant='outlined' >{actionMessage==='Deactivate'?'Active':'Inactive'}</Button>
+ </Grid>
  </Card>
+
  
  </Card>
  </Stack>
@@ -470,7 +474,7 @@ console.log(objectData?.id,'objectDataobjectData')
  
  
  <Typography sx={{ fontSize: 20, fontFamily: 'Inter-SemiBold', lineHeight: "50px", marginLeft:"12px" }} mt={3} > 
- For {actionMessage} Use Toogle
+ To {actionMessage} Use Toogle
  <Switch
  checked={checked}
  onChange={handleChangeSwitch}

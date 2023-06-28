@@ -37,7 +37,7 @@ export default function Adminuser() {
     var config = {
         method: 'GET',
         maxBodyLength: Infinity,
-        url: 'http://44.212.136.151:8081/api/count',
+        url: 'https://novapwc.com/api/count',
         headers: { } 
       };
       
@@ -170,7 +170,7 @@ const count = async => {
     var config = {
         method: 'Get',
       maxBodyLength: Infinity,
-        url: 'http://44.212.136.151:8081/api/count',
+        url: 'https://novapwc.com/api/count',
         headers: { }
       };
       
@@ -192,7 +192,7 @@ const count = async => {
     let config = {
         method: 'GET',
         maxBodyLength: Infinity,
-        url:'http://44.212.136.151:8081/api/searchUser?name=&page=1&count=100',
+        url:'https://novapwc.com/api/searchUser?name=&page=1&count=100',
         headers: {'Content-Type': 'application/json' }
       };
       

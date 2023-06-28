@@ -30,7 +30,9 @@ const [readOnlyAction,setReadOnlyAction]=useState(false)
   
 const [editing, setEditing] = useState(true);
 const [value, setValue] = useState('Initial value');
-
+useEffect(()=>{
+categoryhit();
+},[])
 
 
 const deleteHit=async=>{
@@ -41,7 +43,7 @@ const deleteHit=async=>{
       let config = {
         method: 'PUT',
         maxBodyLength: Infinity,
-        url: 'http://44.212.136.151:8081/api/deletecategory',
+        url: 'https://novapwc.com/api/deletecategory',
         headers: { 
           'Content-Type': 'application/json'
         },
@@ -75,11 +77,14 @@ const deleteHit=async=>{
       const [action,setAction]=useState("");
       const [categoryDataApi,setCategoryDataApi]=useState([]);
   
-    //   useEffect(() => {
-          
-    //       addCategory();
-    //   }, []);
-  
+
+  const checkDuplicate=(str)=>{
+    let flag=false;
+    categoryDataApi.map(item=>{
+      if(item?.category_name===str) flag=true;
+    })
+    return flag;
+  }
 
     const handleSave=async=>{
         if(action==='edit'){
@@ -96,6 +101,9 @@ const deleteHit=async=>{
         if(createData?.category_name===''){
             childcomrefAlert.current.handleClickOpenAlert('Please fill all fields');
         }
+        else if(checkDuplicate(createData?.category_name.trim())){
+          childcomrefAlert.current.handleClickOpenAlert(`Category ${createData?.category_name} already present`);
+        }
 
         else{
   
@@ -107,7 +115,7 @@ const deleteHit=async=>{
           let config = {
               method: 'post',
               maxBodyLength: Infinity,
-              url: 'http://44.212.136.151:8081/api/AddCategories',
+              url: 'https://novapwc.com/api/AddCategories',
               headers: {
                   'Content-Type': 'text/plain'
               },
@@ -146,7 +154,7 @@ const deleteHit=async=>{
         let config = {
             method: 'GET',
             maxBodyLength: Infinity,
-            url: 'http://44.212.136.151:8081/api/getAllCategories?type=food',
+            url: 'https://novapwc.com/api/getAllCategories?type=food',
             headers: { 'Content-Type': 'application/json' },
         };
         axios(config)
@@ -184,16 +192,16 @@ const deleteHit=async=>{
   
   
       const RenameHit = async => {
-          if(alreadyPresent(createData?.category_name)){
-            childcomrefAlert.current.handleClickOpenAlert('Category Already Exist');
-          }
+         if(checkDuplicate(createData?.category_name.trim())){
+          childcomrefAlert.current.handleClickOpenAlert(`Category ${createData?.category_name} already present`);
+        }
 
         else{
   
           let data = JSON.stringify({
-              "category_id":createData?.category_id.trim(),
+              "category_id":createData?.category_id,
               //  "category_name": createData?.category_name,
-              "category_name": createData?.category_name,
+              "category_name": createData?.category_name.trim(),
   
               "type": "food"
           });
@@ -204,7 +212,7 @@ const deleteHit=async=>{
               method: 'PUT',
               maxBodyLength: Infinity,
               // url: baseUrl+'updatecategory',
-              url: "http://44.212.136.151:8081/api/updatecategory",
+              url: "https://novapwc.com/api/updatecategory",
               headers: {
                   'Content-Type': 'application/json'
               },

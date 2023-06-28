@@ -225,7 +225,7 @@ const currencies = [
       var config = {
         method: 'PUT',
       maxBodyLength: Infinity,
-        url: 'http://44.212.136.151:8081/api/deleteDiet',
+        url: 'https://novapwc.com/api/deleteDiet',
         headers: { 
           'Content-Type': 'application/json'
         },
@@ -302,7 +302,7 @@ const currencies = [
             ? 'week'
             : valuesD?.interval == 30
             ? 'month'
-            : '3 month',
+            : '3 months',
         category: newss,
         total_servings: alldata,
      
@@ -312,7 +312,7 @@ const currencies = [
         method: 'POST',
         maxBodyLength: Infinity,
       //  url: baseUrl + '/assignDietPlanForPatient',
-       url: `http://44.212.136.151:8081/api/assignDietPlanForPatient`,
+       url: `https://novapwc.com/api/assignDietPlanForPatient`,
   
         headers: {
           'Content-Type': 'application/json',
@@ -392,7 +392,7 @@ const currencies = [
               ? 'week'
               : valuesD?.interval === 30
               ? 'month'
-              : 'two month',
+              : '3 months',
           plan_id: valuesD?.plan_id,
           Category: valuess,
         });
@@ -400,7 +400,7 @@ const currencies = [
         var config = {
           method: 'PUT',
           maxBodyLength: Infinity,
-          url: 'http://44.212.136.151:8081/api/editDietPlanAssigned',
+          url: 'https://novapwc.com/api/editDietPlanAssigned',
           headers: {
             'Content-Type': 'application/json',
           },
@@ -434,7 +434,7 @@ const currencies = [
         var config = {
           method: 'PUT',
         maxBodyLength: Infinity,
-          url: 'http://44.212.136.151:8081/api/deleteDietOnPlanid',
+          url: 'https://novapwc.com/api/deleteDietOnPlanid',
           headers: { 
             'Content-Type': 'application/json'
           },
@@ -544,7 +544,7 @@ const currencies = [
       let config = {
           method: 'GET',
           maxBodyLength: Infinity,
-          url: 'http://44.212.136.151:8081/api/getAllCategories?type=food',
+          url: 'https://novapwc.com/api/getAllCategories?type=food',
           headers: { 'Content-Type': 'application/json' },
       };
       axios(config)
@@ -771,7 +771,7 @@ const currencies = [
               <Card> <CardContent>
                 <Grid container flexDirection="row"  fullWidth justifyContent={'space-between'} >
                     
- <Grid  xs={ index===0?5.5:4.5}  md={index===0?5.5:5} xl={index===0?5.5:5}  marginRight={1} item fullWidth> 
+ <Grid  xs={ index===0?5.5:4.5}  md={index===0?5.5:5.3} xl={index===0?5.5:5.3}   marginRight={5} item fullWidth> 
                                    
        <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Category</InputLabel>
@@ -808,7 +808,7 @@ const currencies = [
            </FormControl>
               </Grid>
                                               
-            <Grid xs={ index===0?5.5:4.5}  md={index===0?5.5:5} xl={index===0?5.5:5}  marginRight={1} item fullWidth>
+            <Grid xs={ index===0?5.5:4.5}  md={index===0?5.5:5} xl={index===0?5.5:5.3}  marginRight={1} item fullWidth>
                                                   
                                               
                 <TextField label="Calories" 

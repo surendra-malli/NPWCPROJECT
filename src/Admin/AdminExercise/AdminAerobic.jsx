@@ -82,7 +82,7 @@ const Aerobic = forwardRef((props, ref) => {
     console.log(dataOfExercise,'dataOfExercise');
     const [exerciseData,setExerciseData]=useState([])
     const childref=useRef();
-    const imgurl='https://aipse.in';
+    const imgurl='https://novapwc.com/';
 
     const handleIncrement1 = () => {
       setCount1(count1 + 1);
@@ -141,7 +141,7 @@ const Aerobic = forwardRef((props, ref) => {
       let config = {
         method: 'GET',
         maxBodyLength: Infinity,
-        url: `http://44.212.136.151:8081/api/getItemsOfCategory?category_id=${dataOfExercise.category_id}&type=exercise`,
+        url: `https://novapwc.com/api/getItemsOfCategory?category_id=${dataOfExercise.category_id}&type=exercise`,
         headers: { }
       };
      

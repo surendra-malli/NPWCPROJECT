@@ -161,7 +161,7 @@ useEffect(()=>{
         let config = {
           method: 'POST',
           maxBodyLength: Infinity,
-          url: `http://44.212.136.151:8081/api/listalldietplans?user_id=${userId}&type=food`,
+          url: `https://novapwc.com/api/listalldietplans?user_id=${userId}&type=food`,
           headers: { },
           data : data
         };
@@ -280,14 +280,14 @@ useEffect(()=>{
         right: '20px',
         zIndex: 1,
         // opacity: scrolled ? '0' : '1',
-        pointerEvents: scrolled ? 'none' : 'auto',
+       
         transition: 'opacity 0.3s',
         display: 'flex',
         alignItems: 'center',
 
-       width: scrolled? '0px' : '200px',
+       
        height: '30px',
-       minWidth:'0px',
+      
       
        
       }}
@@ -335,7 +335,7 @@ useEffect(()=>{
       >
   
   
-          <span style={{ display: scrolled ? 'none' : 'block' }}>Create Diet Plan</span>
+          <span >Create Diet Plan</span>
              </Button>
              <AlertDialog Message="Created Successfully" ref={childcomrefAlert}/>
                   </div>
