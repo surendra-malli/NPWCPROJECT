@@ -80,7 +80,7 @@ const deleteHit=async=>{
 
   const checkDuplicate=(str)=>{
     let flag=false;
-    categoryDataApi.map(item=>{
+    categoryDataApi?.map(item=>{
       if(item?.category_name===str) flag=true;
     })
     return flag;

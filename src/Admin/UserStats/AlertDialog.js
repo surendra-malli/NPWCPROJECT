@@ -21,7 +21,7 @@ const AlertDialog = forwardRef((props, ref) => {
   };
 
   const handleClose = () => {
-    if(message==='User Deleted Sucesfully'){
+    if(message==='User Deleted Succesfully'){
       props.gobackk();
     }
     setOpen(false);

@@ -297,7 +297,7 @@ console.log(objectData?.id,'objectDataobjectData')
  
  axios.request(config)
  .then((response) => {
- childcomrefAlert.current.handleClickOpenAlert('User Deleted Sucesfully');
+ childcomrefAlert.current.handleClickOpenAlert('User Deleted Succesfully');
  console.log(JSON.stringify(response.data));
  setUsersData("")
  

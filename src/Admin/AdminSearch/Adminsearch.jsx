@@ -269,7 +269,7 @@ objectData.userStatus='all'
             {/* <Searchbar getSearch={(e)=>{searchHandler(e);
             }}  id="search-bar" sx={{height:"100px"}}/> */}
 
-          <Grid container justifyContent='space-between'  sx={{paddingLeft: "30px",paddingRight:'30px'}}>
+          <Grid container justifyContent='space-between'  sx={{}}>
             <Grid item >
            
            
@@ -277,7 +277,7 @@ objectData.userStatus='all'
           src={Logo}
           
           alt="nova logo"
-          style={{ height: "auto", width: "250px",cursor:'pointer' }}
+          style={{ height: "auto", width: "250px",cursor:'pointer',marginLeft:'5px' }}
           onClick={()=>{navigate('/dashboardadmin/adminuser')}}
         />
         
@@ -380,19 +380,19 @@ objectData.userStatus='all'
                             return(
 
                            
-                            <Card onClick={e=>{selectedProfileCalled(item)}} sx={{ minWidth: 275 }} style={{margin:"20px",cursor:'pointer'}} key={item.id}>
+                            <Card onClick={e=>{selectedProfileCalled(item)}} sx={{ minWidth: 275 }} style={{margin:"10px",cursor:'pointer'}} key={item.id}>
                                     <CardContent style={{backgroundColor:'#EBF5FF'}}>
-                                    <Grid container  flexDirection="row"  sx={{textDecoration:'none'}} >
+                                    <Grid container  flexDirection="row" alignItems='center' spacing={1} sx={{textDecoration:'none'}} >
                                         
-                                        <div>
+                                        <Grid item>
                                         <img src={Avatar} alt="diet logo" style={{height: "75px",borderRadius:"10px", width: "auto"}}/>
-                                        </div>
-                                        <div>
-                                        <span style={{ fontSize:"25px" ,color:"black",fontWeight:"20px",marginLeft:"20px",marginTop:'45px'}}>{changeName(item.user_name)}</span>
-                                        <Typography style={{ fontSize:"15px" ,color:"#112866",marginLeft:"22px",marginTop:'3px'}} >
+                                        </Grid>
+                                        <Grid item>
+                                        <span style={{ fontSize:"20px" ,color:"black",fontWeight:"25px",}}>{changeName(item.user_name)}</span>
+                                        <Typography style={{ fontSize:"15px" ,color:"#112866",marginTop:'3px'}} >
                                         {item.user_name}
                                         </Typography>
-                                        </div>
+                                        </Grid>
                                     
                                       {/* {  console.log(searchTitle,'--------Admin Search------')} */}
 
