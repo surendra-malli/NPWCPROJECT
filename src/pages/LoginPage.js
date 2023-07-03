@@ -72,7 +72,7 @@ export default function LoginPage() {
   
   // }, [])
   const classes = useStyles();
-  const navigate = useNavigate();
+  let  navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
   const [showPassword, setShowPassword] = useState(false);
@@ -83,7 +83,7 @@ export default function LoginPage() {
 
   // const [item,setItem]=useState()
   const [response, setResponse] = useState()
-  const [formValue, setFormValue] = useState({ email_id: "Diya@123", password: "123" })
+  const [formValue, setFormValue] = useState({ email_id: " ", password: " " })
 
   // localStorage.setItem('Username', 'response?.data?.Username')
   const loginUser = () => {
@@ -93,11 +93,11 @@ export default function LoginPage() {
     setTimeout(() => {
       setIsLoading(false);
     }, 3500);
-    axios.post(`https://aipse.in/api/login`, formValue)
+    axios.post(`https://novapwc.com/api/login`, formValue)
       .then(function (response) {
         console.log(response?.data, "responseeeeeee------")
         console.log(formValue,"---form value checking--");
-        if (response?.data?.status) {  
+        if (response?.data?.Status) {  
           localStorage.setItem('Username', response?.data?.Username)
          localStorage.setItem('userId', response?.data?.['User ID'])
          
@@ -123,13 +123,22 @@ export default function LoginPage() {
     <title> Login | NPWC </title>
   </Helmet>
   <StyledRoot>
-    <Logo
+    {/* <Logo
       sx={{
         position: "fixed",
         top: { xs: 16, sm: 24, md: 40 },
         left: { xs: 16, sm: 24, md: 40 },
       }}
-    />
+    /> */}
+
+    <Grid  sx={{margin:'30px'}}item>
+            <img
+              src={Nova}
+              alt="nova logo"
+              style={{ height: "auto", width: "auto" }}
+            />
+          </Grid>
+    
     <Container maxWidth="sm">
       <StyledContent>
         <Grid
@@ -139,16 +148,12 @@ export default function LoginPage() {
           justifyContent="center"
           spacing={2}
         >
-          <Grid item variant="h2">
-            Hi, Welcome Back
+          <Grid item >
+            <Typography variant='h6'>
+            Hi, Welcome Backk
+            </Typography>
           </Grid>
-          <Grid item>
-            <img
-              src={Nova}
-              alt="nova logo"
-              style={{ height: "auto", width: "auto" }}
-            />
-          </Grid>
+          
         </Grid>
 
         <Typography variant="h4" gutterBottom>
@@ -190,7 +195,7 @@ export default function LoginPage() {
       <Card >
       {/* to="/dashboard" component={RouterLink} sx={{textDecoration:'none'}}  ^ onPress={loginUser} */}
       {isLoading ? (
-        <CircularProgress  sx={{display:'flex',alignItems:'center',justifyContent:'center'}} className={classes.loader} />
+        <CircularProgress  sx={{display:'flex',alignItems:'center',justifyContent:'center', alignContent:'center'}}  style={{marginLeft:'50%'}}className={classes.loader} />
       ) :(
       <LoadingButton fullWidth size="large" type="submit" variant="contained" onClick={loginUser} > 
         Login

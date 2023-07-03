@@ -1,5 +1,7 @@
 import { Grid, Typography, Box,Stack, IconButton, Container,Button,Chip, } from '@mui/material';
 import * as React from 'react';
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
 import  { forwardRef, useImperativeHandle } from "react";
 import {useState,useEffect} from 'react';
 import Card from '@mui/material/Card';
@@ -14,6 +16,11 @@ import { Link } from 'react-router-dom';
 import Searchbar from 'src/layouts/dashboard/Searchbar';
 import {Pagination} from '@mui/material';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import Avatar from "src/assets/Frame.png"
+import Logo from 'src/assets/nova.svg'
+import SearchUser from 'src/layouts/dashboard/nav/SearchUser';
+
 
 
 
@@ -26,13 +33,28 @@ const pageheading={
     lineHeight: "30px",
     color: "#112866"
   };
+  
+  const pageWords={
+    fontFamily:"Inter-Bold",
+    
+    fontSize: "15px",
+    lineHeight: "30px",
+    color: "#112866"
+  };
   const chips={
     fontFamily:"Inter-Regular",
     fontWeight: "bold",
   }
  const Adminuserlist=forwardRef((props, ref) =>{
+
+    const navigate =useNavigate();
     const location = useLocation();
-    const [data,setData] = useState(location.state?.data);
+    
+    //const encodedData = new URLSearchParams(location.search).get('data');
+      const objectData = location?.state;
+  console.log(objectData,'[[[[[[')
+    const [data,setData] = useState(objectData);
+    console.log(objectData,'objectData')
     const [loading, setLoading] = useState(false)
     const [searchTitle, setSearchTitle] = useState("");
     const [usersData,setUsersData]=useState([]);
@@ -43,10 +65,11 @@ const pageheading={
     const [totalCountOfUser,setTotalCountOfUsers]=useState(0);
     const [totalCountOfActiveUser,setTotalCountOfactiveUsers]=useState(0);
     const [totalCountOfInActiveUser,setTotalCountOfInActiveUsers]=useState(0);
-    const [status,setStatus]=useState(data);
+    const [status,setStatus]=useState(objectData?.userStatus);
     const [displayUser,setDisplayUser]=useState('Total Users');
     const [displayNumber,setDisplayNumber]=useState('0');
     const [selectedUsers,setSelectedUsers]=useState('0');
+    const [message,setMessage]=useState("");
 
     const changeName = (i)=>{
       const str2 = i.charAt(0).toUpperCase() + i.slice(1);
@@ -54,13 +77,24 @@ const pageheading={
       return str2
       
       }
+      const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      setIsScrolled(scrollTop > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
     var userStatus='all'
     //pagination
-    const handlePageChange = (page) => {
-      setCurrentPage(page);
-    };
-
+   
 
     useImperativeHandle(ref, () => ({
       log() {
@@ -75,21 +109,28 @@ const pageheading={
       if(typeof (str) ==='undefined') {
         console.log('from back');
       }
-      
+      window.scrollTo(0, 0);
       
        apiHit()
     },[currentPage,searchTitle]);
 
-
     useEffect(()=>{
-      console.log("status is", status)
-      console.log("usersdata is",usersData);
+      
+      if(status==='all'){
+        setDisplayUser('Total Users')
+      }
+      else if(status==='active'){
+        setDisplayUser('Total Active Users')
+      }
+      else{
+        setDisplayUser('Total Inactive Users')
+      }
 
       apiHit();
       setCurrentPage(1)
       console.log(currentPage,'currentpage')
-      if(usersData)
-      sortBasedOnStatus();
+      //setSearchTitle("")
+      
       //filterItems(userStatus)
 },[status]);
 useEffect(()=>{
@@ -105,7 +146,6 @@ useEffect(()=>{
   setTotalPages(temp)
 //console.log("inside use effect for users and pages",totalCountOfUser,totalPages,temp)
  },[selectedUsers])
-
 
     const filterItems = (status) => {
       var arr;
@@ -125,37 +165,32 @@ useEffect(()=>{
 };
 
 // const filteredItems = filterItems(currentStatus);
-const selectedProfileCalled=(e)=>{
-  console.log(e.target.value,'----selectedprofile');
+const selectedProfileCalled=(yourData)=>{
+  console.log(yourData,'----yourData');
+  const objectData = yourData;
+  objectData.pathnameCurrent=[location.pathname,0];
+  objectData.pathnamePrevious=[location.pathname];
+  //console.group(location.pathname,'00000')
+const encodedData = encodeURIComponent(JSON.stringify(objectData));
+objectData.userStatus='all'
+  //from=location.pathname;
+  
+  navigate('/dashboardadmin/adminprofile',{state:objectData});
 }
 
 
-
-    const filterBySearch = (event) => {
-        // Access input value
-        const query = event.target.value;
-        // Create copy of item list
-        var updatedList = [...usersData];
-        // Include all elements which includes the search query
-        updatedList = updatedList.filter((item) => {
-          return item.user_name.toLowerCase().includes(query);
-        });
-        // Trigger render with updated values
-        setUsersData(updatedList);
-       
-      };
-      const [pageNumber,setPageNumber]=useState(1);
-      const [numberOfRecords,setNumberOfRecords]=useState(6);
-      //https://aipse.in/api/searchUser?name=&page=1&count=100
-      //`https://aipse.in/api/searchUser?name=${searchTitle}&page=${page}&count=6`,
+    
+    
+      //https://novapwc.com/api/searchUser?name=&page=1&count=100
+      //`https://novapwc.com/api/searchUser?name=${searchTitle}&page=${page}&count=6`,
 
     const apiHit=async()=>{
         
-        console.log(`https://aipse.in/api/searchUser?name=${searchTitle}&page=${currentPage}&count=10`,);
+        console.log(`https://novapwc.com/api/searchUser?name=${searchTitle}&page=${currentPage}&count=10&status=${status}`);
        let config = {
             method: 'GET',
             maxBodyLength: Infinity,
-            url:`https://aipse.in/api/searchUser?name=${searchTitle}&page=${currentPage}&count=10&status=${status}`,
+            url:`https://novapwc.com/api/searchUser?name=${searchTitle}&page=${currentPage}&count=10&status=${status}`,
             headers: {'Content-Type': 'application/json' }
           };
           
@@ -169,16 +204,19 @@ const selectedProfileCalled=(e)=>{
             setTotalCountOfInActiveUsers(response.data.totalCountOfInactiveUser);
             setDisplayNumber(response.data.totalCountOfUser);
             
-            console.log(response.data)
-            sortBasedOnStatus(response.data.data);
+            console.log(response.data,'-0310')
+            setMessage(response.data.Message);
+            console.log(message,'message');
+            
             setUsersDataOrginal(response.data.data);
+            setUsersData(response?.data?.data)
             //setUsersData(response.data.data);
 
               var arr;
               if (status === "all" || typeof (status) ==='undefined') {
                 setSelectedUsers(response.data.totalCountOfUser);
-                console.log(selectedUsers,'selectedUsers');
-
+                
+                  
                 setDisplayNumber(response.data.totalCountOfUser);
                 arr= response.data.data.filter(item =>
                   item.user_name.toLowerCase().includes(searchTitle.toLowerCase())
@@ -194,9 +232,9 @@ const selectedProfileCalled=(e)=>{
                 );
               }
 
-                console.log(arr,'from searcg filter',searchTitle,status)
+              //   console.log(arr,'from searcg filter',searchTitle,status)
 
-                setUsersData(arr);
+                // setUsersData(arr);
 
                
                 
@@ -216,86 +254,54 @@ const selectedProfileCalled=(e)=>{
         console.log(pageNumber,'pagination')
         setCurrentPage(pageNumber);
 
+    }
 
+    const goBack=()=>{
+      navigate('/dashboardadmin/adminuser')
     }
-    function sortBasedOnStatus(){
-
-      
-     // var arr;
-      if(status==='all'){
-        //arr=dataArr;
-        setUsersData(usersDataOrginal);
-        setDisplayUser('Total Users');
-        setDisplayNumber(totalCountOfUser);
-        
-      }
-      else if(status==='active'){
-
-      let usersDataFiltered=usersDataOrginal.filter(item=>{
-        return  item.status===status;
-      })
-      setUsersData(usersDataFiltered);
-      console.log(usersData,"after filter")
-        setDisplayUser('Active Users');
-        setDisplayNumber(totalCountOfActiveUser);
-    }
-    else{
-      let usersDataFiltered=usersDataOrginal.filter(item=>{
-        return  item.status===status;
-      })
-      setUsersData(usersDataFiltered);
-      console.log(usersData,"after filter");
-        setDisplayUser('In Active Users');
-        setDisplayNumber(totalCountOfInActiveUser);
-    }
-        //console.log(arr,'-----sortBasedOnStatus')
-        //setUsersData(arr);
-
-        if(status==='all'){
-          
-          setTotalPages(Math.ceil(totalCountOfUser/10));
-          setTotalPages(Math.ceil(totalCountOfUser/10));
-        }
-        else if(status==='active'){
-          
-          setTotalPages(Math.ceil(totalCountOfActiveUser/10));
-        }
-        else if(status==='inactive'){
-          
-          setTotalPages(Math.ceil(totalCountOfInActiveUser/10));
-        }
-        //console.log(totalPages,'totalCountOfUser');
-    }
-    const handleClickActiveInactive=async (item)=>{
-        console.log("item => ", item);
-        await setStatus(item);
-        console.log("status is =>",status);
-        sortBasedOnStatus();
-       // userStatus=item
-        //console.log(status,`----${item} users`)
-        
-    }
+    
+  
     
     return (
         
             <Page  title="Dashboard: Admin">
 
-            <Searchbar  searchHandler={searchHandler} id="search-bar" sx={{height:"100px"}}/>
-            
+            {/* <Searchbar getSearch={(e)=>{searchHandler(e);
+            }}  id="search-bar" sx={{height:"100px"}}/> */}
+
+          <Grid container justifyContent='space-between'  sx={{}}>
+            <Grid item >
+           
+           
+            <img
+          src={Logo}
+          
+          alt="nova logo"
+          style={{ height: "auto", width: "250px",cursor:'pointer',marginLeft:'5px' }}
+          onClick={()=>{navigate('/dashboardadmin/adminuser')}}
+        />
+        
+        </Grid>
+        <Grid item xs={6} >
+         <SearchUser getSearch={(e)=>{searchHandler(e);
+            }}></SearchUser></Grid>
+            </Grid>
+      
 
             <Container>
              
-             <Grid container flexDirection="row">
-                <Grid   >
-                <Link to="/dashboardadmin/adminuser">
-      <IconButton>
-        <Iconify icon="material-symbols:arrow-back-rounded" />
-      </IconButton></Link>
+             
+             <Grid mt={3} mb={2} container flexDirection="row">
+                <Grid onClick={goBack} item >
+
+                <IconButton>
+                  <Iconify icon="material-symbols:arrow-back-rounded" />
+                </IconButton>
 
                 </Grid>
                
-                <Grid>
-                <Typography style={pageheading}>Users Sheema</Typography>
+                <Grid item>
+                <Typography  style={pageheading}>Users</Typography>
                 </Grid>
                 
             
@@ -305,47 +311,60 @@ const selectedProfileCalled=(e)=>{
              
              </Grid>
              
-             <Grid container flexDirection='row' alignItems='center' justifyContent='space-between'>
-                <Stack  direction="row" spacing={1}  marginLeft={"20px"} marginTop={"20px"}>
-                
-                 <Chip label="All Users " value='All Users' 
+             <Grid container  display='flex' flexDirection='row' alignItems='center' justifyContent='space-between'>
+                  <Grid item style={{marginLeft:'13px'}}>
+                <Grid container spacing={1}  >
+                  <Grid item>
+                 <Chip label="Total Users " value='All Users' 
                   sx={chips} 
                  style={{
-                  backgroundColor: status==='all' ? 'purple' : '',
-                  color: status==='all'? 'white' : '',
+                  backgroundColor: status==='all' ? '#007AFF' : '',
+                  color: status==='all'? 'white' : '',marginLeft:'15px'
                 }} 
-                onClick={()=>setStatus('all')}
+                onClick={()=>{setStatus('all');setDisplayUser('Total Users')}}
                  />
+                 </Grid>
+                 <Grid item>
                   <Chip label="Active " value='Active' sx={chips}  style={{
-                  backgroundColor: status==='active' ? 'purple' : '',
-                  color: status==='active'? 'white' : '',
-                }}  onClick={()=>setStatus('active')}  />
+                  backgroundColor: status==='active' ? '#007AFF' : '',
+                  color: status==='active'? 'white' : '',marginLeft:'15px'
+                }}  onClick={()=>{setStatus('active');setDisplayUser('Total Active')  }}/>
+                </Grid>
+                <Grid item>
                   <Chip label="Inactive" value='Inactive' sx={chips} 
                   
                   style={{
-                    backgroundColor: status==='inactive' ? 'purple' : '',
-                    color: status==='inactive'? 'white' : '',
+                    backgroundColor: status==='inactive' ? '#007AFF' : '',
+                    color: status==='inactive'? 'white' : '',marginLeft:'15px'
                   }}
                   
-                  onClick={()=>setStatus('inactive')}   />
-                  </Stack>
-                  <Typography variant="h6" component="h2">{displayUser} : {displayNumber}</Typography>
-            
+                  onClick={()=>{setStatus('inactive');setDisplayUser('Total In Active')}}   />
+                  </Grid>
+
+                </Grid>
+                </Grid>
+                { displayNumber &&
+                <Grid item >
+                  <Typography variant="h6" sx={{marginRight:'2rem'}} style={pageWords} component="h2">{displayUser} : {displayNumber}</Typography>
+                </Grid>
+                }  
 
              </Grid>
               
 
-             <Stack direction="row" spacing={1} flexShrink={0} sx={{ my: 1 }}>
+             <Stack direction="row" spacing={1} flexShrink={0} sx={{ my: 1}}>
             
 
              <Box sx={{ width: '100%' }}>  <Box sx={{ borderBottom: 1, borderColor: 'divider' }} >
 
-                    {/* {usersData[0].id} */}
 
-                    {
+
+                    { 
+                      
+                      
                         usersData?.filter((value) => {
                             if (searchTitle === "") {
-                                // console.log(searchTitle,'-----------searchTitle---------');
+                                
                               return value;
                             } else if (
                               value.user_name.toLowerCase().includes(searchTitle.toLowerCase())
@@ -361,19 +380,19 @@ const selectedProfileCalled=(e)=>{
                             return(
 
                            
-                            <Card sx={{ minWidth: 275 }} style={{margin:"20px"}} key={item.id}>
-                                    <CardContent>
-                                    <Grid container onClick={selectedProfileCalled} flexDirection="row" to="/dashboardadmin/adminprofile" state={{ data: item }} component={RouterLink} sx={{textDecoration:'none'}} >
+                            <Card onClick={e=>{selectedProfileCalled(item)}} sx={{ minWidth: 275 }} style={{margin:"10px",cursor:'pointer'}} key={item.id}>
+                                    <CardContent style={{backgroundColor:'#EBF5FF'}}>
+                                    <Grid container  flexDirection="row" alignItems='center' spacing={1} sx={{textDecoration:'none'}} >
                                         
-                                        <div>
-                                        <img src={Userfig} alt="diet logo" style={{height: "auto",borderRadius:"40px", width: "auto"}}/>
-                                        </div>
-                                        <div>
-                                        <span style={{ fontSize:"25px" ,color:"black",fontWeight:"20px",marginLeft:"10px"}}>{changeName(item.user_name)}</span>
-                                        <Typography style={{ fontSize:"15px" ,color:"black",marginLeft:"10px"}} >
+                                        <Grid item>
+                                        <img src={Avatar} alt="diet logo" style={{height: "75px",borderRadius:"10px", width: "auto"}}/>
+                                        </Grid>
+                                        <Grid item>
+                                        <span style={{ fontSize:"20px" ,color:"black",fontWeight:"25px",}}>{changeName(item.user_name)}</span>
+                                        <Typography style={{ fontSize:"15px" ,color:"#112866",marginTop:'3px'}} >
                                         {item.user_name}
                                         </Typography>
-                                        </div>
+                                        </Grid>
                                     
                                       {/* {  console.log(searchTitle,'--------Admin Search------')} */}
 
@@ -389,15 +408,17 @@ const selectedProfileCalled=(e)=>{
                             );
                            
                         })
-                    }
+                      }
+                    
        
             </Box>
 
     </Box> </Stack>
 
-
             </Container>
-
+            <Grid display='flex' justifyContent='center' alignItems='center'>
+            {message==='no such user' && <Typography>No User Found</Typography>}
+            </Grid>
            
           <Box py={3} display="flex" justifyContent="center">
           <Pagination
@@ -419,14 +440,16 @@ const selectedProfileCalled=(e)=>{
       </div>
 
         </Box> */}
+
+
         
             </Page>
             
 
     
 
-
     );
       })
 
 export default Adminuserlist
+

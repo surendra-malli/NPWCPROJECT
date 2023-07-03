@@ -21,7 +21,7 @@ const CreateExerciseItems = forwardRef((props, ref) => {
            
             <Card style={{padding:"20px 5px", margin:"0px auto"}}>
          {/* < ArrowBackIosIcon/>  */}
-            <Typography  style={{display: 'inline-block',marginRight:"5"}} variant='h5' gutterLeft >Create Diet Items </Typography>
+            <Typography  style={{display: 'inline-block',marginRight:"5"}} variant='h5' gutterLeft >Create Diet Item </Typography>
             
                 <CardContent>
                     <Grid container flexDirection="column" spacing={1}>
@@ -45,7 +45,7 @@ const CreateExerciseItems = forwardRef((props, ref) => {
                                     <Grid md={5} lg={5} xs={5} style={{backgroundColor:"#F7EEFC"}}  item > 
                                     <FormControl variant="outlined" >
                                             <InputLabel variant="ourtlined" >
-                                                Sets12
+                                                Sets
                                             </InputLabel>
                                             <NativeSelect
                                              variant='outlined'

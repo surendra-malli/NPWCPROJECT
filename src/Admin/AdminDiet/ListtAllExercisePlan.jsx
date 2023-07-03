@@ -5,7 +5,6 @@ import {useState,useEffect,useRef} from 'react';
 import moment from 'moment';
 import { useLocation } from "react-router-dom";
 import { Card, CardContent, Grid, Typography, Avatar, Badge, Button, Stack, Container } from '@mui/material';
-
 import Backbutton from "../../assets/Backbutton.svg";
 import { Link as RouterLink } from 'react-router-dom';
 import Dialog from '@mui/material/Dialog';
@@ -21,11 +20,10 @@ import { Link } from 'react-router-dom';
 import Iconify from 'src/components/iconify/Iconify';
 import Slide from '@mui/material/Slide';
 import Page from 'src/components/Page';
-import CreateDietPlan from './components/CreateDietPlanNut';
+import CreateExercisePlan from './components/CreateExercisePlan'
 import { useNavigate} from 'react-router-dom';
 import AlertDialog from '../UserStats/AlertDialog';
 import axios from 'axios';
-import { Create as CreateIcon } from '@mui/icons-material';
 // import EditCreateDietPlan from './components/EditCreateDietPlan';
 
 // import ScrollItems from './components/ScrollItems';
@@ -36,6 +34,7 @@ const text ={
   fontFamily: 'Inter-Regular',
   color:"#112866",
   marginLeft:'12px'
+
   
 };
 
@@ -61,8 +60,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   marginLeft:'12px'
 
   };
- 
-export default function ListAllDietPlan(props){
+export default function ListAllExercisePlan(props){
   let  navigate = useNavigate();
   const location = useLocation();
   //const encodedData = new URLSearchParams(location.search).get('data');
@@ -70,49 +68,13 @@ export default function ListAllDietPlan(props){
 
   const childcomrefAlert=useRef();
 
- 
   const [open, setOpen] = React.useState(false);
   const [dataFromApi,setDataFromApi]=useState([])
   const childComponentRef = useRef(null);
   console.log(objectData,'opop')
   const[userData,setUserData]=useState(objectData);
-  const [scrolled, setScrolled] = useState(false);
   
   const [userId,setUserId]=useState("");
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     if (window.scrollY > 0) {
-  //       setScrolled(true);
-  //     } else {
-  //       setScrolled(false);
-  //     }
-  //   };
-
-  //   window.addEventListener('scroll', handleScroll);
-
-  //   return () => {
-  //     window.removeEventListener('scroll', handleScroll);
-  //   };
-  // }, []);
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 0);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
-  useEffect(()=>{
-    if(objectData.pathnameCurrent[0]==='/dashboardadmin/adminprofile' || objectData.pathnameCurrent[0]==='/dashboardadmin/createinstantexerciseplan' ){
-      childcomrefAlert.current.handleClickOpenAlert('Diet Plan Created Successfully');
-    }
-    console.log(objectData,'////////')
-  },[objectData])
-
 
  const handleback=()=>{
   console.log(userData)
@@ -123,22 +85,22 @@ export default function ListAllDietPlan(props){
     //navigate(`${userData?.pathnamePrevious[userData?.pathnamePrevious.length-1]}?data=${encodedData}`);
     //navigate(`${userData?.pathnamePrevious[userData?.pathnamePrevious.length-1]}`,{state:userData})
     
-    
-    if(userData?.pathnameCurrent[0]==='/dashboardadmin/createinstandietplan' ){
-      
-      navigate(`/dashboardadmin/Adminitems`,{state:userData})
+    if(userData?.pathname==='/dashboardadmin/AdminExercise' ){
+      navigate(`${userData?.pathname}`,{state:userData})
     }
     else{
-      console.log(userData?.pathnameCurrent[0],'/////----')
     navigate(-1,{state:userData})
-  }
-
- 
+    }
     
   
  }
   
- 
+ useEffect(()=>{
+  if(objectData.pathnameCurrent[0]==='/dashboardadmin/adminprofile' || objectData.pathnameCurrent[0]==='/dashboardadmin/createinstantexerciseplan' ){
+    childcomrefAlert.current.handleClickOpenAlert('Exercise Plan Created Successfully');
+  }
+  console.log(objectData,'////////')
+},[objectData])
 useEffect(()=>{
   console.log(userId,'user id to teset');
   apiHit();
@@ -161,7 +123,7 @@ useEffect(()=>{
         let config = {
           method: 'POST',
           maxBodyLength: Infinity,
-          url: `https://novapwc.com/api/listalldietplans?user_id=${userId}&type=food`,
+          url: `https://novapwc.com/api/listalldietplans?user_id=${userId}&type=exercise`,
           headers: { },
           data : data
         };
@@ -194,7 +156,7 @@ useEffect(()=>{
         <div> 
           <Page>
           
-           <CreateDietPlan userid={userData.id} apiHitParent={apiHit} ref={childComponentRef} />
+           <CreateExercisePlan userid={userData.id} apiHitParent={apiHit} ref={childComponentRef} />
            
            
             <Grid mt={2} container flexDirection="row" alignItems="center">
@@ -208,13 +170,13 @@ useEffect(()=>{
             </Grid>
            
             <Grid  item>
-            <Typography style={pageheading}>List All Diet Plans {userData?.user_name}{userData?.value}</Typography>
+            <Typography style={pageheading}>List All Exercise Plans {userData?.user_name}{userData?.value}</Typography>
             </Grid>
          </Grid>
 
 
 
-         { dataFromApi?
+         { dataFromApi ?
           dataFromApi?.map(item=>{
             return (
               <Card  sx={{ margin: '10px', marginTop: '40px',backgroundColor:'#EBF5FF'}} >
@@ -253,9 +215,9 @@ useEffect(()=>{
           }):
           <div style={{ display: "flex", justifyContent: "center", flexDirection:"column", alignItems: "center" , height:"45vh" }}  >
            
-<Typography   align="center" variant='h4'  >No Diet Plans Found</Typography>
-
-</div>
+          <Typography   align="center" variant='h4'  >No Exercise Plans Found</Typography>
+          
+          </div>
          }
         
 
@@ -272,37 +234,15 @@ useEffect(()=>{
                       
               </Page>
 
-               <Button
-      style={{
-        float: "right",
-        position: 'fixed',
-        bottom: '20px',
-        right: '20px',
-        zIndex: 1,
-        // opacity: scrolled ? '0' : '1',
-       
-        transition: 'opacity 0.3s',
-        display: 'flex',
-        alignItems: 'center',
-
-       
-       height: '30px',
-      
-      
-       
-      }}
-      variant="contained"
-      color="primary"
-      startIcon={<CreateIcon sx={{padding: '0px'}}/>}
-       onClick={(e)=>{
+              <Button variant="contained" onClick={(e)=>{
                       const today = new Date();
                       const Obj1 = {
                         category: '',
                         value: '',
                       };
                       const intialValues = {
-                        interval: "",
-                        startDate: "",
+                        interval: 0,
+                        startDate: moment(today)?.format('DD-MM-YYYY'),
                         endDate: "",
                         category: '',
                         items: [Obj1],
@@ -311,34 +251,30 @@ useEffect(()=>{
                   const sendData={...intialValues,...objectData}
                   sendData.action='Create'
                   childComponentRef.current.editClick(sendData)
-              }} 
-        //       style={{
-        //   float: "right", marginLeft: "1rem",  padding: "0.2rem", marginTop: "-0.5rem",
-        //   position: 'fixed', zIndex: '1', bottom: 40, right: 40
-        // }}
+              }} style={{
+          float: "right", marginLeft: "1rem",  padding: "0.2rem", marginTop: "-0.5rem",
+          position: 'fixed', zIndex: '1', bottom: 40, right: 40
+        }}
     
-      //   sx={ {
-      //     ':hover': {
-      //         bgcolor: "#007AFF", // theme.palette.primary.main
-      //         color: 'white',
-      //         border: '#ffd796'
-      //     },
-      //     ':active': {
-      //         bgcolor: "#007AFF",
-      //         color: "#white"
-      //     },
-      //     bgcolor: '#007AFF',
-      //     color: "white",
-      //     border: 'none'
-  
-      // }} 
-      >
+        sx={ {
+          ':hover': {
+              bgcolor: "#007AFF", // theme.palette.primary.main
+              color: 'white',
+              border: '#ffd796'
+          },
+          ':active': {
+              bgcolor: "#007AFF",
+              color: "#9B59B6"
+          },
+          bgcolor: '#007AFF',
+          color: "white",
+          border: 'none'
+      }} >
   
   
-          <span >Create Diet Plan</span>
+          <span >Create Exercise Plan</span>
              </Button>
              <AlertDialog Message="Created Successfully" ref={childcomrefAlert}/>
                   </div>
-                  
     );
 }

@@ -2,24 +2,24 @@ import { useState, useEffect } from 'react';
 // material
 import { styled, alpha } from '@mui/material/styles';
 import { Input, Slide, Button, IconButton, InputAdornment, ClickAwayListener,TextField } from '@mui/material';
-import { Box, Stack, AppBar, Toolbar, } from '@mui/material';
+//import IconButton from '@mui/material/IconButton';
+import SearchIcon from '@mui/icons-material/Search';
+import { Box, Stack, AppBar, Toolbar,Grid } from '@mui/material';
 // component
 import Iconify from 'src/components/iconify/Iconify';
 import useResponsive from '../../hooks/useResponsive';
+import SearchUser from './nav/SearchUser';
 
 
 // ----------------------------------------------------------------------
 
 
 
-export default function Searchbar({searchHandler}) {
-  // const searchHandler = props;
-  const [isOpen, setOpen] = useState(false);
-  const[searchData,setSearchData]= useState("");
-
+export default function Searchbar({ getSearch }) {
+  const [isOpenn, setOpen] = useState(false);
+  var searchData = ''
+  const [serachUserTyped,setSearchUser]=useState("")
   const handleOpen = () => {
-    console.log('oppened')
-   // searchHandler
     setOpen((prev) => !prev);
     console.log("handle open fuunction")
   };
@@ -27,14 +27,11 @@ export default function Searchbar({searchHandler}) {
 
   const handleClose = () => {
     setOpen(false);
+    console.log
     console.log("handle close fuunction")
 
   };
-  
-  useEffect(()=>{
-    console.log("search data is ",searchData)
-   searchHandler(searchData);
-  },[searchData])
+
 
 
 
@@ -85,33 +82,26 @@ export default function Searchbar({searchHandler}) {
   }));
 
   const changeText = (e) => {
-   
-  
-    console.log(e?.target?.value,'----searchDataforme-----');
-   
-      setSearchData(e?.target?.value)
-      console.log(searchData,'----searchDatafromuse-----');
-     // searchHandler(searchData)
-
-    
+    searchData = e?.target?.value
   }
+  const [isOpen, setIsOpen] = useState(false);
 
-
-
-  
+  const handleIconClick = () => {
+    setIsOpen(!isOpen);
+  };
+ 
   // ----------------------------------------------------------------------
   return (
-    <RootStyle>
-      <ToolbarStyle>
-        <ClickAwayListener onClickAway={handleClose}>
-          <div>
+    <>
+     <RootStyle>
+    <ToolbarStyle> 
+        <ClickAwayListener > 
+          {/* <div>
             {!isOpen && (
-              
+             
                <Input id="outlined-basic" color="common" disabled
                  placeholder='Search...'
                  onClick={handleOpen}
-                //  value={searchData}
-                //  onChange={searchHandler}
                  sx={{ m: 2, fontWeight: 'fontWeightBold',width:'70vw'}}
                  startAdornment= {
                    <InputAdornment position="start">
@@ -123,16 +113,14 @@ export default function Searchbar({searchHandler}) {
              />
             )}
 
-            <Slide direction="down" in={isOpen} mountOnEnter unmountOnExit>
+            <Slide direction="down" in={isOpenn} mountOnEnter unmountOnExit>
               <SearchbarStyle>
                 <Input
                   autoFocus
                   fullWidth
-                  onChange={(e) => { setSearchData(e.target.value) }}
-                 
+                  onChange={(e) => { changeText(e) }}
                   disableUnderline
                   placeholder="Search…"
-                  defaultValue={searchData}
                   startAdornment={
                     <InputAdornment position="start">
                       <Iconify icon="eva:search-fill" sx={{ color: 'text.disabled', width: 20, height: 20 }} />
@@ -140,24 +128,57 @@ export default function Searchbar({searchHandler}) {
                   }
                   sx={{ margin:5, fontWeight: 'fontWeightBold',width:'70vw'}}
                 />
-                <Button onClick={(e) => {
-                  console.log(e.target.value,'search value');
+                <Button onClick={() => {
+                  getSearch(searchData)
                   handleClose()
                 }} sx={{
                   '&:hover': {
-                    backgroundColor: '#C39BD3',
-                    color: '#7D3C98'
+                    backgroundColor: '#007AFF',
+                    color: '#white'
 
                   },
-                  color: 'white', backgroundColor: '#7D3C98'
+                  color: 'white', backgroundColor: '#007AFF'
                 }}>
-                  Search
+                  Search..
                 </Button>
               </SearchbarStyle>
             </Slide>
-          </div>
+          </div> */}
+
+          <Grid container alignItems='center'>
+        <Grid  item>
+      <IconButton onClick={handleIconClick}>
+        <SearchIcon />
+      </IconButton>
+     
+      </Grid>
+      <Grid xs={11} item fullWidth>
+      {isOpen && (
+        <TextField
+        onChange={(e)=>{
+            //console.log(e?.target?.value,'user search 1')
+            getSearch(e?.target?.value);
+            console.log(serachUserTyped)
+            setSearchUser(e?.target?.value)
+        }}
+        
+          variant="outlined"
+          placeholder="Search.."
+          fullWidth
+          disableUnderline
+          value={serachUserTyped}
+          sx={{
+            "& fieldset": { border: 'none' },
+          }}
+          
+          // Add any additional props or styling as needed
+        />
+      )}
+      </Grid>
+      </Grid>
         </ClickAwayListener>
       </ToolbarStyle>
-    </RootStyle>
+    </RootStyle>  
+    </>
   );
 }

@@ -1,0 +1,9 @@
+{
+  "projects": {
+    "default": "npwcappadmin",
+    "build": "npwcapp-adm",
+    "staging": "npwcappadmin"
+  },
+  "targets": {},
+  "etags": {}
+}

@@ -16,6 +16,7 @@ import NavSection from '../../../components/nav-section';
 import navConfig from './config';
 
 import WaterWalking from "../../../assets/NPWCmainimage.png";
+import Nova from "../../../assets/nova.svg";
 // ----------------------------------------------------------------------
 
 const NAV_WIDTH = 280;
@@ -56,7 +57,8 @@ export default function Nav({ openNav, onCloseNav }) {
     >
     <Box sx={{ px: 2.5, py: 3, display: 'inline-flex' }}>
        {/* <Logo />  */}
-        <img src={WaterWalking} alt="nova logo" />
+        {/* <img src={WaterWalking} alt="nova logo" /> */}
+        <img src={Nova} alt="nova logo" />
     </Box>  
 
       <Box sx={{ mb: 5, mx: 2.5 }}>

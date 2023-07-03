@@ -19,22 +19,158 @@ import Logo from "../../assets/nova.svg";
 import Diet from "../../assets/Diet.svg";
 import CreateDietPlan from '../AdminDiet/components/CreateDietPlanNut'
 import BarGraph from "./BarGraph";
+import { useLocation, useNavigate } from "react-router-dom";
+// Import Highcharts
+import Highcharts from "highcharts/highstock";
+//import HighchartsReact from "./HighchartsReact.js";
+import PieChart from "highcharts-react-official";
+import BarGraph1 from "./BarGraph1";
 export default function Adminuser() {
+  const location=useLocation();
+  const navigate=useNavigate();
+  
   const [totalCountOfUser,setTotalCountOfUser]=useState('');
   const[totalCountOfInactiveUser,setTotalCountOfInactiveUser]=useState('')
   const[totalCountOfActiveUser,setTotalCountOfActiveUser]=useState('')
+  const [barGraphData,setbarGraphData] = useState()
+  const barGraph = async => {
+    var config = {
+        method: 'GET',
+        maxBodyLength: Infinity,
+        url: 'https://novapwc.com/api/count',
+        headers: { } 
+      };
+      
+      axios(config)
+      
+      .then(function (response) {
+        console.log(response?.data,"<-zwertyu")
+        const realData = [
+          {
+            name: "Active Users",
+            y:response?.data?.totalCountOfActiveUser
+
+           },
+           {
+               name: "Inactive Users",
+               y:response?.data?.totalCountOfInactiveUser
+  
+              },
+              {
+               name: "Total Users",
+               y:response?.data?.totalCountOfUsers
+  
+              },
+              {
+               name: "User Diet Plan Created",
+               y:response?.data?.totalNoOfUsersFoodPlanCreated
+  
+              },
+              // {
+              //  name: "User Exercise Plan Not Created",
+              //  y:response?.data?.totalNoofUsersDietPlanNotCreated
+  
+              // },
+              {
+               name: "User Exercise Plan Created",
+               y:response?.data?.totalNoofUsersExercisePlanCreated
+  
+              },
+        ]
+        setbarGraphData(realData)
+        
+        
+ 
+        
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+}
+
+const [optionsGraph,setOptions]=useState({})
+const [isLoading, setIsLoading] = useState(true);
+useEffect(() => {
+  // Simulate chart loading time
+  const delay = setTimeout(() => {
+    setIsLoading(false);
+  }, 2000);
+
+  // Clean up the timeout on component unmount
+  return () => clearTimeout(delay);
+}, []);
+
+useEffect(()=>{
+  if(barGraphData){
+  const options = {
+    chart: {
+      type: "pie"
+    },
+    title: {
+      text: '',
+      margin: 0
+    },
+    credits: {
+      enabled: false
+  },
+    series: [
+      {
+        name:"Total Count",
+        showInLegend: false, 
+        data: [
+          {
+            name:barGraphData[0].name,
+            y: barGraphData[0].y
+          },
+          {
+            name:barGraphData[1].name,
+            y: barGraphData[1].y
+          },
+          {
+            name:barGraphData[2].name,
+            y: barGraphData[2].y
+          },
+          {
+            name:barGraphData[3].name,
+            y: barGraphData[3].y
+          },
+          {
+            name:barGraphData[4].name,
+            y: barGraphData[4].y
+          },
+          // {
+          //   name:barGraphData[5].name,
+          //   y: barGraphData[5].y
+          // },
+        ]
+      }
+    ]
+  };
+
+  setOptions(options);
+  console.log(barGraphData,"<--------------setCountDatasetCountData-");
+}
+},[barGraphData])
   useEffect(()=>{
     apiHit()
     count ();
+    barGraph()
 },[]);
+
+
+
+
 const [countData,setCountData] = useState("")
+
+
+
 
 
 const count = async => {
     var config = {
         method: 'Get',
       maxBodyLength: Infinity,
-        url: 'https://aipse.in/api/count',
+        url: 'https://novapwc.com/api/count',
         headers: { }
       };
       
@@ -56,7 +192,7 @@ const count = async => {
     let config = {
         method: 'GET',
         maxBodyLength: Infinity,
-        url:'https://aipse.in/api/searchUser?name=&page=1&count=100',
+        url:'https://novapwc.com/api/searchUser?name=&page=1&count=100',
         headers: {'Content-Type': 'application/json' }
       };
       
@@ -81,119 +217,157 @@ const count = async => {
         <img
           src={Logo}
           alt="nova logo"
-          style={{ height: "auto", width: "250px", marginLeft: "30px" }}
+          style={{ height: "auto", width: "250px", marginLeft: "10px" }}
         />
       }
-      <CreateDietPlan/>
+      {/* <CreateDietPlan/> */}
+      <Card
+        sx={{ minWidth: 275 }}
+        style={{ backgroundColor: "#212121", margin: "10px" , marginTop:'42px'}}
+      >
+        <CardContent>
+          <Grid
+             sx={{textDecoration:'none',cursor:'pointer'}} 
+             container
+            flexDirection="row"
+            spacing="1"
+            alignItems="center"
+            justifyContent="space-between"
+            onClick={()=>{
+              const objectData = {userStatus:'all',pathname:location.pathname}
+            //const encodedData = encodeURIComponent(JSON.stringify(objectData));
+            navigate('/dashboardadmin/adminsearch',{state:objectData});
+
+            }}
+          >
+            <Grid  alignItems="center" justifyContent="center" item>
+              <span style={{ fontSize: "25px", color: "#E1B725", fontFamily: 'Inter-SemiBold', lineHeight: "38px" }}> {totalCountOfUser} </span>{" "}
+            </Grid>
+            <Grid  alignItems="center" justifyContent="center" item>
+ 
+                <Typography  sx={{color:'white'}}variant="h5" component="h2">
+                Total Users
+                </Typography>
+
+            </Grid>
+            <Grid
+              
+              
+              // alignItems="center"
+              // justifyContent="center"
+              
+              item
+            >
+              <img src={Diet} className="dinning-img" alt="dinning" />
+            </Grid>
+          </Grid>
+        </CardContent>
+      </Card>
+
+
+     
+
+
       <Card
         sx={{ minWidth: 275 }}
         style={{ backgroundColor: "#212121", margin: "10px" }}
       >
         <CardContent>
           <Grid
-            container to="/dashboardadmin/adminsearch" component={RouterLink} state={{data:'all'}} sx={{textDecoration:'none'}} 
+              sx={{textDecoration:'none',cursor:'pointer'}} 
+             container
             flexDirection="row"
             spacing="1"
             alignItems="center"
-            justifyContent="center"
+            justifyContent="space-between"
+            onClick={()=>{
+              const objectData = {userStatus:'active',pathname:location.pathname}
+           // const encodedData = encodeURIComponent(JSON.stringify(objectData));
+            navigate('/dashboardadmin/adminsearch',{state:objectData});
+
+            }}
           >
-            <Grid item xs={4} alignItems="center" justifyContent="center">
-              <span style={{ fontSize: "25px", color: "#E1B725", fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:'10px' }}> {totalCountOfUser} </span>{" "}
-            </Grid>{" "}
-            <Grid item xs={4} alignItems="center" justifyContent="center">
-              <span
-                style={{ fontSize: "25px", color: "white", fontWeight: "20px", fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:'10px' }}
-              >
-                {" "}
-                Total Users{" "}
-              </span>{" "}
-            </Grid>{" "}
+            <Grid  alignItems="center" justifyContent="center" item>
+              <span style={{ fontSize: "25px", color: "#E1B725", fontFamily: 'Inter-SemiBold', lineHeight: "38px" }}> {totalCountOfActiveUser}</span>{" "}
+            </Grid>
+            <Grid  alignItems="center" justifyContent="center" item>
+ 
+                <Typography  sx={{color:'white'}}variant="h5" component="h2">
+                Active Users
+                </Typography>
+
+            </Grid>
             <Grid
-              item
-              xs={4} container
+              
+              
               // alignItems="center"
               // justifyContent="center"
-              sx={{ justifyContent: "flex-end" }}
+              
+              item
             >
               <img src={Diet} className="dinning-img" alt="dinning" />
             </Grid>
-          </Grid>{" "}
-        </CardContent>{" "}
+          </Grid>
+        </CardContent>
       </Card>
+
       <Card
         sx={{ minWidth: 275 }}
         style={{ backgroundColor: "#212121", margin: "10px" }}
       >
         <CardContent>
-          <Grid to="/dashboardadmin/adminsearch" component={RouterLink} state={{data:'inactive'}} sx={{textDecoration:'none'}} 
-            container
+          <Grid
+              sx={{textDecoration:'none',cursor:'pointer'}} 
+             container
             flexDirection="row"
             spacing="1"
             alignItems="center"
-            justifyContent="center"
+            justifyContent="space-between"
+            onClick={()=>{
+              const objectData = {userStatus:'inactive',pathname:location.pathname}
+            //const encodedData = encodeURIComponent(JSON.stringify(objectData));
+            navigate('/dashboardadmin/adminsearch',{state:objectData});
+
+            }}
           >
-            <Grid item xs={4} alignItems="center" justifyContent="center">
-              <span style={{ fontSize: "25px", color: "#E1B725", fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:'10px' }}> {totalCountOfInactiveUser} </span>{" "}
-            </Grid>{" "}
-            <Grid item xs={4} alignItems="center" justifyContent="center">
-              <span
-                style={{ fontSize: "25px", color: "white", fontWeight: "20px", fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:'10px' }}
-              >
-                {" "}
-                InActive Users{" "}
-              </span>{" "}
-            </Grid>{" "}
+            <Grid  alignItems="center" justifyContent="center" item>
+              <span style={{ fontSize: "25px", color: "#E1B725", fontFamily: 'Inter-SemiBold', lineHeight: "38px" }}> {totalCountOfInactiveUser}</span>{" "}
+            </Grid>
+            <Grid  alignItems="center" justifyContent="center" item>
+ 
+                <Typography  sx={{color:'white'}}variant="h5" component="h2">
+                Pending Users
+                </Typography>
+
+            </Grid>
             <Grid
-              item
-              xs={4} container
+              
+              
               // alignItems="center"
               // justifyContent="center"
-              sx={{ justifyContent: "flex-end" }}
+              
+              item
             >
               <img src={Diet} className="dinning-img" alt="dinning" />
             </Grid>
-          </Grid>{" "}
-        </CardContent>{" "}
+          </Grid>
+        </CardContent>
       </Card>
-      <Card
-        sx={{ minWidth: 275 }}
-        style={{ backgroundColor: "#212121", margin: "10px" }}
-      >
-        <CardContent>
-          <Grid to="/dashboardadmin/adminsearch" component={RouterLink} state={{data:'active'}} sx={{textDecoration:'none'}} 
-            container
-            flexDirection="row"
-            spacing="1"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <Grid item xs={4} alignItems="center" justifyContent="center">
-              <span style={{ fontSize: "25px", color: "#E1B725", fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:'10px' }}> {totalCountOfActiveUser} </span>{" "}
-            </Grid>{" "}
-            <Grid item xs={4} alignItems="center" justifyContent="center">
-              <span
-                style={{ fontSize: "25px", color: "white", fontWeight: "20px", fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:'10px' }}
-              >
-                {" "}
-                Active Users{" "}
-              </span>{" "}
-            </Grid>{" "}
-            <Grid
-              item
-              xs={4} container
-              // alignItems="center"
-              // justifyContent="center"
-              sx={{ justifyContent: "flex-end"}}
-            >
-              <img src={Diet} className="dinning-img" alt="dinning" />
-            </Grid>
-          </Grid>{" "}
-        </CardContent>{" "}
-      </Card>
-      <Card sx={{ minWidth: 275 }} style={{ margin: "20px" }} to="/dashboardadmin/alldietplan" component={RouterLink}>
+
+      
+      
+
+      
+     
+              
+            {!isLoading &&  <PieChart highcharts={Highcharts} options={optionsGraph} />}
+             
+        
+     
+      {/* <Card sx={{ minWidth: 275 }} style={{ margin: "20px" }} >
         <CardContent>
           <Grid container flexDirection="row" spacing="1">
-            <BarGraph/>
+          
           </Grid>{" "}
           <Grid>
             <Box
@@ -207,7 +381,7 @@ const count = async => {
             </Box>
           </Grid>
         </CardContent>{" "}
-      </Card>
+      </Card> */}
     </div>
   );
 }

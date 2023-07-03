@@ -127,7 +127,7 @@ const currencies = [
 
 
   
-  const  CreateDietPlan= forwardRef((props, ref) => {
+  const  CreateExercisePlan= forwardRef((props, ref) => {
     const [selectedDate, setSelectedDate] = useState(null);
     const [intervalValue,setIntervalValue]=useState("")
     const childcomrefAlert=useRef();
@@ -138,21 +138,18 @@ const currencies = [
     const [action,setAction]=useState("");
     const [backData,setBackData]=useState({});
     const today = new Date();
-    const [recievedData,setReceivedData]=useState({});
     const Obj1 = {
       category: '',
       value: '',
     };
     const intialValues = {
-      interval: "",
+      interval: '',
       startDate: moment(today)?.format('DD-MM-YYYY'),
       endDate: moment(today)?.format('DD-MM-YYYY'),
       category: '',
       items: [Obj1],
     };
-    const [valuesD, setValuesD] = useState("");
-    let str= ""  //19-06-2023
-    //console.log(valuesD?.startDate,'teset startdate')
+    const [valuesD, setValuesD] = useState(intialValues);
     const [date,setDate]=useState(moment(today)?.format('YYYY-MM-DD'));
     console.log(date,'datee')
     const [valueDate, setValueDate] = useState(dayjs(date));
@@ -160,7 +157,7 @@ const currencies = [
       setValueDate(dayjs(date))
       //console.log(valueDate);
     },[date])
-    
+
     const setValuesFromEdit=() => {
      
         // console.log(
@@ -188,16 +185,19 @@ const currencies = [
               : dataOfDiet?.interval === 'week'
               ? 7
               : 90,
-          startDate:moment?.((dataOfDiet?.start_date),"MM-DD-YYYY")?.format("DD-MM-YYYY"),
+          startDate:moment?.(dataOfDiet?.start_date,"MM-DD-YYYY")?.format("DD-MM-YYYY"),
           endDate: moment?.(dataOfDiet?.end_date,"MM-DD-YYYY")?.format("DD-MM-YYYY"),
           plan_id: dataOfDiet?.plan_id,
   
           items: data,
         });
-        str=dataOfDiet?.start_date.substr(6)+'-'+dataOfDiet?.start_date.substr(0,2)+'-'+dataOfDiet?.start_date.substr(3,2); 
+        let str=dataOfDiet?.start_date.substr(6)+'-'+dataOfDiet?.start_date.substr(0,2)+'-'+dataOfDiet?.start_date.substr(3,2); 
         setValueDate((dayjs(str)))
         setSelectedDate('2025-12-12');
         console.log(dataOfDiet?.start_date,str,'valuesD?.Startdate----');
+
+        setSelectedDate('2025-12-12');
+        console.log(valuesD?.startDate,'valuesD?.Startdate');
       
     }
 
@@ -258,7 +258,7 @@ const currencies = [
 
     const addItems = () => {
       if(valuesD?.interval===0){
-        let msg='Please fill all fields'
+        let msg='Please Fill All Fields'
         //console.log(backData,'before back')
         childcomrefAlert.current.handleClickOpenAlert(msg);
       }
@@ -296,7 +296,7 @@ const currencies = [
         user_id: props.userid,
         start_date:moment(valuesD?.startDate,"DD-MM-YYYY").format('DD-MM-YYYY'),
         end_date:moment(valuesD?.endDate,"DD-MM-YYYY").format('DD-MM-YYYY'),
-        type: 'food', 
+        type: 'exercise', 
         interval:
           valuesD?.interval == 7
             ? 'week'
@@ -323,13 +323,10 @@ const currencies = [
       axios
         .request(config)
         .then(response => {
-         let msg='Diet Plan Created Successfully'
+         let msg='Exercise Item Created Successfully'
           childcomrefAlert.current.handleClickOpenAlert(msg);
           // console.log(JSON.stringify(response.data));
-         // console.log(valuesD,'valuesDddd')
-         
-          //navigate('/dashboardadmin/alldietplan',{state:backData})
-         
+          //navigate('/dashboardadmin/listallexerciseplan',{state:backData})
           props.apiHitParent();
         })
         .catch(error => {
@@ -386,7 +383,7 @@ const currencies = [
           user_id: props.userid,
           start_date: valuesD?.startDate,
           end_date: valuesD?.endDate,
-          type: 'food',
+          type: 'exercise',
           interval:
             valuesD?.interval === 7
               ? 'week'
@@ -410,7 +407,7 @@ const currencies = [
         axios(config)
           .then(function (response) {
            // alert('Diet Plan Updated SuccessFully');
-            childcomrefAlert.current.handleClickOpenAlert('Diet Plan Updated Successfully');
+            childcomrefAlert.current.handleClickOpenAlert('Exercise Item Updated Successfully');
            
             console.log(response.data,"<------editDietPlanAssignededitDietPlanAssigned");
             props.apiHitParent();
@@ -444,7 +441,7 @@ const currencies = [
         axios(config)
         .then(function (response) {
           
-         let msg='Diet Plan Deleted Successfully'
+         let msg='Exercise Item Deleted Successfully'
           childcomrefAlert.current.handleClickOpenAlert(msg);
           props.apiHitParent();
           console.log(JSON.stringify(response.data));
@@ -471,7 +468,7 @@ const currencies = [
     function editClick(val){
      
 
-      //console.log('edit clicked');
+      console.log('edit clicked');
       const val1=val;
       setDataOfDiet(val1);
 
@@ -479,8 +476,8 @@ const currencies = [
         setBackData(val)
       }
 
-      setReceivedData(val)
-      //console.log(val,'[[[[[[')
+      
+      
       setAction(val.action);
       
 
@@ -511,10 +508,8 @@ const currencies = [
       
      setValuesD(intialValues);
      console.log(intialValues,'intialvalues111');
-    // props.apiHitParent();
+     //props.apiHitParent();
      setAction("");
-    // setSelectedDate('')
-     setValueDate(dayjs(date))
       setOpen(false);
     };
    
@@ -527,7 +522,6 @@ const currencies = [
         //console.log('hitting create')
         addItems();
       }
-      setSelectedDate('')
       
      
     }
@@ -544,7 +538,7 @@ const currencies = [
       let config = {
           method: 'GET',
           maxBodyLength: Infinity,
-          url: 'https://novapwc.com/api/getAllCategories?type=food',
+          url: 'https://novapwc.com/api/getAllCategories?type=exercise',
           headers: { 'Content-Type': 'application/json' },
       };
       axios(config)
@@ -565,13 +559,9 @@ const currencies = [
   };
 
    
-  
-//console.log(valuesD?.startDate,'startdate teset')
-  
- 
-  // useEffect(()=>{
-  //   setValueDate(str)
-  // },[str])
+
+
+    
   
     return (
       <div>
@@ -618,7 +608,7 @@ const currencies = [
                 <CloseIcon />
               </IconButton>
               <Typography sx={{ ml: 2, flex: 1, fontFamily: 'Inter-SemiBold', lineHeight: "38px", marginLeft:'10px' }} variant="h6" component="div">
-                Create Diet Plan
+                Create Exercise Plan
               </Typography>
               <Button autoFocus color="inherit" onClick={handleCloseSave}>
                 save
@@ -636,7 +626,49 @@ const currencies = [
             </Stack> */}
   
   
-          
+          {/* <Stack marginLeft={3}> 
+          <TextField
+          onClick={changeHandler}
+            id="outlined-select-currency"
+            select
+            label="Select Your Interval"
+            defaultValue="month"
+          >
+              {currencies.map((option) => (
+              <MenuItem key={option.value} value={option.label} name= {option.value} label={option.label}>
+                {option.label}
+              </MenuItem>
+            ))}</TextField></Stack> */}
+
+            {/* <Grid m={3} >
+            <FormControl fullWidth >
+                <InputLabel shrink >Select Interval </InputLabel>
+                <Select
+                  value={valuesD?.interval}
+                  onChange={e => {
+                      console.log(valuesD?.startDate,"<--valuesD?.startDate")
+                    const newDate = moment(valuesD?.startDate,"DD-MM-YYYY")
+                      ?.add( e?.target?.value, 'days')
+                       ?.format('DD-MM-YYYY');
+                      console.log(newDate,"<---newDate",e,typeof e,valuesD?.startDate)
+                    setValuesD({
+                      ...valuesD,
+                      interval:parseInt(e?.target?.value) ,
+                      endDate: newDate,
+                    });
+                    console.log(parseInt(e?.target?.value),'parseInt(e?.target?.value)')
+                  }}
+                >
+                  <MenuItem value="7">Week</MenuItem>
+                  <MenuItem value="30">Month</MenuItem>
+                  <MenuItem value="90">3 Month</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid> */}
+
+
+            {/* teseting */}
+
 
            
             <Box sx={{ minWidth: 120 }} m={3}>
@@ -681,14 +713,14 @@ const currencies = [
        
      <Grid container  id="date-picker-stack" flexDirection="row">
         <Grid  xs={6} xl={6}   item>
-
-          <CardContent>
+         
+        <CardContent>
 
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DemoContainer components={["DatePicker", "DatePicker"]} fullWidth>
-       
-        <DatePicker
-        slotProps={{ textField: { fullWidth: true } }} 
+          <DemoContainer components={["DatePicker", "DatePicker"]} fullWidth>
+
+          <DatePicker
+          slotProps={{ textField: { fullWidth: true } }} 
           format="DD-MM-YYYY"
           label="Start Date"
           value={valueDate}
@@ -696,7 +728,7 @@ const currencies = [
             if (date) {
               //date.toDate()
               setValueDate(date)
-               console.log(moment(date.toDate())?.format('DD-MM-YYYY'),"<---eee")
+              console.log(moment(date.toDate())?.format('DD-MM-YYYY'),"<---eee")
               const newDate = moment(date.toDate())
                 ?.add(valuesD?.interval, 'days')
                 ?.format('DD-MM-YYYY');
@@ -708,28 +740,27 @@ const currencies = [
               });
             }
           }}
-        />
-      </DemoContainer>
-    </LocalizationProvider>
+          />
+          </DemoContainer>
+          </LocalizationProvider>
           </CardContent>
-         
+
+
         {/* <CardContent>  
           <LocalizationProvider   dateAdapter={AdapterDayjs}>
           <DemoContainer components={['DesktopDatePicker']} >
-          <DatePicker  label="Start Date"  slotProps={{ textField: { fullWidth: true } }} 
-          format="DD-MM-YYYY"
-          value={valueDate}
+          <DatePicker  label="Start Date"  slotProps={{ textField: { fullWidth: true } }}
+          
                   onChange={date => {
                     if (date) {
-                      //date.toDate()
-                       console.log(moment(date.toDate())?.format('DD-MM-YYYY'),"<---eee")
-                      const newDate = moment(date.toDate())
+                       console.log(moment(date)?.format('DD-MM-YYYY'),"<---eee")
+                      const newDate = moment(date)
                         ?.add(valuesD?.interval, 'days')
                         ?.format('DD-MM-YYYY');
                         console.log(newDate,date,valuesD?.interval,"<--qwert")
                       setValuesD({
                         ...valuesD,
-                        startDate: moment(date.toDate())?.format('DD-MM-YYYY'),
+                        startDate: moment(date)?.format('DD-MM-YYYY'),
                         endDate: newDate,
                       });
                     }
@@ -744,7 +775,7 @@ const currencies = [
          <Grid item xs={6} xl={6}  fullWidth mt="10px">
          
          <CardContent alignItems='center'>  
-         <TextField label="End Date" value={valuesD?.endDate} variant='outlined'  fullWidth/>
+         <TextField label="End Date" value={valuesD.endDate} variant='outlined'  fullWidth/>
        </CardContent>  
           </Grid>
    
@@ -767,19 +798,18 @@ const currencies = [
           return (
 
             <Stack marginLeft={3}   marginRight={2}>
-            <Grid mb={4}   Item>
-              <Card> <CardContent>
-                <Grid container flexDirection="row"  fullWidth justifyContent={'space-between'} >
+            <Grid mb={4}   Item><Card> <CardContent>
+                <Grid container flexDirection="row" justifyContent="space-between" >
                     
- <Grid  xs={ index===0?5.5:4.5}  md={index===0?5.5:5.3} xl={index===0?5.5:5.3}   marginRight={5} item fullWidth> 
+ <Grid  item  xs={ index===0?5.5:4}  md={index===0?5.5:5} xl={index===0?5:5} fullWidth> 
                                    
        <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Category</InputLabel>
-        <Select fullWidth
+        <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={item.category}
-          label="Category"
+          label="Select Your Category"
           onChange={e => {
 
           
@@ -808,22 +838,20 @@ const currencies = [
            </FormControl>
               </Grid>
                                               
-            <Grid xs={ index===0?5.5:4.5}  md={index===0?5.5:5} xl={index===0?5.5:5.3}  marginRight={1} item fullWidth>
+            <Grid xs={ index===0?5.5:4.5}  md={index===0?5.5:5} xl={index===0?5.5:5}  marginRight={1} item fullWidth>
                                                   
                                               
-                <TextField label="Calories" 
+                <TextField label="Sets" 
                 type='number'
                   onChange={e => {
 
-                    if( parseInt(e?.target?.value)>0 || e?.target?.value==='') {
-
-                    
-                      console.log(typeof e?.target?.value,'e?.target?.value')
+          
+                    if(e?.target?.value>0 || e?.target?.value===''){
                     const data = [...valuesD?.items];
                     data[index] = {...data[index], value: e?.target?.value};
                     setValuesD({...valuesD, items: data});
                     }
-                    console.log( e?.target?.value,'e?.target?.value')
+                   
                 
                 }}
                 
@@ -831,9 +859,9 @@ const currencies = [
                                   
           </Grid>
     
-                   
+                    <Grid xs={2} md={1} lg={1}  item> 
                     {index!==0 && (
-                     <Grid xs={2} md={1} lg={1}  item> 
+                    
                      <IconButton
               
                 >
@@ -845,8 +873,8 @@ const currencies = [
                   }}
                   
                   />
-                </IconButton> </Grid>)
-                     }
+                </IconButton>)
+        }</Grid>
                                   
                     </Grid></CardContent> </Card>   </Grid>
                 </Stack>
@@ -867,28 +895,27 @@ const currencies = [
               
   
         <Button variant="contained" onClick={addButton} style={{
-          float: "right", marginLeft: "1rem",  padding: "0.3rem", marginTop: "-0.4rem",
+          float: "right", marginLeft: "1rem",  padding: "0.3rem", marginTop: "-0.5rem",
           position: 'fixed', zIndex: '1', bottom: 40, right: 40
         }}
-        
     
-        sx={ {
-                  ':hover': {
-                      bgcolor: "#007AFF", // theme.palette.primary.main
-                      color: 'white',
-                      border: '#ffd796'
-                  },
-                  ':active': {
-                      bgcolor: "#007AFF",
-                      color: "#9B59B6"
-                  },
-                  bgcolor: '#007AFF',
-                  color: "white",
-                  border: 'none'
-              }} >
+        sx={  {
+          ':hover': {
+              bgcolor: "#007AFF", // theme.palette.primary.main
+              color: 'white',
+              border: '#ffd796'
+          },
+          ':active': {
+              bgcolor: "#007AFF",
+              color: "white"
+          },
+          bgcolor: '#007AFF',
+          color: "white",
+          border: 'none'
+      }} >
   
   
-          <span style={{ fontSize: "1rem", }}>+ Add Category</span>
+          <span style={{ fontSize: "1rem" }}>+Add Category</span>
         </Button>
             
         </Dialog>
@@ -897,4 +924,4 @@ const currencies = [
   });
 
 
-  export default CreateDietPlan;
+  export default CreateExercisePlan;

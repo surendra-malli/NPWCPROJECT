@@ -41,7 +41,7 @@ const buttonStyle = {
 }
 
 const cardStyle = {
-    backgroundColor: "#F0E7F5",
+    backgroundColor: "#EBF5FF",
     margin: '1rem',
     boxShadow: '#c4c4c4'
 
@@ -50,7 +50,7 @@ const cardStyle = {
 const textparaStyle = {
     fontFamily: 'Inter-Regular',
     padding: "30px",
-    color: "#9B54BF"
+    color: "black"
 }
 
 const maintitle = {
@@ -102,7 +102,7 @@ export default function Protein(props) {
     const[dataFromAPi,setDataFromAPi]=useState([
     ])
 
-    const imgurl='https://aipse.in';
+    const imgurl='https://novapwc.com/';
 
     useEffect(()=>{
       dataHit();
@@ -119,7 +119,7 @@ export default function Protein(props) {
       let config = {
         method: 'GET',
         maxBodyLength: Infinity,
-        url: `https://aipse.in/api/getItemsOfCategory?category_id=${category_id}&type=food`,
+        url: `https://novapwc.com/api/getItemsOfCategory?category_id=${category_id}&type=food`,
         headers: { 
           'Content-Type': 'application/json'
         },
@@ -216,6 +216,11 @@ export default function Protein(props) {
     return ( 
         <div>
   
+  
+  
+
+
+  <Grid container  flexDirection='column' spacing={2}>
   {
     <img
       src={Logo}
@@ -223,10 +228,6 @@ export default function Protein(props) {
       style={{ height: "auto", width: "250px", marginLeft: "30px" }}
     />
   }
-  
-
-
-  <Grid container spacing={2}>
     <Grid item xs={6}>
      
       <Grid container  flexDirection="row">
@@ -381,14 +382,14 @@ export default function Protein(props) {
       <Grid display="flex">
 
       
-      <Grid container spacing={2} justifyContent="center" alignItems="center">
-        <Grid item xs={2} md={2}>
+      <Grid container  display='flex' flexDirection='row'   alignItems="center" spacing={2}>
+        <Grid item >
           <ButtonBase>
-            <img src={imgurl+item.item_image} alt="nova logo" />
+            <img style={{borderRadius:'80%',maxHeight:'100px',maxWidth:'80px'}} src={imgurl+item.item_image} alt="nova logo" />
            
           </ButtonBase>
         </Grid>
-        <Grid item xs={10} spacing={2} md={10}>
+        <Grid item >
           <Grid item xs>
             <div style={{ display: "flex" }}>
               <Typography
@@ -402,13 +403,13 @@ export default function Protein(props) {
               
             </div>
             <Typography variant="body2" gutterBottom mt={1} style={maintext}>
-              fresh, canned or frozen, Cod, Flounder, Haddock, Halibut.
+              {item.description}
             </Typography>
           </Grid>
         </Grid>
       </Grid>
       <Grid>
-      <Button onClick={() => childcomref.current.editClick(item)} >
+      <Button onClick={() => childcomref.current.handleClickEdit(item,'Edit')} >
         <Typography  >Edit</Typography>
           </Button>
       </Grid>
@@ -420,7 +421,11 @@ export default function Protein(props) {
 
   )
 
-})):(<Typography   align="center"  style={calories}>No Data Found</Typography> )}
+})):( <div style={{ display: "flex", justifyContent: "center", flexDirection:"column", alignItems: "center" , height:"45vh" }}  >
+           
+<Typography   align="center" variant='h4' style={calories}>No Diet Items Found</Typography>
+
+</div> )}
 
 
 
@@ -429,3 +434,5 @@ export default function Protein(props) {
 
             );
     }
+
+   

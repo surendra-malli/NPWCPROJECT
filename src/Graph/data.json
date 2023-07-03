@@ -1,0 +1,26 @@
+ [ 
+    {
+    "start_date":"12-06-2023",
+    "end_date":"18-06-2023",
+    "status":"ongoing",
+    "data":[
+        {"recommended_servings":3,
+        "servings_consumed":3,
+        "difference":0,
+        "log_date":"14-06-2023",
+        "status":"excessive"}
+    ]
+    },
+    {
+        "start_date":"12-06-2023",
+        "end_date":"18-06-2023",
+        "status":"previous",
+        "data":[
+            {"recommended_servings":3,
+            "servings_consumed":3,
+            "difference":0,
+            "log_date":"14-06-2023",
+            "status":"excessive"}
+        ]
+        }
+]
