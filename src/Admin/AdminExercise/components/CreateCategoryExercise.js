@@ -10,6 +10,7 @@ import Slide from '@mui/material/Slide';
 import { CardContent, Stack, TextField, Typography, AppBar,Toolbar,Grid} from '@mui/material';
 import axios from 'axios';
 import AlertDialog from 'src/Admin/UserStats/AlertDialog';
+import { z } from 'zod';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -33,6 +34,16 @@ const [value, setValue] = useState('Initial value');
 useEffect(()=>{
 categoryhit();
 },[])
+
+
+
+const schema = z
+    .object({
+        name: z.string().min(1, { message: 'Name is required' }),
+       
+    })
+   
+
 
 const deleteHit=async=>{
     let data = JSON.stringify({

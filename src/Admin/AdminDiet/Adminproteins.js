@@ -25,6 +25,7 @@ import { Link } from 'react-router-dom';
 // import  "../styles.css";
 
 import useLongPress from '../AdminDiet/components/UseLongPress';
+import OnlineStatus from 'src/pages/OnlineStatus';
 const pageheading={
     fontFamily:"Inter-Bold",
     color:"#112866",
@@ -218,7 +219,7 @@ export default function Protein(props) {
   
   
   
-
+<OnlineStatus></OnlineStatus>
 
   <Grid container  flexDirection='column' spacing={2}>
   {

@@ -20,6 +20,7 @@ import { useNavigate } from 'react-router-dom';
 import Avatar from "src/assets/Frame.png"
 import Logo from 'src/assets/nova.svg'
 import SearchUser from 'src/layouts/dashboard/nav/SearchUser';
+import OnlineStatus from 'src/pages/OnlineStatus';
 
 
 
@@ -52,7 +53,7 @@ const pageheading={
     
     //const encodedData = new URLSearchParams(location.search).get('data');
       const objectData = location?.state;
-  console.log(objectData,'[[[[[[')
+  console.log(objectData,'offline navigationnn')
     const [data,setData] = useState(objectData);
     console.log(objectData,'objectData')
     const [loading, setLoading] = useState(false)
@@ -265,26 +266,31 @@ objectData.userStatus='all'
     return (
         
             <Page  title="Dashboard: Admin">
+              <OnlineStatus></OnlineStatus>
 
             {/* <Searchbar getSearch={(e)=>{searchHandler(e);
             }}  id="search-bar" sx={{height:"100px"}}/> */}
 
-          <Grid container justifyContent='space-between'  sx={{}}>
-            <Grid item >
+          <Grid container justifyContent='space-between' alignItems='center'  p={1}>
+            <Grid  item xs={6} sm={6} md={6}>
            
            
             <img
           src={Logo}
           
           alt="nova logo"
-          style={{ height: "auto", width: "250px",cursor:'pointer',marginLeft:'5px' }}
+          style={{ height: "auto", cursor:'pointer',width:'250px' }}
           onClick={()=>{navigate('/dashboardadmin/adminuser')}}
         />
         
         </Grid>
         <Grid item xs={6} >
+          <Stack>
          <SearchUser getSearch={(e)=>{searchHandler(e);
-            }}></SearchUser></Grid>
+            }}></SearchUser>
+            </Stack>
+            </Grid>
+
             </Grid>
       
 
@@ -312,7 +318,7 @@ objectData.userStatus='all'
              </Grid>
              
              <Grid container  display='flex' flexDirection='row' alignItems='center' justifyContent='space-between'>
-                  <Grid item style={{marginLeft:'13px'}}>
+                  <Grid item style={{marginLeft:'2px'}}>
                 <Grid container spacing={1}  >
                   <Grid item>
                  <Chip label="Total Users " value='All Users' 

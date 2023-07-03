@@ -28,6 +28,8 @@ import axios from 'axios';
 
 // import ScrollItems from './components/ScrollItems';
 import ScrollableTabsButtonPrevent from "../../components/scrollbar/ScrollItems";
+import { Online } from 'react-detect-offline';
+import OnlineStatus from 'src/pages/OnlineStatus';
 // import BackDrop from './components/BackDrop';
 
 const text ={
@@ -155,7 +157,7 @@ useEffect(()=>{
     return(
         <div> 
           <Page>
-          
+          <OnlineStatus></OnlineStatus>
            <CreateExercisePlan userid={userData.id} apiHitParent={apiHit} ref={childComponentRef} />
            
            

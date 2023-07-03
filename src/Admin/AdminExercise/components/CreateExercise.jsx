@@ -332,7 +332,7 @@ const apiHit=async=>{
   axios.request(config)
   .then((response) => {
     console.log(JSON.stringify(response.data));
-    childrefAlert.current.handleClickOpenAlert('Exercise plan created Successfully');
+    childrefAlert.current.handleClickOpenAlert('Exercise item created Successfully');
     setExercise({})
     setImages([])
     
@@ -393,7 +393,7 @@ const apiHitEdit=async()=>{
   .then((response) => {
     
     console.log(JSON.stringify(response.data),'------edit response');
-    childrefAlert.current.handleClickOpenAlert('Exercise plan updated Successfully');
+    childrefAlert.current.handleClickOpenAlert('Exercise item updated Successfully');
     setExercise({})
 setImages([])
 

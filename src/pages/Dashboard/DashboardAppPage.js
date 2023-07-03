@@ -24,6 +24,7 @@ import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ChevronDownIcon from '@material-ui/icons/ExpandMore';
 // import Stack from '@mui/material/Stack';
 import BarGraph1 from "src/Admin/AdminDashboard/BarGraph1";
+import OnlineStatus from "../OnlineStatus";
 // components
 
 // sections
@@ -373,7 +374,7 @@ console.log(upcoming,"----upcoming----")
   < >
     {/* <img src={Logo} alt="nova logo" style={{height: "auto", width: "250px", marginLeft: "30px"}}/> */}
       
-
+    <OnlineStatus></OnlineStatus>
     <Snackbar
         open={alert1Open}
         onClose={() => handleAlertClose(1)}

@@ -20,6 +20,7 @@ import Plusimage from "../../assets/Plusimage.svg";
 import CreateExercise from "./components/CreateExercise";
 import Iconify from 'src/components/iconify/Iconify';
 import { Link } from 'react-router-dom';
+import OnlineStatus from "src/pages/OnlineStatus";
 
 
 
@@ -159,7 +160,7 @@ const Aerobic = forwardRef((props, ref) => {
 
   return (
     <div>
-     
+     <OnlineStatus></OnlineStatus>
      <Grid>
     <img src={Logo} alt="nova logo" style={{height: "auto", width: "250px", marginLeft: "30px"}}/></Grid>
    

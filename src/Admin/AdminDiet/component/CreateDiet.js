@@ -228,7 +228,9 @@ const convertImage = async(e) => {
 
 
 const getBase64FromUrl = async (url) => {
+  
   console.log(url,'urlurl')
+ 
   
   const data = await fetch(url);
   const blob = await data.blob();
@@ -242,6 +244,9 @@ const getBase64FromUrl = async (url) => {
     }
   });
 }
+
+
+
 
 console.log(images[0],'----images----222');
 

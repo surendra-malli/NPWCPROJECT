@@ -20,6 +20,7 @@ import { Link } from "react-router-dom";
 import AlertDialog from '../UserStats/AlertDialog';
 import ArrowForward from '@mui/icons-material/ArrowForward';
 import { useNavigate } from 'react-router-dom';
+import OnlineStatus from 'src/pages/OnlineStatus';
 
 const title = {
     fontFamily: "Inter-Bold",
@@ -148,10 +149,11 @@ export default function AdminExerciseCategory(props) {
     return (
         <Page Title="" >
         {/* <CreateInstantDietPlan ref={childComponentRef} ></CreateInstantDietPlan> */}
+        <OnlineStatus></OnlineStatus>
             
             <Grid container justifyContent='space-between' alignItems='center'>
                 <Grid item>
-            {<img src={Logo} alt="nova logo" style={{ height: "auto", width: "250px",marginLeft: "10px"  }} />}
+            {<img src={Logo} alt="nova logo" style={{ height: "auto", width: "250px",marginLeft: "10px",marginBottom:'10px'  }} />}
 
                 </Grid>
                

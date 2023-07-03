@@ -17,6 +17,7 @@ import AlertDialog from '../UserStats/AlertDialog';
 import ArrowForward from '@mui/icons-material/ArrowForward';
 import { useNavigate } from 'react-router-dom';
 import Page from 'src/components/Page'
+import OnlineStatus from 'src/pages/OnlineStatus';
 const title = {
     fontFamily: "Inter-Bold",
     fontSize: "30px",
@@ -141,10 +142,11 @@ export default function AdminDietCategory(props) {
 
     return (
         <Page title=" Diet Category " >
+            <OnlineStatus></OnlineStatus>
         {/* <CreateInstantDietPlan ref={childComponentRef} ></CreateInstantDietPlan> */}
             <Grid container justifyContent='space-between' alignItems='center'>
                 <Grid item>
-            {<img src={Logo} alt="nova logo" style={{ height: "auto", width: "250px", marginBottom:'10px'}} />}
+            {<img src={Logo} alt="nova logo" style={{ height: "auto", width: "250px", marginBottom:'10px',marginLeft:'10px'}} />}
 
                 </Grid>
                 <Grid item>
