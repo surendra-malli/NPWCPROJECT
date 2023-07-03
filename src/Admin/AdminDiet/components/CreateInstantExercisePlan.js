@@ -21,6 +21,7 @@ import Slide from '@mui/material/Slide';
 import { format } from 'date-fns';
 import { Link as RouterLink, useNavigate} from 'react-router-dom';
 
+
 import { DemoContainer , DemoItem} from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -178,6 +179,9 @@ const objectData = location?.state;
       setValuesD({...valuesD, items: [...valuesD?.items, Obj1]});
     };
 
+
+ 
+
   
     const dataDelete = (i,index) => {
       console.log(i,'iii',index,'indexx')
@@ -193,7 +197,7 @@ const objectData = location?.state;
     var config = {
       method: 'PUT',
     maxBodyLength: Infinity,
-      url: 'http://44.212.136.151:8081/api/deleteDiet',
+      url: 'https://novapwc.com/api/deleteDiet',
       headers: { 
         'Content-Type': 'application/json'
       },
@@ -230,7 +234,7 @@ const objectData = location?.state;
       let config = {
         method: 'GET',
         maxBodyLength: Infinity,
-        url: 'http://44.212.136.151:8081/api/listallusers',
+        url: 'https://novapwc.com/api/listallusers',
         headers: { }
       };
       
@@ -355,7 +359,7 @@ const addItems = () => {
         ? 'week'
         : valuesD?.interval == 30
         ? 'month'
-        : '3 month',
+        : '3 months',
     category: newss,
     total_servings: alldata,
  
@@ -365,7 +369,7 @@ const addItems = () => {
     method: 'POST',
     maxBodyLength: Infinity,
   //  url: baseUrl + '/assignDietPlanForPatient',
-   url: `http://44.212.136.151:8081/api/assignDietPlanForPatient`,
+   url: `https://novapwc.com/api/assignDietPlanForPatient`,
 
     headers: {
       'Content-Type': 'application/json',
@@ -505,7 +509,7 @@ const checkDuplicateCategory=(data,dup)=>{
       let config = {
           method: 'GET',
           maxBodyLength: Infinity,
-          url: 'http://44.212.136.151:8081/api/getAllCategories?type=exercise',
+          url: 'https://novapwc.com/api/getAllCategories?type=exercise',
           headers: { 'Content-Type': 'application/json' },
       };
       axios(config)
@@ -764,6 +768,7 @@ onChange={date => {
                 }}
                 
                 variant='outlined' value={item.value} fullWidth/>
+                
                                   
                                       </Grid>
     

@@ -25,6 +25,7 @@ import { Link } from 'react-router-dom';
 // import  "../styles.css";
 
 import useLongPress from '../AdminDiet/components/UseLongPress';
+import OnlineStatus from 'src/pages/OnlineStatus';
 const pageheading={
     fontFamily:"Inter-Bold",
     color:"#112866",
@@ -102,7 +103,7 @@ export default function Protein(props) {
     const[dataFromAPi,setDataFromAPi]=useState([
     ])
 
-    const imgurl='https://aipse.in';
+    const imgurl='https://novapwc.com/';
 
     useEffect(()=>{
       dataHit();
@@ -119,7 +120,7 @@ export default function Protein(props) {
       let config = {
         method: 'GET',
         maxBodyLength: Infinity,
-        url: `http://44.212.136.151:8081/api/getItemsOfCategory?category_id=${category_id}&type=food`,
+        url: `https://novapwc.com/api/getItemsOfCategory?category_id=${category_id}&type=food`,
         headers: { 
           'Content-Type': 'application/json'
         },
@@ -218,7 +219,7 @@ export default function Protein(props) {
   
   
   
-
+<OnlineStatus></OnlineStatus>
 
   <Grid container  flexDirection='column' spacing={2}>
   {

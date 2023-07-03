@@ -28,6 +28,8 @@ import axios from 'axios';
 
 // import ScrollItems from './components/ScrollItems';
 import ScrollableTabsButtonPrevent from "../../components/scrollbar/ScrollItems";
+import { Online } from 'react-detect-offline';
+import OnlineStatus from 'src/pages/OnlineStatus';
 // import BackDrop from './components/BackDrop';
 
 const text ={
@@ -123,7 +125,7 @@ useEffect(()=>{
         let config = {
           method: 'POST',
           maxBodyLength: Infinity,
-          url: `http://44.212.136.151:8081/api/listalldietplans?user_id=${userId}&type=exercise`,
+          url: `https://novapwc.com/api/listalldietplans?user_id=${userId}&type=exercise`,
           headers: { },
           data : data
         };
@@ -155,7 +157,7 @@ useEffect(()=>{
     return(
         <div> 
           <Page>
-          
+          <OnlineStatus></OnlineStatus>
            <CreateExercisePlan userid={userData.id} apiHitParent={apiHit} ref={childComponentRef} />
            
            

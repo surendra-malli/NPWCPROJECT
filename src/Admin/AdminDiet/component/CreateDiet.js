@@ -228,7 +228,9 @@ const convertImage = async(e) => {
 
 
 const getBase64FromUrl = async (url) => {
+  
   console.log(url,'urlurl')
+ 
   
   const data = await fetch(url);
   const blob = await data.blob();
@@ -242,6 +244,9 @@ const getBase64FromUrl = async (url) => {
     }
   });
 }
+
+
+
 
 console.log(images[0],'----images----222');
 
@@ -264,7 +269,7 @@ const DeleteDietPlan=()=>{
   let config = {
     method: 'PUT',
     maxBodyLength: Infinity,
-    url: 'http://44.212.136.151:8081/api/deleteItem',
+    url: 'https://novapwc.com/api/deleteItem',
     headers: { 
       'Content-Type': 'application/json'
     },
@@ -311,7 +316,7 @@ const apiHit=async=>{
   let config = {
     method: 'POST',
     maxBodyLength: Infinity,
-    url: 'http://44.212.136.151:8081/api/postOverAllDietPlan',
+    url: 'https://novapwc.com/api/postOverAllDietPlan',
     headers: {
       'Content-Type': 'application/json'
     },
@@ -360,7 +365,7 @@ const apiHitEdit=async()=>{
   let config = {
     method: 'PUT',
     maxBodyLength: Infinity,
-    url: 'http://44.212.136.151:8081/api/EditItemExerciseHandler',
+    url: 'https://novapwc.com/api/EditItemExerciseHandler',
     headers: { 
       'Content-Type': 'application/json'
     },

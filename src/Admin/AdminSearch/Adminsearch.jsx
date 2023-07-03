@@ -20,6 +20,7 @@ import { useNavigate } from 'react-router-dom';
 import Avatar from "src/assets/Frame.png"
 import Logo from 'src/assets/nova.svg'
 import SearchUser from 'src/layouts/dashboard/nav/SearchUser';
+import OnlineStatus from 'src/pages/OnlineStatus';
 
 
 
@@ -52,7 +53,7 @@ const pageheading={
     
     //const encodedData = new URLSearchParams(location.search).get('data');
       const objectData = location?.state;
-  console.log(objectData,'[[[[[[')
+  console.log(objectData,'offline navigationnn')
     const [data,setData] = useState(objectData);
     console.log(objectData,'objectData')
     const [loading, setLoading] = useState(false)
@@ -181,16 +182,16 @@ objectData.userStatus='all'
 
     
     
-      //http://44.212.136.151:8081/api/searchUser?name=&page=1&count=100
-      //`http://44.212.136.151:8081/api/searchUser?name=${searchTitle}&page=${page}&count=6`,
+      //https://novapwc.com/api/searchUser?name=&page=1&count=100
+      //`https://novapwc.com/api/searchUser?name=${searchTitle}&page=${page}&count=6`,
 
     const apiHit=async()=>{
         
-        console.log(`http://44.212.136.151:8081/api/searchUser?name=${searchTitle}&page=${currentPage}&count=10&status=${status}`);
+        console.log(`https://novapwc.com/api/searchUser?name=${searchTitle}&page=${currentPage}&count=10&status=${status}`);
        let config = {
             method: 'GET',
             maxBodyLength: Infinity,
-            url:`http://44.212.136.151:8081/api/searchUser?name=${searchTitle}&page=${currentPage}&count=10&status=${status}`,
+            url:`https://novapwc.com/api/searchUser?name=${searchTitle}&page=${currentPage}&count=10&status=${status}`,
             headers: {'Content-Type': 'application/json' }
           };
           
@@ -265,20 +266,31 @@ objectData.userStatus='all'
     return (
         
             <Page  title="Dashboard: Admin">
+              <OnlineStatus></OnlineStatus>
 
             {/* <Searchbar getSearch={(e)=>{searchHandler(e);
             }}  id="search-bar" sx={{height:"100px"}}/> */}
 
-          <Grid container justifyContent='space-between'>
-            <Grid item xs={5} lg={7} md={6} sm={5}>
+          <Grid container justifyContent='space-between' alignItems='center'  p={1}>
+            <Grid  item xs={6} sm={6} md={6}>
+           
+           
             <img
           src={Logo}
+          
           alt="nova logo"
-          style={{ height: "auto", width: "250px", marginLeft: "30px" }}
-        /></Grid>
-        <Grid item xs={5} lg={4} md={4} mr={1} sm={4} >
+          style={{ height: "auto", cursor:'pointer',width:'250px' }}
+          onClick={()=>{navigate('/dashboardadmin/adminuser')}}
+        />
+        
+        </Grid>
+        <Grid item xs={6} >
+          <Stack>
          <SearchUser getSearch={(e)=>{searchHandler(e);
-            }}></SearchUser></Grid>
+            }}></SearchUser>
+            </Stack>
+            </Grid>
+
             </Grid>
       
 
@@ -306,7 +318,7 @@ objectData.userStatus='all'
              </Grid>
              
              <Grid container  display='flex' flexDirection='row' alignItems='center' justifyContent='space-between'>
-                  <Grid item style={{marginLeft:'13px'}}>
+                  <Grid item style={{marginLeft:'2px'}}>
                 <Grid container spacing={1}  >
                   <Grid item>
                  <Chip label="Total Users " value='All Users' 
@@ -337,14 +349,16 @@ objectData.userStatus='all'
 
                 </Grid>
                 </Grid>
+                { displayNumber &&
                 <Grid item >
                   <Typography variant="h6" sx={{marginRight:'2rem'}} style={pageWords} component="h2">{displayUser} : {displayNumber}</Typography>
                 </Grid>
+                }  
 
              </Grid>
               
 
-             <Stack direction="row" spacing={1} flexShrink={0} sx={{ my: 1 }}>
+             <Stack direction="row" spacing={1} flexShrink={0} sx={{ my: 1}}>
             
 
              <Box sx={{ width: '100%' }}>  <Box sx={{ borderBottom: 1, borderColor: 'divider' }} >
@@ -372,19 +386,19 @@ objectData.userStatus='all'
                             return(
 
                            
-                            <Card onClick={e=>{selectedProfileCalled(item)}} sx={{ minWidth: 275 }} style={{margin:"20px",cursor:'pointer'}} key={item.id}>
+                            <Card onClick={e=>{selectedProfileCalled(item)}} sx={{ minWidth: 275 }} style={{margin:"10px",cursor:'pointer'}} key={item.id}>
                                     <CardContent style={{backgroundColor:'#EBF5FF'}}>
-                                    <Grid container  flexDirection="row"  sx={{textDecoration:'none'}} >
+                                    <Grid container  flexDirection="row" alignItems='center' spacing={1} sx={{textDecoration:'none'}} >
                                         
-                                        <div>
+                                        <Grid item>
                                         <img src={Avatar} alt="diet logo" style={{height: "75px",borderRadius:"10px", width: "auto"}}/>
-                                        </div>
-                                        <div>
-                                        <span style={{ fontSize:"25px" ,color:"black",fontWeight:"20px",marginLeft:"20px",marginTop:'45px'}}>{changeName(item.user_name)}</span>
-                                        <Typography style={{ fontSize:"15px" ,color:"#112866",marginLeft:"22px",marginTop:'3px'}} >
+                                        </Grid>
+                                        <Grid item>
+                                        <span style={{ fontSize:"20px" ,color:"black",fontWeight:"25px",}}>{changeName(item.user_name)}</span>
+                                        <Typography style={{ fontSize:"15px" ,color:"#112866",marginTop:'3px'}} >
                                         {item.user_name}
                                         </Typography>
-                                        </div>
+                                        </Grid>
                                     
                                       {/* {  console.log(searchTitle,'--------Admin Search------')} */}
 

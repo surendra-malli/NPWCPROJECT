@@ -25,6 +25,9 @@ import Highcharts from "highcharts/highstock";
 //import HighchartsReact from "./HighchartsReact.js";
 import PieChart from "highcharts-react-official";
 import BarGraph1 from "./BarGraph1";
+import ActiveUsersLogo from '../../assets/ActiveUsersLogo.svg'
+import InactiveUsersLogo from '../../assets/InactiveUsersLogo.svg'
+import AllUsers from '../../assets/AllusersLogo.svg'
 export default function Adminuser() {
   const location=useLocation();
   const navigate=useNavigate();
@@ -33,11 +36,12 @@ export default function Adminuser() {
   const[totalCountOfInactiveUser,setTotalCountOfInactiveUser]=useState('')
   const[totalCountOfActiveUser,setTotalCountOfActiveUser]=useState('')
   const [barGraphData,setbarGraphData] = useState()
+  console.log(location?.state,'/////');
   const barGraph = async => {
     var config = {
         method: 'GET',
         maxBodyLength: Infinity,
-        url: 'http://44.212.136.151:8081/api/count',
+        url: 'https://novapwc.com/api/count',
         headers: { } 
       };
       
@@ -170,7 +174,7 @@ const count = async => {
     var config = {
         method: 'Get',
       maxBodyLength: Infinity,
-        url: 'http://44.212.136.151:8081/api/count',
+        url: 'https://novapwc.com/api/count',
         headers: { }
       };
       
@@ -192,7 +196,7 @@ const count = async => {
     let config = {
         method: 'GET',
         maxBodyLength: Infinity,
-        url:'http://44.212.136.151:8081/api/searchUser?name=&page=1&count=100',
+        url:'https://novapwc.com/api/searchUser?name=&page=1&count=100',
         headers: {'Content-Type': 'application/json' }
       };
       
@@ -258,7 +262,7 @@ const count = async => {
               
               item
             >
-              <img src={Diet} className="dinning-img" alt="dinning" />
+              <img style={{width:'50px'}} src={AllUsers} className="dinning-img" alt="dinning" />
             </Grid>
           </Grid>
         </CardContent>
@@ -305,7 +309,7 @@ const count = async => {
               
               item
             >
-              <img src={Diet} className="dinning-img" alt="dinning" />
+              <img style={{width:'50px'}}  src={ActiveUsersLogo} className="dinning-img" alt="dinning" />
             </Grid>
           </Grid>
         </CardContent>
@@ -348,7 +352,7 @@ const count = async => {
               
               item
             >
-              <img src={Diet} className="dinning-img" alt="dinning" />
+              <img style={{height:'40px',width:'40px'}} src={InactiveUsersLogo} className="dinning-img" alt="dinning" />
             </Grid>
           </Grid>
         </CardContent>

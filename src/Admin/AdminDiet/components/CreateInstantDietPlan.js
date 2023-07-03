@@ -194,7 +194,7 @@ const objectData = location?.state;
     var config = {
       method: 'PUT',
     maxBodyLength: Infinity,
-      url: 'http://44.212.136.151:8081/api/deleteDiet',
+      url: 'https://novapwc.com/api/deleteDiet',
       headers: { 
         'Content-Type': 'application/json'
       },
@@ -231,7 +231,7 @@ const objectData = location?.state;
       let config = {
         method: 'GET',
         maxBodyLength: Infinity,
-        url: 'http://44.212.136.151:8081/api/listallusers',
+        url: 'https://novapwc.com/api/listallusers',
         headers: { }
       };
       
@@ -356,7 +356,7 @@ const addItems = () => {
         ? 'week'
         : valuesD?.interval == 30
         ? 'month'
-        : '3 month',
+        : '3 months',
     category: newss,
     total_servings: alldata,
  
@@ -366,7 +366,7 @@ const addItems = () => {
     method: 'POST',
     maxBodyLength: Infinity,
   //  url: baseUrl + '/assignDietPlanForPatient',
-   url: `http://44.212.136.151:8081/api/assignDietPlanForPatient`,
+   url: `https://novapwc.com/api/assignDietPlanForPatient`,
 
     headers: {
       'Content-Type': 'application/json',
@@ -489,7 +489,7 @@ const checkDuplicateCategory=(data,dup)=>{
       let config = {
           method: 'GET',
           maxBodyLength: Infinity,
-          url: 'http://44.212.136.151:8081/api/getAllCategories?type=food',
+          url: 'https://novapwc.com/api/getAllCategories?type=food',
           headers: { 'Content-Type': 'application/json' },
       };
       axios(config)

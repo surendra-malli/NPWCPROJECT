@@ -10,6 +10,7 @@ import Slide from '@mui/material/Slide';
 import { CardContent, Stack, TextField, Typography, AppBar,Toolbar,Grid} from '@mui/material';
 import axios from 'axios';
 import AlertDialog from 'src/Admin/UserStats/AlertDialog';
+import { z } from 'zod';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -22,7 +23,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const CreateCategoryExercise = forwardRef((props, ref,categoryData,setShowState,showState) => {
     const childcomreffAlert=useRef();
-
+    const [categoryDataApi,setCategoryDataApi]=useState([]);
 
 const [readOnlyAction,setReadOnlyAction]=useState(false)
   let message='';
@@ -30,6 +31,18 @@ const [readOnlyAction,setReadOnlyAction]=useState(false)
 const [editing, setEditing] = useState(true);
 const [value, setValue] = useState('Initial value');
 
+useEffect(()=>{
+categoryhit();
+},[])
+
+
+
+const schema = z
+    .object({
+        name: z.string().min(1, { message: 'Name is required' }),
+       
+    })
+   
 
 
 const deleteHit=async=>{
@@ -40,7 +53,7 @@ const deleteHit=async=>{
       let config = {
         method: 'PUT',
         maxBodyLength: Infinity,
-        url: 'http://44.212.136.151:8081/api/deletecategory',
+        url: 'https://novapwc.com/api/deletecategory',
         headers: { 
           'Content-Type': 'application/json'
         },
@@ -85,15 +98,28 @@ const deleteHit=async=>{
         }else if(action==='create'){
             addCategory();
         }
-        setOpen(false);
+//setOpen(false);
         message='Category Renamed Successfully'
         //childcomreffAlert.current.handleClickOpenAlert('category Renamed Successfully');
+    }
+    const checkDuplicate=(str)=>{
+      let flag=false;
+      categoryDataApi?.map(item=>{
+        if(item?.category_name===str) flag=true;
+        //console.log(item?.category_name)
+      })
+      //console.log(str,'jjjjj')
+      return flag;
     }
   
     const addCategory = async() => {
       if(createData?.category_name===''){
           childcomreffAlert.current.handleClickOpenAlert('Please fill all fields');
           
+      }
+      else if(checkDuplicate(createData?.category_name)){
+        
+        childcomreffAlert.current.handleClickOpenAlert(`Category ${createData?.category_name} already present`);
       }
 
       else{
@@ -106,7 +132,7 @@ const deleteHit=async=>{
         let config = {
             method: 'post',
             maxBodyLength: Infinity,
-            url: 'http://44.212.136.151:8081/api/AddCategories',
+            url: 'https://novapwc.com/api/AddCategories',
             headers: {
                 'Content-Type': 'text/plain'
             },
@@ -149,7 +175,13 @@ const deleteHit=async=>{
   
   
       const RenameHit = async => {
+
+        if(checkDuplicate(createData?.category_name)){
+        
+          childcomreffAlert.current.handleClickOpenAlert(`Category ${createData?.category_name} already present`);
+        }
   
+        else {
           let data = JSON.stringify({
               "category_id":createData?.category_id,
               //  "category_name": createData?.category_name,
@@ -164,7 +196,7 @@ const deleteHit=async=>{
               method: 'PUT',
               maxBodyLength: Infinity,
               // url: baseUrl+'updatecategory',
-              url: "http://44.212.136.151:8081/api/updatecategory",
+              url: "https://novapwc.com/api/updatecategory",
               headers: {
                   'Content-Type': 'application/json'
               },
@@ -182,8 +214,28 @@ const deleteHit=async=>{
               .catch((error) => {
                   console.log(error);
               });
+            }
             
       }
+      const categoryhit = async => {
+        let config = {
+            method: 'GET',
+            maxBodyLength: Infinity,
+            url: 'https://novapwc.com/api/getAllCategories?type=exercise',
+            headers: { 'Content-Type': 'application/json' },
+        };
+        axios(config)
+            .then((response) => {
+                setCategoryDataApi(response?.data?.data)
+                 console.log(response?.data?.data, "<------------------------111setCategoryDatasetCategoryData");
+                //childcomrefAlert.current.handleClickOpenAlert();
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
+
+    }
   
   
   

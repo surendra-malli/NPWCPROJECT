@@ -26,6 +26,7 @@ import CreateDietPlan from '../AdminDiet/components/CreateDietPlanNut';
 import CreateExercisePlan from '../AdminDiet/components/CreateExercisePlan';
 // import Page from '../../components/Page';
 import Avatar2 from "src/assets/Frame.png"
+import OnlineStatus from 'src/pages/OnlineStatus';
 
 
 
@@ -72,9 +73,9 @@ console.log(objectData,'objectData admin profile')
  useEffect(()=>{
  console.log(checked,'backkk');
  if(checked){
- setActionMessage('Inactivation');
+ setActionMessage('Deactivate');
  }else{
- setActionMessage('Activation');
+ setActionMessage('Activate');
  }
 
 
@@ -88,7 +89,44 @@ console.log(objectData,'objectData admin profile')
  childcomrefAlert.current.handleClickOpenAlert('Before Creating Exercise Plan Activate Respective User ');
     
  }
+ else{
+    apiHitUsers();
+ }
+ //console.log(objectData,'.....')
  },[objectData])
+
+ const apiHitUsers=async()=>{
+        
+   // console.log(`https://novapwc.com/api/searchUser?name=${objectData.user_name}&page=&count=10&status=`);
+   let config = {
+        method: 'GET',
+        maxBodyLength: Infinity,
+        url:`https://novapwc.com/api/searchUser?name=${objectData.user_name}&page=1&count=10&status=all`,
+        headers: {'Content-Type': 'application/json' }
+      };
+      
+    axios(config)
+      .then((response) => {
+       
+
+           console.log(response?.data?.data,'11111');
+            response?.data?.data.map(item=>{
+                if(item?.id===objectData?.id && item?.status==='active'){
+                    console.log('setChecked');
+                    objectData.dietcreated=1
+
+                    setChecked(true)
+                    console.log(objectData,'lllll')
+                    
+                   // objectData.status='active';
+                }
+            })
+       
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+}
 
  const [openAlert, setOpenAlert] = useState(false);
 
@@ -107,7 +145,7 @@ console.log(objectData,'objectData admin profile')
  let config = {
  method: 'GET',
  maxBodyLength: Infinity,
- url: `http://44.212.136.151:8081/api/userActivation?email=${email}&condition=${con}`,
+ url: `https://novapwc.com/api/userActivation?email=${email}&condition=${con}`,
  headers: { 'Content-Type': 'application/json' },
  };
  axios(config)
@@ -119,7 +157,7 @@ console.log(objectData,'objectData admin profile')
  msg='User Activated Successfully';
  }
  else{
- msg='User De Activated Successfully';
+ msg='User Deactivated Successfully';
  }
  childcomrefAlert.current.handleClickOpenAlert(msg);
  })
@@ -143,7 +181,7 @@ console.log(objectData,'objectData admin profile')
  
  }
  else{
- setMessageOfUserStatus('User Deactivated');
+ setMessageOfUserStatus('User Inactivated');
  setCondition(0);
  setActionMessage('Activation')
  con=0
@@ -192,7 +230,7 @@ console.log(objectData,'objectData admin profile')
 
  method: 'PUT',
 
- url: 'http://44.212.136.151:8081/api/member_id',
+ url: 'https://novapwc.com/api/member_id',
 
  headers: {
 
@@ -231,7 +269,7 @@ console.log(objectData,'objectData admin profile')
  var config = {
  method: 'PUT',
  maxBodyLength: Infinity,
- url: 'http://44.212.136.151:8081/api/count',
+ url: 'https://novapwc.com/api/count',
  headers: { } 
  };
  
@@ -288,7 +326,7 @@ console.log(objectData?.id,'objectDataobjectData')
  let config = {
  method: 'put',
  maxBodyLength: Infinity,
- url: 'http://44.212.136.151:8081/api/deleteUser',
+ url: 'https://novapwc.com/api/deleteUser',
  headers: { 
  'Content-Type': 'application/json'
  },
@@ -297,7 +335,7 @@ console.log(objectData?.id,'objectDataobjectData')
  
  axios.request(config)
  .then((response) => {
- childcomrefAlert.current.handleClickOpenAlert('User Deleted Sucesfully');
+ childcomrefAlert.current.handleClickOpenAlert('User Deleted Succesfully');
  console.log(JSON.stringify(response.data));
  setUsersData("")
  
@@ -367,7 +405,7 @@ console.log(objectData?.id,'objectDataobjectData')
  
  return(
  <> 
- 
+ <OnlineStatus></OnlineStatus>
  <CreateDietPlan userid={objectData?.id} apiHitParent={apiHit1} ref={childComponentRef} />
  <CreateExercisePlan userid={objectData?.id} apiHitParent={apiHit2} ref={childComponentRefExercise} />
  <Card>
@@ -417,10 +455,10 @@ console.log(objectData?.id,'objectDataobjectData')
  </Grid>
 
  <Stack> 
- <Card onClick={handleDashboardStats} sx={{textDecoration:'none',cursor:'pointer'}} justifyContent="space-between" alignItems="center" style={{backgroundColor:"#EBF5FF"}}>
- 
- <Card style={{backgroundColor:'#EBF5FF',justifyContent:"space-between"}} fullWidth >
- 
+ <Card  sx={{textDecoration:'none',cursor:'pointer'}} justifyContent="space-between" alignItems="center" style={{backgroundColor:"#EBF5FF"}}>
+
+ <Card style={{backgroundColor:'#EBF5FF',justifyContent:"space-between"}}  >
+ <Grid container alignItems='center' justifyContent='space-between'>
  <CardContent>
 
 
@@ -456,7 +494,11 @@ console.log(objectData?.id,'objectDataobjectData')
  
  </Grid>
  </CardContent>
+
+ <Button sx={{height:'20px',marginRight:'5px',backgroundColor:actionMessage==='Deactivate'?'lightgreen':'red'}}variant='outlined' >{actionMessage==='Deactivate'?'Active':'Inactive'}</Button>
+ </Grid>
  </Card>
+
  
  </Card>
  </Stack>
@@ -470,7 +512,7 @@ console.log(objectData?.id,'objectDataobjectData')
  
  
  <Typography sx={{ fontSize: 20, fontFamily: 'Inter-SemiBold', lineHeight: "50px", marginLeft:"12px" }} mt={3} > 
- For {actionMessage} Use Toogle
+ To {actionMessage} Use Toogle
  <Switch
  checked={checked}
  onChange={handleChangeSwitch}
