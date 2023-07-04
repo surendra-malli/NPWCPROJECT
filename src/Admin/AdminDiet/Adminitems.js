@@ -56,7 +56,7 @@ export default function AdminDietCategory(props) {
       console.log('longpress is triggered');
       // functiona need
      
-      childcomref.current.handleClickOpen()
+     // childcomref.current.handleClickOpen()
       setlongPressCount(longPressCount + 1)
     };
     
@@ -194,6 +194,14 @@ export default function AdminDietCategory(props) {
 
    
     </div>
+
+    
+    
+
+
+
+
+
             {categoryData ? categoryData?.map(item => {
                 return (
                    

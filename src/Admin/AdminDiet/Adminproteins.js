@@ -146,7 +146,7 @@ export default function Protein(props) {
   const onLongPress = () => {
     console.log('longpress is triggered');
     // functiona need
-    childcomref.current.handleClickOpen()
+    //childcomref.current.handleClickOpen()
     setlongPressCount(longPressCount + 1)
   };
   
@@ -378,47 +378,147 @@ export default function Protein(props) {
    
 {dataFromAPi?.length>0?(dataFromAPi.map(item=>{
   return(
-    <Card style={cardStyle}>
-    <CardContent {...longPressEvent}>
-      <Grid display="flex">
+  //   <Card style={cardStyle}>
+  //   <CardContent {...longPressEvent}>
+  //     <Grid display="flex">
 
       
-      <Grid container  display='flex' flexDirection='row'   alignItems="center" spacing={2}>
-        <Grid item >
-          <ButtonBase>
-            <img style={{borderRadius:'80%',maxHeight:'100px',maxWidth:'80px'}} src={imgurl+item.item_image} alt="nova logo" />
+  //     <Grid container  display='flex' flexDirection='row'   alignItems="center" spacing={2}>
+  //       <Grid item >
+  //         <ButtonBase>
+  //           <img style={{borderRadius:'80%',maxHeight:'100px',maxWidth:'80px'}} src={imgurl+item.item_image} alt="nova logo" />
            
-          </ButtonBase>
-        </Grid>
-        <Grid item >
-          <Grid item xs>
-            <div style={{ display: "flex" }}>
-              <Typography
-                gutterBottom
-                variant="h5"
-                component="div"
-                 style = {maintitle }
-              >
-                 {item.item_name}
-              </Typography>
+  //         </ButtonBase>
+  //       </Grid>
+  //       <Grid item >
+  //         <Grid item xs>
+  //           <div style={{ display: "flex" }}>
+  //             <Typography
+  //               gutterBottom
+  //               variant="h5"
+  //               component="div"
+  //                style = {maintitle }
+  //             >
+  //                {item.item_name}
+  //             </Typography>
               
-            </div>
-            <Typography variant="body2" gutterBottom mt={1} style={maintext}>
-              {item.description}
-            </Typography>
-          </Grid>
+  //           </div>
+  //           <Typography variant="body2" gutterBottom mt={1} style={maintext}>
+  //             {item.description}
+  //           </Typography>
+  //         </Grid>
+  //       </Grid>
+  //     </Grid>
+  //     <Grid>
+  //     <Button onClick={() => childcomref.current.handleClickEdit(item,'Edit')} >
+  //       <Typography  >Edit</Typography>
+  //         </Button>
+  //     </Grid>
+  //     </Grid>
+
+
+  //   </CardContent>
+  // </Card>
+
+  <Card >
+
+<CardContent >
+
+<Grid container spacing={2} justifyContent="center" alignItems="center">
+
+  <Grid item xs={3}  sx={{textAlign:"center"}} >
+
+    <ButtonBase >
+
+      <img  style={{borderRadius:100,maxHeight:"70px",minWidth:"70px",objectFit: 'cover',}} src={imgurl+item?.item_image}  alt="image" />
+
+    </ButtonBase>
+
+  </Grid>
+
+  <Grid container item xs={9} spacing={1} >
+
+    {/* <Grid item xs> */}
+
+      {/* <div style={{ display: "flex" }}> */}
+
+      <Grid item xs={8} marginTop="9px">
+
+        <Typography
+
+          // gutterBottom
+
+          // variant="h5"
+
+          // component="div"
+
+           style = {maintitle }
+
+           sx={{alignSelf:"center",   display:"flex", flexDirection:"column" ,justifyContent: "center",}}
+
+        >
+
+           {item?.item_name}
+
+         
+
+        </Typography>
+
         </Grid>
-      </Grid>
-      <Grid>
-      <Button onClick={() => childcomref.current.handleClickEdit(item,'Edit')} >
-        <Typography  >Edit</Typography>
-          </Button>
-      </Grid>
+
+        <Grid item xs={4} >
+
+
+
+
+        <Card sx={{position:'absolute', minWidth:"30px"  , right:5,borderRadius:1,boxShadow: '#c4c4c4'}}  >
+
+        {/* <EditCalories state={{data:itemIntakeStatus}} /> */}
+
+
+
+        <Button onClick={() => childcomref.current.handleClickEdit(item,'Edit')} >
+         <Typography  >Edit</Typography>
+           </Button>
+       
+
+
+
+
+          {/* <Typography sx={{textAlign:"center",alignContent:"center"}}>{getStatus(item.item_id)}</Typography> */}
+
+        </Card>
+
+        </Grid>
+
+      {/* </div> */}
+
+
+
+
+     <Grid item xs={12}>
+
+      <Typography variant="body2" gutterBottom mt={0.6} style={maintext}>
+
+        {item.description}
+
+      </Typography>
+
       </Grid>
 
 
-    </CardContent>
-  </Card>
+
+
+
+    </Grid>
+
+  </Grid>
+
+{/* </Grid> */}
+
+</CardContent>
+
+</Card>
 
   )
 

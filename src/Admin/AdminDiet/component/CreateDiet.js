@@ -301,8 +301,8 @@ const apiHit=async=>{
 
   let data = JSON.stringify({
     "item_name": diet?.item_name,
-    "time_or_weight": 500,
-    "units": "grams",
+    "time_or_weight":500,//parseInt(diet?.time_or_weight),
+    "units": 'grams',      //diet?.units
     "calories":parseInt(diet?.calories),
     "category_id": props.categorydata.category_id,
     "description":diet?.description,
@@ -349,8 +349,8 @@ const apiHitEdit=async()=>{
   else{
   let data = JSON.stringify({
     "item_name": diet?.item_name,
-    "time_or_weight": 500,
-    "units": "grams",
+    "time_or_weight":500, //parseInt(diet?.time_or_weight),
+    "units":'grams',   // diet?.units,
     "calories": parseInt(diet?.calories),
     "category_id": dataOfItem.category_id,
     "description":diet?.description,
@@ -575,6 +575,42 @@ const apiHitEdit=async()=>{
          })}
                         </div>
                                 
+
+
+
+
+                        <Grid mb={2} container justifyContent='space-between'  sx={{borderColor:"#007AFF"}} >
+                          <Grid  xs={5.8} Item>
+                            <TextField onChange={(e)=>setDiet({...diet,time_or_weight:e?.target?.value})} value={diet?.time_or_weight} label="Weight" sx={{borderColor:"purple"}} variant='outlined' fullWidth/>
+                            </Grid>
+                            <Grid xs={5.8} item>
+                            <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label">Select Units</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={diet?.units}
+          label="Select Units"
+          onChange={e => {
+            console.log(e?.target?.value);
+            setDiet({...diet,units:e?.target?.value})
+        }}
+         
+        > 
+              <MenuItem value="Oz"> Oz</MenuItem>
+                  <MenuItem value="Cup">Cup</MenuItem>
+                  <MenuItem value="grams">grams</MenuItem>
+        </Select>
+      </FormControl>
+                            </Grid>
+                        </Grid>
+
+
+
+
+
+
+
 
                         
                         <Grid xs={12}   mb={2}  

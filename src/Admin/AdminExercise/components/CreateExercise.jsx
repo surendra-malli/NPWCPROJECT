@@ -83,6 +83,7 @@ const FullScreenDialog = forwardRef((props, ref) => {
           "calories":"",
           "category_id":"",
           "counts":"",
+          "sets":"",
           "description":"",
           "item_image":"",
           "item_name":"",
@@ -599,7 +600,7 @@ setAction("Create")
                        
                         <Grid xs={12}   mb={2}  
                          Item>
-                            <TextField value={exercise.counts} onChange={(e)=>{
+                            <TextField value={exercise?.counts} onChange={(e)=>{
                               
                               if(parseInt(e?.target?.value)>0 || e?.target?.value==='' ){
                               
@@ -610,12 +611,12 @@ setAction("Create")
                               
                               
                               
-                              label="Counts" variant='outlined' fullWidth/>
+                             type="number" label="Counts" variant='outlined' fullWidth/>
                         </Grid>
                         <Grid xs={12}   mb={2}  
                          Item>
-                            <TextField value={exercise.sets} onChange={(e)=>{
-                              if(e?.target?.value===' ' || parseInt(e?.target?.value)>0){
+                            <TextField value={exercise?.sets} onChange={(e)=>{
+                              if(e?.target?.value==='' || parseInt(e?.target?.value)>0){
 
 
                             

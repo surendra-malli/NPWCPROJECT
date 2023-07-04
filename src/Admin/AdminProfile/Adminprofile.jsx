@@ -157,7 +157,7 @@ console.log(objectData,'objectData admin profile')
  msg='User Activated Successfully';
  }
  else{
- msg='User Deactivated Successfully';
+ msg='User Inactivated Successfully';
  }
  childcomrefAlert.current.handleClickOpenAlert(msg);
  })
