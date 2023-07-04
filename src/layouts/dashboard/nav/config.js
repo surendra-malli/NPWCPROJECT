@@ -5,6 +5,7 @@ import SvgColor from '../../../components/svg-color';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import HomeIcon from '@mui/icons-material/Home';
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
+import HelpCenterIcon from '@mui/icons-material/HelpCenter';
 // ----------------------------------------------------------------------
 
 const icon = (name) => < SvgColor src = { `/assets/icons/navbar/${name}.svg` }
@@ -59,6 +60,15 @@ const navConfig = [{
         path: '/dashboardadmin/AdminExercise',
         // icon: icon('ic_cart'), 
         icon: <FitnessCenterIcon/>,
+        id: 0,
+
+    },
+   
+    {
+        title: 'Help Center',
+        path: '/dashboardadmin/helpcenter',
+        // icon: icon('ic_cart'), 
+        icon: <HelpCenterIcon/>,
         id: 0,
 
     },

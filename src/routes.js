@@ -34,6 +34,11 @@ import CreateDietPlanNut from './Admin/AdminDiet/components/CreateDietPlanNut'
 
 import CreateInstantExercisePlan from './Admin/AdminDiet/components/CreateInstantExercisePlan';
 
+// --------help center---
+import HelpCenter from './Admin/HelpCenter/HelpCenter';
+import GetStarted from "./Admin/HelpCenter/GetStarted";
+import PrivacyPolicy from "./Admin/HelpCenter/PrivacyPolicy";
+import TermConditions from "./Admin/HelpCenter/TermConditions"
 
 export default function Router() {
     const routes = useRoutes([
@@ -149,6 +154,25 @@ export default function Router() {
                     path:'createinstantexerciseplan',
                     element:<CreateInstantExercisePlan />
                 }
+                ,
+                 {
+                    path:'helpcenter',
+                    element:< HelpCenter/>
+                },
+
+                 {
+                    path:'helpcenter/getstarted',
+                    element:<GetStarted />
+                },
+                 {
+                    path:'helpcenter/privacypolicy',
+                    element:< PrivacyPolicy/>
+                },
+                 {
+                    path:'helpcenter/termconditions',
+                    element:<TermConditions/>
+                },
+
                 
                 
             ]
